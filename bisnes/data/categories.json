@@ -1,0 +1,26 @@
+[
+  {
+    "icon": "assets/icon/all_icon.png",
+    "name": "Todos"
+  },
+  {
+    "icon": "assets/icon/all_icon.png",
+    "name": "Compra y Venta"
+  },
+  {
+    "icon": "assets/icon/all_icon.png",
+    "name": "Belleza"
+  },
+  {
+    "icon": "assets/icon/all_icon.png",
+    "name": "Ropa y Accesorios"
+  },
+  {
+    "icon": "assets/icon/all_icon.png",
+    "name": "Electrónicos"
+  },
+  {
+    "icon": "assets/icon/all_icon.png",
+    "name": "Comida"
+  }
+]

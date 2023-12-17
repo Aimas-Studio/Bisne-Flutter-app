@@ -1,24 +1,26 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_new, sort_child_properties_last
 
-import 'package:bisnes/src/widgets/ShopCard.dart';
+import 'package:bisnes/src/providers/CategoryProvider.dart';
+import 'package:bisnes/src/providers/ShopsProvider.dart';
+import 'package:bisnes/src/widgets/BannerPromocionalWidget.dart';
+import 'package:bisnes/src/widgets/SearchImputWidget.dart';
+import 'package:bisnes/src/widgets/BisnesCardWidget.dart';
+import 'package:bisnes/src/widgets/TableShopWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
-class HomePage extends StatelessWidget {
-  late List<Map<String, String>> categories;
-  late List<String> images;
-  HomePage({super.key}) {
-    images = [
-      'assets/fotos/hero.png',
-      'assets/fotos/hero.png',
-      'assets/fotos/hero.png',
-      'assets/fotos/hero.png',
-      'assets/fotos/hero.png'
-    ];
-  }
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String section = 'Populares';
 
   @override
   Widget build(BuildContext context) {
+    // print(ShopsProvider.shops.length);
     return Scaffold(
       appBar: AppBar(
         title: const ListTile(
@@ -36,57 +38,50 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.3,
-            child: Swiper(
-              itemBuilder: (BuildContext context, int index) {
-                return new Image.asset(
-                  images[index],
-                  fit: BoxFit.fitWidth,
-                );
-              },
-              indicatorLayout: PageIndicatorLayout.SCALE,
-              autoplay: true,
-              autoplayDelay: 5000,
-              itemCount: images.length,
-              pagination: new SwiperPagination(
-                margin: EdgeInsetsGeometry.lerp(
-                    EdgeInsets.all(0.0), EdgeInsets.all(0.0), 0.0)!,
-                builder: new DotSwiperPaginationBuilder(
-                    color: Colors.grey[350],
-                    activeColor: Colors.green[400],
-                    size: 13.0,
-                    space: 10.0),
-              ),
-              fade: 1.0,
-            ),
-          ),
+          BannerPromotionalWidget(),
           SizedBox(
             height: 25.0,
           ),
-          Container(
-            child: Text('Categorías',
-                style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold)),
-            padding: EdgeInsets.only(left: 30.0),
+          Column(
+            children: [
+              Container(
+                alignment: Alignment.topLeft,
+                child: Text('Categorías',
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold)),
+                padding: EdgeInsets.only(left: 30.0),
+              ),
+              SizedBox(
+                height: 18.0,
+              ),
+              FutureBuilder(
+                  future: CategoryProvider.cargarData(),
+                  builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+                    return Container(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      padding: EdgeInsets.only(left: 15.0),
+                      child: PageView(
+                        padEnds: false,
+                        controller: PageController(
+                            viewportFraction:
+                                MediaQuery.of(context).size.width * 0.00077),
+                        scrollDirection: Axis.horizontal,
+                        children: _setCategories(
+                            snapshot.hasData ? snapshot.data! : []),
+                      ),
+                    );
+                  })
+            ],
           ),
-          SizedBox(
-            height: 18.0,
+          SearchInputFb1(
+            hintText: 'Buscar Productos...',
+            searchController: SearchController(),
           ),
+          SizedBox(height: 15.0),
           Container(
-            height: MediaQuery.of(context).size.height * 0.15,
-            padding: EdgeInsets.only(left: 20.0),
-            child: PageView(
-              padEnds: false,
-              controller: PageController(viewportFraction: 0.24),
-              scrollDirection: Axis.horizontal,
-              children: _setCategoriesOffline(),
-            ),
-          ),
-          Container(
-            child: Text('Populares',
+            child: Text(section,
                 style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.black,
@@ -96,91 +91,33 @@ class HomePage extends StatelessWidget {
           SizedBox(
             height: 15.0,
           ),
-          Table(
-            children: [_card(context), _card(context), _card(context)],
+          TableShopWidget(maxColumns: 2),
+          SizedBox(
+            height: 20.0,
           )
         ],
       ),
     );
   }
 
-  TableRow _card(BuildContext context) {
-    return TableRow(children: [BisnesCard(), BisnesCard()]);
-  }
-
-  List<Widget> _setCategories(List<Map<String, String>> categories) {
-    List<Widget> categories_finished = [];
-    for (Map<String, String> category in categories) {
-      categories_finished.add(Column(
-        children: [
-          Image.asset('assets/icon/${category['icon']!}'),
-          SizedBox(),
-          Text(category['name']!)
-        ],
-      ));
-    }
-    return categories_finished;
-  }
-
-  List<Widget> _setCategoriesOffline() {
-    List<Widget> categories_finished = [
-      Column(
-        children: [
-          Image.asset('assets/icon/all_icon.png'),
-          SizedBox(),
-          Text('Todos')
-        ],
-      ),
-      Column(
-        children: [
-          Image.asset('assets/icon/all_icon.png'),
-          SizedBox(),
-          Text('Todos')
-        ],
-      ),
-      Column(
-        children: [
-          Image.asset('assets/icon/all_icon.png'),
-          SizedBox(),
-          Text('Todos')
-        ],
-      ),
-      Column(
-        children: [
-          Image.asset('assets/icon/all_icon.png'),
-          SizedBox(),
-          Text('Todos')
-        ],
-      ),
-      Column(
-        children: [
-          Image.asset('assets/icon/all_icon.png'),
-          SizedBox(),
-          Text('Todos')
-        ],
-      ),
-      Column(
-        children: [
-          Image.asset('assets/icon/all_icon.png'),
-          SizedBox(),
-          Text('Todos')
-        ],
-      ),
-      Column(
-        children: [
-          Image.asset('assets/icon/all_icon.png'),
-          SizedBox(),
-          Text('Todos')
-        ],
-      ),
-      Column(
-        children: [
-          Image.asset('assets/icon/all_icon.png'),
-          SizedBox(),
-          Text('Todos')
-        ],
-      )
-    ];
-    return categories_finished;
+  List<Widget> _setCategories(List<dynamic> categories) {
+    return categories.map((category) {
+      return InkWell(
+        onTap: () {
+          section = category["name"];
+          setState(() {});
+        },
+        child: Column(
+          children: [
+            Image(image: AssetImage(category["icon"])),
+            Center(
+                child: Text(
+              category["name"],
+              textAlign: TextAlign.center,
+            ))
+          ],
+        ),
+      );
+    }).toList();
   }
 }
