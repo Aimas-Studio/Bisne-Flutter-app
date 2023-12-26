@@ -3,9 +3,12 @@
 import 'package:bisnes/src/providers/CategoryProvider.dart';
 import 'package:bisnes/src/providers/ShopsProvider.dart';
 import 'package:bisnes/src/widgets/BannerPromocionalWidget.dart';
+import 'package:bisnes/src/widgets/BottomNavBar.dart';
+import 'package:bisnes/src/widgets/DrawerHomeWidget.dart';
 import 'package:bisnes/src/widgets/SearchImputWidget.dart';
 import 'package:bisnes/src/widgets/BisnesCardWidget.dart';
 import 'package:bisnes/src/widgets/TableShopWidget.dart';
+import 'package:flutter_side_menu/flutter_side_menu.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,10 +23,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // print(ShopsProvider.shops.length);
+    double media = MediaQuery.sizeOf(context).width > 400
+        ? MediaQuery.sizeOf(context).height * 0.24
+        : MediaQuery.sizeOf(context).height * 0.15;
+    double mediaViewPort = MediaQuery.sizeOf(context).width > 400 ? 0.14 : 0.25;
     return Scaffold(
       appBar: AppBar(
-        title: const ListTile(
+        toolbarHeight: 80,
+        title: ListTile(
           title: Text(
             'El Bisnes',
             style: TextStyle(
@@ -32,10 +39,21 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.bold),
           ),
           leading: Image(image: AssetImage('assets/icon/bisne_logo.png')),
-          trailing: Image(image: AssetImage('assets/icon/menu_home_icon.png')),
         ),
+        actions: <Widget>[
+          Builder(
+              builder: (context) => InkWell(
+                    child: Image(
+                        image: AssetImage('assets/icon/menu_home_icon.png')),
+                    onTap: () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
+                  )),
+        ],
         forceMaterialTransparency: true,
       ),
+      endDrawerEnableOpenDragGesture: false,
+      endDrawer: DrawerHomeWidget(),
       body: ListView(
         children: [
           BannerPromotionalWidget(),
@@ -60,13 +78,12 @@ class _HomePageState extends State<HomePage> {
                   future: CategoryProvider.cargarData(),
                   builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
                     return Container(
-                      height: MediaQuery.of(context).size.height * 0.15,
+                      height: media,
                       padding: EdgeInsets.only(left: 15.0),
                       child: PageView(
                         padEnds: false,
-                        controller: PageController(
-                            viewportFraction:
-                                MediaQuery.of(context).size.width * 0.00077),
+                        controller:
+                            PageController(viewportFraction: mediaViewPort),
                         scrollDirection: Axis.horizontal,
                         children: _setCategories(
                             snapshot.hasData ? snapshot.data! : []),
@@ -91,12 +108,14 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 15.0,
           ),
-          TableShopWidget(maxColumns: 2),
+          TableShopWidget(
+              maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2),
           SizedBox(
             height: 20.0,
           )
         ],
       ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 

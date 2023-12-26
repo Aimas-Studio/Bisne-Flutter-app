@@ -35,6 +35,42 @@
       "categories": ["Diseño y Publicidad"],
       "image": "assets/fotos/shop2.png",
       "rate": "4.5"
+    },
+    {
+      "name": "Chocothay",
+      "categories": ["Diseño y Publicidad"],
+      "image": "assets/fotos/shop1.png",
+      "rate": "4.5"
+    },
+    {
+      "name": "Aimas",
+      "categories": ["Diseño y Publicidad"],
+      "image": "assets/fotos/shop2.png",
+      "rate": "4.5"
+    },
+    {
+      "name": "Chocothay",
+      "categories": ["Diseño y Publicidad"],
+      "image": "assets/fotos/shop1.png",
+      "rate": "4.5"
+    },
+    {
+      "name": "Aimas",
+      "categories": ["Diseño y Publicidad"],
+      "image": "assets/fotos/shop2.png",
+      "rate": "4.5"
+    },
+    {
+      "name": "Chocothay",
+      "categories": ["Diseño y Publicidad"],
+      "image": "assets/fotos/shop1.png",
+      "rate": "4.5"
+    },
+    {
+      "name": "Aimas",
+      "categories": ["Diseño y Publicidad"],
+      "image": "assets/fotos/shop2.png",
+      "rate": "4.5"
     }
   ]
 }

@@ -8,17 +8,18 @@ import '../providers/PromotionalProvider.dart';
 class BannerPromotionalWidget extends StatelessWidget {
   List<dynamic> images = [];
 
-  BannerPromotionalWidget({super.key}) {}
+  BannerPromotionalWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double mediaHeight = MediaQuery.sizeOf(context).width > 400 ? 120.0 : 250.0;
     return FutureBuilder(
         future: PromoProvider.cargarData(),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           images = snapshot.hasData ? snapshot.data! : [];
 
           return Container(
-              height: 250.0,
+              height: mediaHeight,
               child: Swiper(
                   itemHeight: double.minPositive,
                   itemBuilder: (BuildContext context, int index) {

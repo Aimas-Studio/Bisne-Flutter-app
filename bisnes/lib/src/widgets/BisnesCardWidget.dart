@@ -18,52 +18,40 @@ class BisnesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double heightMedia = MediaQuery.of(context).size.width > 400 ? 230 : 220;
+    double widthMedia = MediaQuery.of(context).size.width > 400 ? 150 : 250;
     return InkWell(
       onTap: () {},
       child: Stack(
         children: [
-          Stack(
-            children: [
-              Container(
-                  child: Column(
-                    children: [
-                      Image(
-                          image: AssetImage(image),
-                          fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width * 0.44),
-                      Expanded(
-                        child: Container(
-                          child: ListTile(
-                            title: Text('  ${name}'),
-                            subtitle: Text(categories[0],
-                                style: TextStyle(color: Colors.green)),
-                          ),
-                        ),
-                      )
-                    ],
+          Container(
+            child: Column(
+              children: [
+                Image(
+                  image: AssetImage(image),
+                  fit: BoxFit.cover,
+                  width: widthMedia,
+                ),
+                Expanded(
+                  child: Container(
+                    child: ListTile(
+                      title: Text(name),
+                      subtitle: Text(categories[0],
+                          style: TextStyle(color: Colors.green)),
+                    ),
                   ),
-                  alignment: Alignment.topLeft,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25.0),
-                      boxShadow: [
-                        BoxShadow(color: Colors.grey, blurRadius: 3.0)
-                      ]),
-                  clipBehavior: Clip.antiAlias,
-                  margin: EdgeInsets.all(10.0),
-                  height: MediaQuery.of(context).size.height * 0.27),
-              Container(
-                margin: EdgeInsets.only(top: 138.0, left: 110.0),
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 57, 164, 62),
-                    borderRadius: BorderRadius.horizontal(
-                        left: Radius.circular(10.0),
-                        right: Radius.circular(10.0))),
-                height: 30.0,
-                width: 30.0,
-                child: Center(child: Image.asset('assets/icon/plus_icon.png')),
-              ),
-            ],
+                )
+              ],
+            ),
+            alignment: Alignment.topLeft,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25.0),
+                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 3.0)]),
+            clipBehavior: Clip.antiAlias,
+            margin: EdgeInsets.all(10.0),
+            height: heightMedia,
+            width: widthMedia,
           ),
           Container(
             decoration: BoxDecoration(
@@ -71,7 +59,8 @@ class BisnesCard extends StatelessWidget {
                 borderRadius: BorderRadius.horizontal(
                     left: Radius.circular(20.0), right: Radius.circular(20.0))),
             alignment: Alignment.topLeft,
-            margin: EdgeInsets.only(right: 90.0, top: 20.0, left: 20.0),
+            width: 55.0,
+            margin: EdgeInsets.only(top: 20.0, left: 20.0),
             padding: EdgeInsets.only(left: 10.0),
             child: Row(
               children: [

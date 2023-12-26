@@ -13,7 +13,14 @@ class TableShopWidget extends StatelessWidget {
       future: ShopsProvider.cargarData(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Table(children: _createTableRow(shops: snapshot.data!));
+          return Container(
+            padding: EdgeInsets.symmetric(
+                horizontal:
+                    MediaQuery.of(context).size.width > 400 ? 30.0 : 0.0),
+            child: Table(
+              children: _createTableRow(shops: snapshot.data!),
+            ),
+          );
         }
         return Table();
       },
