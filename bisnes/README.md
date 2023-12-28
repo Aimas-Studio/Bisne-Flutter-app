@@ -1,16 +1,8 @@
-# bisnes
+# Importante
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Para mejor organizacion en el proyecto te propongo las siguientes reglas:
+## nombre de las carpetas en ingles y empezando con mayuscula
+## nombre de los archivos dart en snake case
+## nombre de las clases Pascal case y coincidiendo con el nombre del .dart
+## todo lo demas en camel case
+## para cada pagina habra una carpeta con los widgets provider y services de esa pagina

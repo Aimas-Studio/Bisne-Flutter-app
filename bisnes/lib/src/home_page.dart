@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_new, sort_child_properties_last
 
 import 'package:bisnes/src/providers/CategoryProvider.dart';
-import 'package:bisnes/src/providers/ShopsProvider.dart';
 import 'package:bisnes/src/widgets/BannerPromocionalWidget.dart';
 import 'package:bisnes/src/widgets/SearchImputWidget.dart';
-import 'package:bisnes/src/widgets/BisnesCardWidget.dart';
 import 'package:bisnes/src/widgets/TableShopWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +29,8 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.black,
                 fontWeight: FontWeight.bold),
           ),
-          leading: Image(image: AssetImage('assets/icon/bisne_logo.png')),
-          trailing: Image(image: AssetImage('assets/icon/menu_home_icon.png')),
+          leading: Image(image: AssetImage('assets/Icons/bisne_logo.png')),
+          trailing: Image(image: AssetImage('assets/Icons/menu_home_icon.png')),
         ),
         forceMaterialTransparency: true,
       ),
