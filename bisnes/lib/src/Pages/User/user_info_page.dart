@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 
 //Internal Imports
 import '../../Utils/custom_icons.dart';
+import '../../Utils/interfaces.dart';
 
-class UserPage extends StatelessWidget {
-  const UserPage({super.key});
+class UserInfoPage extends StatelessWidget {
+  const UserInfoPage({super.key});
 
   @override
   Widget build(context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromRGBO(245, 246, 248, 1),
+        backgroundColor: backgroundAppColor,
         appBar: notificationButtonBar(),
         body: Column(
           children: [
+            profile(),
             userInformation(),
           ],
         ),
@@ -46,29 +48,18 @@ PreferredSizeWidget notificationButtonBar() {
   );
 }
 
-Widget userInformation() {
+Widget profile() {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       profilePhoto(),
-      const Column(
-        children: [
-          Text(
-            "Username",
-            textAlign: TextAlign.justify,
-            style:
-                TextStyle(fontSize: 31, color: Color.fromRGBO(81, 92, 111, 1)),
-          )
-        ],
-      )
     ],
   );
 }
 
 Widget profilePhoto() {
   return Container(
-      color: Colors.black,
-      margin: const EdgeInsets.only(left: 30),
+      margin: const EdgeInsets.only(left: 15),
       child: ClipOval(
         child: SizedBox.fromSize(
           size: const Size.fromRadius(70),
@@ -78,4 +69,37 @@ Widget profilePhoto() {
           ),
         ),
       ));
+}
+
+Widget userInformation() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const Padding(
+        padding: EdgeInsets.only(top: 20),
+        child: Text(
+          "Username",
+          style: TextStyle(fontSize: 24, color: fontAppColor),
+        ),
+      ),
+      const Padding(
+        padding: EdgeInsets.only(top: 5),
+        child: Text(
+          "testemail@gmail.com",
+          style: TextStyle(
+            color: fontAppColor,
+            fontSize: 16,
+          ),
+        ),
+      ),
+      ElevatedButton(
+          style: const ButtonStyle(),
+          onPressed: () => {},
+          child: const Text(
+            "Editar Usuario",
+            style: TextStyle(color: Color.fromRGBO(114, 124, 142, 1)),
+          ))
+    ],
+  );
 }
