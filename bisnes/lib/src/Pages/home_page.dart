@@ -1,14 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_new, sort_child_properties_last
-
+//Flutter Imports
+//Internal Imports
 import 'package:bisnes/src/providers/CategoryProvider.dart';
-import 'package:bisnes/src/providers/ShopsProvider.dart';
 import 'package:bisnes/src/widgets/BannerPromocionalWidget.dart';
 import 'package:bisnes/src/widgets/BottomNavBar.dart';
 import 'package:bisnes/src/widgets/DrawerHomeWidget.dart';
 import 'package:bisnes/src/widgets/SearchImputWidget.dart';
-import 'package:bisnes/src/widgets/BisnesCardWidget.dart';
 import 'package:bisnes/src/widgets/TableShopWidget.dart';
-import 'package:flutter_side_menu/flutter_side_menu.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,13 +36,13 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.black,
                 fontWeight: FontWeight.bold),
           ),
-          leading: Image(image: AssetImage('assets/icon/bisne_logo.png')),
+          leading: Image(image: AssetImage('assets/Icons/bisne_logo.png')),
         ),
         actions: <Widget>[
           Builder(
               builder: (context) => InkWell(
                     child: Image(
-                        image: AssetImage('assets/icon/menu_home_icon.png')),
+                        image: AssetImage('assets/Icons/menu_home_icon.png')),
                     onTap: () {
                       Scaffold.of(context).openEndDrawer();
                     },

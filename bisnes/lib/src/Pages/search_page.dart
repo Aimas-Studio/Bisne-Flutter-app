@@ -1,11 +1,9 @@
-import 'dart:ffi';
-import 'dart:math';
-
-import 'package:bisnes/src/Pages/HomePage.dart';
+//Dart Imports
 import 'package:bisnes/src/widgets/BottomNavBar.dart';
 import 'package:bisnes/src/widgets/DrawerSearchWidget.dart';
 import 'package:bisnes/src/widgets/SearchImputWidget.dart';
 import 'package:bisnes/src/widgets/TableShopWidget.dart';
+//Flutter Imports
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -30,16 +28,17 @@ class _SearchPageState extends State<SearchPage> {
                     },
                     child: Container(
                       width: 50,
-                      margin: EdgeInsets.only(top: 15, right: 10, bottom: 15),
+                      margin:
+                          const EdgeInsets.only(top: 15, right: 10, bottom: 15),
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
-                      child: Image.asset('assets/icon/filter_icon.png'),
+                      child: Image.asset('assets/Icons/filter_icon.png'),
                     ));
               }),
             ],
-            backgroundColor: Color.fromRGBO(245, 246, 248, 1),
+            backgroundColor: const Color.fromRGBO(245, 246, 248, 1),
             title: Row(
               children: [
                 SearchInputFb1(
@@ -49,7 +48,7 @@ class _SearchPageState extends State<SearchPage> {
               ],
             ),
             toolbarHeight: 80,
-            shadowColor: Color.fromRGBO(245, 246, 248, 1),
+            shadowColor: const Color.fromRGBO(245, 246, 248, 1),
             bottom: const TabBar(
               indicatorColor: Color.fromRGBO(29, 173, 3, 1),
               indicatorPadding: EdgeInsets.only(bottom: 7),
@@ -100,7 +99,7 @@ class _SearchPageState extends State<SearchPage> {
               ]),
             ],
           ),
-          bottomNavigationBar: BottomNavBar()),
+          bottomNavigationBar: const BottomNavBar()),
     );
   }
 }
