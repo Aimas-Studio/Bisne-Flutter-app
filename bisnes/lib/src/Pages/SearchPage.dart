@@ -6,6 +6,7 @@ import 'package:bisnes/src/widgets/BottomNavBar.dart';
 import 'package:bisnes/src/widgets/DrawerSearchWidget.dart';
 import 'package:bisnes/src/widgets/SearchImputWidget.dart';
 import 'package:bisnes/src/widgets/TableShopWidget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -40,13 +41,9 @@ class _SearchPageState extends State<SearchPage> {
               }),
             ],
             backgroundColor: Color.fromRGBO(245, 246, 248, 1),
-            title: Row(
-              children: [
-                SearchInputFb1(
-                  hintText: 'Buscar Productos...',
-                  searchController: SearchController(),
-                ),
-              ],
+            title: SearchInputFb1(
+              hintText: 'Buscar Productos...',
+              searchController: SearchController(),
             ),
             toolbarHeight: 80,
             shadowColor: Color.fromRGBO(245, 246, 248, 1),
@@ -80,6 +77,8 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
           endDrawer: DrawerSearchWidget(),
+          drawerScrimColor: Color.fromRGBO(255, 255, 255, 0),
+          drawerEdgeDragWidth: MediaQuery.of(context).size.width,
           body: TabBarView(
             children: [
               ListView(children: [
@@ -100,7 +99,9 @@ class _SearchPageState extends State<SearchPage> {
               ]),
             ],
           ),
-          bottomNavigationBar: BottomNavBar()),
+          bottomNavigationBar: BottomNavBar(
+            index: 1,
+          )),
     );
   }
 }

@@ -4,6 +4,7 @@ class DrawerHomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      surfaceTintColor: Colors.amber,
       width: MediaQuery.of(context).size.width > 400
           ? MediaQuery.of(context).size.width * 0.4
           : MediaQuery.of(context).size.width * 0.7,

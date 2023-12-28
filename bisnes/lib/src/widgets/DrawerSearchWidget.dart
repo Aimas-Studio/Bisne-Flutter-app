@@ -1,64 +1,215 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'dart:ffi';
+import 'dart:math';
+
+import 'package:bisnes/src/providers/CategoryProvider.dart';
 import 'package:flutter/material.dart';
 
-class DrawerSearchWidget extends StatelessWidget {
+class DrawerSearchWidget extends StatefulWidget {
+  @override
+  State<DrawerSearchWidget> createState() => _DrawerSearchWidgetState();
+}
+
+class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
+  String categoria = '';
+  String provincia = '';
+
+  final List<String> categories =
+      CategoryProvider.categories.map((category) => category['name']!).toList();
+
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      width: MediaQuery.of(context).size.width > 400
-          ? MediaQuery.of(context).size.width * 0.4
-          : MediaQuery.of(context).size.width * 0.7,
-      child: Material(
-        color: Color.fromARGB(255, 255, 255, 255),
-        child: ListView(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(15.0),
+    print(categoria);
+    print('');
+    return Container(
+      margin: EdgeInsets.only(top: 30),
+      height: MediaQuery.of(context).size.height - 185,
+      child: Drawer(
+        clipBehavior: Clip.antiAlias,
+        width: MediaQuery.of(context).size.width > 400
+            ? MediaQuery.of(context).size.width * 0.4
+            : MediaQuery.of(context).size.width * 0.7,
+        child: Material(
+            color: Color.fromARGB(255, 255, 255, 255),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 children: [
-                  const SizedBox(height: 12),
-                  MenuItem(
-                    text: 'Administrar Tienda',
-                    icon: Icons.maps_home_work_outlined,
-                    onClicked: () => selectedItem(context, 0),
+                  SizedBox(
+                    height: 20.0,
                   ),
-                  const SizedBox(height: 5),
-                  MenuItem(
-                    text: 'Promocionarse',
-                    icon: Icons.stacked_line_chart_sharp,
-                    onClicked: () => selectedItem(context, 1),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text('FILTRAR RESULTADOS'),
+                      InkWell(
+                        child: Text('LIMPIAR',
+                            style: TextStyle(
+                                color: Color.fromRGBO(29, 173, 3, 1))),
+                        onTap: () {},
+                      )
+                    ],
                   ),
-                  const SizedBox(height: 5),
-                  MenuItem(
-                    text: 'Publicar mi negocio',
-                    icon: Icons.add,
-                    onClicked: () => selectedItem(context, 2),
+                  SizedBox(
+                    height: 50,
                   ),
-                  const SizedBox(height: 5),
-                  MenuItem(
-                    text: 'Invitar amigo',
-                    icon: Icons.star,
-                    onClicked: () => selectedItem(context, 3),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // crossAxisAlignment: ,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Text('CATEGORÍA'),
+                      // ignore: prefer_const_literals_to_create_immutables
+
+                      DropdownButton<dynamic>(
+                        underline: Container(),
+                        value: categoria == '' ? 'Todos' : categoria,
+                        isDense: true,
+                        style:
+                            TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
+                        alignment: Alignment.centerRight,
+                        icon: Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: Icon(Icons.arrow_circle_right_outlined)),
+                        items: categories
+                            .map((category) => DropdownMenuItem<dynamic>(
+                                  value: category,
+                                  child: Text(category),
+                                ))
+                            .toList(),
+                        onChanged: (Object? value) {
+                          categoria = value as String;
+                          setState(() {});
+                        },
+                        // [
+                        //   DropdownMenuEntry<dynamic>(value: 'hola', label: "hola")
+                        // ]
+                      ),
+                    ],
                   ),
-                  MenuItem(
-                    text: 'Contactar Equipo',
-                    icon: Icons.person,
-                    onClicked: () => selectedItem(context, 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // crossAxisAlignment: ,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Text('PROVINCIA'),
+                      // ignore: prefer_const_literals_to_create_immutables
+
+                      DropdownButton<dynamic>(
+                        underline: Container(),
+                        value: provincia == '' ? 'Todas' : provincia,
+                        isDense: true,
+                        style:
+                            TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
+                        alignment: Alignment.centerRight,
+                        icon: Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: Icon(Icons.arrow_circle_right_outlined)),
+                        items: [
+                          DropdownMenuItem<dynamic>(
+                            value: 'Todas',
+                            child: Text('Todas'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'La Habana',
+                            child: Text('La Habana'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'Holguín',
+                            child: Text('Holguín'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'Las Tunas',
+                            child: Text('Las Tunas'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'Matanzas',
+                            child: Text('Matanzas'),
+                          ),
+                        ],
+                        onChanged: (Object? value) {
+                          provincia = value as String;
+                          setState(() {});
+                        },
+                        // [
+                        //   DropdownMenuEntry<dynamic>(value: 'hola', label: "hola")
+                        // ]
+                      ),
+                    ],
                   ),
-                  MenuItem(
-                    text: 'Compartir App',
-                    icon: Icons.share,
-                    onClicked: () => selectedItem(context, 6),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // crossAxisAlignment: ,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Text('CATEGORÍA'),
+                      // ignore: prefer_const_literals_to_create_immutables
+
+                      DropdownButton<dynamic>(
+                        underline: Container(),
+                        value: categoria == '' ? 'Todos' : categoria,
+                        isDense: true,
+                        style:
+                            TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
+                        alignment: Alignment.centerRight,
+                        icon: Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: Icon(Icons.arrow_circle_right_outlined)),
+                        items: categories
+                            .map((category) => DropdownMenuItem<dynamic>(
+                                  value: category,
+                                  child: Text(category),
+                                ))
+                            .toList(),
+                        onChanged: (Object? value) {
+                          categoria = value as String;
+                          setState(() {});
+                        },
+                        // [
+                        //   DropdownMenuEntry<dynamic>(value: 'hola', label: "hola")
+                        // ]
+                      ),
+                    ],
                   ),
-                  MenuItem(
-                    text: 'Condiciones de uso',
-                    icon: Icons.devices_fold_sharp,
-                    onClicked: () => selectedItem(context, 6),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // crossAxisAlignment: ,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Text('CATEGORÍA'),
+                      // ignore: prefer_const_literals_to_create_immutables
+
+                      DropdownButton<dynamic>(
+                        underline: Container(),
+                        value: categoria == '' ? 'Todos' : categoria,
+                        isDense: true,
+                        style:
+                            TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
+                        alignment: Alignment.centerRight,
+                        icon: Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: Icon(Icons.arrow_circle_right_outlined)),
+                        items: categories
+                            .map((category) => DropdownMenuItem<dynamic>(
+                                  value: category,
+                                  child: Text(category),
+                                ))
+                            .toList(),
+                        onChanged: (Object? value) {
+                          categoria = value as String;
+                          setState(() {});
+                        },
+                        // [
+                        //   DropdownMenuEntry<dynamic>(value: 'hola', label: "hola")
+                        // ]
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
+            )),
       ),
     );
   }

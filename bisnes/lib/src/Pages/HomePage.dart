@@ -12,7 +12,7 @@ import 'package:flutter_side_menu/flutter_side_menu.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String section = 'Populares';
-
+  final index = 2;
   @override
   Widget build(BuildContext context) {
     double media = MediaQuery.sizeOf(context).width > 400
@@ -54,6 +54,7 @@ class _HomePageState extends State<HomePage> {
       ),
       endDrawerEnableOpenDragGesture: false,
       endDrawer: DrawerHomeWidget(),
+      drawerScrimColor: Colors.white70,
       body: ListView(
         children: [
           BannerPromotionalWidget(),
@@ -92,9 +93,26 @@ class _HomePageState extends State<HomePage> {
                   })
             ],
           ),
-          SearchInputFb1(
-            hintText: 'Buscar Productos...',
-            searchController: SearchController(),
+          Row(
+            children: [
+              SizedBox(
+                width: 25,
+              ),
+              SearchInputFb1(
+                hintText: 'Buscar Productos...',
+                searchController: SearchController(),
+              ),
+              Container(
+                width: 50,
+                height: 50,
+                margin: EdgeInsets.only(top: 0, right: 5, bottom: 0, left: 5),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                ),
+                child: Image.asset('assets/icon/filter_icon.png'),
+              )
+            ],
           ),
           SizedBox(height: 15.0),
           Container(
@@ -115,7 +133,9 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        index: 2,
+      ),
     );
   }
 

@@ -12,7 +12,7 @@ class BannerPromotionalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double mediaHeight = MediaQuery.sizeOf(context).width > 400 ? 120.0 : 250.0;
+    double mediaHeight = MediaQuery.sizeOf(context).width > 400 ? 220.0 : 250.0;
     return FutureBuilder(
         future: PromoProvider.cargarData(),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
@@ -21,25 +21,31 @@ class BannerPromotionalWidget extends StatelessWidget {
           return Container(
               height: mediaHeight,
               child: Swiper(
-                  itemHeight: double.minPositive,
+                  layout: SwiperLayout.DEFAULT,
+                  containerHeight: 50,
+                  autoplayDisableOnInteraction: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return FadeInImage(
-                        placeholder: AssetImage('assets/fotos/hero.png'),
-                        image: AssetImage(
-                          images[index],
-                        ));
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 33.0),
+                      child: FadeInImage(
+                          placeholder: AssetImage('assets/fotos/hero.png'),
+                          image: AssetImage(
+                            images[index],
+                          )),
+                    );
                   },
-                  autoplay: true,
+                  autoplay: false,
+                  controller: SwiperController(),
                   autoplayDelay: 6000,
                   itemCount: images.length,
                   pagination: new SwiperPagination(
-                    margin: EdgeInsets.only(top: 40.0),
-                    builder: new DotSwiperPaginationBuilder(
+                      alignment: Alignment.bottomCenter,
+                      builder: new DotSwiperPaginationBuilder(
                         color: Colors.grey[350],
                         activeColor: Colors.green[400],
-                        size: 13.0,
-                        space: 10.0),
-                  )));
+                        size: 10.0,
+                        space: 2,
+                      ))));
         });
   }
 }

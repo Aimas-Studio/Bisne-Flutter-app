@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+  int index = 0;
+  BottomNavBar({Key? key, this.index = 0}) : super(key: key);
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
+  State<BottomNavBar> createState() => _BottomNavBarState(index: index);
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
+  int index = 0;
+
+  _BottomNavBarState({this.index = 0});
+
   final primaryColor = const Color(0xffffffff);
 
   final secondaryColor = const Color(0xff6D28D9);
@@ -17,8 +22,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final backgroundColor = const Color(0xffffffff);
 
   final errorColor = const Color(0xffEF4444);
-
-  final selected = [false, false, true, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -44,27 +47,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
             children: [
               IconBottomBar(
                   icon: Icons.notifications_none,
-                  selected: selected[0],
+                  selected: index == 0,
                   onPressed: () {}),
               IconBottomBar(
                   icon: Icons.search_outlined,
-                  selected: selected[1],
+                  selected: index == 1,
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, 'SearchPage');
                   }),
               IconBottomBar(
                   icon: Icons.home_outlined,
-                  selected: selected[2],
+                  selected: index == 2,
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/');
                   }),
               IconBottomBar(
                   icon: Icons.favorite_border,
-                  selected: selected[3],
+                  selected: index == 3,
                   onPressed: () {}),
               IconBottomBar(
                   icon: Icons.person_outline_outlined,
-                  selected: selected[4],
+                  selected: index == 4,
                   onPressed: () {})
             ],
           ),
@@ -85,7 +88,6 @@ class IconBottomBar extends StatelessWidget {
   final bool selected;
   final Function() onPressed;
 
-  final primaryColor = const Color(0xff4338CA);
   final accentColor = const Color(0xffffffff);
 
   @override
