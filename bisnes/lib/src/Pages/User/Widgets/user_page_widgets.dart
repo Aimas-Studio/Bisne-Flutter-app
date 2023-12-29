@@ -1,4 +1,7 @@
 //Flutter Imports
+// import 'dart:js';
+
+import 'package:bisnes/src/Pages/User/user_edit_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Utils/custom_icons.dart';
@@ -20,7 +23,7 @@ PreferredSizeWidget notificationButtonBar() {
   );
 }
 
-Widget profile() {
+Widget profile(BuildContext context) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -28,7 +31,7 @@ Widget profile() {
         margin: const EdgeInsets.only(left: 15),
         child: profilePhoto(),
       ),
-      _userInformation(),
+      _userInformation(context),
     ],
   );
 }
@@ -45,7 +48,7 @@ Widget profilePhoto() {
   );
 }
 
-Widget _userInformation() {
+Widget _userInformation(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +70,7 @@ Widget _userInformation() {
           ),
         ),
       ),
-      userPageButton("Editar Perfil"),
+      userPageButton("Editar Perfil", context),
     ],
   );
 }
@@ -121,7 +124,7 @@ List<Widget> getServices(Map<IconData, String> content) {
   return serviceList;
 }
 
-Widget userPageButton(String text) {
+Widget userPageButton(String text, BuildContext context) {
   return SizedBox(
     width: 120,
     child: ElevatedButton(
@@ -136,7 +139,16 @@ Widget userPageButton(String text) {
           backgroundColor:
               const MaterialStatePropertyAll<Color>(backgroundAppColor),
         ),
-        onPressed: () => {},
+        onPressed: () => {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) =>
+                      EditUserPage(),
+                  transitionDuration: Duration(seconds: 0),
+                ),
+              )
+            },
         child: Text(
           text,
           style: const TextStyle(

@@ -17,12 +17,16 @@ class UserInfoPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: backgroundAppColor,
         appBar: notificationButtonBar(),
-        body: Column(
+        body: ListView(
           children: [
-            profile(),
-            userServicesList(contentPanel1),
-            const SizedBox(height: 20),
-            userServicesList(contentPanel2),
+            Column(
+              children: [
+                profile(context),
+                userServicesList(contentPanel1),
+                const SizedBox(height: 20),
+                userServicesList(contentPanel2),
+              ],
+            ),
           ],
         ),
         bottomNavigationBar: BottomNavBar(index: 4),

@@ -20,7 +20,7 @@ class EditUserPage extends StatelessWidget {
             profilePhoto(),
             Container(
                 margin: const EdgeInsets.only(bottom: 15),
-                child: userPageButton("ELEGIR FOTO")),
+                child: userPageButton("ELEGIR FOTO", context)),
             const Text("Username",
                 style: TextStyle(
                     fontSize: 30,
