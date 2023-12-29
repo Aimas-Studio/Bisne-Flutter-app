@@ -7,8 +7,8 @@ import '../../Utils/custom_icons.dart';
 import '../../Utils/interfaces.dart';
 import 'Widgets/user_page_widgets.dart';
 
-class UserPage extends StatelessWidget {
-  const UserPage({super.key});
+class UserInfoPage extends StatelessWidget {
+  const UserInfoPage({super.key});
 
   @override
   Widget build(context) {
