@@ -1,5 +1,6 @@
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:bisnes/src/Pages/Shop/shop_page.dart';
 import 'package:flutter/material.dart';
 
 class BisnesCard extends StatelessWidget {
@@ -21,7 +22,15 @@ class BisnesCard extends StatelessWidget {
     double heightMedia = MediaQuery.of(context).size.width > 400 ? 230 : 220;
     double widthMedia = MediaQuery.of(context).size.width > 400 ? 150 : 250;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => ShopPage(),
+            transitionDuration: Duration(seconds: 0),
+          ),
+        );
+      },
       child: Stack(
         children: [
           Container(
@@ -68,7 +77,7 @@ class BisnesCard extends StatelessWidget {
                 SizedBox(
                   width: 6.0,
                 ),
-                Image.asset('assets/icon/yellow_star.png')
+                Image.asset('assets/Icons/yellow_star.png')
               ],
             ),
           )

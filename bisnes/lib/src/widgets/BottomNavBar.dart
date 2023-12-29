@@ -1,3 +1,6 @@
+import 'package:bisnes/src/Pages/User/user_info_page.dart';
+import 'package:bisnes/src/Pages/home_page.dart';
+import 'package:bisnes/src/Pages/search_page.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -13,24 +16,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   _BottomNavBarState({this.index = 0});
 
-  final primaryColor = const Color(0xffffffff);
-
-  final secondaryColor = const Color(0xff6D28D9);
-
-  final accentColor = const Color(0xffffffff);
-
-  final backgroundColor = const Color(0xffffffff);
-
-  final errorColor = const Color(0xffEF4444);
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-          color: primaryColor,
-          boxShadow: const [
+          color: Color(0xffffffff),
+          boxShadow: [
             BoxShadow(
                 color: Color.fromARGB(255, 186, 185, 185),
                 blurRadius: 10,
@@ -53,13 +46,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   icon: Icons.search_outlined,
                   selected: index == 1,
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, 'SearchPage');
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            SearchPage(),
+                        transitionDuration: Duration(seconds: 0),
+                      ),
+                    );
                   }),
               IconBottomBar(
                   icon: Icons.home_outlined,
                   selected: index == 2,
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/');
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            HomePage(),
+                        transitionDuration: Duration(seconds: 0),
+                      ),
+                    );
                   }),
               IconBottomBar(
                   icon: Icons.favorite_border,
@@ -68,7 +75,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
               IconBottomBar(
                   icon: Icons.person_outline_outlined,
                   selected: index == 4,
-                  onPressed: () {})
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            UserInfoPage(),
+                        transitionDuration: Duration(seconds: 0),
+                      ),
+                    );
+                  })
             ],
           ),
         ),

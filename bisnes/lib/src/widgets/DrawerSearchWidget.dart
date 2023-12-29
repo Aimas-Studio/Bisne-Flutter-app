@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:ffi';
-import 'dart:math';
+// import 'dart:ffi';
+// import 'dart:html';
+// import 'dart:math';
 
 import 'package:bisnes/src/providers/CategoryProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DrawerSearchWidget extends StatefulWidget {
   @override
@@ -14,21 +16,20 @@ class DrawerSearchWidget extends StatefulWidget {
 class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
   String categoria = '';
   String provincia = '';
+  String municipio = '';
+  String moneda = '';
 
-  final List<String> categories =
+  List<String> categories =
       CategoryProvider.categories.map((category) => category['name']!).toList();
 
   @override
   Widget build(BuildContext context) {
-    print(categoria);
-    print('');
     return Container(
-      margin: EdgeInsets.only(top: 30),
+      margin: EdgeInsets.only(top: 35),
       height: MediaQuery.of(context).size.height - 185,
       child: Drawer(
-        clipBehavior: Clip.antiAlias,
         width: MediaQuery.of(context).size.width > 400
-            ? MediaQuery.of(context).size.width * 0.4
+            ? MediaQuery.of(context).size.width * 0.6
             : MediaQuery.of(context).size.width * 0.7,
         child: Material(
             color: Color.fromARGB(255, 255, 255, 255),
@@ -43,7 +44,9 @@ class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text('FILTRAR RESULTADOS'),
+                      Text('FILTRAR RESULTADOS',
+                          style:
+                              TextStyle(color: Color.fromRGBO(0, 0, 0, 0.451))),
                       InkWell(
                         child: Text('LIMPIAR',
                             style: TextStyle(
@@ -71,8 +74,19 @@ class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
                             TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
                         alignment: Alignment.centerRight,
                         icon: Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Icon(Icons.arrow_circle_right_outlined)),
+                          margin: EdgeInsets.only(left: 5),
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                                color: Colors.black12,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                  'assets/Icons/arrow_rigth_icon.svg'),
+                            ),
+                          ),
+                        ),
                         items: categories
                             .map((category) => DropdownMenuItem<dynamic>(
                                   value: category,
@@ -88,6 +102,9 @@ class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
                         // ]
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 20.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,9 +122,20 @@ class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
                             TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
                         alignment: Alignment.centerRight,
                         icon: Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Icon(Icons.arrow_circle_right_outlined)),
-                        items: [
+                          margin: EdgeInsets.only(left: 5),
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                                color: Colors.black12,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                  'assets/Icons/arrow_rigth_icon.svg'),
+                            ),
+                          ),
+                        ),
+                        items: const [
                           DropdownMenuItem<dynamic>(
                             value: 'Todas',
                             child: Text('Todas'),
@@ -139,32 +167,62 @@ class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     // crossAxisAlignment: ,
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      Text('CATEGORÍA'),
+                      Text('MUNICIPIO'),
                       // ignore: prefer_const_literals_to_create_immutables
 
                       DropdownButton<dynamic>(
                         underline: Container(),
-                        value: categoria == '' ? 'Todos' : categoria,
+                        value: municipio == '' ? 'Todos' : municipio,
                         isDense: true,
                         style:
                             TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
                         alignment: Alignment.centerRight,
                         icon: Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Icon(Icons.arrow_circle_right_outlined)),
-                        items: categories
-                            .map((category) => DropdownMenuItem<dynamic>(
-                                  value: category,
-                                  child: Text(category),
-                                ))
-                            .toList(),
+                          margin: EdgeInsets.only(left: 5),
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                                color: Colors.black12,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                  'assets/Icons/arrow_rigth_icon.svg'),
+                            ),
+                          ),
+                        ),
+                        items: const [
+                          DropdownMenuItem<dynamic>(
+                            value: 'Todos',
+                            child: Text('Todos'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'Playa',
+                            child: Text('Playa'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'Marianao',
+                            child: Text('Marianao'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'Vedado',
+                            child: Text('Vedado'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'La Lisa',
+                            child: Text('La Lisa'),
+                          ),
+                        ],
                         onChanged: (Object? value) {
-                          categoria = value as String;
+                          municipio = value as String;
                           setState(() {});
                         },
                         // [
@@ -173,86 +231,94 @@ class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     // crossAxisAlignment: ,
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      Text('CATEGORÍA'),
+                      Text('MONEDA'),
                       // ignore: prefer_const_literals_to_create_immutables
 
                       DropdownButton<dynamic>(
                         underline: Container(),
-                        value: categoria == '' ? 'Todos' : categoria,
+                        value: moneda == '' ? 'CUP' : moneda,
                         isDense: true,
                         style:
                             TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
                         alignment: Alignment.centerRight,
                         icon: Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Icon(Icons.arrow_circle_right_outlined)),
-                        items: categories
-                            .map((category) => DropdownMenuItem<dynamic>(
-                                  value: category,
-                                  child: Text(category),
-                                ))
-                            .toList(),
+                          margin: EdgeInsets.only(left: 5),
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                                color: Colors.black12,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                  'assets/Icons/arrow_rigth_icon.svg'),
+                            ),
+                          ),
+                        ),
+                        items: const [
+                          DropdownMenuItem<dynamic>(
+                            value: 'CUP',
+                            child: Text('CUP'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'USD',
+                            child: Text('USD'),
+                          ),
+                          DropdownMenuItem<dynamic>(
+                            value: 'MLC',
+                            child: Text('MLC'),
+                          )
+                        ],
                         onChanged: (Object? value) {
-                          categoria = value as String;
+                          moneda = value as String;
                           setState(() {});
                         },
-                        // [
-                        //   DropdownMenuEntry<dynamic>(value: 'hola', label: "hola")
-                        // ]
                       ),
                     ],
                   ),
+                  Expanded(child: Container()),
+                  Container(
+                    constraints: BoxConstraints(maxWidth: 200),
+                    child: ElevatedButton(
+                        style: const ButtonStyle(
+                            shape: MaterialStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)))),
+                            backgroundColor: MaterialStatePropertyAll(
+                                Color.fromRGBO(29, 173, 3, 1))),
+                        onPressed: () => {},
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Center(
+                                child: Text(
+                                  "APLICAR FLITROS",
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(255, 255, 255, 1)),
+                                ),
+                              ),
+                            ),
+                            SvgPicture.asset(
+                                'assets/Icons/arrow_rigth_icon.svg')
+                          ],
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  )
                 ],
               ),
             )),
       ),
-    );
-  }
-
-  void selectedItem(BuildContext context, int index) {
-    Navigator.of(context).pop();
-    switch (index) {
-      case 0:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Scaffold(), // Page 1
-        ));
-        break;
-      case 1:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Scaffold(), // Page 2
-        ));
-        break;
-    }
-  }
-}
-
-class MenuItem extends StatelessWidget {
-  final String text;
-  final IconData icon;
-  final VoidCallback? onClicked;
-
-  const MenuItem({
-    required this.text,
-    required this.icon,
-    this.onClicked,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final color = Color.fromRGBO(114, 124, 142, 100);
-    final hoverColor = Colors.white70;
-
-    return ListTile(
-      leading: Icon(icon, color: color),
-      title: Text(text, style: TextStyle(color: color)),
-      hoverColor: hoverColor,
-      onTap: onClicked,
     );
   }
 }
