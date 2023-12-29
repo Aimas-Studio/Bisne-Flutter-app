@@ -1,33 +1,29 @@
+import 'package:bisnes/src/Pages/User/user_info_page.dart';
+import 'package:bisnes/src/Pages/home_page.dart';
+import 'package:bisnes/src/Pages/search_page.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+  int index = 0;
+  BottomNavBar({Key? key, this.index = 0}) : super(key: key);
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
+  State<BottomNavBar> createState() => _BottomNavBarState(index: index);
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  final primaryColor = const Color(0xffffffff);
+  int index = 0;
 
-  final secondaryColor = const Color(0xff6D28D9);
-
-  final accentColor = const Color(0xffffffff);
-
-  final backgroundColor = const Color(0xffffffff);
-
-  final errorColor = const Color(0xffEF4444);
-
-  final selected = [false, false, true, false, false];
+  _BottomNavBarState({this.index = 0});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-          color: primaryColor,
-          boxShadow: const [
+          color: Color(0xffffffff),
+          boxShadow: [
             BoxShadow(
                 color: Color.fromARGB(255, 186, 185, 185),
                 blurRadius: 10,
@@ -44,28 +40,51 @@ class _BottomNavBarState extends State<BottomNavBar> {
             children: [
               IconBottomBar(
                   icon: Icons.notifications_none,
-                  selected: selected[0],
+                  selected: index == 0,
                   onPressed: () {}),
               IconBottomBar(
                   icon: Icons.search_outlined,
-                  selected: selected[1],
+                  selected: index == 1,
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, 'SearchPage');
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            SearchPage(),
+                        transitionDuration: Duration(seconds: 0),
+                      ),
+                    );
                   }),
               IconBottomBar(
                   icon: Icons.home_outlined,
-                  selected: selected[2],
+                  selected: index == 2,
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/');
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            HomePage(),
+                        transitionDuration: Duration(seconds: 0),
+                      ),
+                    );
                   }),
               IconBottomBar(
                   icon: Icons.favorite_border,
-                  selected: selected[3],
+                  selected: index == 3,
                   onPressed: () {}),
               IconBottomBar(
                   icon: Icons.person_outline_outlined,
-                  selected: selected[4],
-                  onPressed: () {})
+                  selected: index == 4,
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            UserInfoPage(),
+                        transitionDuration: Duration(seconds: 0),
+                      ),
+                    );
+                  })
             ],
           ),
         ),
@@ -85,7 +104,6 @@ class IconBottomBar extends StatelessWidget {
   final bool selected;
   final Function() onPressed;
 
-  final primaryColor = const Color(0xff4338CA);
   final accentColor = const Color(0xffffffff);
 
   @override

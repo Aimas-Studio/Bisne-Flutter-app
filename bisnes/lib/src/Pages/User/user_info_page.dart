@@ -1,4 +1,5 @@
 //Flutter Imports
+import 'package:bisnes/src/widgets/BottomNavBar.dart';
 import 'package:flutter/material.dart';
 
 //Internal Imports
@@ -24,6 +25,7 @@ class UserPage extends StatelessWidget {
             userServicesList(contentPanel2),
           ],
         ),
+        bottomNavigationBar: BottomNavBar(index: 4),
       ),
     );
   }

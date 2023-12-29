@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:bisnes/src/Pages/User/user_info_page.dart';
 import 'package:bisnes/src/Pages/home_page.dart';
 import 'package:bisnes/src/Pages/search_page.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (BuildContext context) => HomePage(),
         'SearchPage': (BuildContext context) => SearchPage(),
+        'User': (BuildContext context) => UserInfoPage()
       },
     );
   }

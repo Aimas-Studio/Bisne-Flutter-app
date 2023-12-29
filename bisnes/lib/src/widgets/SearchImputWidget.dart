@@ -16,7 +16,9 @@ class SearchInputFb1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      width: MediaQuery.of(context).size.width * 0.71,
+      width: MediaQuery.of(context).size.width > 400
+          ? MediaQuery.of(context).size.width * 0.84
+          : MediaQuery.of(context).size.width * 0.71,
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
             offset: const Offset(12, 26),

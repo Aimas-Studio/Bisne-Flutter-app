@@ -14,9 +14,6 @@ class TableShopWidget extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Container(
-            padding: EdgeInsets.symmetric(
-                horizontal:
-                    MediaQuery.of(context).size.width > 400 ? 30.0 : 0.0),
             child: Table(
               children: _createTableRow(shops: snapshot.data!),
             ),

@@ -1,26 +1,38 @@
 [
   {
-    "icon": "assets/icon/all_icon.png",
+    "icon": "assets/Icons/all_icon.svg",
     "name": "Todos"
   },
   {
-    "icon": "assets/icon/all_icon.png",
+    "icon": "assets/Icons/ropa_icon.svg",
     "name": "Compra y Venta"
   },
   {
-    "icon": "assets/icon/all_icon.png",
+    "icon": "assets/Icons/labial_icon.svg",
     "name": "Belleza"
   },
   {
-    "icon": "assets/icon/all_icon.png",
+    "icon": "assets/Icons/tacon_icon.svg",
     "name": "Ropa y Accesorios"
   },
   {
-    "icon": "assets/icon/all_icon.png",
+    "icon": "assets/Icons/televisor_icon.svg",
     "name": "Electrónicos"
   },
   {
-    "icon": "assets/icon/all_icon.png",
-    "name": "Comida"
+    "icon": "assets/Icons/carro_icon.svg",
+    "name": "Transporte"
+  },
+  {
+    "icon": "assets/Icons/casa_icon.svg",
+    "name": "Vivienda"
+  },
+  {
+    "icon": "assets/Icons/taza_pintura_icon.svg",
+    "name": "Diseño y publicidad"
+  },
+  {
+    "icon": "assets/Icons/list_check_icon.svg",
+    "name": "Eventos"
   }
 ]

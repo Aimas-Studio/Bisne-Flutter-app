@@ -2,23 +2,24 @@
 //Flutter Imports
 //Internal Imports
 import 'package:bisnes/src/providers/CategoryProvider.dart';
+import 'package:bisnes/src/providers/PromotionalProvider.dart';
 import 'package:bisnes/src/widgets/BannerPromocionalWidget.dart';
 import 'package:bisnes/src/widgets/BottomNavBar.dart';
 import 'package:bisnes/src/widgets/DrawerHomeWidget.dart';
 import 'package:bisnes/src/widgets/SearchImputWidget.dart';
 import 'package:bisnes/src/widgets/TableShopWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
+  HomePage({super.key});
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   String section = 'Populares';
-
+  final index = 2;
   @override
   Widget build(BuildContext context) {
     double media = MediaQuery.sizeOf(context).width > 400
@@ -31,18 +32,22 @@ class _HomePageState extends State<HomePage> {
         title: ListTile(
           title: Text(
             'El Bisnes',
+            maxLines: 1,
             style: TextStyle(
                 fontSize: 25.0,
                 color: Colors.black,
                 fontWeight: FontWeight.bold),
           ),
-          leading: Image(image: AssetImage('assets/Icons/bisne_logo.png')),
+          leading: SvgPicture.asset('assets/Icons/bisne_logo_icon.svg'),
         ),
         actions: <Widget>[
           Builder(
               builder: (context) => InkWell(
-                    child: Image(
-                        image: AssetImage('assets/Icons/menu_home_icon.png')),
+                    child: Container(
+                      padding: EdgeInsets.only(right: 20),
+                      child: SvgPicture.asset(
+                          'assets/Icons/options_menu_home_icon.svg'),
+                    ),
                     onTap: () {
                       Scaffold.of(context).openEndDrawer();
                     },
@@ -52,9 +57,10 @@ class _HomePageState extends State<HomePage> {
       ),
       endDrawerEnableOpenDragGesture: false,
       endDrawer: DrawerHomeWidget(),
+      drawerScrimColor: Colors.white70,
       body: ListView(
         children: [
-          BannerPromotionalWidget(),
+          BannerSwiper(),
           SizedBox(
             height: 25.0,
           ),
@@ -90,9 +96,29 @@ class _HomePageState extends State<HomePage> {
                   })
             ],
           ),
-          SearchInputFb1(
-            hintText: 'Buscar Productos...',
-            searchController: SearchController(),
+          Row(
+            children: [
+              SizedBox(
+                width: 25,
+              ),
+              SearchInputFb1(
+                hintText: 'Buscar Productos...',
+                searchController: SearchController(),
+              ),
+              Container(
+                width: 50,
+                height: 50,
+                margin: EdgeInsets.only(top: 0, right: 5, bottom: 0, left: 5),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                ),
+                child: Center(
+                  child: SvgPicture.asset('assets/Icons/filter_search_icon.svg',
+                      height: 20),
+                ),
+              )
+            ],
           ),
           SizedBox(height: 15.0),
           Container(
@@ -113,7 +139,9 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        index: 2,
+      ),
     );
   }
 
@@ -126,7 +154,7 @@ class _HomePageState extends State<HomePage> {
         },
         child: Column(
           children: [
-            Image(image: AssetImage(category["icon"])),
+            SvgPicture.asset(category["icon"], height: 75),
             Center(
                 child: Text(
               category["name"],
