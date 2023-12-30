@@ -1,29 +1,25 @@
 //Flutter Imports
 // import 'dart:js';
 
-import 'package:bisnes/src/Pages/User/user_edit_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Utils/custom_icons.dart';
 import '../../../Utils/interfaces.dart';
+import '../Providers/user_provider.dart';
 
 //Internal Imports
 
-PreferredSizeWidget notificationButtonBar() {
-  return AppBar(
-    toolbarHeight: 80,
-    elevation: 0,
-    backgroundColor: const Color.fromRGBO(245, 246, 248, 1),
-    foregroundColor: const Color.fromRGBO(114, 124, 142, 1),
-    actions: [
-      Container(
-          margin: const EdgeInsets.only(right: 30, top: 20),
-          child: notificationButton()),
-    ],
+Widget notificationButtonBar() {
+  return Container(
+    padding: const EdgeInsets.only(right: 10),
+    alignment: Alignment.bottomRight,
+    width: double.infinity,
+    height: 60,
+    child: _notificationButton(),
   );
 }
 
-Widget profile(BuildContext context) {
+Widget profile() {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -31,7 +27,7 @@ Widget profile(BuildContext context) {
         margin: const EdgeInsets.only(left: 15),
         child: profilePhoto(),
       ),
-      _userInformation(context),
+      _userInformation(),
     ],
   );
 }
@@ -40,37 +36,28 @@ Widget profilePhoto() {
   return ClipOval(
     child: SizedBox.fromSize(
       size: const Size.fromRadius(70),
-      child: const Image(
-        image: AssetImage("assets/Images/photo.png"),
+      child: Image(
+        image: getProfilePicture(),
         fit: BoxFit.fill,
       ),
     ),
   );
 }
 
-Widget _userInformation(BuildContext context) {
+Widget _userInformation() {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      const Padding(
-        padding: EdgeInsets.only(top: 20),
-        child: Text(
-          "Username",
-          style: TextStyle(fontSize: 24, color: fontAppColor),
-        ),
+      Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: username(),
       ),
-      const Padding(
-        padding: EdgeInsets.only(top: 5),
-        child: Text(
-          "testemail@gmail.com",
-          style: TextStyle(
-            color: fontAppColor,
-            fontSize: 16,
-          ),
-        ),
+      Padding(
+        padding: const EdgeInsets.only(top: 5),
+        child: userEmail(),
       ),
-      userPageButton("Editar Perfil", context),
+      userPageButton("Editar Perfil"),
     ],
   );
 }
@@ -124,45 +111,35 @@ List<Widget> getServices(Map<IconData, String> content) {
   return serviceList;
 }
 
-Widget userPageButton(String text, BuildContext context) {
-  return SizedBox(
-    width: 120,
-    child: ElevatedButton(
-        style: ButtonStyle(
-          side: MaterialStatePropertyAll(BorderSide(
-            width: 1,
-            color: fontAppColor.withOpacity(0.3),
-          )),
-          elevation: const MaterialStatePropertyAll(3),
-          shape: MaterialStateProperty.all(const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20)))),
-          backgroundColor:
-              const MaterialStatePropertyAll<Color>(backgroundAppColor),
-        ),
-        onPressed: () => {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) =>
-                      EditUserPage(),
-                  transitionDuration: Duration(seconds: 0),
-                ),
-              )
-            },
-        child: Text(
-          text,
-          style: const TextStyle(
-              color: Color.fromRGBO(114, 124, 142, 1),
-              fontWeight: FontWeight.w300),
+Widget userPageButton(String text) {
+  return ElevatedButton(
+      style: ButtonStyle(
+        side: MaterialStatePropertyAll(BorderSide(
+          width: 1,
+          color: fontAppColor.withOpacity(0.3),
         )),
-  );
+        elevation: const MaterialStatePropertyAll(1),
+        shape: MaterialStateProperty.all(const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)))),
+        backgroundColor:
+            const MaterialStatePropertyAll<Color>(backgroundAppColor),
+      ),
+      onPressed: () => {},
+      child: Text(
+        text,
+        softWrap: false,
+        style: const TextStyle(
+            fontSize: 13,
+            color: Color.fromRGBO(114, 124, 142, 1),
+            fontWeight: FontWeight.w300),
+      ));
 }
 
-Widget notificationButton() {
+Widget _notificationButton() {
   return Badge(
     backgroundColor: const Color.fromRGBO(29, 176, 3, 1),
     alignment: AlignmentDirectional.bottomStart,
-    offset: const Offset(-1, -22),
+    offset: const Offset(-1, -17),
     label: const Text(
       '45',
       style: TextStyle(
@@ -174,6 +151,52 @@ Widget notificationButton() {
       onPressed: () {},
       icon: const Icon(CustomIcons.notifications),
       iconSize: 25,
+    ),
+  );
+}
+
+Text username() {
+  return Text(
+    getUsername(),
+    style: const TextStyle(
+      fontSize: 30,
+      color: fontAppColor,
+      fontWeight: FontWeight.bold,
+    ),
+  );
+}
+
+Text userEmail() {
+  return Text(getUserEmail(),
+      style: const TextStyle(
+        color: fontAppColor,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ));
+}
+
+Widget inputTextAppWidget(String labelText,
+    {TextEditingController? controller}) {
+  return Expanded(
+    child: TextField(
+      cursorColor: fontAppColor,
+      style: const TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: 18,
+        color: fontAppColor,
+      ),
+      controller: controller,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        label: Text(
+          labelText,
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 12,
+            color: fontAppColor.withOpacity(0.5),
+          ),
+        ),
+      ),
     ),
   );
 }

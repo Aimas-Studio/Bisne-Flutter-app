@@ -1,5 +1,4 @@
 //Flutter Imports
-import 'package:bisnes/src/widgets/BottomNavBar.dart';
 import 'package:flutter/material.dart';
 
 //Internal Imports
@@ -16,20 +15,17 @@ class UserInfoPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
-        appBar: notificationButtonBar(),
-        body: ListView(
-          children: [
-            Column(
-              children: [
-                profile(context),
-                userServicesList(contentPanel1),
-                const SizedBox(height: 20),
-                userServicesList(contentPanel2),
-              ],
-            ),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              notificationButtonBar(),
+              profile(),
+              userServicesList(contentPanel1),
+              const SizedBox(height: 20),
+              userServicesList(contentPanel2),
+            ],
+          ),
         ),
-        bottomNavigationBar: BottomNavBar(index: 4),
       ),
     );
   }
