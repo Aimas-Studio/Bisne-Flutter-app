@@ -19,19 +19,6 @@ Widget notificationButtonBar() {
   );
 }
 
-Widget profile() {
-  return Row(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Container(
-        margin: const EdgeInsets.only(left: 15),
-        child: profilePhoto(),
-      ),
-      _userInformation(),
-    ],
-  );
-}
-
 Widget profilePhoto() {
   return ClipOval(
     child: SizedBox.fromSize(
@@ -198,5 +185,18 @@ Widget inputTextAppWidget(String labelText,
         ),
       ),
     ),
+  );
+}
+
+Widget profile() {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Container(
+        margin: const EdgeInsets.only(left: 15),
+        child: profilePhoto(),
+      ),
+      _userInformation(),
+    ],
   );
 }

@@ -2,9 +2,14 @@
 import 'package:bisnes/src/Pages/User/user_info_page.dart';
 import 'package:bisnes/src/Pages/home_page.dart';
 import 'package:bisnes/src/Pages/search_page.dart';
+import 'package:bisnes/src/Utils/shared_persistent_data.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  final appData = PersistentData();
+  await appData.loadData();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
