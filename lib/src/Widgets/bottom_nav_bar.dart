@@ -1,22 +1,12 @@
-
 import 'package:flutter/material.dart';
 
-import '../Pages/Home/home_page.dart';
-import '../Pages/User/user_info_page.dart';
-import '../Pages/search_page.dart';
+import 'package:get/get.dart';
+import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 
-class BottomNavBar extends StatefulWidget {
-  int index = 0;
-  BottomNavBar({Key? key, this.index = 0}) : super(key: key);
+class BottomNavBar extends StatelessWidget {
+  BottomNavBar({super.key});
 
-  @override
-  State<BottomNavBar> createState() => _BottomNavBarState(index: index);
-}
-
-class _BottomNavBarState extends State<BottomNavBar> {
-  int index = 0;
-
-  _BottomNavBarState({this.index = 0});
+  final BasePageController _basePageController = Get.find<BasePageController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +14,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-          color: Color(0xffffffff),
+          color: Colors.white,
           boxShadow: [
             BoxShadow(
                 color: Color.fromARGB(255, 186, 185, 185),
@@ -32,65 +22,43 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 spreadRadius: 1)
           ]),
       child: SizedBox(
-        height: 75,
-        width: MediaQuery.of(context).size.width,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              IconBottomBar(
-                  icon: Icons.notifications_none,
-                  selected: index == 0,
-                  onPressed: () {}),
-              IconBottomBar(
-                  icon: Icons.search_outlined,
-                  selected: index == 1,
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation1, animation2) =>
-                            SearchPage(),
-                        transitionDuration: Duration(seconds: 0),
-                      ),
-                    );
-                  }),
-              IconBottomBar(
-                  icon: Icons.home_outlined,
-                  selected: index == 2,
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation1, animation2) =>
-                            HomePage(),
-                        transitionDuration: Duration(seconds: 0),
-                      ),
-                    );
-                  }),
-              IconBottomBar(
-                  icon: Icons.favorite_border,
-                  selected: index == 3,
-                  onPressed: () {}),
-              IconBottomBar(
-                  icon: Icons.person_outline_outlined,
-                  selected: index == 4,
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation1, animation2) =>
-                            UserInfoPage(),
-                        transitionDuration: Duration(seconds: 0),
-                      ),
-                    );
-                  })
-            ],
-          ),
-        ),
-      ),
+          height: 75,
+          width: context.width,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+            child: Obx(() => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IconBottomBar(
+                        icon: Icons.notifications_none,
+                        selected: _basePageController.obj == 0,
+                        onPressed: () {}),
+                    IconBottomBar(
+                        icon: Icons.search_outlined,
+                        selected: _basePageController.obj == 1,
+                        onPressed: () {
+                          _basePageController.obj = 1;
+                        }),
+                    IconBottomBar(
+                        icon: Icons.home_outlined,
+                        selected: _basePageController.obj == 2,
+                        onPressed: () {
+                          _basePageController.obj = 2;
+                        }),
+                    IconBottomBar(
+                        icon: Icons.favorite_border,
+                        selected: _basePageController.obj == 3,
+                        onPressed: () {}),
+                    IconBottomBar(
+                        icon: Icons.person_outline_outlined,
+                        selected: _basePageController.obj == 4,
+                        onPressed: () {
+                          _basePageController.obj = 4;
+                        })
+                  ],
+                )),
+          )),
     );
   }
 }
@@ -106,14 +74,15 @@ class IconBottomBar extends StatelessWidget {
   final bool selected;
   final Function() onPressed;
 
-  final accentColor = const Color(0xffffffff);
+  final normalColor = Colors.white;
+  final selectColor = const Color.fromARGB(25, 119, 119, 119);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
         decoration: BoxDecoration(
-            color: selected ? Color.fromARGB(25, 119, 119, 119) : accentColor,
+            color: selected ? selectColor : normalColor,
             borderRadius: BorderRadius.circular(50.0)),
         width: 45,
         height: 45,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:bisne/src/Utils/interfaces.dart';
+
 class NotificationButton extends StatelessWidget {
   final int value;
   final Icon icon;
@@ -14,9 +16,9 @@ class NotificationButton extends StatelessWidget {
         FloatingActionButton(
           onPressed: () {},
           elevation: 0,
-          backgroundColor: Color.fromRGBO(245, 246, 248, 1),
+          backgroundColor: backgroundAppColor,
           child: IconButton(
-            color: const Color.fromRGBO(114, 124, 142, 1),
+            color: iconAppColor,
             onPressed: () {},
             icon: icon,
             iconSize: 32,
@@ -30,7 +32,7 @@ class NotificationButton extends StatelessWidget {
             width: 20,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: const Color.fromRGBO(29, 176, 3, 1)),
+                color: bisneColorPrimary),
             child: Center(
                 child: Text(
               value.toString(),

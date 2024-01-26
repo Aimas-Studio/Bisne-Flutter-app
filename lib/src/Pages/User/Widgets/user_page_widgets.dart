@@ -124,7 +124,7 @@ Widget userPageButton(String text) {
 
 Widget _notificationButton() {
   return Badge(
-    backgroundColor: const Color.fromRGBO(29, 176, 3, 1),
+    backgroundColor: bisneColorPrimary,
     alignment: AlignmentDirectional.bottomStart,
     offset: const Offset(-1, -17),
     label: const Text(

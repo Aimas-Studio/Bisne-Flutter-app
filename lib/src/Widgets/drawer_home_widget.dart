@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DrawerHomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: MediaQuery.of(context).size.width > 400
-          ? MediaQuery.of(context).size.width * 0.4
-          : MediaQuery.of(context).size.width * 0.7,
+      width: context.width > 400 ? context.width * 0.4 : context.width * 0.8,
       child: Material(
-        color: Color.fromARGB(255, 255, 255, 255),
+        color: Colors.white,
         child: ListView(
           children: <Widget>[
             Container(

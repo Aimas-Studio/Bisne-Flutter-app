@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Utils/custom_icons.dart';
+import 'package:bisne/src/Utils/interfaces.dart';
 import '../../Widgets/notification_button_widget.dart';
 import '../../Widgets/search_input_widget.dart';
 import '../../Widgets/table_shop_widget.dart';
@@ -22,9 +23,9 @@ class ShopPage extends StatelessWidget {
       appBar: AppBar(
         forceMaterialTransparency: true,
         toolbarHeight: 100,
-        foregroundColor: const Color.fromRGBO(114, 124, 142, 1),
+        foregroundColor: iconAppColor,
         leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new),
+            icon: Icon(Icons.arrow_back_ios_new, size: 15),
             onPressed: () {
               Navigator.pop(context);
             }),
@@ -52,7 +53,7 @@ class ShopPage extends StatelessWidget {
           categorySession(context)
         ],
       ),
-      backgroundColor: const Color.fromRGBO(245, 246, 248, 1),
+      backgroundColor: backgroundAppColor,
     );
   }
 
@@ -159,7 +160,7 @@ class ShopPage extends StatelessWidget {
                 height: 30,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(106, 237, 138, 1),
+                    color: bisneColorSecondary,
                     borderRadius: BorderRadius.all(Radius.circular(6))),
                 child: Icon(Icons.delivery_dining),
               )

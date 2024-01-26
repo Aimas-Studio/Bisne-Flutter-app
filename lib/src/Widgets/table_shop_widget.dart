@@ -1,8 +1,7 @@
+import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:flutter/material.dart';
 
-import '../Providers/ShopsProvider.dart';
 import 'bisnes_card_widget.dart';
-
 
 class TableShopWidget extends StatelessWidget {
   int maxColumns = 2;
