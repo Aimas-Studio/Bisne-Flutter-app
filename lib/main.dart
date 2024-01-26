@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+//Internals Imports
 import 'src/Pages/Home/home_page.dart';
 import 'src/Pages/User/user_info_page.dart';
 import 'src/Pages/search_page.dart';

@@ -4,10 +4,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../Widgets/BottomNavBar.dart';
-import '../Widgets/DrawerSearchWidget.dart';
-import '../Widgets/SearchInputWidget.dart';
-import '../Widgets/TableShopWidget.dart';
+import '../Widgets/bottom_nav_bar.dart';
+import '../Widgets/drawer_search_widget.dart';
+import '../Widgets/search_input_widget.dart';
+import '../Widgets/table_shop_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

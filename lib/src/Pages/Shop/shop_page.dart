@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../Utils/custom_icons.dart';
-import '../../Widgets/NotificationButtonWidget.dart';
-import '../../Widgets/SearchInputWidget.dart';
-import '../../Widgets/TableShopWidget.dart';
+import '../../Widgets/notification_button_widget.dart';
+import '../../Widgets/search_input_widget.dart';
+import '../../Widgets/table_shop_widget.dart';
 
 class ShopPage extends StatelessWidget {
   ShopPage({super.key});

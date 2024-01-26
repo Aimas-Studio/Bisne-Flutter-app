@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../Providers/CategoryProvider.dart';
-import '../../Widgets/BannerPromotionalWidget.dart';
-import '../../Widgets/BottomNavBar.dart';
-import '../../Widgets/DrawerHomeWidget.dart';
-import '../../Widgets/SearchInputWidget.dart';
-import '../../Widgets/TableShopWidget.dart';
+import '../../Widgets/banner_promotional_widget.dart';
+import '../../Widgets/bottom_nav_bar.dart';
+import '../../Widgets/drawer_home_widget.dart';
+import '../../Widgets/search_input_widget.dart';
+import '../../Widgets/table_shop_widget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
