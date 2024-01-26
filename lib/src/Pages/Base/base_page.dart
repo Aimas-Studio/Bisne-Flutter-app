@@ -3,7 +3,6 @@ import 'package:bisne/src/Pages/Home/home_page.dart';
 import 'package:bisne/src/Pages/Search/search_page.dart';
 import 'package:bisne/src/Pages/User/user_info_page.dart';
 import 'package:bisne/src/Widgets/bottom_nav_bar.dart';
-import 'package:bisne/src/Widgets/drawer_home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

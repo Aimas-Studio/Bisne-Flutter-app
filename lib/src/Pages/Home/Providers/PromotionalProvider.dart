@@ -17,4 +17,4 @@ class _PromoProvider {
   }
 }
 
-final PromoProvider = new _PromoProvider();
+final PromoProvider = _PromoProvider();

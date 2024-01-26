@@ -1,9 +1,12 @@
 //Flutter Imports
+import 'package:bisne/src/Widgets/appNotificationBar.dart';
 import 'package:flutter/material.dart';
 
 //Internal Imports
 import '../../Utils/custom_icons.dart';
 import '../../Utils/interfaces.dart';
+import 'Providers/user_provider.dart';
+import 'Widgets/profile_widget.dart';
 import 'Widgets/user_page_widgets.dart';
 
 class UserInfoPage extends StatelessWidget {
@@ -18,8 +21,13 @@ class UserInfoPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              notificationButtonBar(),
-              profile(),
+              appNotificationBar(context, false,
+                  iconData: Icons.notifications_none),
+              ProfileWidget(
+                getUsername(),
+                getUserEmail(),
+                "EDITAR PERFIL",
+              ),
               userServicesList(contentPanel1),
               const SizedBox(height: 20),
               userServicesList(contentPanel2),

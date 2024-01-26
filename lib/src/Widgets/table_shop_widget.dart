@@ -1,6 +1,6 @@
-import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:flutter/material.dart';
 
+import '../Pages/Home/Providers/ShopsProvider.dart';
 import 'bisnes_card_widget.dart';
 
 class TableShopWidget extends StatelessWidget {
@@ -26,10 +26,10 @@ class TableShopWidget extends StatelessWidget {
 
   List<TableRow> _createTableRow({required List<Map<String, dynamic>> shops}) {
     List<TableRow> listOfColums = [];
-    int colum_index = 1;
+    int columIndex = 1;
     List<BisnesCard> colmuns = [];
     for (Map<String, dynamic> shop in shops) {
-      if (colum_index == this.maxColumns) {
+      if (columIndex == maxColumns) {
         colmuns.add(BisnesCard(
             name: shop["name"]!,
             categories: shop["categories"]!,
@@ -38,7 +38,7 @@ class TableShopWidget extends StatelessWidget {
 
         listOfColums.add(TableRow(children: colmuns));
         colmuns = [];
-        colum_index = 1;
+        columIndex = 1;
         continue;
       }
       colmuns.add(BisnesCard(
@@ -46,7 +46,7 @@ class TableShopWidget extends StatelessWidget {
           categories: shop["categories"]!,
           image: shop["image"]!,
           rate: shop["rate"]!));
-      colum_index++;
+      columIndex++;
     }
 
     return listOfColums;

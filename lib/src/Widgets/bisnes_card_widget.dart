@@ -74,7 +74,7 @@ class BisnesCard extends StatelessWidget {
             padding: EdgeInsets.only(left: 10.0),
             child: Row(
               children: [
-                Text(this.rate, style: TextStyle(fontSize: 17.0)),
+                Text(rate, style: TextStyle(fontSize: 17.0)),
                 SizedBox(
                   width: 6.0,
                 ),

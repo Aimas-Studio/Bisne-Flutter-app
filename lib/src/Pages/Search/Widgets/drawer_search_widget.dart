@@ -4,12 +4,14 @@
 // import 'dart:html';
 // import 'dart:math';
 
-import 'package:bisne/src/Pages/Home/Providers/CategoryProvider.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../Home/Providers/CategoryProvider.dart';
+
 class DrawerSearchWidget extends StatefulWidget {
+  const DrawerSearchWidget({super.key});
+
   @override
   State<DrawerSearchWidget> createState() => _DrawerSearchWidgetState();
 }
@@ -50,7 +52,8 @@ class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
                               TextStyle(color: Color.fromRGBO(0, 0, 0, 0.451))),
                       InkWell(
                         child: Text('LIMPIAR',
-                            style: TextStyle(color: bisneColorPrimary)),
+                            style: TextStyle(
+                                color: Color.fromRGBO(29, 173, 3, 1))),
                         onTap: () {},
                       )
                     ],
@@ -293,8 +296,8 @@ class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
                                 RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)))),
-                            backgroundColor:
-                                MaterialStatePropertyAll(bisneColorPrimary)),
+                            backgroundColor: MaterialStatePropertyAll(
+                                Color.fromRGBO(29, 173, 3, 1))),
                         onPressed: () => {},
                         child: Row(
                           children: [

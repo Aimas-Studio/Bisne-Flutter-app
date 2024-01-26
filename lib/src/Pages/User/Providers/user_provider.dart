@@ -17,4 +17,8 @@ ImageProvider getProfilePicture() {
   return AssetImage(profilePictureUrl);
 }
 
+int getNotificationCount() {
+  return 1;
+}
+
 String profilePictureUrl = "assets/Images/photo.png";

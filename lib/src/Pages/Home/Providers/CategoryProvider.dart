@@ -8,9 +8,9 @@ class _CategoryProvider {
 
   Future<List<Map<String, String>>> cargarData() async {
     final respuesta = await rootBundle.loadString('data/categories.json');
-    List<dynamic> categories_json = json.decode(respuesta);
+    List<dynamic> categoriesJson = json.decode(respuesta);
     if (!hasLoad) {
-      for (var category in categories_json) {
+      for (var category in categoriesJson) {
         categories.add({"icon": category["icon"], "name": category["name"]});
       }
       hasLoad = true;
@@ -19,4 +19,4 @@ class _CategoryProvider {
   }
 }
 
-final CategoryProvider = new _CategoryProvider();
+final CategoryProvider = _CategoryProvider();

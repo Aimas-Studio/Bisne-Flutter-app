@@ -1,10 +1,13 @@
 //Flutter Imports
+import 'package:bisne/src/Widgets/appNotificationBar.dart';
 import 'package:flutter/material.dart';
 
 //Internal Imports
 import '../../Utils/interfaces.dart';
 import 'Providers/user_provider.dart';
-import 'Widgets/user_page_widgets.dart';
+import 'Widgets/input_text_widget.dart';
+import 'Widgets/profile_widget.dart';
+import 'Widgets/profiles_pages_button.dart';
 
 class EditUserPage extends StatefulWidget {
   const EditUserPage({super.key});
@@ -31,15 +34,16 @@ class _EditUserPageState extends State<EditUserPage> {
           child: Center(
             child: Column(
               children: [
-                notificationButtonBar(),
-                profilePhoto(),
+                appNotificationBar(context, true,
+                    iconData: Icons.arrow_back_ios),
+                ProfileWidget.profilePhoto(getProfilePicture(), 70),
                 Container(
                     margin: const EdgeInsets.only(bottom: 15),
-                    child: userPageButton("ELEGIR FOTO")),
-                username(),
+                    child: profilesPageButton("ELEGIR FOTO", () => {})),
+                ProfileWidget.primaryInfoTextWidget(getUsername()),
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
-                  child: userEmail(),
+                  child: ProfileWidget.secondaryInfoTextWidget(getUserEmail()),
                 ),
                 _usernameModifyInput(),
                 Container(
@@ -50,8 +54,8 @@ class _EditUserPageState extends State<EditUserPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      userPageButton("GUARDAR CAMBIOS"),
-                      userPageButton("DESCARTAR"),
+                      profilesPageButton("GUARDAR CAMBIOS", () => {}),
+                      profilesPageButton("DESCARTAR", () => {}),
                     ],
                   ),
                 )
@@ -63,6 +67,8 @@ class _EditUserPageState extends State<EditUserPage> {
     );
   }
 
+  //TODO
+  //Give this Widget a superior level of abstraction
   Widget _usernameModifyInput() {
     return Container(
       constraints: const BoxConstraints(

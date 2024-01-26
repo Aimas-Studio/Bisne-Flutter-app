@@ -5,14 +5,14 @@ import 'package:flutter/services.dart' show rootBundle;
 class _ShopsProvider {
   List<Map<String, dynamic>> shops = [];
 
-  _ShopsProvider() {}
+  _ShopsProvider();
 
   Future<List<Map<String, dynamic>>> cargarData() async {
-    if (shops.length == 0) {
+    if (shops.isEmpty) {
       final respuesta = await rootBundle.loadString('data/shops.json');
-      Map<dynamic, dynamic> shops_json = json.decode(respuesta);
+      Map<dynamic, dynamic> shopsJson = json.decode(respuesta);
 
-      for (var shop in shops_json["populate"]) {
+      for (var shop in shopsJson["populate"]) {
         shops.add({
           "name": shop["name"],
           "categories": shop["categories"],
@@ -25,4 +25,4 @@ class _ShopsProvider {
   }
 }
 
-final ShopsProvider = new _ShopsProvider();
+final ShopsProvider = _ShopsProvider();

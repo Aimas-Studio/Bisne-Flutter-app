@@ -1,8 +1,6 @@
+import 'package:bisne/src/Widgets/appNotificationBar.dart';
 import 'package:flutter/material.dart';
 
-import '../../Utils/custom_icons.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
-import '../../Widgets/notification_button_widget.dart';
 import '../../Widgets/search_input_widget.dart';
 import '../../Widgets/table_shop_widget.dart';
 
@@ -23,14 +21,14 @@ class ShopPage extends StatelessWidget {
       appBar: AppBar(
         forceMaterialTransparency: true,
         toolbarHeight: 100,
-        foregroundColor: iconAppColor,
+        foregroundColor: const Color.fromRGBO(114, 124, 142, 1),
         leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new, size: 15),
+            icon: const Icon(Icons.arrow_back_ios_new),
             onPressed: () {
               Navigator.pop(context);
             }),
         title: InkWell(
-          child: Text('Regresar'),
+          child: const Text('Regresar'),
           onTap: () {
             Navigator.pop(context);
           },
@@ -38,9 +36,9 @@ class ShopPage extends StatelessWidget {
         titleSpacing: 0,
         actions: [
           Container(
-              alignment: AlignmentDirectional.centerEnd,
-              child: const NotificationButton(
-                  value: 2, icon: Icon(CustomIcons.notifications))),
+            alignment: AlignmentDirectional.centerEnd,
+            child: appNotificationBar(context, true),
+          )
         ],
       ),
       body: ListView(
@@ -53,14 +51,14 @@ class ShopPage extends StatelessWidget {
           categorySession(context)
         ],
       ),
-      backgroundColor: backgroundAppColor,
+      backgroundColor: const Color.fromRGBO(245, 246, 248, 1),
     );
   }
 
   Column iconView(int viewsCount) {
     return Column(
       children: [
-        Icon(Icons.remove_red_eye_outlined, color: Colors.black45),
+        const Icon(Icons.remove_red_eye_outlined, color: Colors.black45),
         Text(
           viewsCount > 100 ? '${viewsCount / 1000} K' : viewsCount.toString(),
           style: const TextStyle(color: Colors.black45),
@@ -142,11 +140,12 @@ class ShopPage extends StatelessWidget {
             children: [
               Text(
                 categories[0],
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
               Text(
                 name,
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               )
             ],
           ),
@@ -155,14 +154,14 @@ class ShopPage extends StatelessWidget {
               IconButton(
                   iconSize: 25,
                   onPressed: () {},
-                  icon: Icon(Icons.heart_broken)),
+                  icon: const Icon(Icons.heart_broken)),
               Container(
                 height: 30,
                 width: 40,
-                decoration: BoxDecoration(
-                    color: bisneColorSecondary,
+                decoration: const BoxDecoration(
+                    color: Color.fromRGBO(106, 237, 138, 1),
                     borderRadius: BorderRadius.all(Radius.circular(6))),
-                child: Icon(Icons.delivery_dining),
+                child: const Icon(Icons.delivery_dining),
               )
             ],
           ),
@@ -180,7 +179,7 @@ class ShopPage extends StatelessWidget {
           ),
           Text(
             'Esta tienda${mensajeria ? '' : ' no'} dispone de mensajería',
-            style: TextStyle(color: Colors.black45),
+            style: const TextStyle(color: Colors.black45),
           )
         ],
       ),
@@ -189,9 +188,9 @@ class ShopPage extends StatelessWidget {
       ),
       Text(
         descripcion + descripcion,
-        style: TextStyle(color: Colors.black45),
+        style: const TextStyle(color: Colors.black45),
       ),
-      SizedBox(
+      const SizedBox(
         height: 15,
       ),
       InkWell(
@@ -204,7 +203,7 @@ class ShopPage extends StatelessWidget {
   Column categorySession(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         SearchInputFb1(
@@ -219,7 +218,7 @@ class ShopPage extends StatelessWidget {
     return Column(
       children: categories
           .map((category) => Container(
-                padding: EdgeInsets.only(top: 50.0),
+                padding: const EdgeInsets.only(top: 50.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -227,7 +226,7 @@ class ShopPage extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 25.0, right: 25.0),
                       child: Text(
                         category,
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
                     const SizedBox(

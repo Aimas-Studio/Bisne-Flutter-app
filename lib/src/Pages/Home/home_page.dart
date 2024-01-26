@@ -1,10 +1,9 @@
-import 'package:bisne/src/Pages/Home/Widgets/home_page_widgets.dart';
-import 'package:bisne/src/Widgets/drawer_home_widget.dart';
+import 'package:bisne/src/Pages/Home/Widgets/drawer_home_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../Widgets/banner_promotional_widget.dart';
+import 'Widgets/home_page_widgets.dart';
 
 class HomePage extends StatelessWidget {
   String section = 'Populares';
