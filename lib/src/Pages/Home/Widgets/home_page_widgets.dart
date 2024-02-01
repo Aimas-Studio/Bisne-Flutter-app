@@ -41,9 +41,12 @@ TableShopWidget sectionShops(BuildContext context) {
 Container sectionName(section) {
   return Container(
     padding: const EdgeInsets.only(left: 30.0),
-    child: Text(section,
-        style: const TextStyle(
-            fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold)),
+    alignment: Alignment.centerLeft,
+    child: Text(
+      section,
+      style: const TextStyle(
+          fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold),
+    ),
   );
 }
 

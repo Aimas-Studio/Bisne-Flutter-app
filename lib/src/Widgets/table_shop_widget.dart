@@ -13,7 +13,7 @@ class TableShopWidget extends StatelessWidget {
       future: ShopsProvider.cargarData(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Container(
+          return Center(
             child: Table(
               children: _createTableRow(shops: snapshot.data!),
             ),
@@ -27,25 +27,45 @@ class TableShopWidget extends StatelessWidget {
   List<TableRow> _createTableRow({required List<Map<String, dynamic>> shops}) {
     List<TableRow> listOfColums = [];
     int columIndex = 1;
-    List<BisnesCard> colmuns = [];
+    List<Container> colmuns = [];
     for (Map<String, dynamic> shop in shops) {
       if (columIndex == maxColumns) {
-        colmuns.add(BisnesCard(
-            name: shop["name"]!,
-            categories: shop["categories"]!,
-            image: shop["image"]!,
-            rate: shop["rate"]!));
+        colmuns.add(
+          Container(
+            margin: const EdgeInsets.only(bottom: 15),
+            child: Align(
+              alignment: Alignment.center,
+              child: BisnesCard(
+                name: shop["name"]!,
+                categories: shop["categories"]!,
+                image: shop["image"]!,
+                rate: shop["rate"]!,
+              ),
+            ),
+          ),
+        );
 
-        listOfColums.add(TableRow(children: colmuns));
+        listOfColums.add(TableRow(
+          children: colmuns,
+        ));
         colmuns = [];
         columIndex = 1;
         continue;
       }
-      colmuns.add(BisnesCard(
-          name: shop["name"]!,
-          categories: shop["categories"]!,
-          image: shop["image"]!,
-          rate: shop["rate"]!));
+      colmuns.add(
+        Container(
+          margin: const EdgeInsets.only(bottom: 20),
+          child: Align(
+            alignment: Alignment.center,
+            child: BisnesCard(
+              name: shop["name"]!,
+              categories: shop["categories"]!,
+              image: shop["image"]!,
+              rate: shop["rate"]!,
+            ),
+          ),
+        ),
+      );
       columIndex++;
     }
 

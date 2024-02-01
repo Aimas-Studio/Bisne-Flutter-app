@@ -43,12 +43,10 @@ class BisnesCard extends StatelessWidget {
                   width: widthMedia,
                 ),
                 Expanded(
-                  child: Container(
-                    child: ListTile(
-                      title: Text(name),
-                      subtitle: Text(categories[0],
-                          style: TextStyle(color: Colors.green)),
-                    ),
+                  child: ListTile(
+                    title: Text(name),
+                    subtitle: Text(categories[0],
+                        style: TextStyle(color: Colors.green)),
                   ),
                 )
               ],
@@ -59,7 +57,6 @@ class BisnesCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(25.0),
                 boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 3.0)]),
             clipBehavior: Clip.antiAlias,
-            margin: EdgeInsets.all(10.0),
             height: heightMedia,
             width: widthMedia,
           ),
@@ -70,7 +67,7 @@ class BisnesCard extends StatelessWidget {
                     left: Radius.circular(20.0), right: Radius.circular(20.0))),
             alignment: Alignment.topLeft,
             width: 55.0,
-            margin: EdgeInsets.only(top: 20.0, left: 20.0),
+            margin: EdgeInsets.only(top: 15.0, left: 15.0),
             padding: EdgeInsets.only(left: 10.0),
             child: Row(
               children: [

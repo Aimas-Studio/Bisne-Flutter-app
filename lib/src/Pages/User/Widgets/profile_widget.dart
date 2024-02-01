@@ -1,4 +1,6 @@
+import 'package:bisne/src/Pages/User/user_edit_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../Utils/interfaces.dart';
 import '../Providers/user_provider.dart';
@@ -21,7 +23,7 @@ class ProfileWidget extends StatelessWidget {
           margin: const EdgeInsets.only(left: 15),
           child: profilePhoto(getProfilePicture(), 70),
         ),
-        _userInformation(),
+        _userInformation(context),
       ],
     );
   }
@@ -38,7 +40,7 @@ class ProfileWidget extends StatelessWidget {
     );
   }
 
-  Widget _userInformation() {
+  Widget _userInformation(context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +53,19 @@ class ProfileWidget extends StatelessWidget {
           padding: const EdgeInsets.only(top: 5),
           child: secondaryInfoTextWidget(_secondaryInfo),
         ),
-        profilesPageButton(_buttonLabel, () => {}),
+        profilesPageButton(
+          _buttonLabel,
+          () {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    const EditUserPage(),
+                transitionDuration: const Duration(seconds: 0),
+              ),
+            );
+          },
+        ),
       ],
     );
   }
