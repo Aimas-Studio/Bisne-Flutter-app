@@ -1,10 +1,9 @@
-//Flutter Imports
-import 'package:bisne/src/Widgets/appNotificationBar.dart';
 import 'package:flutter/material.dart';
+import 'package:widget_factory/Pages/User/Providers/user_providers.dart';
+import 'package:widget_factory/Utils/interfaces.dart';
+import 'package:widget_factory/Utils/texts.dart';
 
-//Internal Imports
-import '../../Utils/interfaces.dart';
-import 'Providers/user_provider.dart';
+import '../../Widgets/appBarSecondary.dart';
 import 'Widgets/input_text_widget.dart';
 import 'Widgets/profile_widget.dart';
 import 'Widgets/profiles_pages_button.dart';
@@ -34,16 +33,15 @@ class _EditUserPageState extends State<EditUserPage> {
           child: Center(
             child: Column(
               children: [
-                appNotificationBar(context, true,
-                    iconData: Icons.arrow_back_ios),
+                appBarSecondary(context, true),
                 ProfileWidget.profilePhoto(getProfilePicture(), 70),
                 Container(
                     margin: const EdgeInsets.only(bottom: 15),
                     child: profilesPageButton("ELEGIR FOTO", () => {})),
-                ProfileWidget.primaryInfoTextWidget(getUsername()),
+                boldAppText(getUsername(), 30),
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
-                  child: ProfileWidget.secondaryInfoTextWidget(getUserEmail()),
+                  child: regularAppText(getUserEmail(), 16),
                 ),
                 _usernameModifyInput(),
                 Container(
@@ -52,7 +50,7 @@ class _EditUserPageState extends State<EditUserPage> {
                   ),
                   margin: const EdgeInsets.symmetric(horizontal: 30),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       profilesPageButton("GUARDAR CAMBIOS", () => {}),
                       profilesPageButton("DESCARTAR", () => {}),

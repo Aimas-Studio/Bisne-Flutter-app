@@ -1,4 +1,5 @@
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
+import 'package:bisne/src/Pages/Favorite/favorite_page.dart';
 import 'package:bisne/src/Pages/Home/home_page.dart';
 import 'package:bisne/src/Pages/Search/search_page.dart';
 import 'package:bisne/src/Pages/User/user_info_page.dart';
@@ -43,7 +44,14 @@ class BasePage extends StatelessWidget {
             );
           },
         ),
-        const SearchPage(),
+        Navigator(
+          key: _basePageController.navigatorKeys[3],
+          onGenerateRoute: (RouteSettings settings) {
+            return MaterialPageRoute(
+              builder: (_) => const FavoritePage(),
+            );
+          },
+        ),
         Navigator(
           key: _basePageController.navigatorKeys[4],
           onGenerateRoute: (RouteSettings settings) {

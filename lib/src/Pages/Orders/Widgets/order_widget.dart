@@ -1,7 +1,7 @@
+import 'package:bisne/src/Utils/texts.dart';
+import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Utils/interfaces.dart';
-import '../../User/Widgets/profile_widget.dart';
 import '../../User/Widgets/profiles_pages_button.dart';
 
 Widget shopOrderWidget(
@@ -9,45 +9,19 @@ Widget shopOrderWidget(
   return Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-      ProfileWidget.profilePhoto(image, 50),
+      circularImage(image, 45),
       Container(
         margin: const EdgeInsets.only(left: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              mainInfo,
-              style: const TextStyle(
-                //TODO Refactor this
-                color: fontAppColor,
-                fontSize: 17,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-            Text(
-              date,
-              style: const TextStyle(
-                color: fontAppColor,
-                fontSize: 13,
-                fontWeight: FontWeight.w200,
-              ),
-            ),
-            Text(
-              "$price cup",
-              style: const TextStyle(
-                color: fontAppColor,
-                fontSize: 17,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
+            regularAppText(mainInfo, 16),
+            thinAppText(date, 13),
+            regularAppText("$price cup", 15),
             profilesPageButton("Ver Pedido", () => {}),
           ],
         ),
       )
     ],
   );
-}
-
-Widget productOrderWidget() {
-  return Row();
 }

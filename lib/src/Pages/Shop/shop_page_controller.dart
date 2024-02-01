@@ -6,6 +6,11 @@ class ShopPageController extends GetxController {
   final int viewsCount = 1200;
   final double rate = 4.5;
   final List<String> categories = ['Alimentos'];
+  final List<String> openingHours = [
+    'De lunes a viernes. 7 AM - 11 PM',
+    'Sábados y domingos. 10 AM - 2 PM'
+  ];
+  final String localitation = '29F No.7416 / 74 y 76, Playa, La Habana';
   final String name = 'ChocoThay';
   final bool mensajeria = true;
   final bool favorito = false;

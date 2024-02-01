@@ -1,3 +1,4 @@
+import 'package:bisne/src/Pages/Shop/shop_more_info_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:bisne/src/Widgets/search_input_widget.dart';
 import 'package:bisne/src/Widgets/table_shop_widget.dart';
@@ -28,7 +29,7 @@ Column iconStar(_) {
   );
 }
 
-Container perfilSession(BuildContext context, _) {
+Container perfilSession(BuildContext context, _, isInfoPage) {
   return Container(
     decoration: const BoxDecoration(
         color: Colors.white,
@@ -45,7 +46,7 @@ Container perfilSession(BuildContext context, _) {
         const SizedBox(
           height: 30.0,
         ),
-        info(_),
+        info(_, context, isInfoPage),
         const SizedBox(
           height: 30.0,
         )
@@ -88,7 +89,7 @@ Row photo(_) {
   );
 }
 
-Column info(_) {
+Column info(_, context, isInfoPage) {
   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,11 +151,99 @@ Column info(_) {
     const SizedBox(
       height: 15,
     ),
-    InkWell(
-      onTap: () {},
-      child: const Text('Ver más información ...'),
+    isInfoPage ? moreInfoPage(_) : showMoreInfo(context)
+  ]);
+}
+
+Widget moreInfoPage(_) {
+  return Column(children: [
+    openingHours(_),
+    address(_),
+    contact(_),
+    link(_),
+    comments(_),
+  ]);
+}
+
+Widget link(_) {
+  return Container();
+}
+
+Widget comments(_) {
+  return Container();
+}
+
+Widget contact(_) {
+  return Container();
+}
+
+Widget address(ShopPageController _) {
+  return Column(children: [
+    const Text(
+      "Dirección",
+    ),
+    const SizedBox(
+      height: 10,
+    ),
+    Row(
+      children: [
+        Icon(Icons.location_on_outlined),
+        const SizedBox(
+          width: 10,
+        ),
+        Text(_.localitation)
+      ],
     )
   ]);
+}
+
+Widget openingHours(ShopPageController _) {
+  List<Widget> hours = [];
+  hours
+    ..add(
+      const Text(
+        "Horario",
+      ),
+    )
+    ..add(const SizedBox(
+      height: 10,
+    ));
+  for (var seccion in _.openingHours) {
+    hours
+      ..add(
+        Row(
+          children: [
+            const Icon(Icons.access_time),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(seccion)
+          ],
+        ),
+      )
+      ..add(const SizedBox(
+        height: 10,
+      ));
+  }
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: hours,
+  );
+}
+
+InkWell showMoreInfo(context) {
+  return InkWell(
+    onTap: () {
+      Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation1, animation2) => ShopMoreInfoPage(),
+          transitionDuration: const Duration(seconds: 0),
+        ),
+      );
+    },
+    child: const Text('Ver más información ...'),
+  );
 }
 
 Column categorySession(BuildContext context, _) {

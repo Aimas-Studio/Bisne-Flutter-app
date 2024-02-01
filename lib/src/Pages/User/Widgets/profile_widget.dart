@@ -1,9 +1,7 @@
-import 'package:bisne/src/Pages/User/user_edit_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../../Utils/interfaces.dart';
-import '../Providers/user_provider.dart';
+import '../../../Utils/texts.dart';
+import '../Providers/user_providers.dart';
 import 'profiles_pages_button.dart';
 
 class ProfileWidget extends StatelessWidget {
@@ -21,9 +19,9 @@ class ProfileWidget extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.only(left: 15),
-          child: profilePhoto(getProfilePicture(), 70),
+          child: profilePhoto(getProfilePicture(), 75),
         ),
-        _userInformation(context),
+        _userInformation(),
       ],
     );
   }
@@ -40,53 +38,21 @@ class ProfileWidget extends StatelessWidget {
     );
   }
 
-  Widget _userInformation(context) {
+  Widget _userInformation() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: primaryInfoTextWidget(_mainInfo),
+        Container(
+          padding: const EdgeInsets.only(top: 17, bottom: 0),
+          margin: EdgeInsets.zero,
+          child: boldAppText(_mainInfo, 30),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 5),
-          child: secondaryInfoTextWidget(_secondaryInfo),
-        ),
-        profilesPageButton(
-          _buttonLabel,
-          () {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation1, animation2) =>
-                    const EditUserPage(),
-                transitionDuration: const Duration(seconds: 0),
-              ),
-            );
-          },
-        ),
+        Container(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: regularAppText(_secondaryInfo, 16)),
+        profilesPageButton(_buttonLabel, () => {}),
       ],
     );
-  }
-
-  static Text primaryInfoTextWidget(String text) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 30,
-        color: fontAppColor,
-        fontWeight: FontWeight.bold,
-      ),
-    );
-  }
-
-  static Text secondaryInfoTextWidget(String text) {
-    return Text(text,
-        style: const TextStyle(
-          color: fontAppColor,
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-        ));
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:widget_factory/Pages/Orders/Providers/order_provider.dart';
+import 'package:widget_factory/Pages/Orders/Widgets/order_widget.dart';
+import 'package:widget_factory/Utils/Entities/facture.dart';
+import 'package:widget_factory/Utils/interfaces.dart';
+import 'package:widget_factory/Widgets/appBarSecondary.dart';
 
-import '../../Utils/interfaces.dart';
-import '../../Widgets/appNotificationBar.dart';
-import 'Providers/order_provider.dart';
-import 'Widgets/order_widget.dart';
+import '../../Utils/texts.dart';
 
 class OrderPage extends StatelessWidget {
   const OrderPage({super.key});
@@ -13,29 +15,24 @@ class OrderPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
-        body: SingleChildScrollView(
+        appBar: appBarSecondary(context, true),
+        body: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              appNotificationBar(context, true,
-                  iconData: Icons.notifications_none),
-              Container(
-                margin: const EdgeInsets.only(top: 15),
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Pedidos Realizados",
-                      style: TextStyle(
-                        color: fontAppColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26,
-                      ),
-                    ),
-                    ...getAllOrders(context),
-                  ],
-                ),
+              boldAppText("Pedidos Realizados", 27),
+              FutureBuilder(
+                future: getShopOrdersInfo(),
+                // initialData: loadingPageWidget(),
+                builder: (
+                  context,
+                  AsyncSnapshot<List<Facture>> snapshot,
+                ) {
+                  return snapshot.hasData
+                      ? getOrdersWidget(context, snapshot.data!)
+                      : loadingPageWidget();
+                },
               ),
             ],
           ),
@@ -45,9 +42,9 @@ class OrderPage extends StatelessWidget {
   }
 }
 
-List<Widget> getAllOrders(context) {
+Widget getOrdersWidget(context, List<Facture> factures) {
   List<Widget> orders = [];
-  getShopOrdersInfo().forEach((element) {
+  for (var element in factures) {
     orders
       ..add(SizedBox(
         width: MediaQuery.of(context).size.width * 0.85,
@@ -60,6 +57,24 @@ List<Widget> getAllOrders(context) {
         element.date.toString(),
         element.totalPrice,
       ));
-  });
-  return orders;
+  }
+  return Column(
+    children: orders,
+  );
+}
+
+Widget loadingPageWidget() {
+  return const Expanded(
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image(
+            image: AssetImage("assets/Images/placeholder.png"),
+          ),
+        ],
+      ),
+    ),
+  );
 }

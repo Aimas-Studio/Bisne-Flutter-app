@@ -4,9 +4,9 @@ import 'package:bisne/src/Widgets/appBarSecondary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ShopPage extends StatelessWidget {
-  ShopPage({super.key});
-  final ShopPageController _shopPageController = Get.put(ShopPageController());
+class ShopMoreInfoPage extends StatelessWidget {
+  ShopMoreInfoPage({super.key});
+  final ShopPageController _shopPageController = Get.find<ShopPageController>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +25,10 @@ class ShopPage extends StatelessWidget {
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          perfilSession(context, _shopPageController, false),
+          perfilSession(context, _shopPageController, true),
           const SizedBox(
             height: 20,
           ),
-          categorySession(context, _shopPageController)
         ],
       ),
       backgroundColor: const Color.fromRGBO(245, 246, 248, 1),

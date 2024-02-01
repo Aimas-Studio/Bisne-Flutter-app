@@ -1,11 +1,10 @@
 //Flutter Imports
-import 'package:bisne/src/Widgets/appNotificationBar.dart';
 import 'package:flutter/material.dart';
-
+import 'package:widget_factory/Pages/User/Providers/user_providers.dart';
 //Internal Imports
-import '../../Utils/custom_icons.dart';
-import '../../Utils/interfaces.dart';
-import 'Providers/user_provider.dart';
+import 'package:widget_factory/Utils/custom_icons.dart';
+import 'package:widget_factory/Utils/interfaces.dart';
+
 import 'Widgets/profile_widget.dart';
 import 'Widgets/user_page_widgets.dart';
 
@@ -21,8 +20,9 @@ class UserInfoPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              appNotificationBar(context, false,
-                  iconData: Icons.notifications_none),
+              const SizedBox(
+                height: 20,
+              ),
               ProfileWidget(
                 getUsername(),
                 getUserEmail(),

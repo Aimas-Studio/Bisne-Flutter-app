@@ -50,7 +50,9 @@ class BottomNavBar extends StatelessWidget {
                     IconBottomBar(
                         icon: Icons.favorite_border,
                         selected: _basePageController.obj == 3,
-                        onPressed: () {}),
+                        onPressed: () {
+                          onTabTapped(3);
+                        }),
                     IconBottomBar(
                       icon: Icons.person_outline_outlined,
                       selected: _basePageController.obj == 4,

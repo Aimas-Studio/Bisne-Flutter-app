@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:widget_factory/Utils/interfaces.dart';
+import 'package:widget_factory/Utils/texts.dart';
 
-import '../Utils/interfaces.dart';
-
-Widget returnButtonWidget(context) {
+Widget returnButtonWidget() {
   return ElevatedButton(
-      onPressed: () => {Navigator.pop(context)},
+      onPressed: () => {},
       style: const ButtonStyle(
         backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
         elevation: MaterialStatePropertyAll(0),
       ),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.arrow_back_ios,
             size: 16,
             color: fontAppColor,
           ),
-          Text("Regresar"),
+          regularAppText("Regresar", 14),
         ],
       ));
 }

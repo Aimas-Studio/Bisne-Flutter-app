@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Pages/User/Providers/user_provider.dart';
+import '../Pages/User/Providers/user_providers.dart';
 
 class NotificationButton extends StatelessWidget {
   final IconData iconData;
