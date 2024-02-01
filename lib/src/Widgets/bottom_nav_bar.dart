@@ -34,31 +34,46 @@ class BottomNavBar extends StatelessWidget {
                         selected: _basePageController.obj == 0,
                         onPressed: () {}),
                     IconBottomBar(
-                        icon: Icons.search_outlined,
-                        selected: _basePageController.obj == 1,
-                        onPressed: () {
-                          _basePageController.obj = 1;
-                        }),
+                      icon: Icons.search_outlined,
+                      selected: _basePageController.obj == 1,
+                      onPressed: () {
+                        onTabTapped(1);
+                      },
+                    ),
                     IconBottomBar(
-                        icon: Icons.home_outlined,
-                        selected: _basePageController.obj == 2,
-                        onPressed: () {
-                          _basePageController.obj = 2;
-                        }),
+                      icon: Icons.home_outlined,
+                      selected: _basePageController.obj == 2,
+                      onPressed: () {
+                        onTabTapped(2);
+                      },
+                    ),
                     IconBottomBar(
                         icon: Icons.favorite_border,
                         selected: _basePageController.obj == 3,
                         onPressed: () {}),
                     IconBottomBar(
-                        icon: Icons.person_outline_outlined,
-                        selected: _basePageController.obj == 4,
-                        onPressed: () {
-                          _basePageController.obj = 4;
-                        })
+                      icon: Icons.person_outline_outlined,
+                      selected: _basePageController.obj == 4,
+                      onPressed: () {
+                        onTabTapped(4);
+                      },
+                    )
                   ],
                 )),
           )),
     );
+  }
+
+  void onTabTapped(int index) {
+    if (index == _basePageController.obj) {
+      // Si la sección seleccionada es la misma que la sección actual,
+      // vuelve a la página de inicio de la sección.
+      _basePageController.navigatorKeys[index]?.currentState
+          ?.popUntil((route) => route.isFirst);
+    } else {
+      // Si la sección seleccionada es diferente, cambia a la nueva sección.
+      _basePageController.obj = index;
+    }
   }
 }
 

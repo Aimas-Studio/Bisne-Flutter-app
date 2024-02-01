@@ -16,22 +16,43 @@ class BasePage extends StatelessWidget {
         init: BasePageController(),
         builder: (_) {
           return Scaffold(
-            body: bodys(_.obj),
+            body: _bodys(_.obj),
             bottomNavigationBar: BottomNavBar(),
           );
         });
   }
-}
 
-Widget bodys(int indexPage) {
-  return IndexedStack(
-    index: indexPage,
-    children: [
-      SearchPage(),
-      SearchPage(),
-      HomePage(),
-      SearchPage(),
-      UserInfoPage(),
-    ],
-  );
+  Widget _bodys(int indexPage) {
+    return IndexedStack(
+      index: indexPage,
+      children: [
+        const SearchPage(),
+        Navigator(
+          key: _basePageController.navigatorKeys[1],
+          onGenerateRoute: (RouteSettings settings) {
+            return MaterialPageRoute(
+              builder: (_) => const SearchPage(),
+            );
+          },
+        ),
+        Navigator(
+          key: _basePageController.navigatorKeys[2],
+          onGenerateRoute: (RouteSettings settings) {
+            return MaterialPageRoute(
+              builder: (_) => const HomePage(),
+            );
+          },
+        ),
+        const SearchPage(),
+        Navigator(
+          key: _basePageController.navigatorKeys[4],
+          onGenerateRoute: (RouteSettings settings) {
+            return MaterialPageRoute(
+              builder: (_) => const UserInfoPage(),
+            );
+          },
+        ),
+      ],
+    );
+  }
 }

@@ -7,11 +7,11 @@ Widget appNotificationBar(context, bool returnButton, {IconData? iconData}) {
   return Container(
     padding: const EdgeInsets.only(right: 10),
     alignment: Alignment.bottomRight,
-    width: double.infinity,
+    width: MediaQuery.of(context).size.width,
     height: MediaQuery.of(context).size.height * 0.08,
     child: Row(
       children: [
-        returnButton ? returnButtonWidget() : Container(),
+        returnButton ? returnButtonWidget(context) : Container(),
         Expanded(
           child: Container(
             alignment: Alignment.bottomRight,

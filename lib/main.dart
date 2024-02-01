@@ -2,6 +2,7 @@
 
 import 'package:bisne/src/Pages/Base/base_page.dart';
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
+import 'package:bisne/src/Pages/Search/search_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +20,8 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   final BasePageController _BasePageController = Get.put(BasePageController());
+  final SearchPageController _SearchPageController =
+      Get.put(SearchPageController());
 
   @override
   Widget build(BuildContext context) {

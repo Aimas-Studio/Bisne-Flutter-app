@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DrawerHomeWidget extends StatelessWidget {
+  const DrawerHomeWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -11,7 +13,7 @@ class DrawerHomeWidget extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               child: Column(
                 children: [
                   const SizedBox(height: 12),

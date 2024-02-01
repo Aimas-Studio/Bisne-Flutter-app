@@ -6,7 +6,9 @@ import '../../Widgets/banner_promotional_widget.dart';
 import 'Widgets/home_page_widgets.dart';
 
 class HomePage extends StatelessWidget {
-  String section = 'Populares';
+  final String section = 'Populares';
+
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +16,10 @@ class HomePage extends StatelessWidget {
         context.width > 400 ? context.height * 0.24 : context.height * 0.15;
     double mediaViewPort = context.width > 400 ? 0.14 : 0.25;
     return Scaffold(
-        appBar: appbarHomePage(),
-        endDrawer: DrawerHomeWidget(),
-        body: ListView(
+      appBar: appbarHomePage(),
+      endDrawer: DrawerHomeWidget(),
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             const BannerSwiper(),
             const SizedBox(
@@ -38,6 +41,8 @@ class HomePage extends StatelessWidget {
               height: 20.0,
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

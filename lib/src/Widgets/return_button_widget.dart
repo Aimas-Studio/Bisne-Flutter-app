@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../Utils/interfaces.dart';
 
-Widget returnButtonWidget() {
+Widget returnButtonWidget(context) {
   return ElevatedButton(
-      onPressed: () => {},
+      onPressed: () => {Navigator.pop(context)},
       style: const ButtonStyle(
         backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
         elevation: MaterialStatePropertyAll(0),

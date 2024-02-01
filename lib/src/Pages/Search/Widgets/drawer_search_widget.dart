@@ -1,321 +1,62 @@
-// ignore_for_file: prefer_const_constructors
-
-// import 'dart:ffi';
-// import 'dart:html';
-// import 'dart:math';
-
+import 'package:bisne/src/Pages/Search/search_page_controller.dart';
+import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-import '../../Home/Providers/CategoryProvider.dart';
-
-class DrawerSearchWidget extends StatefulWidget {
-  const DrawerSearchWidget({super.key});
-
-  @override
-  State<DrawerSearchWidget> createState() => _DrawerSearchWidgetState();
-}
-
-class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
-  String categoria = '';
-  String provincia = '';
-  String municipio = '';
-  String moneda = '';
-
-  List<String> categories =
-      CategoryProvider.categories.map((category) => category['name']!).toList();
+class DrawerSearchWidget extends StatelessWidget {
+  DrawerSearchWidget({super.key});
+  final SearchPageController _searchPageController =
+      Get.find<SearchPageController>();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 35),
-      height: MediaQuery.of(context).size.height - 185,
+      margin: const EdgeInsets.only(top: 35),
       child: Drawer(
-        width: MediaQuery.of(context).size.width > 400
-            ? MediaQuery.of(context).size.width * 0.6
-            : MediaQuery.of(context).size.width * 0.7,
+        width: context.width > 400 ? context.width * 0.6 : context.width * 0.7,
         child: Material(
-            color: Color.fromARGB(255, 255, 255, 255),
+            color: Colors.white,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text('FILTRAR RESULTADOS',
+                      const Text('FILTRAR RESULTADOS',
                           style:
                               TextStyle(color: Color.fromRGBO(0, 0, 0, 0.451))),
                       InkWell(
-                        child: Text('LIMPIAR',
-                            style: TextStyle(
-                                color: Color.fromRGBO(29, 173, 3, 1))),
+                        child: const Text('LIMPIAR',
+                            style: TextStyle(color: bisneColorPrimary)),
                         onTap: () {},
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: ,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      Text('CATEGORÍA'),
-                      // ignore: prefer_const_literals_to_create_immutables
-
-                      DropdownButton<dynamic>(
-                        underline: Container(),
-                        value: categoria == '' ? 'Todos' : categoria,
-                        isDense: true,
-                        style:
-                            TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
-                        alignment: Alignment.centerRight,
-                        icon: Container(
-                          margin: EdgeInsets.only(left: 5),
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: Center(
-                              child: SvgPicture.asset(
-                                  'assets/Icons/arrow_rigth_icon.svg'),
-                            ),
-                          ),
-                        ),
-                        items: categories
-                            .map((category) => DropdownMenuItem<dynamic>(
-                                  value: category,
-                                  child: Text(category),
-                                ))
-                            .toList(),
-                        onChanged: (Object? value) {
-                          categoria = value as String;
-                          setState(() {});
-                        },
-                        // [
-                        //   DropdownMenuEntry<dynamic>(value: 'hola', label: "hola")
-                        // ]
-                      ),
-                    ],
-                  ),
-                  SizedBox(
+                  filterType('CATEGORÍAS', 'Todas', 'categories'),
+                  const SizedBox(
                     height: 20.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: ,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      Text('PROVINCIA'),
-                      // ignore: prefer_const_literals_to_create_immutables
-
-                      DropdownButton<dynamic>(
-                        underline: Container(),
-                        value: provincia == '' ? 'Todas' : provincia,
-                        isDense: true,
-                        style:
-                            TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
-                        alignment: Alignment.centerRight,
-                        icon: Container(
-                          margin: EdgeInsets.only(left: 5),
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: Center(
-                              child: SvgPicture.asset(
-                                  'assets/Icons/arrow_rigth_icon.svg'),
-                            ),
-                          ),
-                        ),
-                        items: const [
-                          DropdownMenuItem<dynamic>(
-                            value: 'Todas',
-                            child: Text('Todas'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'La Habana',
-                            child: Text('La Habana'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'Holguín',
-                            child: Text('Holguín'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'Las Tunas',
-                            child: Text('Las Tunas'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'Matanzas',
-                            child: Text('Matanzas'),
-                          ),
-                        ],
-                        onChanged: (Object? value) {
-                          provincia = value as String;
-                          setState(() {});
-                        },
-                        // [
-                        //   DropdownMenuEntry<dynamic>(value: 'hola', label: "hola")
-                        // ]
-                      ),
-                    ],
-                  ),
-                  SizedBox(
+                  filterType('PROVINCIAS', 'Todas', 'provinces'),
+                  const SizedBox(
                     height: 20.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: ,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      Text('MUNICIPIO'),
-                      // ignore: prefer_const_literals_to_create_immutables
-
-                      DropdownButton<dynamic>(
-                        underline: Container(),
-                        value: municipio == '' ? 'Todos' : municipio,
-                        isDense: true,
-                        style:
-                            TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
-                        alignment: Alignment.centerRight,
-                        icon: Container(
-                          margin: EdgeInsets.only(left: 5),
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: Center(
-                              child: SvgPicture.asset(
-                                  'assets/Icons/arrow_rigth_icon.svg'),
-                            ),
-                          ),
-                        ),
-                        items: const [
-                          DropdownMenuItem<dynamic>(
-                            value: 'Todos',
-                            child: Text('Todos'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'Playa',
-                            child: Text('Playa'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'Marianao',
-                            child: Text('Marianao'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'Vedado',
-                            child: Text('Vedado'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'La Lisa',
-                            child: Text('La Lisa'),
-                          ),
-                        ],
-                        onChanged: (Object? value) {
-                          municipio = value as String;
-                          setState(() {});
-                        },
-                        // [
-                        //   DropdownMenuEntry<dynamic>(value: 'hola', label: "hola")
-                        // ]
-                      ),
-                    ],
-                  ),
-                  SizedBox(
+                  filterType('MUNICIPIOS', 'Todos', 'municipalities'),
+                  const SizedBox(
                     height: 20.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: ,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      Text('MONEDA'),
-                      // ignore: prefer_const_literals_to_create_immutables
-
-                      DropdownButton<dynamic>(
-                        underline: Container(),
-                        value: moneda == '' ? 'CUP' : moneda,
-                        isDense: true,
-                        style:
-                            TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
-                        alignment: Alignment.centerRight,
-                        icon: Container(
-                          margin: EdgeInsets.only(left: 5),
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: Center(
-                              child: SvgPicture.asset(
-                                  'assets/Icons/arrow_rigth_icon.svg'),
-                            ),
-                          ),
-                        ),
-                        items: const [
-                          DropdownMenuItem<dynamic>(
-                            value: 'CUP',
-                            child: Text('CUP'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'USD',
-                            child: Text('USD'),
-                          ),
-                          DropdownMenuItem<dynamic>(
-                            value: 'MLC',
-                            child: Text('MLC'),
-                          )
-                        ],
-                        onChanged: (Object? value) {
-                          moneda = value as String;
-                          setState(() {});
-                        },
-                      ),
-                    ],
-                  ),
+                  filterType('MONEDA', 'CUP', 'currencyTypes'),
                   Expanded(child: Container()),
-                  Container(
-                    constraints: BoxConstraints(maxWidth: 200),
-                    child: ElevatedButton(
-                        style: const ButtonStyle(
-                            shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)))),
-                            backgroundColor: MaterialStatePropertyAll(
-                                Color.fromRGBO(29, 173, 3, 1))),
-                        onPressed: () => {},
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Center(
-                                child: Text(
-                                  "APLICAR FLITROS",
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(255, 255, 255, 1)),
-                                ),
-                              ),
-                            ),
-                            SvgPicture.asset(
-                                'assets/Icons/arrow_rigth_icon.svg')
-                          ],
-                        )),
-                  ),
-                  SizedBox(
+                  applyFiltresButton(),
+                  const SizedBox(
                     height: 5,
                   )
                 ],
@@ -324,4 +65,79 @@ class _DrawerSearchWidgetState extends State<DrawerSearchWidget> {
       ),
     );
   }
+
+  Container applyFiltresButton() {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 200),
+      margin: const EdgeInsets.only(bottom: 10),
+      child: ElevatedButton(
+          style: const ButtonStyle(
+              shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)))),
+              backgroundColor: MaterialStatePropertyAll(bisneColorPrimary)),
+          onPressed: () => {},
+          child: Row(
+            children: [
+              const Expanded(
+                child: Center(
+                  child: Text(
+                    "APLICAR FLITROS",
+                    style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
+                  ),
+                ),
+              ),
+              SvgPicture.asset('assets/Icons/arrow_rigth_icon.svg')
+            ],
+          )),
+    );
+  }
+
+  Row filterType(String filterName, String defaultValue, String listName) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(filterName),
+        Obx(
+          () => DropdownButton<dynamic>(
+            underline: Container(),
+            value: _searchPageController.getProperty(listName).value.isEmpty
+                ? defaultValue
+                : _searchPageController.getProperty(listName).value,
+            isDense: true,
+            style: const TextStyle(color: Color.fromRGBO(23, 26, 22, 0.549)),
+            alignment: Alignment.centerRight,
+            icon: Container(
+              margin: const EdgeInsets.only(left: 5),
+              child: Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(50)),
+                child: Center(
+                  child: SvgPicture.asset('assets/Icons/arrow_rigth_icon.svg'),
+                ),
+              ),
+            ),
+            items: setMenuItems(_searchPageController, listName),
+            onChanged: (value) {
+              _searchPageController.getProperty(listName).value =
+                  value as String;
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+List<DropdownMenuItem<dynamic>> setMenuItems(
+    SearchPageController controller, property) {
+  return controller
+      .getListProperty(property)
+      .map((property) => DropdownMenuItem<dynamic>(
+            value: property,
+            child: Text(property),
+          ))
+      .toList();
 }
