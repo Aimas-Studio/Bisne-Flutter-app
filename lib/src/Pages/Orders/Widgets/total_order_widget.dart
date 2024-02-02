@@ -1,3 +1,4 @@
+import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Utils/interfaces.dart';
@@ -16,32 +17,13 @@ Widget totalOrderWidget(String date, String totalPrice) {
               color: fontAppColor.withOpacity(0.5),
             ),
           ),
-          Text(
-            totalPrice,
-            style: const TextStyle(
-              color: fontAppColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 28,
-            ),
-          ),
+          boldAppText(totalPrice, 28),
         ],
       ),
       Column(
         children: [
-          Text(
-            getUsername(),
-            style: const TextStyle(
-              color: fontAppColor,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-          Text(
-            date,
-            style: const TextStyle(
-              color: fontAppColor,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
+          regularAppText(getUsername(), 13),
+          regularAppText(date, 12),
         ],
       )
     ],

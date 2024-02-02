@@ -8,6 +8,7 @@ class Product {
 
 class ProductDump {
   String name;
+  String imageUrl;
   num price;
-  ProductDump(this.name, this.price);
+  ProductDump(this.name, this.price, this.imageUrl);
 }
