@@ -1,4 +1,6 @@
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
+import 'package:bisne/src/Pages/Notifications/Widgets/notification_widget.dart';
+import 'package:bisne/src/Pages/User/Providers/user_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +31,7 @@ class BottomNavBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconBottomBar(
+                    NotificationButton(
                         icon: Icons.notifications_none,
                         selected: _basePageController.obj == 0,
                         onPressed: () {}),
@@ -106,6 +108,58 @@ class IconBottomBar extends StatelessWidget {
           onPressed: onPressed,
           icon: Icon(icon,
               size: 30, color: const Color.fromARGB(255, 30, 30, 30)),
+        ),
+      ),
+    );
+  }
+}
+
+class NotificationButton extends StatelessWidget {
+  const NotificationButton(
+      {Key? key,
+      required this.icon,
+      required this.selected,
+      required this.onPressed})
+      : super(key: key);
+  final IconData icon;
+  final bool selected;
+  final Function() onPressed;
+
+  final normalColor = Colors.white;
+  final selectColor = const Color.fromARGB(25, 119, 119, 119);
+
+  @override
+  Widget build(context) {
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+            color: selected ? selectColor : normalColor,
+            borderRadius: BorderRadius.circular(50.0)),
+        width: 50,
+        height: 50,
+        child: Badge(
+          offset: const Offset(-2, 2),
+          backgroundColor: const Color.fromRGBO(29, 176, 3, 1),
+          alignment: AlignmentDirectional.topEnd,
+          isLabelVisible: getNotificationCount() != 0,
+          label: ClipOval(
+            child: Center(
+              child: Text(
+                getNotificationCount() > 99
+                    ? '99+'
+                    : getNotificationCount().toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 8,
+                ),
+              ),
+            ),
+          ),
+          child: IconButton(
+            onPressed: onPressed,
+            icon: const Icon(Icons.notifications_none_rounded,
+                size: 30, color: Color.fromARGB(255, 30, 30, 30)),
+          ),
         ),
       ),
     );

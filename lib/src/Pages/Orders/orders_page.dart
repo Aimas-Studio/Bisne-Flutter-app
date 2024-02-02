@@ -1,9 +1,9 @@
+import 'package:bisne/src/Pages/Orders/Providers/order_provider.dart';
+import 'package:bisne/src/Pages/Orders/Widgets/order_widget.dart';
+import 'package:bisne/src/Utils/Entities/facture.dart';
+import 'package:bisne/src/Utils/interfaces.dart';
+import 'package:bisne/src/Widgets/appBarSecondary.dart';
 import 'package:flutter/material.dart';
-import 'package:widget_factory/Pages/Orders/Providers/order_provider.dart';
-import 'package:widget_factory/Pages/Orders/Widgets/order_widget.dart';
-import 'package:widget_factory/Utils/Entities/facture.dart';
-import 'package:widget_factory/Utils/interfaces.dart';
-import 'package:widget_factory/Widgets/appBarSecondary.dart';
 
 import '../../Utils/texts.dart';
 

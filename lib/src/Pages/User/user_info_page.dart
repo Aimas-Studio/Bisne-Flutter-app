@@ -1,10 +1,9 @@
 //Flutter Imports
 import 'package:flutter/material.dart';
-import 'package:widget_factory/Pages/User/Providers/user_providers.dart';
-//Internal Imports
-import 'package:widget_factory/Utils/custom_icons.dart';
-import 'package:widget_factory/Utils/interfaces.dart';
 
+import '../../Utils/custom_icons.dart';
+import '../../Utils/interfaces.dart';
+import 'Providers/user_providers.dart';
 import 'Widgets/profile_widget.dart';
 import 'Widgets/user_page_widgets.dart';
 
@@ -40,7 +39,6 @@ class UserInfoPage extends StatelessWidget {
 }
 
 final Map<IconData, String> contentPanel1 = {
-  Icons.list: "Favoritos",
   CustomIcons.finished: "Pedidos Realizados",
   Icons.add: "Publicar Negocio"
 };

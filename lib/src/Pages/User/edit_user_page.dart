@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:widget_factory/Pages/User/Providers/user_providers.dart';
-import 'package:widget_factory/Utils/interfaces.dart';
-import 'package:widget_factory/Utils/texts.dart';
 
+import '../../Utils/interfaces.dart';
+import '../../Utils/texts.dart';
 import '../../Widgets/appBarSecondary.dart';
+import 'Providers/user_providers.dart';
 import 'Widgets/input_text_widget.dart';
 import 'Widgets/profile_widget.dart';
 import 'Widgets/profiles_pages_button.dart';

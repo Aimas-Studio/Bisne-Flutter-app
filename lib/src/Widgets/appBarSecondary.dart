@@ -1,7 +1,7 @@
+import 'package:bisne/src/Utils/interfaces.dart';
+import 'package:bisne/src/Widgets/notification_button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:widget_factory/Utils/interfaces.dart';
 
-import 'notification_button.dart';
 import 'return_button_widget.dart';
 
 AppBar appBarSecondary(context, bool returnButton, {IconData? iconData}) {
@@ -10,11 +10,11 @@ AppBar appBarSecondary(context, bool returnButton, {IconData? iconData}) {
     toolbarHeight: MediaQuery.of(context).size.height * 0.08,
     elevation: 0,
     actions: [
-      returnButton ? returnButtonWidget() : Container(),
+      returnButton ? returnButtonWidget(context) : Container(),
       Expanded(
         child: Container(
           alignment: Alignment.bottomRight,
-          child: iconData == null ? Container() : NotificationButton(iconData),
+          child: iconData == null ? Container() : Container(),
         ),
       )
     ],

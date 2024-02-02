@@ -15,5 +15,5 @@ ImageProvider getProfilePicture() {
 String profilePictureUrl = "assets/Images/photo.png";
 
 int getNotificationCount() {
-  return 1;
+  return 929;
 }

@@ -1,10 +1,10 @@
+import 'package:bisne/src/Utils/interfaces.dart';
+import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
-import 'package:widget_factory/Utils/interfaces.dart';
-import 'package:widget_factory/Utils/texts.dart';
 
-Widget returnButtonWidget() {
+Widget returnButtonWidget(context) {
   return ElevatedButton(
-      onPressed: () => {},
+      onPressed: () => {Navigator.pop(context)},
       style: const ButtonStyle(
         backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
         elevation: MaterialStatePropertyAll(0),

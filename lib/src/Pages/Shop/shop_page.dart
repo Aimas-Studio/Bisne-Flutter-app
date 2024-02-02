@@ -11,17 +11,7 @@ class ShopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        toolbarHeight: 70,
-        foregroundColor: const Color.fromRGBO(114, 124, 142, 1),
-        actions: [
-          Container(
-            alignment: AlignmentDirectional.centerEnd,
-            child: appBarSecondary(context, true),
-          )
-        ],
-      ),
+      appBar: appBarSecondary(context, true),
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
