@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Utils/interfaces.dart';
 import '../../Utils/texts.dart';
-import '../../Widgets/appBarSecondary.dart';
+import '../../Widgets/secondary_app_bar.dart';
 import 'Providers/notifications_provider.dart';
 import 'Widgets/notification_widget.dart';
 
@@ -13,12 +13,7 @@ class NotificationPage extends StatelessWidget {
   Widget build(context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: backgroundAppColor,
-          title: Center(
-            child: boldAppText("Notificaciones", 27),
-          ),
-        ),
+        appBar: secondaryAppBar(context, true),
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20),

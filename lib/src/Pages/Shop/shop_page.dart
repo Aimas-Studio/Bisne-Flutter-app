@@ -1,6 +1,6 @@
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_widgets.dart';
-import 'package:bisne/src/Widgets/appBarSecondary.dart';
+import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +11,7 @@ class ShopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarSecondary(context, true),
+      appBar: secondaryAppBar(context, true),
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [

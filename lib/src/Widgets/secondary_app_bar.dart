@@ -1,10 +1,9 @@
 import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Widgets/notification_button_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'return_button_widget.dart';
 
-AppBar appBarSecondary(context, bool returnButton, {IconData? iconData}) {
+AppBar secondaryAppBar(context, bool returnButton, {IconData? iconData}) {
   return AppBar(
     backgroundColor: backgroundAppColor,
     toolbarHeight: MediaQuery.of(context).size.height * 0.08,

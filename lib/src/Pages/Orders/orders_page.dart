@@ -2,7 +2,7 @@ import 'package:bisne/src/Pages/Orders/Providers/order_provider.dart';
 import 'package:bisne/src/Pages/Orders/Widgets/order_widget.dart';
 import 'package:bisne/src/Utils/Entities/facture.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Widgets/appBarSecondary.dart';
+import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../Utils/texts.dart';
@@ -15,7 +15,7 @@ class OrderPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
-        appBar: appBarSecondary(context, true),
+        appBar: secondaryAppBar(context, true),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
