@@ -27,7 +27,7 @@ List<Widget> getServices(List<ContentPanel> content, context) {
         ElevatedButton(
           style: const ButtonStyle(
             elevation: MaterialStatePropertyAll(0),
-            backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
+            backgroundColor: MaterialStatePropertyAll(Colors.white),
           ),
           onPressed: element.function(context),
           child: Row(
