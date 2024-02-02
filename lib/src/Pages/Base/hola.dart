@@ -31,9 +31,9 @@ class BasePage extends StatelessWidget {
         Navigator(
           key: _basePageController.navigatorKeys[0],
           onGenerateRoute: (RouteSettings settings) {
-            // return MaterialPageRoute(
-            // builder: (_) => NotificationPage(),
-            // );
+            return MaterialPageRoute(
+              builder: (_) => NotificationPage(),
+            );
           },
         ),
         Navigator(

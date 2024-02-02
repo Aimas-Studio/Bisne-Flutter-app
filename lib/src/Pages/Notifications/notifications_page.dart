@@ -7,7 +7,7 @@ import 'Providers/notifications_provider.dart';
 import 'Widgets/notification_widget.dart';
 
 class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
+  NotificationPage();
 
   @override
   Widget build(context) {
@@ -35,3 +35,5 @@ class NotificationPage extends StatelessWidget {
     );
   }
 }
+
+class StatelessWidget {}

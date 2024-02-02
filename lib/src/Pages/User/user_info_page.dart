@@ -1,4 +1,3 @@
-//Flutter Imports
 import 'package:bisne/src/Pages/Orders/orders_page.dart';
 import 'package:bisne/src/Utils/Entities/content_panel.dart';
 import 'package:flutter/material.dart';
