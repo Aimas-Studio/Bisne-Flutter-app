@@ -13,14 +13,18 @@ class NotificationPage extends StatelessWidget {
   Widget build(context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: appBarSecondary(context, true),
+        appBar: AppBar(
+          backgroundColor: backgroundAppColor,
+          title: Center(
+            child: boldAppText("Notificaciones", 27),
+          ),
+        ),
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              boldAppText("Notificaciones", 27),
               FutureBuilder(
                 future: getNotifications(),
                 builder: (context, AsyncSnapshot snapshot) {
