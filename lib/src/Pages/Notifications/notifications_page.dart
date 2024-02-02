@@ -7,7 +7,7 @@ import 'Providers/notifications_provider.dart';
 import 'Widgets/notification_widget.dart';
 
 class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
+  NotificationPage();
 
   @override
   Widget build(context) {
@@ -20,14 +20,14 @@ class NotificationPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              boldAppText("Notificaciones", 27),
               FutureBuilder(
-                  future: getNotifications(),
-                  builder: (context, AsyncSnapshot snapshot) {
-                    return snapshot.hasData
-                        ? notificationsList(context, snapshot.data)
-                        : loadingNotifications();
-                  }),
+                future: getNotifications(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  return snapshot.hasData
+                      ? notificationsList(context, snapshot.data)
+                      : loadingNotifications();
+                },
+              ),
             ],
           ),
         ),
@@ -35,3 +35,5 @@ class NotificationPage extends StatelessWidget {
     );
   }
 }
+
+class StatelessWidget {}
