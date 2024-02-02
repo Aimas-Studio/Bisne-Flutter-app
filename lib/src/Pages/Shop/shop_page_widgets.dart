@@ -1,5 +1,6 @@
 import 'package:bisne/src/Pages/Shop/shop_more_info_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
+import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Widgets/search_input_widget.dart';
 import 'package:bisne/src/Widgets/table_shop_widget.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ Row photo(_) {
       const SizedBox(
         height: 300,
         child: FadeInImage(
-            placeholder: AssetImage('assets/Images/hero.png'),
+            placeholder: placeHolderImageApp,
             image: AssetImage('assets/Images/logo_empresa.png')),
       ),
       Container(
@@ -173,8 +174,19 @@ Widget comments(_) {
   return Container();
 }
 
-Widget contact(_) {
-  return Container();
+Widget contact(ShopPageController _) {
+  return Column(
+    children: [
+      Row(
+        children: [
+          ListTile(
+            leading: Icon(Icons.phone_rounded),
+            title: _.contact[0],
+          )
+        ],
+      ),
+    ],
+  );
 }
 
 Widget address(ShopPageController _) {
@@ -187,12 +199,21 @@ Widget address(ShopPageController _) {
     ),
     Row(
       children: [
-        Icon(Icons.location_on_outlined),
+        const Icon(Icons.location_on_outlined),
         const SizedBox(
           width: 10,
         ),
         Text(_.localitation)
       ],
+    ),
+    const SizedBox(
+      height: 10,
+    ),
+    Container(
+      height: 250,
+      decoration:
+          BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
+      child: const Center(child: Text("Ubicación de Google Maps")),
     )
   ]);
 }

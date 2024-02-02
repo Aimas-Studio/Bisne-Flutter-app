@@ -29,7 +29,7 @@ List<Widget> getServices(List<ContentPanel> content, context) {
             elevation: MaterialStatePropertyAll(0),
             backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
           ),
-          onPressed: element.function(context),
+          onPressed: () => element.function(context),
           child: Row(
             children: [
               Icon(element.iconData, color: iconAppColor, size: 25),
