@@ -1,9 +1,11 @@
 //Flutter Imports
+import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
 
+import '../../../Utils/Entities/content_panel.dart';
 import '../../../Utils/interfaces.dart';
 
-Widget userServicesList(Map<IconData, String> content) {
+Widget userServicesList(List<ContentPanel> content) {
   return Container(
     padding: const EdgeInsets.only(left: 15, top: 10),
     margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -17,36 +19,33 @@ Widget userServicesList(Map<IconData, String> content) {
   );
 }
 
-List<Widget> getServices(Map<IconData, String> content) {
+List<Widget> getServices(List<ContentPanel> content) {
   List<Widget> serviceList = [];
-  content.forEach((icon, text) {
+  for (var element in content) {
     serviceList
-      ..add(Row(
-        children: [
-          Icon(icon, color: iconAppColor, size: 25),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15),
-              child: Text(
-                text,
-                style: const TextStyle(
-                  color: fontAppColor,
+      ..add(
+        ElevatedButton(
+          onPressed: element.function,
+          child: Row(
+            children: [
+              Icon(element.iconData, color: iconAppColor, size: 25),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15),
+                  child: regularAppText(element.title, 13),
                 ),
               ),
-            ),
-          ),
-          IconButton(
-              style: const ButtonStyle(),
-              onPressed: () => {},
-              icon: const Icon(
+              const Icon(
                 Icons.arrow_forward_ios_sharp,
                 size: 12,
                 color: iconAppColor,
-              ))
-        ],
-      ))
+              ),
+            ],
+          ),
+        ),
+      )
       ..add(const Divider());
-  });
+  }
   serviceList.removeLast();
   serviceList.add(const SizedBox(height: 8));
   return serviceList;

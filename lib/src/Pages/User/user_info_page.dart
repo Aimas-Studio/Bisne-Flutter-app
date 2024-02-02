@@ -1,4 +1,5 @@
 //Flutter Imports
+import 'package:bisne/src/Utils/Entities/content_panel.dart';
 import 'package:flutter/material.dart';
 
 import '../../Utils/custom_icons.dart';
@@ -38,14 +39,14 @@ class UserInfoPage extends StatelessWidget {
   }
 }
 
-final Map<IconData, String> contentPanel1 = {
-  CustomIcons.finished: "Pedidos Realizados",
-  Icons.add: "Publicar Negocio"
-};
+final List<ContentPanel> contentPanel1 = [
+  ContentPanel(CustomIcons.finished, "Pedidos Realizados", () {}),
+  ContentPanel(Icons.add, "Publicar Negocio", () {})
+];
 
-final Map<IconData, String> contentPanel2 = {
-  Icons.star: "Invitar Amigos",
-  CustomIcons.employed: "Contactar Equipo",
-  CustomIcons.rate: "Calificar App",
-  Icons.share: "Compartir App",
-};
+final List<ContentPanel> contentPanel2 = [
+  ContentPanel(Icons.star, "Invitar Amigos", () {}),
+  ContentPanel(CustomIcons.employed, "Contactar Equipo", () {}),
+  ContentPanel(CustomIcons.rate, "Calificar App", () {}),
+  ContentPanel(Icons.share, "Compartir App", () {}),
+];
