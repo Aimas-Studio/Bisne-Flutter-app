@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Utils/interfaces.dart';
 import '../../Utils/texts.dart';
-import '../../Widgets/appBarSecondary.dart';
+import '../../Widgets/secondary_app_bar.dart';
 import 'Providers/user_providers.dart';
 import 'Widgets/input_text_widget.dart';
 import 'Widgets/profile_widget.dart';
@@ -33,7 +33,7 @@ class _EditUserPageState extends State<EditUserPage> {
           child: Center(
             child: Column(
               children: [
-                appBarSecondary(context, true),
+                secondaryAppBar(context, true),
                 ProfileWidget.profilePhoto(getProfilePicture(), 70),
                 Container(
                     margin: const EdgeInsets.only(bottom: 15),

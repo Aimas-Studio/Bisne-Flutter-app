@@ -23,9 +23,9 @@ class ShopInfoPage extends StatelessWidget {
                 getShopType(),
                 "EDITAR TIENDA",
               ),
-              userServicesList(contentPanel1),
+              userServicesList(contentPanel1, context),
               const SizedBox(height: 20),
-              userServicesList(contentPanel2),
+              userServicesList(contentPanel2, context),
             ],
           ),
         ),
@@ -34,15 +34,15 @@ class ShopInfoPage extends StatelessWidget {
   }
 
   final List<ContentPanel> contentPanel1 = [
-    ContentPanel(Icons.list, "Administrar Inventario", () {}),
-    ContentPanel(CustomIcons.finished, "Pedidos Realizados", () {}),
-    ContentPanel(Icons.add, "Publicar Producto", () {})
+    ContentPanel(Icons.list, "Administrar Inventario", (context) {}),
+    ContentPanel(CustomIcons.finished, "Pedidos Realizados", (context) {}),
+    ContentPanel(Icons.add, "Publicar Producto", (context) {})
   ];
 
   final List<ContentPanel> contentPanel2 = [
-    ContentPanel(Icons.star, "Invitar Amigos", () {}),
-    ContentPanel(CustomIcons.employed, "Contactar Equipo", () {}),
-    ContentPanel(CustomIcons.rate, "Calificar App", () {}),
-    ContentPanel(Icons.share, "Compartir Tienda", () {}),
+    ContentPanel(Icons.star, "Invitar Amigos", (context) {}),
+    ContentPanel(CustomIcons.employed, "Contactar Equipo", (context) {}),
+    ContentPanel(CustomIcons.rate, "Calificar App", (context) {}),
+    ContentPanel(Icons.share, "Compartir Tienda", (context) {}),
   ];
 }

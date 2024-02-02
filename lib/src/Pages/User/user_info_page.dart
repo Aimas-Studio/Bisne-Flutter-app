@@ -1,4 +1,5 @@
 //Flutter Imports
+import 'package:bisne/src/Pages/Orders/orders_page.dart';
 import 'package:bisne/src/Utils/Entities/content_panel.dart';
 import 'package:flutter/material.dart';
 
@@ -28,9 +29,9 @@ class UserInfoPage extends StatelessWidget {
                 getUserEmail(),
                 "EDITAR PERFIL",
               ),
-              userServicesList(contentPanel1),
+              userServicesList(contentPanel1, context),
               const SizedBox(height: 20),
-              userServicesList(contentPanel2),
+              userServicesList(contentPanel2, context),
             ],
           ),
         ),
@@ -40,13 +41,19 @@ class UserInfoPage extends StatelessWidget {
 }
 
 final List<ContentPanel> contentPanel1 = [
-  ContentPanel(CustomIcons.finished, "Pedidos Realizados", () {}),
-  ContentPanel(Icons.add, "Publicar Negocio", () {})
+  ContentPanel(CustomIcons.finished, "Pedidos Realizados", (context) {
+    Navigator.push(context,
+        PageRouteBuilder(pageBuilder: (context, a, b) => const OrderPage()));
+  }),
+  ContentPanel(Icons.add, "Publicar Negocio", (context) {})
 ];
 
 final List<ContentPanel> contentPanel2 = [
-  ContentPanel(Icons.star, "Invitar Amigos", () {}),
-  ContentPanel(CustomIcons.employed, "Contactar Equipo", () {}),
-  ContentPanel(CustomIcons.rate, "Calificar App", () {}),
-  ContentPanel(Icons.share, "Compartir App", () {}),
+  //TODO invitar amigo debe permitir compartir un link
+  ContentPanel(Icons.star, "Invitar Amigos", (context) {}),
+  //TODO contactar equipo mensaje a presi
+  ContentPanel(CustomIcons.employed, "Contactar Equipo", (context) {}),
+  //TODO
+  ContentPanel(CustomIcons.rate, "Calificar App", (context) {}),
+  ContentPanel(Icons.share, "Compartir App", (context) {}),
 ];

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../Utils/Entities/content_panel.dart';
 import '../../../Utils/interfaces.dart';
 
-Widget userServicesList(List<ContentPanel> content) {
+Widget userServicesList(List<ContentPanel> content, context) {
   return Container(
     padding: const EdgeInsets.only(left: 15, top: 10),
     margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -14,18 +14,22 @@ Widget userServicesList(List<ContentPanel> content) {
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(12))),
     child: Column(
-      children: getServices(content),
+      children: getServices(content, context),
     ),
   );
 }
 
-List<Widget> getServices(List<ContentPanel> content) {
+List<Widget> getServices(List<ContentPanel> content, context) {
   List<Widget> serviceList = [];
   for (var element in content) {
     serviceList
       ..add(
         ElevatedButton(
-          onPressed: element.function,
+          style: const ButtonStyle(
+            elevation: MaterialStatePropertyAll(0),
+            backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
+          ),
+          onPressed: element.function(context),
           child: Row(
             children: [
               Icon(element.iconData, color: iconAppColor, size: 25),
