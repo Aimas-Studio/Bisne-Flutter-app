@@ -178,12 +178,7 @@ Widget contact(ShopPageController _) {
   return Column(
     children: [
       Row(
-        children: [
-          ListTile(
-            leading: Icon(Icons.phone_rounded),
-            title: _.contact[0],
-          )
-        ],
+        children: [],
       ),
     ],
   );

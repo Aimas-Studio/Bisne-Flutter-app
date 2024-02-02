@@ -1,18 +1,21 @@
+import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
 
 import '../../Utils/interfaces.dart';
-import '../../Widgets/secondary_app_bar.dart';
 import 'Providers/notifications_provider.dart';
 import 'Widgets/notification_widget.dart';
 
 class NotificationPage extends StatelessWidget {
-  NotificationPage();
+  const NotificationPage({super.key});
 
   @override
   Widget build(context) {
     return SafeArea(
       child: Scaffold(
-        appBar: secondaryAppBar(context, true),
+        appBar: AppBar(
+          backgroundColor: backgroundAppColor,
+          title: Center(child: boldAppText('Notificaciones', 25)),
+        ),
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20),
