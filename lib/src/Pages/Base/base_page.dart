@@ -1,6 +1,7 @@
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Favorite/favorite_page.dart';
 import 'package:bisne/src/Pages/Home/home_page.dart';
+import 'package:bisne/src/Pages/Notifications/notifications_page.dart';
 import 'package:bisne/src/Pages/Search/search_page.dart';
 import 'package:bisne/src/Pages/User/user_info_page.dart';
 import 'package:bisne/src/Widgets/bottom_nav_bar.dart';
@@ -27,7 +28,14 @@ class BasePage extends StatelessWidget {
     return IndexedStack(
       index: indexPage,
       children: [
-        const SearchPage(),
+        Navigator(
+          key: _basePageController.navigatorKeys[0],
+          onGenerateRoute: (RouteSettings settings) {
+            return MaterialPageRoute(
+              builder: (_) => const NotificationPage(),
+            );
+          },
+        ),
         Navigator(
           key: _basePageController.navigatorKeys[1],
           onGenerateRoute: (RouteSettings settings) {

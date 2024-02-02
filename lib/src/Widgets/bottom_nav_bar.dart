@@ -32,9 +32,12 @@ class BottomNavBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     NotificationButton(
-                        icon: Icons.notifications_none,
-                        selected: _basePageController.obj == 0,
-                        onPressed: () {}),
+                      icon: Icons.notifications_none,
+                      selected: _basePageController.obj == 0,
+                      onPressed: () {
+                        onTabTapped(0);
+                      },
+                    ),
                     IconBottomBar(
                       icon: Icons.search_outlined,
                       selected: _basePageController.obj == 1,
@@ -135,22 +138,28 @@ class NotificationButton extends StatelessWidget {
         decoration: BoxDecoration(
             color: selected ? selectColor : normalColor,
             borderRadius: BorderRadius.circular(50.0)),
-        width: 50,
-        height: 50,
+        width: 45,
+        height: 45,
         child: Badge(
-          offset: const Offset(-2, 2),
+          offset: const Offset(3, 2),
+          largeSize: 20,
           backgroundColor: const Color.fromRGBO(29, 176, 3, 1),
           alignment: AlignmentDirectional.topEnd,
           isLabelVisible: getNotificationCount() != 0,
-          label: ClipOval(
+          label: Container(
+            width: 13,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color.fromRGBO(29, 176, 3, 1),
+            ),
             child: Center(
               child: Text(
                 getNotificationCount() > 99
                     ? '99+'
                     : getNotificationCount().toString(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 8,
+                  fontSize: getNotificationCount() > 9 ? 8 : 11,
                 ),
               ),
             ),
@@ -158,7 +167,7 @@ class NotificationButton extends StatelessWidget {
           child: IconButton(
             onPressed: onPressed,
             icon: const Icon(Icons.notifications_none_rounded,
-                size: 30, color: Color.fromARGB(255, 30, 30, 30)),
+                size: 33, color: Color.fromARGB(255, 30, 30, 30)),
           ),
         ),
       ),
