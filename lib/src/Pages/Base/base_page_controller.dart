@@ -6,7 +6,7 @@ class BasePageController extends GetxController {
 
   final _obj = 2.obs;
   set obj(value) {
-    update();
+    // update();
     _obj.value = value;
   }
 

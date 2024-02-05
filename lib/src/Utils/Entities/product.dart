@@ -1,3 +1,5 @@
+import 'shop.dart';
+
 class Product {
   int id;
   String name;
@@ -10,5 +12,6 @@ class ProductDump {
   String name;
   String imageUrl;
   num price;
-  ProductDump(this.name, this.price, this.imageUrl);
+  ShopDump shopDump;
+  ProductDump(this.name, this.price, this.imageUrl, this.shopDump);
 }

@@ -11,7 +11,9 @@ class ShopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: secondaryAppBar(context, true),
+      appBar: secondaryAppBar(context, true,
+          iconData: Icons.shopping_cart_outlined,
+          shopPageController: _shopPageController),
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [

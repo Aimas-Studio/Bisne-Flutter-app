@@ -15,10 +15,10 @@ Widget returnButtonWidget(context) {
         children: [
           const Icon(
             Icons.arrow_back_ios,
-            size: 16,
+            size: 24,
             color: fontAppColor,
           ),
-          regularAppText("Regresar", 14),
+          regularAppText("Regresar", 24),
         ],
       ));
 }

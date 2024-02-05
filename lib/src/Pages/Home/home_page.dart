@@ -17,11 +17,13 @@ class HomePage extends StatelessWidget {
     double mediaViewPort = context.width > 400 ? 0.14 : 0.25;
     return Scaffold(
       appBar: appbarHomePage(),
-      endDrawer: DrawerHomeWidget(),
+      endDrawer: const DrawerHomeWidget(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const BannerSwiper(),
+            const BannerSwiper(
+              rounded: false,
+            ),
             const SizedBox(
               height: 25.0,
             ),

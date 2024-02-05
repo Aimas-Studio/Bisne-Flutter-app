@@ -1,6 +1,7 @@
 import 'package:bisne/src/Pages/Home/Providers/CategoryProvider.dart';
+import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
+import 'package:bisne/src/Widgets/card_tables.dart';
 import 'package:bisne/src/Widgets/search_input_widget.dart';
-import 'package:bisne/src/Widgets/table_shop_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -33,9 +34,17 @@ AppBar appbarHomePage() {
   );
 }
 
-TableShopWidget sectionShops(BuildContext context) {
-  return TableShopWidget(
-      maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2);
+Widget sectionShops(BuildContext context) {
+  return FutureBuilder(
+    future: ShopsProvider.cargarData(),
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        return createShopTable(context, snapshot.data!);
+      } else {
+        return Container();
+      }
+    },
+  );
 }
 
 Container sectionName(section) {

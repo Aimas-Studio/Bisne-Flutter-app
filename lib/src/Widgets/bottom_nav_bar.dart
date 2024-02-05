@@ -26,7 +26,7 @@ class BottomNavBar extends StatelessWidget {
           height: 75,
           width: context.width,
           child: Padding(
-            padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Obx(() => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,17 +100,24 @@ class IconBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        decoration: BoxDecoration(
-            color: selected ? selectColor : normalColor,
-            borderRadius: BorderRadius.circular(50.0)),
-        width: 45,
-        height: 45,
-        child: IconButton(
-          onPressed: onPressed,
-          icon: Icon(icon,
-              size: 30, color: const Color.fromARGB(255, 30, 30, 30)),
+    return Expanded(
+      child: Center(
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(50),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 25), // Ajusta este valor según tus necesidades
+            child: Container(
+              decoration: BoxDecoration(
+                  color: selected ? selectColor : normalColor,
+                  borderRadius: BorderRadius.circular(50.0)),
+              width: 55,
+              height: 55,
+              child: Icon(icon,
+                  size: 35, color: const Color.fromARGB(255, 30, 30, 30)),
+            ),
+          ),
         ),
       ),
     );
@@ -133,41 +140,50 @@ class NotificationButton extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return Center(
-      child: Container(
-        decoration: BoxDecoration(
-            color: selected ? selectColor : normalColor,
-            borderRadius: BorderRadius.circular(50.0)),
-        width: 45,
-        height: 45,
-        child: Badge(
-          offset: const Offset(3, 2),
-          largeSize: 20,
-          backgroundColor: const Color.fromRGBO(29, 176, 3, 1),
-          alignment: AlignmentDirectional.topEnd,
-          isLabelVisible: getNotificationCount() != 0,
-          label: Container(
-            width: 13,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color.fromRGBO(29, 176, 3, 1),
-            ),
-            child: Center(
-              child: Text(
-                getNotificationCount() > 99
-                    ? '99+'
-                    : getNotificationCount().toString(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: getNotificationCount() > 9 ? 8 : 11,
+    return Expanded(
+      child: Center(
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(50),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 25), // Ajusta este valor según tus necesidades
+            child: Container(
+              decoration: BoxDecoration(
+                  color: selected ? selectColor : normalColor,
+                  borderRadius: BorderRadius.circular(50.0)),
+              width: 55,
+              height: 55,
+              child: Badge(
+                offset: const Offset(3, 2),
+                largeSize: 20,
+                backgroundColor: const Color.fromRGBO(29, 176, 3, 1),
+                alignment: AlignmentDirectional.topEnd,
+                isLabelVisible: getNotificationCount() != 0,
+                label: Container(
+                  width: 13,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromRGBO(29, 176, 3, 1),
+                  ),
+                  child: Center(
+                    child: Text(
+                      getNotificationCount() > 99
+                          ? '99+'
+                          : getNotificationCount().toString(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: getNotificationCount() > 9 ? 8 : 11,
+                      ),
+                    ),
+                  ),
+                ),
+                child: Center(
+                  child: Icon(icon,
+                      size: 35, color: const Color.fromARGB(255, 30, 30, 30)),
                 ),
               ),
             ),
-          ),
-          child: IconButton(
-            onPressed: onPressed,
-            icon: const Icon(Icons.notifications_none_rounded,
-                size: 33, color: Color.fromARGB(255, 30, 30, 30)),
           ),
         ),
       ),

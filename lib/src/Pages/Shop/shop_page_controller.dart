@@ -2,7 +2,19 @@ import 'package:get/get.dart';
 
 class ShopPageController extends GetxController {
   ShopPageController();
-
+  final cart = [
+    'Producto1',
+    'Producto2',
+    'Producto2',
+    'Producto2',
+    'Producto2',
+    'Producto2',
+    'Producto2',
+    'Producto2',
+    'Producto2',
+    'Producto2',
+    'Producto2'
+  ].obs;
   final int viewsCount = 1200;
   final double rate = 4.5;
   final List<String> categories = ['Alimentos'];
@@ -11,11 +23,11 @@ class ShopPageController extends GetxController {
     'Sábados y domingos. 10 AM - 2 PM'
   ];
   final Map<String, dynamic> contact = {
-    'Teléfono': '53314213',
-    'Whatsapp': '53314213',
-    'Facebook': 'Chocolatería ChocoThay',
-    'Instagram': 'Chocothay.cuba',
-    'Enlace': 'https://www.whatsapp.com/search?q=matin%C11',
+    'phoneNumber': '53314213',
+    'whatsapp': '53314213',
+    'facebook': 'Chocolatería ChocoThay',
+    'instagram': 'Chocothay.cuba',
+    'link': 'https://www.google.com/',
   };
   final String localitation = '29F No.7416 / 74 y 76, Playa, La Habana';
   final String name = 'ChocoThay';

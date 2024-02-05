@@ -51,12 +51,7 @@ Widget getOrdersWidget(context, List<Facture> factures) {
         height: 20,
         child: const Divider(),
       ))
-      ..add(shopOrderWidget(
-        NetworkImage(element.shop.imageUrl),
-        element.shop.shopName,
-        element.date.toString(),
-        element.totalPrice,
-      ));
+      ..add(shopOrderWidget(element));
   }
   return Column(
     children: orders,

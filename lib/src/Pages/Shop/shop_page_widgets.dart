@@ -1,10 +1,15 @@
+import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
 import 'package:bisne/src/Pages/Shop/shop_more_info_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
+import 'package:bisne/src/Utils/comments.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
+import 'package:bisne/src/Utils/texts.dart';
+import 'package:bisne/src/Widgets/banner_promotional_widget.dart';
+import 'package:bisne/src/Widgets/card_tables.dart';
 import 'package:bisne/src/Widgets/search_input_widget.dart';
-import 'package:bisne/src/Widgets/table_shop_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Column iconView(int viewsCount) {
   return Column(
@@ -98,13 +103,13 @@ Column info(_, context, isInfoPage) {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            thinAppText(
               _.categories[0],
-              style: const TextStyle(fontSize: 18),
+              23,
             ),
-            Text(
+            boldAppText(
               _.name,
-              style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              47,
             )
           ],
         ),
@@ -136,18 +141,16 @@ Column info(_, context, isInfoPage) {
         const SizedBox(
           width: 10,
         ),
-        Text(
-          'Esta tienda${_.mensajeria ? '' : ' no'} dispone de mensajería',
-          style: const TextStyle(color: Colors.black45),
-        )
+        thinAppText(
+            'Esta tienda${_.mensajeria ? '' : ' no'} dispone de mensajería', 20)
       ],
     ),
     const SizedBox(
       height: 20,
     ),
-    Text(
+    thinAppText(
       _.descripcion,
-      style: const TextStyle(color: Colors.black45),
+      21,
     ),
     const SizedBox(
       height: 15,
@@ -157,73 +160,117 @@ Column info(_, context, isInfoPage) {
 }
 
 Widget moreInfoPage(_) {
-  return Column(children: [
+  return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    const SizedBox(height: 30),
     openingHours(_),
+    const SizedBox(height: 30),
     address(_),
+    const SizedBox(height: 30),
     contact(_),
+    const SizedBox(height: 30),
     link(_),
+    const SizedBox(height: 50),
     comments(_),
   ]);
 }
 
 Widget link(_) {
-  return Container();
-}
-
-Widget comments(_) {
-  return Container();
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      regularAppText('Enlace a grupo', 26),
+      const SizedBox(height: 10),
+      GestureDetector(
+        child: regularAppText(_.contact['link'], 20),
+        onTap: () async {
+          Uri url = Uri.parse(_.contact['link']);
+          if (await canLaunchUrl(url)) {
+            await launchUrl(url);
+          } else {
+            print('No se pudo lanzar $url');
+          }
+        },
+      )
+    ],
+  );
 }
 
 Widget contact(ShopPageController _) {
   return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
+      regularAppText('Contacto', 26),
+      const SizedBox(height: 10),
       Row(
-        children: [],
+        children: [
+          Row(children: [
+            networkContact(const Icon(Icons.phone), _.contact["phoneNumber"]),
+            const SizedBox(width: 25),
+            networkContact(const Icon(Icons.phone_android_outlined),
+                _.contact["whatsapp"]),
+          ]),
+        ],
       ),
+      const SizedBox(height: 25),
+      networkContact(
+          const Icon(Icons.camera_alt_rounded), _.contact["instagram"]),
+      const SizedBox(height: 25),
+      networkContact(const Icon(Icons.facebook), _.contact["facebook"])
+    ],
+  );
+}
+
+Row networkContact(Icon icon, String contact) {
+  return Row(
+    children: [
+      icon,
+      const SizedBox(width: 10),
+      thinAppText(contact, 20),
     ],
   );
 }
 
 Widget address(ShopPageController _) {
-  return Column(children: [
-    const Text(
-      "Dirección",
-    ),
-    const SizedBox(
-      height: 10,
-    ),
-    Row(
-      children: [
-        const Icon(Icons.location_on_outlined),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(_.localitation)
-      ],
-    ),
-    const SizedBox(
-      height: 10,
-    ),
-    Container(
-      height: 250,
-      decoration:
-          BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-      child: const Center(child: Text("Ubicación de Google Maps")),
-    )
-  ]);
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      regularAppText('Dirección', 26),
+      const SizedBox(
+        height: 10,
+      ),
+      Row(
+        children: [
+          const Icon(Icons.location_on_outlined),
+          const SizedBox(
+            width: 10,
+          ),
+          thinAppText(_.localitation, 20)
+        ],
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      Container(
+        height: 250,
+        decoration:
+            BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
+        child: Center(child: regularAppText('Ubicación de Google Maps', 19)),
+      )
+    ],
+  );
 }
 
 Widget openingHours(ShopPageController _) {
   List<Widget> hours = [];
   hours
     ..add(
-      const Text(
-        "Horario",
-      ),
+      regularAppText('Horario', 26),
     )
-    ..add(const SizedBox(
-      height: 10,
-    ));
+    ..add(
+      const SizedBox(
+        height: 10,
+      ),
+    );
   for (var seccion in _.openingHours) {
     hours
       ..add(
@@ -233,13 +280,15 @@ Widget openingHours(ShopPageController _) {
             const SizedBox(
               width: 10,
             ),
-            Text(seccion)
+            thinAppText(seccion, 20)
           ],
         ),
       )
-      ..add(const SizedBox(
-        height: 10,
-      ));
+      ..add(
+        const SizedBox(
+          height: 10,
+        ),
+      );
   }
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -296,9 +345,18 @@ Column setCategories(BuildContext context, ShopPageController _) {
           ),
           Container(
             padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-            child: TableShopWidget(
-                maxColumns: MediaQuery.of(context).size.width > 400 ? 3 : 2),
-          )
+            child: FutureBuilder(
+              future: productProvider.cargarData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return createProductTable(context, snapshot.data!);
+                } else {
+                  return Container();
+                }
+              },
+            ),
+          ),
+          const BannerSwiper(rounded: true)
         ],
       ),
     ));

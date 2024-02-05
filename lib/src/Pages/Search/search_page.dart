@@ -1,12 +1,13 @@
 //Dart Imports
 
 //Flutter Imports
+import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
+import 'package:bisne/src/Widgets/card_tables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../Utils/interfaces.dart';
 import '../../Widgets/search_input_widget.dart';
-import '../../Widgets/table_shop_widget.dart';
 import 'Widgets/drawer_search_widget.dart';
 
 class SearchPage extends StatefulWidget {
@@ -25,30 +26,46 @@ class _SearchPageState extends State<SearchPage> {
         appBar: appbarSearchPage(),
         endDrawer: DrawerSearchWidget(),
         drawerScrimColor: Colors.white70,
-        body: TabBarView(
-          children: [
-            ListView(children: [
-              TableShopWidget(
-                  maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2),
-            ]),
-            ListView(children: [
-              TableShopWidget(
-                  maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2),
-            ]),
-            ListView(children: [
-              TableShopWidget(
-                  maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2),
-            ]),
-            ListView(children: [
-              TableShopWidget(
-                  maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2),
-            ]),
-          ],
+        body: FutureBuilder(
+          future: ShopsProvider.cargarData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return TabBarView(
+                children: [
+                  ListView(
+                    children: [
+                      const SizedBox(height: 20),
+                      createShopTable(context, snapshot.data!)
+                    ],
+                  ),
+                  ListView(
+                    children: [
+                      const SizedBox(height: 20),
+                      createShopTable(context, snapshot.data!)
+                    ],
+                  ),
+                  ListView(
+                    children: [
+                      const SizedBox(height: 20),
+                      createShopTable(context, snapshot.data!)
+                    ],
+                  ),
+                  ListView(
+                    children: [
+                      const SizedBox(height: 20),
+                      createShopTable(context, snapshot.data!)
+                    ],
+                  ),
+                ],
+              );
+            } else {
+              return TabBarView(
+                children: [ListView(), ListView(), ListView(), ListView()],
+              );
+            }
+          },
         ),
         endDrawerEnableOpenDragGesture: false,
-        // bottomNavigationBar: BottomNavBar(
-        //   index: 1,
-        // )
       ),
     );
   }

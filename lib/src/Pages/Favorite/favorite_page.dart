@@ -1,5 +1,6 @@
+import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Widgets/table_shop_widget.dart';
+import 'package:bisne/src/Widgets/card_tables.dart';
 import 'package:flutter/material.dart';
 
 class FavoritePage extends StatelessWidget {
@@ -43,24 +44,32 @@ class FavoritePage extends StatelessWidget {
         ),
         body: Container(
           margin: const EdgeInsets.only(top: 20),
-          child: TabBarView(children: [
-            ListView(children: [
-              TableShopWidget(
-                  maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2),
-            ]),
-            ListView(children: [
-              TableShopWidget(
-                  maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2),
-            ]),
-            ListView(children: [
-              TableShopWidget(
-                  maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2),
-            ]),
-            ListView(children: [
-              TableShopWidget(
-                  maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2),
-            ]),
-          ]),
+          child: FutureBuilder(
+              future: ShopsProvider.cargarData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return TabBarView(
+                    children: [
+                      ListView(
+                        children: [createShopTable(context, snapshot.data!)],
+                      ),
+                      ListView(
+                        children: [createShopTable(context, snapshot.data!)],
+                      ),
+                      ListView(
+                        children: [createShopTable(context, snapshot.data!)],
+                      ),
+                      ListView(
+                        children: [createShopTable(context, snapshot.data!)],
+                      ),
+                    ],
+                  );
+                } else {
+                  return TabBarView(
+                    children: [ListView(), ListView(), ListView(), ListView()],
+                  );
+                }
+              }),
         ),
       ),
     );

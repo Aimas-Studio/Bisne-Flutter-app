@@ -6,8 +6,6 @@ import 'package:bisne/src/Pages/Search/search_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'src/Pages/Search/search_page.dart';
-import 'src/Pages/User/user_info_page.dart';
 import 'src/Utils/shared_persistent_data.dart';
 
 void main() async {
@@ -27,12 +25,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
+      title: 'El Bisne',
       initialRoute: '/',
       routes: {
         '/': (BuildContext context) => BasePage(),
-        'SearchPage': (BuildContext context) => SearchPage(),
-        'User': (BuildContext context) => UserInfoPage()
       },
     );
   }
