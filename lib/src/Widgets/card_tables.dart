@@ -1,4 +1,4 @@
-import 'package:bisne/src/Pages/Products/product_card_widget.dart';
+import 'package:bisne/src/Pages/Products/Widgets/product_card_widget.dart';
 import 'package:bisne/src/Widgets/shop_card_widget.dart';
 import 'package:bisne/src/Widgets/table_card_widget.dart';
 import 'package:flutter/material.dart';
