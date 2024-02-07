@@ -2,7 +2,6 @@ import 'package:bisne/src/Pages/Products/product_page_controller.dart';
 import 'package:bisne/src/Pages/Products/product_widgets.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_widgets.dart';
-import 'package:bisne/src/Utils/Entities/shop.dart';
 import 'package:bisne/src/Utils/comments.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
@@ -93,7 +92,7 @@ class ProductPage extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        comments(_),
+        comments(context, _),
         const SizedBox(
           height: 40,
         ),
@@ -145,52 +144,54 @@ class ProductPage extends StatelessWidget {
       BuildContext context, ProductPageController productPageController) {
     return Row(
       children: [
-        Expanded(child: saveButton()),
-        const SizedBox(
-          width: 20,
+        Expanded(flex: context.width > 400 ? 1 : 3, child: saveButton(context)),
+        SizedBox(
+          width: context.width > 400 ? 20 : 10,
         ),
-        Expanded(child: buyButton())
+        Expanded(flex: context.width > 400 ? 1 : 4, child: buyButton(context))
       ],
     );
   }
 
-  Widget saveButton() {
+  Widget saveButton(BuildContext context) {
     return TextButton(
         style: ButtonStyle(
-            padding: MaterialStateProperty.all(
-                const EdgeInsets.symmetric(vertical: 15, horizontal: 40)),
+            padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                vertical: 15, horizontal: context.width > 400 ? 40 : 0)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
             backgroundColor:
                 MaterialStateProperty.all(const Color.fromRGBO(69, 77, 90, 1))),
         onPressed: () => {},
-        child: regularAppText('GUARDAR', 30, color: Colors.white));
+        child: regularAppText('GUARDAR', context.width > 400 ? 30 : 20,
+            color: Colors.white));
   }
 
-  Widget buyButton() {
+  Widget buyButton(BuildContext context) {
     return TextButton(
         style: ButtonStyle(
-            padding: MaterialStateProperty.all(
-                const EdgeInsets.symmetric(vertical: 15, horizontal: 40)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
             backgroundColor: MaterialStateProperty.all(bisneColorPrimary)),
         onPressed: () => {},
-        child: Row(
-          children: [
-            regularAppText('COMPRAR', 30, color: Colors.white),
-            const SizedBox(
-              width: 20,
-            ),
-            Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15)),
-                child: const Icon(Icons.arrow_forward_ios_rounded,
-                    color: iconAppColor, size: 30))
-          ],
+        child: Center(
+          child: Row(
+            children: [
+              regularAppText('COMPRAR', context.width > 400 ? 30 : 20,
+                  color: Colors.white),
+              const SizedBox(
+                width: 20,
+              ),
+              Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: const Icon(Icons.arrow_forward_ios_rounded,
+                      color: iconAppColor, size: 30))
+            ],
+          ),
         ));
   }
 }

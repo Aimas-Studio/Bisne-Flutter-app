@@ -19,7 +19,7 @@ class ShopCard extends Card {
   @override
   Widget build(BuildContext context) {
     double heightMedia = MediaQuery.of(context).size.width > 400 ? 240 : 220;
-    double widthMedia = MediaQuery.of(context).size.width > 400 ? 165 : 250;
+    double widthMedia = MediaQuery.of(context).size.width > 400 ? 165 : 145;
     return InkWell(
       onTap: () {
         Navigator.push(

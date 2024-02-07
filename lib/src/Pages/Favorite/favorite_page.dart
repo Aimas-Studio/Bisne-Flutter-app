@@ -22,23 +22,17 @@ class FavoritePage extends StatelessWidget {
               Tab(
                   child: Text(
                 'Todas',
-                style: TextStyle(color: fontAppColor, fontSize: 13),
+                style: TextStyle(color: fontAppColor, fontSize: 12),
               )),
               Tab(
                   child: Text('Productos',
-                      style: TextStyle(
-                          color: Color.fromRGBO(81, 92, 111, 41),
-                          fontSize: 13))),
+                      style: TextStyle(color: fontAppColor, fontSize: 12))),
               Tab(
                   child: Text('Servicio',
-                      style: TextStyle(
-                          color: Color.fromRGBO(81, 92, 111, 41),
-                          fontSize: 13))),
+                      style: TextStyle(color: fontAppColor, fontSize: 12))),
               Tab(
                   child: Text('Eventos',
-                      style: TextStyle(
-                          color: Color.fromRGBO(81, 92, 111, 41),
-                          fontSize: 13)))
+                      style: TextStyle(color: fontAppColor, fontSize: 12)))
             ],
           ),
         ),

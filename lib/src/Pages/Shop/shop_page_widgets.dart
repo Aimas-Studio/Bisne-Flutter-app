@@ -48,7 +48,7 @@ Container perfilSession(BuildContext context, _, isInfoPage) {
         top: context.width * 0.05),
     child: Column(
       children: [
-        photo(_),
+        photo(context, _),
         const SizedBox(
           height: 30.0,
         ),
@@ -61,7 +61,7 @@ Container perfilSession(BuildContext context, _, isInfoPage) {
   );
 }
 
-Row photo(_) {
+Row photo(BuildContext context, _) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,9 +76,9 @@ Row photo(_) {
           color: Colors.black45,
         )
       ]),
-      const SizedBox(
-        height: 300,
-        child: FadeInImage(
+      SizedBox(
+        height: context.width > 400 ? 300 : 170,
+        child: const FadeInImage(
             placeholder: placeHolderImageApp,
             image: AssetImage('assets/Images/logo_empresa.png')),
       ),
@@ -95,7 +95,7 @@ Row photo(_) {
   );
 }
 
-Column info(_, context, isInfoPage) {
+Column info(_, BuildContext context, isInfoPage) {
   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,7 +109,7 @@ Column info(_, context, isInfoPage) {
             ),
             boldAppText(
               _.name,
-              47,
+              context.width > 400 ? 47 : 38,
             )
           ],
         ),
@@ -142,7 +142,8 @@ Column info(_, context, isInfoPage) {
           width: 10,
         ),
         thinAppText(
-            'Esta tienda${_.mensajeria ? '' : ' no'} dispone de mensajería', 20)
+            'Esta tienda${_.mensajeria ? '' : ' no'} dispone de mensajería',
+            context.width > 400 ? 20 : 13)
       ],
     ),
     const SizedBox(
@@ -155,22 +156,22 @@ Column info(_, context, isInfoPage) {
     const SizedBox(
       height: 15,
     ),
-    isInfoPage ? moreInfoPage(_) : showMoreInfo(context)
+    isInfoPage ? moreInfoPage(context, _) : showMoreInfo(context)
   ]);
 }
 
-Widget moreInfoPage(_) {
+Widget moreInfoPage(BuildContext context, _) {
   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     const SizedBox(height: 30),
-    openingHours(_),
+    openingHours(context, _),
     const SizedBox(height: 30),
-    address(_),
+    address(context, _),
     const SizedBox(height: 30),
     contact(_),
     const SizedBox(height: 30),
     link(_),
     const SizedBox(height: 50),
-    comments(_),
+    comments(context, _),
   ]);
 }
 
@@ -230,7 +231,7 @@ Row networkContact(Icon icon, String contact) {
   );
 }
 
-Widget address(ShopPageController _) {
+Widget address(BuildContext context, ShopPageController _) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -244,7 +245,7 @@ Widget address(ShopPageController _) {
           const SizedBox(
             width: 10,
           ),
-          thinAppText(_.localitation, 20)
+          thinAppText(_.localitation, context.width > 400 ? 20 : 15)
         ],
       ),
       const SizedBox(
@@ -260,7 +261,7 @@ Widget address(ShopPageController _) {
   );
 }
 
-Widget openingHours(ShopPageController _) {
+Widget openingHours(BuildContext context, ShopPageController _) {
   List<Widget> hours = [];
   hours
     ..add(
@@ -280,7 +281,7 @@ Widget openingHours(ShopPageController _) {
             const SizedBox(
               width: 10,
             ),
-            thinAppText(seccion, 20)
+            thinAppText(seccion, context.width > 400 ? 20 : 16)
           ],
         ),
       )

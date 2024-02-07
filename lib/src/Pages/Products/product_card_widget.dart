@@ -2,6 +2,7 @@ import 'package:bisne/src/Pages/Products/product_page.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductCard extends Card {
   String name;
@@ -17,8 +18,8 @@ class ProductCard extends Card {
 
   @override
   Widget build(BuildContext context) {
-    double heightMedia = MediaQuery.of(context).size.width > 400 ? 260 : 220;
-    double widthMedia = MediaQuery.of(context).size.width > 400 ? 165 : 250;
+    double heightMedia = MediaQuery.of(context).size.width > 400 ? 260 : 250;
+    double widthMedia = MediaQuery.of(context).size.width > 400 ? 165 : 145;
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -59,7 +60,7 @@ class ProductCard extends Card {
                               name.length > 30
                                   ? '${name.substring(0, 30)}...'
                                   : name,
-                              18),
+                              context.width > 400 ? 18 : 16),
                           Row(
                             children: [
                               boldAppText(price.toStringAsPrecision(5), 18),
@@ -73,7 +74,7 @@ class ProductCard extends Card {
               ],
             ),
             Positioned(
-              top: 145,
+              top: context.width > 400 ? 145 : 125,
               right: 6,
               child: Container(
                 decoration: BoxDecoration(

@@ -8,12 +8,14 @@ Widget productSwiper(BuildContext context, ProductPageController _) {
   return Center(
     child: Container(
         alignment: Alignment.center,
-        height: 250,
-        width: context.width * 0.70,
+        height: context.width > 400 ? 250 : 150,
+        width:
+            context.width > 400 ? context.width * 0.70 : context.width * 0.80,
         child: Swiper(
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 80.0),
+              padding: EdgeInsets.symmetric(
+                  horizontal: context.width > 400 ? 80 : 55),
               child: Image.asset(
                 _.images[index],
                 fit: BoxFit.fill,

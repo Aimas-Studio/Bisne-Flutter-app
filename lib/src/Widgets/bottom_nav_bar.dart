@@ -1,6 +1,7 @@
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Notifications/Widgets/notification_widget.dart';
 import 'package:bisne/src/Pages/User/Providers/user_providers.dart';
+import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -106,8 +107,10 @@ class IconBottomBar extends StatelessWidget {
           onTap: onPressed,
           borderRadius: BorderRadius.circular(50),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 25), // Ajusta este valor según tus necesidades
+            padding: EdgeInsets.symmetric(
+                horizontal: context.width > 400
+                    ? 25
+                    : 0), // Ajusta este valor según tus necesidades
             child: Container(
               decoration: BoxDecoration(
                   color: selected ? selectColor : normalColor,
@@ -146,8 +149,8 @@ class NotificationButton extends StatelessWidget {
           onTap: onPressed,
           borderRadius: BorderRadius.circular(50),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 25), // Ajusta este valor según tus necesidades
+            padding:
+                EdgeInsets.symmetric(horizontal: context.width > 400 ? 25 : 0),
             child: Container(
               decoration: BoxDecoration(
                   color: selected ? selectColor : normalColor,
@@ -155,16 +158,16 @@ class NotificationButton extends StatelessWidget {
               width: 55,
               height: 55,
               child: Badge(
-                offset: const Offset(3, 2),
+                offset: Offset(context.width > 400 ? 3 : 0, 2),
                 largeSize: 20,
-                backgroundColor: const Color.fromRGBO(29, 176, 3, 1),
+                backgroundColor: bisneColorPrimary,
                 alignment: AlignmentDirectional.topEnd,
                 isLabelVisible: getNotificationCount() != 0,
                 label: Container(
                   width: 13,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color.fromRGBO(29, 176, 3, 1),
+                    color: bisneColorPrimary,
                   ),
                   child: Center(
                     child: Text(

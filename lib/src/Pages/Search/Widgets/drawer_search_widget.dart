@@ -18,7 +18,7 @@ class DrawerSearchWidget extends StatelessWidget {
         child: Material(
             color: Colors.white,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Column(
                 children: [
                   const SizedBox(
