@@ -1,13 +1,14 @@
+import 'package:bisne/src/Pages/Products/Widgets/product_widgets.dart';
 import 'package:bisne/src/Pages/Products/product_page_controller.dart';
-import 'package:bisne/src/Pages/Products/product_widgets.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
-import 'package:bisne/src/Pages/Shop/shop_page_widgets.dart';
 import 'package:bisne/src/Utils/comments.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../Shop/Widgets/shop_page_widgets.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});

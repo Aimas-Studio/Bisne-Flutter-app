@@ -43,7 +43,8 @@ class _EditUserPageState extends State<EditUserPage> {
                   padding: const EdgeInsets.only(top: 8),
                   child: regularAppText(getUserEmail(), 16),
                 ),
-                _usernameModifyInput(),
+                whiteLabelInputTextWidget(context, "Editar Usuario", Icons.edit,
+                    controller: _usernameTextController),
                 Container(
                   constraints: const BoxConstraints(
                     maxWidth: 300,
@@ -61,36 +62,6 @@ class _EditUserPageState extends State<EditUserPage> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  //TODO
-  //Give this Widget a superior level of abstraction
-  Widget _usernameModifyInput() {
-    return Container(
-      constraints: const BoxConstraints(
-        maxWidth: 300,
-      ),
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12), topRight: Radius.circular(12))),
-      height: 55,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
-      child: Row(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(right: 10),
-            child: const Icon(
-              Icons.edit,
-              color: iconAppColor,
-            ),
-          ),
-          inputTextAppWidget("CAMBIAR NOMBRE",
-              controller: _usernameTextController),
-        ],
       ),
     );
   }

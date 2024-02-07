@@ -1,5 +1,5 @@
 import 'package:bisne/src/Pages/Shop/Providers/comment_provider.dart';
-import 'package:bisne/src/Pages/Shop/commet_widget.dart';
+import 'package:bisne/src/Pages/Shop/Widgets/commet_widget.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
