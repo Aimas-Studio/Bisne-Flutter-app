@@ -1,3 +1,4 @@
+import 'package:bisne/src/Pages/Cart/cart_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ AppBar secondaryAppBar(context, bool returnButton,
           alignment: Alignment.centerRight,
           child: iconData == null
               ? Container()
-              : badge(iconData, shopPageController),
+              : badge(context, iconData, shopPageController),
         ),
       ),
       const SizedBox(width: 10)
@@ -27,7 +28,7 @@ AppBar secondaryAppBar(context, bool returnButton,
   );
 }
 
-Widget badge(IconData iconData, ShopPageController? _) {
+Widget badge(BuildContext context, IconData iconData, ShopPageController? _) {
   return Badge(
     offset: const Offset(-3, 0),
     isLabelVisible: _!.cart.value.isNotEmpty,
@@ -50,7 +51,15 @@ Widget badge(IconData iconData, ShopPageController? _) {
         iconData,
         size: 40,
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => CartPage(),
+            transitionDuration: const Duration(seconds: 0),
+          ),
+        );
+      },
     ),
   );
 }

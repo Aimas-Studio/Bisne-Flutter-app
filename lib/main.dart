@@ -2,6 +2,7 @@
 
 import 'package:bisne/src/Pages/Base/base_page.dart';
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
+import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
 import 'package:bisne/src/Pages/Search/search_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   final BasePageController _BasePageController = Get.put(BasePageController());
   final SearchPageController _SearchPageController =
       Get.put(SearchPageController());
+  final CartController _cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
