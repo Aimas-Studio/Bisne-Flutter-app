@@ -28,23 +28,29 @@ class _EditUserPageState extends State<EditUserPage> {
   Widget build(context) {
     return SafeArea(
       child: Scaffold(
+        appBar: secondaryAppBar(context, true),
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
-                secondaryAppBar(context, true),
                 ProfileWidget.profilePhoto(getProfilePicture(), 70),
                 Container(
-                    margin: const EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 10),
                     child: profilesPageButton("ELEGIR FOTO", () => {})),
                 boldAppText(getUsername(), 30),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8),
+                  padding: const EdgeInsets.only(top: 3),
                   child: regularAppText(getUserEmail(), 16),
+                ),
+                const SizedBox(
+                  height: 18,
                 ),
                 whiteLabelInputTextWidget(context, "Editar Usuario", Icons.edit,
                     controller: _usernameTextController),
+                const SizedBox(
+                  height: 15,
+                ),
                 Container(
                   constraints: const BoxConstraints(
                     maxWidth: 300,

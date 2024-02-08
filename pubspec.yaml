@@ -88,11 +88,19 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: Neusa
+      fonts:
+        - asset: assets/Fonts/NeusaNextStdTrial-Medium.otf
+
+
     - family: Poppins
       fonts:
         - asset: assets/Fonts/Poppins-Black.ttf
         - asset: assets/Fonts/Poppins-Bold.ttf
         - asset: assets/Fonts/Poppins-Thin.ttf
+        - asset: assets/Fonts/Poppins-Light.ttf
+        - asset: assets/Fonts/Poppins-Medium.ttf
+        - asset: assets/Fonts/Poppins-Regular.ttf
     - family: CustomIcons
       fonts:
         - asset: assets/Icons/CustomIcons.ttf

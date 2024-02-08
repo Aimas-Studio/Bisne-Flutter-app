@@ -12,7 +12,7 @@ ImageProvider getProfilePicture() {
   return AssetImage(profilePictureUrl);
 }
 
-String profilePictureUrl = "assets/Images/photo.png";
+String profilePictureUrl = "assets/Images/hero.png";
 
 int getNotificationCount() {
   return 9;

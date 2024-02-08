@@ -1,3 +1,4 @@
+import 'package:bisne/src/Pages/Shop/edit_shop_info_page.dart';
 import 'package:bisne/src/Utils/Entities/content_panel.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,8 @@ import '../User/Widgets/user_page_widgets.dart';
 import 'Providers/shop_provider.dart';
 
 class ShopInfoPage extends StatelessWidget {
+  final shop = getShopInfo();
+
   ShopInfoPage({super.key});
 
   @override
@@ -19,9 +22,11 @@ class ShopInfoPage extends StatelessWidget {
           child: Column(
             children: [
               ProfileWidget(
-                getShopName(),
-                getShopType(),
+                shop.shopName,
+                shop.categories.join(" "),
                 "EDITAR TIENDA",
+                EditShopInfoPage(),
+                AssetImage(shop.imageUrl),
               ),
               userServicesList(contentPanel1, context),
               const SizedBox(height: 20),

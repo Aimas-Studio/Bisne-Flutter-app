@@ -11,7 +11,7 @@ AppBar secondaryAppBar(context, bool returnButton,
   return AppBar(
     forceMaterialTransparency: true,
     backgroundColor: backgroundAppColor,
-    toolbarHeight: MediaQuery.of(context).size.height * 0.15,
+    toolbarHeight: MediaQuery.of(context).size.height * 0.09,
     elevation: 0,
     actions: [
       returnButton ? returnButtonWidget(context) : Container(),

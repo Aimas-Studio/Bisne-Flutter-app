@@ -1,4 +1,5 @@
 import 'package:bisne/src/Pages/Orders/orders_page.dart';
+import 'package:bisne/src/Pages/User/edit_user_page.dart';
 import 'package:bisne/src/Utils/Entities/content_panel.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,11 @@ class UserInfoPage extends StatelessWidget {
                 getUsername(),
                 getUserEmail(),
                 "EDITAR PERFIL",
+                const EditUserPage(),
+                getProfilePicture(),
+              ),
+              const SizedBox(
+                height: 18,
               ),
               userServicesList(contentPanel1, context),
               const SizedBox(height: 20),

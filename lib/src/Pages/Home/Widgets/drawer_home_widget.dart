@@ -1,3 +1,4 @@
+import 'package:bisne/src/Pages/Shop/shop_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -69,7 +70,7 @@ class DrawerHomeWidget extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Scaffold(), // Page 1
+          builder: (context) => ShopInfoPage(), // Page 1
         ));
         break;
       case 1:

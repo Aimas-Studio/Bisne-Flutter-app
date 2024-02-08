@@ -18,7 +18,7 @@ Widget returnButtonWidget(context) {
             size: 24,
             color: fontAppColor,
           ),
-          regularAppText("Regresar", 24),
+          regularAppText("Regresar", 18),
         ],
       ));
 }
