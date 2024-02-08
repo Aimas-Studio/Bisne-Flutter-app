@@ -7,9 +7,25 @@ import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
 
-class EditShopInfoPage extends StatelessWidget {
+class EditShopInfoPage extends StatefulWidget {
+  const EditShopInfoPage({super.key});
+
+  @override
+  State<EditShopInfoPage> createState() => _EditShopInfoPageState();
+}
+
+class _EditShopInfoPageState extends State<EditShopInfoPage> {
   final shop = getShopInfo();
-  EditShopInfoPage({super.key});
+  late TextEditingController shopDescriptionController;
+  late TextEditingController openingHour1;
+
+  @override
+  void initState() {
+    super.initState();
+    shopDescriptionController =
+        TextEditingController(text: shop.shopDescription);
+    openingHour1 = TextEditingController(text: shop.openingHours[0]);
+  }
 
   @override
   Widget build(context) {
@@ -30,11 +46,27 @@ class EditShopInfoPage extends StatelessWidget {
               ),
               boldAppText(shop.shopName, 34),
               regularAppText(shop.categories.join('\n'), 20),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 15),
+                child: whiteLabelInputTextWidget(
+                    context, "CAMBIAR DESCRIPCIÓN", Icons.edit,
+                    controller: shopDescriptionController),
+              ),
+              whiteLabelInputTextWidget(
+                  context, "Cambiar Horario 1", Icons.access_time),
               const SizedBox(
                 height: 15,
               ),
               whiteLabelInputTextWidget(
-                  context, "CAMBIAR DESCRIPCIÓN", Icons.edit),
+                  context, "Cambiar Horario 2", Icons.access_time),
+              const SizedBox(
+                height: 15,
+              ),
+              whiteLabelInputTextWidget(
+                  context, "Cambiar Horario 3", Icons.access_time),
+              const SizedBox(
+                height: 15,
+              ),
             ],
           ),
         ),

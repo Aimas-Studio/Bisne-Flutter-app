@@ -22,7 +22,7 @@ Widget totalOrderWidget(String date, String totalPrice) {
       ),
       Column(
         children: [
-          regularAppText(getUsername(), 13),
+          regularAppText(getUserInfo().username, 13),
           regularAppText(date, 12),
         ],
       )

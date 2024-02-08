@@ -1,3 +1,4 @@
+import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Utils/texts.dart';
@@ -24,22 +25,10 @@ class ProfileWidget extends StatelessWidget {
               left: MediaQuery.of(context).size.width * 0.1,
               right: 10,
               top: 10),
-          child: profilePhoto(image, 55),
+          child: circularImage(image, 55),
         ),
         _userInformation(context),
       ],
-    );
-  }
-
-  static Widget profilePhoto(ImageProvider image, double size) {
-    return ClipOval(
-      child: SizedBox.fromSize(
-        size: Size.fromRadius(size),
-        child: Image(
-          image: image,
-          fit: BoxFit.cover,
-        ),
-      ),
     );
   }
 

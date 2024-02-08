@@ -10,7 +10,8 @@ import 'Widgets/profile_widget.dart';
 import 'Widgets/user_page_widgets.dart';
 
 class UserInfoPage extends StatelessWidget {
-  const UserInfoPage({super.key});
+  final user = getUserInfo();
+  UserInfoPage({super.key});
 
   @override
   Widget build(context) {
@@ -25,11 +26,11 @@ class UserInfoPage extends StatelessWidget {
                 height: 20,
               ),
               ProfileWidget(
-                getUsername(),
-                getUserEmail(),
+                user.username,
+                user.email,
                 "EDITAR PERFIL",
                 const EditUserPage(),
-                getProfilePicture(),
+                AssetImage(user.imageUrl),
               ),
               const SizedBox(
                 height: 18,

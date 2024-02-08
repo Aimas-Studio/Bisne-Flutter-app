@@ -3,7 +3,7 @@ class Shop {
   String shopName;
   String shopDescription;
   dynamic shopLocation;
-  dynamic openingHours;
+  List<String> openingHours;
   String phoneNumber;
   String whatsAppNumber;
   String instagramAccount;
