@@ -67,6 +67,10 @@ class _EditShopInfoPageState extends State<EditShopInfoPage> {
               const SizedBox(
                 height: 15,
               ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: const Divider(),
+              ),
             ],
           ),
         ),
