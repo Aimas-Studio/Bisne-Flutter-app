@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class BasePageController extends GetxController {
   BasePageController();
 
+  final showBottomNavBar = true.obs;
   final _obj = 2.obs;
   set obj(value) {
     // update();

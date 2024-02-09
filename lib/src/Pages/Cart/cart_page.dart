@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
 import 'package:bisne/src/Pages/Cart/imputs_info_cart.dart';
 import 'package:bisne/src/Utils/Entities/product.dart';
@@ -13,6 +14,7 @@ import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
   CartPage({super.key});
+  final BasePageController _basePageController = Get.find<BasePageController>();
   final TextEditingController _textPhoneNumberController =
       TextEditingController(text: '54252449');
   final TextEditingController _textUserNameController =

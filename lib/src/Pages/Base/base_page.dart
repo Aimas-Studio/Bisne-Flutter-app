@@ -26,7 +26,11 @@ class BasePage extends StatelessWidget {
                 index: _basePageController.obj,
                 children: _navigators,
               )),
-          bottomNavigationBar: BottomNavBar(),
+          bottomNavigationBar: Obx(
+            () => _basePageController.showBottomNavBar.value
+                ? BottomNavBar()
+                : Container(),
+          ),
         );
       },
     );
