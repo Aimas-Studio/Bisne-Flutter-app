@@ -47,7 +47,7 @@ class BasePage extends StatelessWidget {
             case 3:
               return const FavoritePage();
             case 4:
-              return const UserInfoPage();
+              return UserInfoPage();
             default:
               return const HomePage();
           }

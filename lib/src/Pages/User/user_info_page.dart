@@ -1,4 +1,5 @@
 import 'package:bisne/src/Pages/Orders/orders_page.dart';
+import 'package:bisne/src/Pages/User/edit_user_page.dart';
 import 'package:bisne/src/Utils/Entities/content_panel.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,8 @@ import 'Widgets/profile_widget.dart';
 import 'Widgets/user_page_widgets.dart';
 
 class UserInfoPage extends StatelessWidget {
-  const UserInfoPage({super.key});
+  final user = getUserInfo();
+  UserInfoPage({super.key});
 
   @override
   Widget build(context) {
@@ -24,9 +26,14 @@ class UserInfoPage extends StatelessWidget {
                 height: 20,
               ),
               ProfileWidget(
-                getUsername(),
-                getUserEmail(),
+                user.username,
+                user.email,
                 "EDITAR PERFIL",
+                const EditUserPage(),
+                AssetImage(user.imageUrl),
+              ),
+              const SizedBox(
+                height: 18,
               ),
               userServicesList(contentPanel1, context),
               const SizedBox(height: 20),

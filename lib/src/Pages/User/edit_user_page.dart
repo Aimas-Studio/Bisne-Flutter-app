@@ -1,3 +1,4 @@
+import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../Utils/interfaces.dart';
@@ -5,7 +6,6 @@ import '../../Utils/texts.dart';
 import '../../Widgets/secondary_app_bar.dart';
 import 'Providers/user_providers.dart';
 import 'Widgets/input_text_widget.dart';
-import 'Widgets/profile_widget.dart';
 import 'Widgets/profiles_pages_button.dart';
 
 class EditUserPage extends StatefulWidget {
@@ -17,34 +17,41 @@ class EditUserPage extends StatefulWidget {
 
 class _EditUserPageState extends State<EditUserPage> {
   late TextEditingController _usernameTextController;
+  final user = getUserInfo();
 
   @override
   void initState() {
     super.initState();
-    _usernameTextController = TextEditingController(text: getUsername());
+    _usernameTextController = TextEditingController(text: user.username);
   }
 
   @override
   Widget build(context) {
     return SafeArea(
       child: Scaffold(
+        appBar: secondaryAppBar(context, true),
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
-                secondaryAppBar(context, true),
-                ProfileWidget.profilePhoto(getProfilePicture(), 70),
+                circularImage(AssetImage(user.imageUrl), 70),
                 Container(
-                    margin: const EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 10, top: 15),
                     child: profilesPageButton("ELEGIR FOTO", () => {})),
-                boldAppText(getUsername(), 30),
+                boldAppText(user.username, 30),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: regularAppText(getUserEmail(), 16),
+                  padding: const EdgeInsets.only(top: 3),
+                  child: regularAppText(user.email, 16),
+                ),
+                const SizedBox(
+                  height: 18,
                 ),
                 whiteLabelInputTextWidget(context, "Editar Usuario", Icons.edit,
                     controller: _usernameTextController),
+                const SizedBox(
+                  height: 15,
+                ),
                 Container(
                   constraints: const BoxConstraints(
                     maxWidth: 300,

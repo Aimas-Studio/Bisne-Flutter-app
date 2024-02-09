@@ -1,4 +1,5 @@
 import 'package:bisne/src/Utils/decorations.dart';
+import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Utils/interfaces.dart';
@@ -12,9 +13,10 @@ Widget whiteLabelInputTextWidget(context, String labelText, IconData iconData,
       horizontal: 10,
     ),
     child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: const EdgeInsets.only(right: 10),
+          margin: const EdgeInsets.only(right: 10, top: 20),
           child: Icon(
             iconData,
             color: iconAppColor,
@@ -22,23 +24,18 @@ Widget whiteLabelInputTextWidget(context, String labelText, IconData iconData,
         ),
         Expanded(
           child: TextField(
+            maxLines: null,
             cursorColor: fontAppColor,
             style: const TextStyle(
               fontWeight: FontWeight.normal,
-              fontSize: 18,
+              fontSize: 15,
+              fontFamily: 'Neusa',
               color: fontAppColor,
             ),
             controller: controller,
             decoration: InputDecoration(
               border: InputBorder.none,
-              label: Text(
-                labelText,
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 12,
-                  color: fontAppColor.withOpacity(0.5),
-                ),
-              ),
+              label: inputText(labelText),
             ),
           ),
         ),

@@ -28,6 +28,8 @@ List<Widget> getServices(List<ContentPanel> content, context) {
           style: const ButtonStyle(
             elevation: MaterialStatePropertyAll(0),
             backgroundColor: MaterialStatePropertyAll(Colors.white),
+            padding:
+                MaterialStatePropertyAll(EdgeInsets.only(left: 0, right: 10)),
           ),
           onPressed: () => element.function(context),
           child: Row(
@@ -39,16 +41,26 @@ List<Widget> getServices(List<ContentPanel> content, context) {
                   child: regularAppText(element.title, 13),
                 ),
               ),
-              const Icon(
-                Icons.arrow_forward_ios_sharp,
-                size: 12,
-                color: iconAppColor,
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: iconAppColor.withOpacity(0.2),
+                ),
+                child: const Icon(
+                  Icons.arrow_forward_ios_sharp,
+                  size: 12,
+                  color: iconAppColor,
+                ),
               ),
             ],
           ),
         ),
       )
-      ..add(const Divider());
+      ..add(const Divider(
+        endIndent: 15,
+        indent: 38,
+      ));
   }
   serviceList.removeLast();
   serviceList.add(const SizedBox(height: 8));

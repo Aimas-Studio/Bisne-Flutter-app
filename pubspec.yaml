@@ -41,7 +41,10 @@ dependencies:
   path_provider: ^2.1.1
   url_launcher: ^6.0.12
   flutter_swiper_view: ^1.1.8
+  flutter_link_previewer: ^3.2.2
+  google_maps_flutter: ^2.5.3
   get:
+  graphql_flutter: ^5.2.0-beta.6
 
 dev_dependencies:
   flutter_test:
@@ -88,11 +91,19 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: Neusa
+      fonts:
+        - asset: assets/Fonts/NeusaNextStdTrial-Medium.otf
+
+
     - family: Poppins
       fonts:
         - asset: assets/Fonts/Poppins-Black.ttf
         - asset: assets/Fonts/Poppins-Bold.ttf
         - asset: assets/Fonts/Poppins-Thin.ttf
+        - asset: assets/Fonts/Poppins-Light.ttf
+        - asset: assets/Fonts/Poppins-Medium.ttf
+        - asset: assets/Fonts/Poppins-Regular.ttf
     - family: CustomIcons
       fonts:
         - asset: assets/Icons/CustomIcons.ttf
