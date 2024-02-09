@@ -52,11 +52,9 @@ Widget badge(BuildContext context, IconData iconData, ShopPageController? _) {
         size: 40,
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => CartPage(),
-            transitionDuration: const Duration(seconds: 0),
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => CartPage(),
           ),
         );
       },

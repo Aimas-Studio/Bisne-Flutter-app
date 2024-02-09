@@ -1,5 +1,9 @@
+import 'dart:ffi';
+
 import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
+import 'package:bisne/src/Pages/Cart/imputs_info_cart.dart';
 import 'package:bisne/src/Utils/Entities/product.dart';
+import 'package:bisne/src/Utils/custom_icons.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:bisne/src/Widgets/circular_image.dart';
@@ -9,30 +13,86 @@ import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
   CartPage({super.key});
+  final TextEditingController _textPhoneNumberController =
+      TextEditingController(text: '54252449');
+  final TextEditingController _textUserNameController =
+      TextEditingController(text: 'Lucía');
+  final TextEditingController _textAddressController =
+      TextEditingController(text: '74 /21 y 23, Playa');
   final CartController _ = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: secondaryAppBar(context, true),
+      backgroundColor: backgroundAppColor,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: context.width * 0.05),
         physics: const BouncingScrollPhysics(),
         child: Column(
-          children: productsItems(context, _)..add(requiredInfo()),
+          children: productsItems(context, _)..add(requiredInfo(context)),
         ),
+      ),
+      bottomSheet: Container(
+        height: 60,
+        width: context.width,
+        decoration: const BoxDecoration(color: Colors.white),
       ),
     );
   }
 
   List<Widget> productsItems(BuildContext context, CartController _) {
     return _.itemsToBuy.keys.map((product) {
-      return productItemCart(context, _, product);
+      return Padding(
+        padding: const EdgeInsets.all(0),
+        child: Column(
+          children: [
+            productItemCart(context, _, product),
+            Divider(
+              indent: context.width * 0.35,
+              endIndent: context.width * 0.3,
+            )
+          ],
+        ),
+      );
     }).toList();
   }
 
-  Widget requiredInfo() {
-    return Column(
-      children: [boldAppText('Datos requerido', 30)],
+  Widget requiredInfo(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: context.width * 0.1),
+      child: Container(
+        margin: const EdgeInsets.only(top: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                boldAppText('Datos requerido', 30),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: ListBody(
+                children: [
+                  inputTextCartWidget(context, 'Teléfono', Icons.phone,
+                      controller: _textPhoneNumberController),
+                  inputTextCartWidget(context, 'Nombre', Icons.person,
+                      controller: _textUserNameController),
+                  inputTextCartWidget(context, 'Mensajería', CustomIcons.truck,
+                      controller: _textAddressController),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
@@ -57,7 +117,6 @@ Widget productItemCart(
                   color: bisneColorPrimary),
             ),
             countController(_, product),
-            SizedBox.expand(),
           ],
         ),
       ],

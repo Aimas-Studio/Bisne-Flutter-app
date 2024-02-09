@@ -28,6 +28,24 @@ class PersistentData {
     return _appData.getString("userEmail") ?? "";
   }
 
+  //User Phone
+  String get userPhone {
+    return _appData.getString('userPhone') ?? "";
+  }
+
+  set userPhone(String value) {
+    _appData.setString("userPhone", value);
+  }
+
+  //User Address
+  String get userAddress {
+    return _appData.getString('userAddress') ?? "";
+  }
+
+  set userAddress(String value) {
+    _appData.setString("userAddress", value);
+  }
+
   set userEmail(String email) {
     _appData.setString("userEmail", email);
   }
