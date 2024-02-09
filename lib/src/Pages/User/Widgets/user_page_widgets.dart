@@ -7,7 +7,6 @@ import '../../../Utils/interfaces.dart';
 
 Widget userServicesList(List<ContentPanel> content, context) {
   return Container(
-    padding: const EdgeInsets.only(left: 15, top: 10),
     margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
     //add box shadow for elevation effect
     decoration: const BoxDecoration(
@@ -20,7 +19,11 @@ Widget userServicesList(List<ContentPanel> content, context) {
 }
 
 List<Widget> getServices(List<ContentPanel> content, context) {
-  List<Widget> serviceList = [];
+  List<Widget> serviceList = [
+    const SizedBox(
+      height: 10,
+    ),
+  ];
   for (var element in content) {
     serviceList
       ..add(
@@ -29,7 +32,7 @@ List<Widget> getServices(List<ContentPanel> content, context) {
             elevation: MaterialStatePropertyAll(0),
             backgroundColor: MaterialStatePropertyAll(Colors.white),
             padding:
-                MaterialStatePropertyAll(EdgeInsets.only(left: 0, right: 10)),
+                MaterialStatePropertyAll(EdgeInsets.only(left: 15, right: 10)),
           ),
           onPressed: () => element.function(context),
           child: Row(
