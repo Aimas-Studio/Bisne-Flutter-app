@@ -2,7 +2,7 @@ import 'shop.dart';
 
 class Facture {
   ShopDump shop;
-  DateTime date;
+  String date;
   num totalPrice;
   Facture(this.shop, this.date, this.totalPrice);
 }

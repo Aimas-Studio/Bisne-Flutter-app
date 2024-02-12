@@ -51,7 +51,7 @@ Widget getOrdersWidget(context, List<Facture> factures) {
         height: 20,
         child: const Divider(),
       ))
-      ..add(shopOrderWidget(element));
+      ..add(shopOrderWidget(context, element));
   }
   return Column(
     children: orders,

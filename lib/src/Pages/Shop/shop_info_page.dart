@@ -26,7 +26,7 @@ class ShopInfoPage extends StatelessWidget {
                 shop.shopName,
                 shop.categories.join(" "),
                 "EDITAR TIENDA",
-                EditShopInfoPage(),
+                const EditShopInfoPage(),
                 AssetImage(shop.imageUrl),
               ),
               userServicesList(contentPanel1, context),

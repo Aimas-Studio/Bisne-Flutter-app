@@ -11,7 +11,7 @@ Future<List<Facture>> getShopOrdersInfo() async {
             "TodoPizza",
             "https://upload.wikimedia.org/wikipedia/commons/c/ce/Tuck_Shop_in_Oxford.jpg",
           ),
-          DateTime.now(),
+          "DateTime.now()",
           1120,
         ),
         Facture(
@@ -19,7 +19,7 @@ Future<List<Facture>> getShopOrdersInfo() async {
             "Legado",
             "https://www.adinainteriors.com.au/latest_projects/wp-content/uploads/2021/06/shop-design-timber.jpg",
           ),
-          DateTime.now(),
+          "DateTime.now()",
           1987,
         )
       ];

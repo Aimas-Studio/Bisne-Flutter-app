@@ -11,7 +11,14 @@ class Product {
 class ProductDump {
   String name;
   String imageUrl;
+  String description;
   num price;
   ShopDump shopDump;
-  ProductDump(this.name, this.price, this.imageUrl, this.shopDump);
+  ProductDump(
+    this.name,
+    this.price,
+    this.imageUrl,
+    this.description,
+    this.shopDump,
+  );
 }
