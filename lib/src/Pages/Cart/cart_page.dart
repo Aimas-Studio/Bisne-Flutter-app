@@ -22,8 +22,13 @@ class CartPage extends StatelessWidget {
   final TextEditingController _textAddressController =
       TextEditingController(text: '74 /21 y 23, Playa');
   final CartController _ = Get.find<CartController>();
+
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      _basePageController.showBottomNavBar.value = false;
+    });
+    const bottomHeight = 100.0;
     return Scaffold(
       appBar: secondaryAppBar(context, true),
       backgroundColor: backgroundAppColor,
@@ -31,14 +36,56 @@ class CartPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: context.width * 0.05),
         physics: const BouncingScrollPhysics(),
         child: Column(
-          children: productsItems(context, _)..add(requiredInfo(context)),
+          children: productsItems(context, _)
+            ..add(requiredInfo(context, bottomHeight)),
         ),
       ),
-      bottomSheet: Container(
-        height: 60,
-        width: context.width,
-        decoration: const BoxDecoration(color: Colors.white),
-      ),
+      bottomSheet: Obx(() => buyButton(bottomHeight, context)),
+    );
+  }
+
+  Container buyButton(double bottomHeight, BuildContext context) {
+    return Container(
+      height: bottomHeight,
+      width: context.width,
+      padding:
+          EdgeInsets.symmetric(horizontal: context.width * 0.1, vertical: 10),
+      decoration: const BoxDecoration(color: Colors.white),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        SizedBox(
+          width: 200,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              thinAppText('Total', 14),
+              regularAppText('${sumOfItems()} mm', 27),
+              thinAppText('No incluye el precio de la mensajería', 14)
+            ],
+          ),
+        ),
+        Container(
+            width: 200,
+            height: 60,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: bisneColorPrimary),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('COMPRAR',
+                    style: TextStyle(color: Colors.white, fontSize: 20)),
+                Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50)),
+                  child: const Icon(Icons.arrow_forward_ios_rounded),
+                )
+              ],
+            ))
+      ]),
     );
   }
 
@@ -59,7 +106,7 @@ class CartPage extends StatelessWidget {
     }).toList();
   }
 
-  Widget requiredInfo(BuildContext context) {
+  Widget requiredInfo(BuildContext context, double bottomHeight) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: context.width * 0.1),
       child: Container(
@@ -91,11 +138,21 @@ class CartPage extends StatelessWidget {
                       controller: _textAddressController),
                 ],
               ),
+            ),
+            SizedBox(
+              height: bottomHeight + 25,
             )
           ],
         ),
       ),
     );
+  }
+
+  String sumOfItems() {
+    return _.itemsToBuy.keys
+        .map((product) => product.price * _.itemsToBuy[product]!.value)
+        .reduce((value, element) => value + element)
+        .toStringAsPrecision(5);
   }
 }
 
