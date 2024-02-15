@@ -20,7 +20,7 @@ class FacturesPage extends StatelessWidget {
         backgroundColor: backgroundAppColor,
         appBar: secondaryAppBar(context, true),
         bottomNavigationBar: totalOrderWidget(
-            facture.date.toString(), facture.totalPrice.toString()),
+            context, facture.date.toString(), facture.totalPrice.toString()),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -31,13 +31,13 @@ class FacturesPage extends StatelessWidget {
               ),
               boldAppText("Pedidos Realizados", 27),
               FutureBuilder(
-                  future: getPurchases(),
+                  future: getPurchases(facture),
                   builder: (context, AsyncSnapshot snapshot) {
                     return snapshot.hasData
                         ? getFacturesWidget(context, snapshot.data)
                         : Container();
                     //TODO change the container and put a placeholder
-                  })
+                  }),
             ],
           ),
         ),
@@ -57,7 +57,9 @@ Widget getFacturesWidget(context, Map<ProductDump, int> purchases) {
         child: const Divider(),
       ));
   });
-  return Column(
-    children: factures,
+  return SingleChildScrollView(
+    child: Column(
+      children: factures,
+    ),
   );
 }

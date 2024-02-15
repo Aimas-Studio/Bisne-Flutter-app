@@ -1,3 +1,4 @@
+import 'package:bisne/src/Pages/Products/new_product_page.dart';
 import 'package:bisne/src/Pages/Shop/edit_shop_info_page.dart';
 import 'package:bisne/src/Utils/Entities/content_panel.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class ShopInfoPage extends StatelessWidget {
                 shop.shopName,
                 shop.categories.join(" "),
                 "EDITAR TIENDA",
-                EditShopInfoPage(),
+                const EditShopInfoPage(),
                 AssetImage(shop.imageUrl),
               ),
               userServicesList(contentPanel1, context),
@@ -41,7 +42,10 @@ class ShopInfoPage extends StatelessWidget {
   final List<ContentPanel> contentPanel1 = [
     ContentPanel(Icons.list, "Administrar Inventario", (context) {}),
     ContentPanel(CustomIcons.finished, "Pedidos Realizados", (context) {}),
-    ContentPanel(Icons.add, "Publicar Producto", (context) {})
+    ContentPanel(Icons.add, "Publicar Producto", (context) {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const NewProductPage()));
+    })
   ];
 
   final List<ContentPanel> contentPanel2 = [

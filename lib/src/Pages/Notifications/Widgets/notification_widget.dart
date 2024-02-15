@@ -23,11 +23,11 @@ Widget notificationWidget(ShopDump shopDump, String body, String date) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               regularAppText(shopDump.shopName, 15),
-              thinAppText(body, 13),
+              lightAppText(body, 13),
             ],
           ),
         ),
-        thinAppText(date, 14),
+        lightAppText(date, 14),
       ],
     ),
   );

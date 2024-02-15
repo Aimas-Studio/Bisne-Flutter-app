@@ -54,6 +54,7 @@ Text inputText(String text) {
   return Text(
     text,
     style: TextStyle(
+      fontWeight: FontWeight.w300,
       fontFamily: 'Neusa',
       fontSize: 11,
       color: fontAppColor.withOpacity(0.5),

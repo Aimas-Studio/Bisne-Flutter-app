@@ -43,3 +43,20 @@ Widget whiteLabelInputTextWidget(context, String labelText, IconData iconData,
     ),
   );
 }
+
+Widget listWhiteLabelInput(
+    context, List<(String, IconData, TextEditingController)> content) {
+  List<Widget> textsInputs = [];
+  for (var element in content) {
+    textsInputs.add(whiteLabelInputTextWidget(context, element.$1, element.$2,
+        controller: element.$3));
+  }
+
+  return Container(
+    width: MediaQuery.of(context).size.width * 0.75,
+    decoration: whiteBoxDecoration,
+    child: Column(
+      children: textsInputs,
+    ),
+  );
+}
