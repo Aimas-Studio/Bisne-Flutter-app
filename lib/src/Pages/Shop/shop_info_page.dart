@@ -1,4 +1,4 @@
-import 'package:bisne/src/Pages/Products/new_product_page.dart';
+import 'package:bisne/src/Pages/Products/new_product_page_test.dart';
 import 'package:bisne/src/Pages/Shop/edit_shop_info_page.dart';
 import 'package:bisne/src/Utils/Entities/content_panel.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,7 @@ class ShopInfoPage extends StatelessWidget {
     ContentPanel(CustomIcons.finished, "Pedidos Realizados", (context) {}),
     ContentPanel(Icons.add, "Publicar Producto", (context) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => NewProductPage()));
+          .push(MaterialPageRoute(builder: (context) => NewProductPageTest()));
     })
   ];
 

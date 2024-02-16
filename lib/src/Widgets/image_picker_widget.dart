@@ -6,8 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import '../Utils/interfaces.dart';
 
 class ImagePickerWidget extends StatefulWidget {
-  ImagePickerWidget({super.key});
+  ImagePickerWidget({this.updateParentState, super.key});
   File? image;
+  VoidCallback? updateParentState;
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
@@ -62,6 +63,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
 
     setState(() {
       widget.image = File(pickImage.path);
+      widget.updateParentState!();
     });
   }
 
