@@ -5,8 +5,14 @@ import 'package:bisne/src/Utils/texts.dart';
 import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../../Widgets/image_picker_widget.dart';
+
 class NewProductPage extends StatelessWidget {
-  const NewProductPage({super.key});
+  NewProductPage({super.key});
+  final nameController = TextEditingController();
+  final categoryController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final priceController = TextEditingController();
 
   @override
   Widget build(context) {
@@ -38,6 +44,7 @@ class NewProductPage extends StatelessWidget {
                 decoration: whiteBoxDecoration,
                 child: Column(
                   children: [
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         Container(
@@ -52,6 +59,35 @@ class NewProductPage extends StatelessWidget {
                           ],
                         ),
                       ],
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 20, bottom: 5),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            children: [
+                              ImagePickerWidget(),
+                              SizedBox(height: 10),
+                              ImagePickerWidget(),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              ImagePickerWidget(),
+                              SizedBox(height: 10),
+                              ImagePickerWidget(),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              ImagePickerWidget(),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),

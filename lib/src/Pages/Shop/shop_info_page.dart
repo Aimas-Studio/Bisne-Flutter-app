@@ -43,8 +43,8 @@ class ShopInfoPage extends StatelessWidget {
     ContentPanel(Icons.list, "Administrar Inventario", (context) {}),
     ContentPanel(CustomIcons.finished, "Pedidos Realizados", (context) {}),
     ContentPanel(Icons.add, "Publicar Producto", (context) {
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const NewProductPage()));
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => NewProductPage()));
     })
   ];
 

@@ -27,6 +27,7 @@ class _EditShopInfoPageState extends State<EditShopInfoPage> {
       TextEditingController(text: _shop.instagramAccount);
   final facebookController = TextEditingController(text: _shop.facebookAccount);
   final linkController = TextEditingController(text: _shop.optionalLink);
+
   @override
   void initState() {
     super.initState();
@@ -88,6 +89,14 @@ class _EditShopInfoPageState extends State<EditShopInfoPage> {
                 height: 30,
               ),
               listWhiteLabelInput(context, contactInfo),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  profilesPageButton("GUARDAR CAMBIOS", () {}),
+                  profilesPageButton("DESCARTAR", () {})
+                ],
+              )
             ],
           ),
         ),
