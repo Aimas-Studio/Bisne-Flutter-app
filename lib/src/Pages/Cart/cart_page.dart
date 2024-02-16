@@ -152,10 +152,12 @@ class CartPage extends StatelessWidget {
   }
 
   String sumOfItems() {
-    return _.itemsToBuy.keys
-        .map((product) => product.price * _.itemsToBuy[product]!.value)
-        .reduce((value, element) => value + element)
-        .toStringAsPrecision(5);
+    return _.itemsToBuy.isNotEmpty
+        ? _.itemsToBuy.keys
+            .map((product) => product.price * _.itemsToBuy[product]!.value)
+            .reduce((value, element) => value + element)
+            .toStringAsPrecision(5)
+        : '0';
   }
 }
 
@@ -221,19 +223,19 @@ Future<dynamic> showAlertDialog(BuildContext context) async {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('Alerta'),
-        content: const Text('¿Estás seguro de que quieres continuar?'),
+        title: const Text('Eliminar producto'),
+        content: const Text(
+            '¿Estás seguro de que quieres eliminar este producto de tu lista de compras?'),
         actions: <Widget>[
           TextButton(
-            child: const Text('Cancelar'),
+            child: const Text('No'),
             onPressed: () {
               Navigator.of(context).pop(false); // Cierra el diálogo
             },
           ),
           TextButton(
-            child: const Text('Aceptar'),
+            child: const Text('Si'),
             onPressed: () {
-              // Coloca aquí el código que se ejecutará cuando se presione el botón "Aceptar"
               Navigator.of(context).pop(true); // Cierra el diálogo
             },
           ),

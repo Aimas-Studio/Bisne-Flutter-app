@@ -1,10 +1,15 @@
+import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget returnButtonWidget(context) {
   return ElevatedButton(
-      onPressed: () => {Navigator.pop(context)},
+      onPressed: () => {
+            Get.find<BasePageController>().showBottomNavBar.value = true,
+            Navigator.pop(context),
+          },
       style: const ButtonStyle(
         backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
         elevation: MaterialStatePropertyAll(0),

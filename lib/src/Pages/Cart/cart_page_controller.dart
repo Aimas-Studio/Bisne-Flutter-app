@@ -1,5 +1,4 @@
 import 'package:bisne/src/Utils/Entities/product.dart';
-import 'package:bisne/src/Utils/Entities/shop.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -15,7 +14,7 @@ class CartController extends GetxController {
   }
 
   void removeItem(ProductDump product) {
-    if (itemsToBuy[product]! > 1) {
+    if (itemsToBuy[product]!.value > 1) {
       itemsToBuy[product]!.value = itemsToBuy[product]!.value - 1;
     } else {
       itemsToBuy.remove(product);
