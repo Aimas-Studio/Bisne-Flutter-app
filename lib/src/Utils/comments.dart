@@ -5,6 +5,7 @@ import 'package:bisne/src/Utils/Entities/comments_controller/coment_controller.d
 import 'package:bisne/src/Utils/custom_icons.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:bisne/src/Widgets/circular_image.dart';
+import 'package:bisne/src/Widgets/return_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -108,31 +109,18 @@ Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
 }
 
 Widget starsWidget() {
-  return Row(children: [
-    IconButton(
-        onPressed: () => {},
-        icon: Get.find<CommentController>().stars[0]
-            ? const Icon(Icons.star)
-            : const Icon(Icons.star_border)),
-    IconButton(
-        onPressed: () => {},
-        icon: Get.find<CommentController>().stars[0]
-            ? const Icon(Icons.star)
-            : const Icon(Icons.star_border)),
-    IconButton(
-        onPressed: () => {},
-        icon: Get.find<CommentController>().stars[0]
-            ? const Icon(Icons.star)
-            : const Icon(Icons.star_border)),
-    IconButton(
-        onPressed: () => {},
-        icon: Get.find<CommentController>().stars[0]
-            ? const Icon(Icons.star)
-            : const Icon(Icons.star_border)),
-    IconButton(
-        onPressed: () => {},
-        icon: Get.find<CommentController>().stars[0]
-            ? const Icon(Icons.star)
-            : const Icon(Icons.star_border))
-  ]);
+  return Obx(() {
+    final commentController = Get.find<CommentController>();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(5, (index) {
+        return IconButton(
+          onPressed: () => commentController.setStars(index),
+          icon: commentController.stars[index]
+              ? const Icon(Icons.star)
+              : const Icon(Icons.star_border),
+        );
+      }),
+    );
+  });
 }
