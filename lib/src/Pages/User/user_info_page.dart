@@ -55,8 +55,6 @@ final List<ContentPanel> contentPanel1 = [
 ];
 
 final List<ContentPanel> contentPanel2 = [
-  //TODO invitar amigo debe permitir compartir un link
-  ContentPanel(Icons.star, "Invitar Amigos", (context) {}),
   //TODO contactar equipo mensaje a presi
   ContentPanel(CustomIcons.employed, "Contactar Equipo", (context) {}),
   //TODO

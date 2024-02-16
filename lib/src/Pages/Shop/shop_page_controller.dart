@@ -1,20 +1,10 @@
+import 'package:bisne/src/Pages/Base/base_page_controller.dart';
+import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
 import 'package:get/get.dart';
 
 class ShopPageController extends GetxController {
   ShopPageController();
-  final cart = [
-    'Producto1',
-    'Producto2',
-    'Producto2',
-    'Producto2',
-    'Producto2',
-    'Producto2',
-    'Producto2',
-    'Producto2',
-    'Producto2',
-    'Producto2',
-    'Producto2'
-  ].obs;
+  final cart = Get.find<CartController>().itemsToBuy;
   final int viewsCount = 1200;
   final double rate = 4.5;
   final List<String> categories = ['Alimentos'];

@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 
 import '../../../Utils/interfaces.dart';
 
-Widget whiteLabelInputTextWidget(context, String labelText, IconData iconData,
-    {TextEditingController? controller}) {
+Widget whiteLabelInputTextWidget(context, String labelText,
+    {TextEditingController? controller, IconData? iconData, bool? isComment}) {
   return Container(
     width: MediaQuery.of(context).size.width * 0.75,
     decoration: whiteBoxDecoration,
-    padding: const EdgeInsets.symmetric(
-      horizontal: 10,
+    padding: EdgeInsets.symmetric(
+      horizontal: isComment != null ? 0 : 10,
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: const EdgeInsets.only(right: 10, top: 20),
+          margin: EdgeInsets.only(right: isComment != null ? 0 : 10, top: 20),
           child: Icon(
             iconData,
             color: iconAppColor,
@@ -48,8 +48,8 @@ Widget listWhiteLabelInput(
     context, List<(String, IconData, TextEditingController)> content) {
   List<Widget> textsInputs = [];
   for (var element in content) {
-    textsInputs.add(whiteLabelInputTextWidget(context, element.$1, element.$2,
-        controller: element.$3));
+    textsInputs.add(whiteLabelInputTextWidget(context, element.$1,
+        iconData: element.$2, controller: element.$3));
   }
 
   return Container(

@@ -47,7 +47,7 @@ class CartController extends GetxController {
       "",
       ShopDump('Bar', 'assets/Images/shop2.png'),
     ): 2.obs,
-  };
+  }.obs;
 
   void addItem(ProductDump product, int quantity) {
     if (itemsToBuy.containsKey(product)) {
@@ -58,10 +58,10 @@ class CartController extends GetxController {
   }
 
   void removeItem(ProductDump product) {
-    if (itemsToBuy[product]! > 0) {
+    if (itemsToBuy[product]! > 1) {
       itemsToBuy[product]!.value = itemsToBuy[product]!.value - 1;
     } else {
-      print("No se puede eliminar");
+      itemsToBuy.remove(product);
     }
   }
 }

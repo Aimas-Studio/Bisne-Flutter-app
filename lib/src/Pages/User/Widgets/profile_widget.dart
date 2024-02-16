@@ -43,6 +43,9 @@ class ProfileWidget extends StatelessWidget {
           child: boldAppText(_mainInfo, 30),
         ),
         regularAppText(_secondaryInfo, 16),
+        const SizedBox(
+          height: 11,
+        ),
         profilesPageButton(
             _buttonLabel,
             () => Navigator.push(

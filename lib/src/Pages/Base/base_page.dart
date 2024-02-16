@@ -19,17 +19,16 @@ class BasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BasePageController>(
-      init: BasePageController(),
       builder: (_) {
-        return Scaffold(
-          body: Obx(() => IndexedStack(
-                index: _basePageController.obj,
-                children: _navigators,
-              )),
-          bottomNavigationBar: Obx(
-            () => _basePageController.showBottomNavBar.value
+        return Obx(
+          () => Scaffold(
+            body: IndexedStack(
+              index: _basePageController.obj,
+              children: _navigators,
+            ),
+            bottomNavigationBar: _basePageController.showBottomNavBar.value
                 ? BottomNavBar()
-                : Container(),
+                : null,
           ),
         );
       },

@@ -10,7 +10,7 @@ AppBar appbarHomePage() {
     toolbarHeight: 80,
     title: ListTile(
       title: const Text(
-        'El Bisnes',
+        'El Bisne',
         maxLines: 1,
         style: TextStyle(
             fontSize: 25.0, color: Colors.black, fontWeight: FontWeight.bold),
