@@ -6,14 +6,14 @@ import 'package:image_picker/image_picker.dart';
 import '../Utils/interfaces.dart';
 
 class ImagePickerWidget extends StatefulWidget {
-  const ImagePickerWidget({super.key});
+  ImagePickerWidget({super.key});
+  File? image;
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
 }
 
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
-  File? image;
   @override
   Widget build(context) {
     return ElevatedButton(
@@ -35,12 +35,12 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
         ),
       ),
       onPressed: () => getImage(),
-      child: image == null
+      child: widget.image == null
           ? addImageHolder()
           : Container(
               decoration: ShapeDecoration(
                 image: DecorationImage(
-                    image: FileImage(image!), fit: BoxFit.cover),
+                    image: FileImage(widget.image!), fit: BoxFit.cover),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(12),
@@ -61,7 +61,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
     if (pickImage == null) return;
 
     setState(() {
-      image = File(pickImage.path);
+      widget.image = File(pickImage.path);
     });
   }
 

@@ -1,21 +1,26 @@
+import 'package:bisne/src/Pages/Products/Controller/new_product_page_controller.dart';
 import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:bisne/src/Utils/decorations.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../Widgets/image_picker_widget.dart';
 
+final imagePicker1 = ImagePickerWidget();
+final imagePicker2 = ImagePickerWidget();
+final imagePicker3 = ImagePickerWidget();
+final imagePicker4 = ImagePickerWidget();
+final imagePicker5 = ImagePickerWidget();
+
 class NewProductPage extends StatelessWidget {
-  NewProductPage({super.key});
-  final nameController = TextEditingController();
-  final categoryController = TextEditingController();
-  final descriptionController = TextEditingController();
-  final priceController = TextEditingController();
+  const NewProductPage({super.key});
 
   @override
   Widget build(context) {
+    Get.lazyPut(() => NewProductPageController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
@@ -28,17 +33,34 @@ class NewProductPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 15),
                 child: whiteLabelInputTextWidget(context, "DEFINIR NOMBRE",
-                    iconData: Icons.edit),
+                    iconData: Icons.edit,
+                    controller:
+                        Get.find<NewProductPageController>().nameController),
               ),
-              whiteLabelInputTextWidget(context, "DEFINIR CATEGORÍA",
-                  iconData: Icons.edit),
+              whiteLabelInputTextWidget(
+                context,
+                "DEFINIR CATEGORÍA",
+                iconData: Icons.edit,
+                controller:
+                    Get.find<NewProductPageController>().categoryController,
+              ),
               Container(
                 margin: const EdgeInsets.only(top: 15, bottom: 25),
-                child: whiteLabelInputTextWidget(context, "DEFINIR DESCRIPCIÓN",
-                    iconData: Icons.edit),
+                child: whiteLabelInputTextWidget(
+                  context,
+                  "DEFINIR DESCRIPCIÓN",
+                  iconData: Icons.edit,
+                  controller: Get.find<NewProductPageController>()
+                      .descriptionController,
+                ),
               ),
-              whiteLabelInputTextWidget(context, "DEFINIR PRECIO",
-                  iconData: Icons.edit),
+              whiteLabelInputTextWidget(
+                context,
+                "DEFINIR PRECIO",
+                iconData: Icons.edit,
+                controller:
+                    Get.find<NewProductPageController>().priceController,
+              ),
               Container(
                 margin: const EdgeInsets.only(top: 40, bottom: 60),
                 width: MediaQuery.of(context).size.width * 0.83,
@@ -63,37 +85,44 @@ class NewProductPage extends StatelessWidget {
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 20, bottom: 5),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Column(
                             children: [
-                              ImagePickerWidget(),
-                              SizedBox(height: 10),
-                              ImagePickerWidget(),
+                              imagePicker1,
+                              const SizedBox(height: 10),
+                              imagePicker2,
                             ],
                           ),
                           Column(
                             children: [
-                              ImagePickerWidget(),
-                              SizedBox(height: 10),
-                              ImagePickerWidget(),
+                              imagePicker3,
+                              const SizedBox(height: 10),
+                              imagePicker4,
                             ],
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              ImagePickerWidget(),
+                              imagePicker5,
                             ],
                           )
                         ],
                       ),
                     ),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
               boldAppText("Previsualización", 28),
+              Container(
+                decoration: whiteBoxDecoration,
+                child: Column(
+                  children: [],
+                ),
+              )
             ],
           ),
         ),
