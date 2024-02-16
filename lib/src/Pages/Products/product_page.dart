@@ -50,7 +50,8 @@ class ProductPage extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          productSwiper(context, _.images),
+          productSwiper(
+              context, _.images.map((image) => AssetImage(image)).toList()),
           productInfo(context, _)
         ],
       ),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 
-Widget productSwiper(BuildContext context, List<String> images) {
+Widget productSwiper(BuildContext context, List<ImageProvider> images) {
   return Center(
     child: Container(
         alignment: Alignment.center,
@@ -14,13 +14,9 @@ Widget productSwiper(BuildContext context, List<String> images) {
         child: Swiper(
           itemBuilder: (context, index) {
             return Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: context.width > 400 ? 80 : 55),
-              child: Image.asset(
-                images[index],
-                fit: BoxFit.fill,
-              ),
-            );
+                padding: EdgeInsets.symmetric(
+                    horizontal: context.width > 400 ? 80 : 55),
+                child: Image(image: images[index]));
           },
           autoplay: false,
           itemCount: images.length,
