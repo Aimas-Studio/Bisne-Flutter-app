@@ -1,6 +1,7 @@
 import 'package:bisne/src/Pages/Products/Widgets/product_widgets.dart';
 import 'package:bisne/src/Pages/Products/product_page_controller.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
+import 'package:bisne/src/Utils/Entities/comments_controller/coment_controller.dart';
 import 'package:bisne/src/Utils/Entities/product.dart';
 import 'package:bisne/src/Utils/Entities/shop.dart';
 import 'package:bisne/src/Utils/comments.dart';
@@ -17,6 +18,7 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => CommentController());
     Get.lazyPut(() => ProductPageController());
     return Scaffold(
       appBar: secondaryAppBar(context, true,
@@ -48,7 +50,7 @@ class ProductPage extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          productSwiper(context, _),
+          productSwiper(context, _.images),
           productInfo(context, _)
         ],
       ),

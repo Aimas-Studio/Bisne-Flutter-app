@@ -34,6 +34,9 @@ Widget whiteLabelInputTextWidget(context, String labelText,
             ),
             controller: controller,
             decoration: InputDecoration(
+              constraints: BoxConstraints(
+                minHeight: isComment != null ? 200 : 0,
+              ),
               border: InputBorder.none,
               label: inputText(labelText),
             ),

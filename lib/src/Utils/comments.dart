@@ -1,6 +1,8 @@
 import 'package:bisne/src/Pages/Shop/Providers/comment_provider.dart';
 import 'package:bisne/src/Pages/Shop/Widgets/commet_widget.dart';
 import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
+import 'package:bisne/src/Utils/Entities/comments_controller/coment_controller.dart';
+import 'package:bisne/src/Utils/custom_icons.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +79,11 @@ Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
           child: circularImage(AssetImage(_.shopImage), 60),
         ),
         content: Column(children: [
-          Row(),
+          Row(
+            children: [
+              starsWidget(),
+            ],
+          ),
           whiteLabelInputTextWidget(context, 'Escriba un comentario',
               isComment: true)
         ]),
@@ -99,4 +105,34 @@ Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
       );
     },
   );
+}
+
+Widget starsWidget() {
+  return Row(children: [
+    IconButton(
+        onPressed: () => {},
+        icon: Get.find<CommentController>().stars[0]
+            ? const Icon(Icons.star)
+            : const Icon(Icons.star_border)),
+    IconButton(
+        onPressed: () => {},
+        icon: Get.find<CommentController>().stars[0]
+            ? const Icon(Icons.star)
+            : const Icon(Icons.star_border)),
+    IconButton(
+        onPressed: () => {},
+        icon: Get.find<CommentController>().stars[0]
+            ? const Icon(Icons.star)
+            : const Icon(Icons.star_border)),
+    IconButton(
+        onPressed: () => {},
+        icon: Get.find<CommentController>().stars[0]
+            ? const Icon(Icons.star)
+            : const Icon(Icons.star_border)),
+    IconButton(
+        onPressed: () => {},
+        icon: Get.find<CommentController>().stars[0]
+            ? const Icon(Icons.star)
+            : const Icon(Icons.star_border))
+  ]);
 }
