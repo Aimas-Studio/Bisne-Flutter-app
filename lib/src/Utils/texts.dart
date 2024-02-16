@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'interfaces.dart';
 
-Text boldAppText(String text, double size, {Color? color}) {
+Text boldAppText(String text, double size, {Color? color, int? maxLines}) {
   return Text(
     text,
     style: TextStyle(
@@ -12,21 +12,27 @@ Text boldAppText(String text, double size, {Color? color}) {
       fontWeight: FontWeight.bold,
     ),
     softWrap: true,
+    maxLines: maxLines,
+    overflow: TextOverflow.ellipsis,
   );
 }
 
-Text regularAppText(String text, double size, {Color? color}) {
+Text regularAppText(String text, double size, {Color? color, int? maxLines}) {
   return Text(
     text,
     style: TextStyle(
-        color: color ?? fontAppColor,
-        fontFamily: 'Poppins',
-        fontSize: size,
-        fontWeight: FontWeight.w400),
+      color: color ?? fontAppColor,
+      fontFamily: 'Poppins',
+      fontSize: size,
+      fontWeight: FontWeight.w400,
+    ),
+    softWrap: true,
+    maxLines: maxLines,
+    overflow: TextOverflow.ellipsis,
   );
 }
 
-Text thinAppText(String text, double size, {Color? color}) {
+Text thinAppText(String text, double size, {Color? color, int? maxLines}) {
   return Text(
     text,
     style: TextStyle(
@@ -35,10 +41,13 @@ Text thinAppText(String text, double size, {Color? color}) {
       fontSize: size,
       fontWeight: FontWeight.w200,
     ),
+    softWrap: true,
+    maxLines: maxLines,
+    overflow: TextOverflow.ellipsis,
   );
 }
 
-Text lightAppText(String text, double size, {Color? color}) {
+Text lightAppText(String text, double size, {Color? color, int? maxLines}) {
   return Text(
     text,
     style: TextStyle(
@@ -47,6 +56,9 @@ Text lightAppText(String text, double size, {Color? color}) {
       fontSize: size,
       fontWeight: FontWeight.w300,
     ),
+    softWrap: true,
+    maxLines: maxLines,
+    overflow: TextOverflow.ellipsis,
   );
 }
 

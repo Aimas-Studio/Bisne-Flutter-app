@@ -47,8 +47,8 @@ class _EditUserPageState extends State<EditUserPage> {
                 const SizedBox(
                   height: 18,
                 ),
-                whiteLabelInputTextWidget(context, "Editar Usuario", Icons.edit,
-                    controller: _usernameTextController),
+                whiteLabelInputTextWidget(context, "Editar Usuario",
+                    iconData: Icons.edit, controller: _usernameTextController),
                 const SizedBox(
                   height: 15,
                 ),

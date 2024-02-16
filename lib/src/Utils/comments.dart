@@ -1,10 +1,15 @@
 import 'package:bisne/src/Pages/Shop/Providers/comment_provider.dart';
 import 'package:bisne/src/Pages/Shop/Widgets/commet_widget.dart';
+import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:bisne/src/Utils/texts.dart';
+import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget comments(BuildContext context, _) {
+Widget comments(
+  BuildContext context,
+  _,
+) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,13 +23,13 @@ Widget comments(BuildContext context, _) {
           },
         ),
         const SizedBox(height: 20),
-        commentsButtons(context)
+        commentsButtons(context, _)
       ],
     ),
   );
 }
 
-Container commentsButtons(BuildContext context) {
+Container commentsButtons(BuildContext context, _) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: context.width > 400 ? 30 : 0),
     child: Row(
@@ -53,10 +58,45 @@ Container commentsButtons(BuildContext context) {
                   borderRadius: BorderRadius.circular(10),
                 )),
               ),
-              onPressed: () => {},
+              onPressed: () async {
+                String comment = await showAlertDialogComments(context, _);
+              },
               child: regularAppText('HACER COMENTARIO', 13)),
         ),
       ],
     ),
+  );
+}
+
+Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Center(
+          child: circularImage(AssetImage(_.shopImage), 60),
+        ),
+        content: Column(children: [
+          Row(),
+          whiteLabelInputTextWidget(context, 'Escriba un comentario',
+              isComment: true)
+        ]),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Cancelar'),
+            onPressed: () {
+              Navigator.of(context).pop("comment"); // Cierra el diálogo
+            },
+          ),
+          TextButton(
+            child: const Text('Aceptar'),
+            onPressed: () {
+              // Coloca aquí el código que se ejecutará cuando se presione el botón "Aceptar"
+              Navigator.of(context).pop("comment"); // Cierra el diálogo
+            },
+          ),
+        ],
+      );
+    },
   );
 }

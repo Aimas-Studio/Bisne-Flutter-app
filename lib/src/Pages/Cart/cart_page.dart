@@ -35,10 +35,10 @@ class CartPage extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: context.width * 0.05),
         physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: productsItems(context, _)
-            ..add(requiredInfo(context, bottomHeight)),
-        ),
+        child: Obx(() => Column(
+              children: productsItems(context, _)
+                ..add(requiredInfo(context, bottomHeight)),
+            )),
       ),
       bottomSheet: Obx(() => buyButton(bottomHeight, context)),
     );
@@ -63,28 +63,31 @@ class CartPage extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-            width: 200,
-            height: 60,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: bisneColorPrimary),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('COMPRAR',
-                    style: TextStyle(color: Colors.white, fontSize: 20)),
-                Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50)),
-                  child: const Icon(Icons.arrow_forward_ios_rounded),
-                )
-              ],
-            ))
+        InkWell(
+          onTap: () {},
+          child: Container(
+              width: 200,
+              height: 60,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: bisneColorPrimary),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('COMPRAR',
+                      style: TextStyle(color: Colors.white, fontSize: 20)),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: const Icon(Icons.arrow_forward_ios_rounded),
+                  )
+                ],
+              )),
+        )
       ]),
     );
   }
@@ -117,7 +120,7 @@ class CartPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                boldAppText('Datos requerido', 30),
+                boldAppText('Datos requeridos', 30),
               ],
             ),
             const SizedBox(
@@ -175,7 +178,7 @@ Widget productItemCart(
               child: regularAppText('${product.price} mm', 16,
                   color: bisneColorPrimary),
             ),
-            countController(_, product),
+            countController(context, _, product),
           ],
         ),
       ],
@@ -183,12 +186,20 @@ Widget productItemCart(
   );
 }
 
-Widget countController(CartController _, ProductDump product) {
+Widget countController(
+    BuildContext context, CartController _, ProductDump product) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       IconButton(
-          onPressed: () {
+          onPressed: () async {
+            if (_.itemsToBuy[product]! == 1.obs) {
+              bool result = await showAlertDialog(context);
+              if (result) {
+                _.removeItem(product);
+              }
+              return;
+            }
             _.removeItem(product);
           },
           icon: const Icon(Icons.remove_circle, size: 15)),
@@ -202,5 +213,32 @@ Widget countController(CartController _, ProductDump product) {
           },
           icon: const Icon(Icons.add_circle, size: 15))
     ],
+  );
+}
+
+Future<dynamic> showAlertDialog(BuildContext context) async {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Alerta'),
+        content: const Text('¿Estás seguro de que quieres continuar?'),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Cancelar'),
+            onPressed: () {
+              Navigator.of(context).pop(false); // Cierra el diálogo
+            },
+          ),
+          TextButton(
+            child: const Text('Aceptar'),
+            onPressed: () {
+              // Coloca aquí el código que se ejecutará cuando se presione el botón "Aceptar"
+              Navigator.of(context).pop(true); // Cierra el diálogo
+            },
+          ),
+        ],
+      );
+    },
   );
 }

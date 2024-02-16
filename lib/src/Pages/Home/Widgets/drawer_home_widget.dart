@@ -31,17 +31,6 @@ class DrawerHomeWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   MenuItem(
-                    text: 'Publicar mi negocio',
-                    icon: Icons.add,
-                    onClicked: () => selectedItem(context, 2),
-                  ),
-                  const SizedBox(height: 5),
-                  MenuItem(
-                    text: 'Invitar amigo',
-                    icon: Icons.star,
-                    onClicked: () => selectedItem(context, 3),
-                  ),
-                  MenuItem(
                     text: 'Contactar Equipo',
                     icon: Icons.person,
                     onClicked: () => selectedItem(context, 5),

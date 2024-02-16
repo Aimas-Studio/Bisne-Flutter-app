@@ -149,10 +149,7 @@ Column info(_, BuildContext context, isInfoPage) {
     const SizedBox(
       height: 20,
     ),
-    thinAppText(
-      _.descripcion,
-      21,
-    ),
+    thinAppText(_.descripcion, 21, maxLines: 5),
     const SizedBox(
       height: 15,
     ),
@@ -297,9 +294,12 @@ Widget openingHours(BuildContext context, ShopPageController _) {
   );
 }
 
-InkWell showMoreInfo(context) {
-  return InkWell(
-    onTap: () {
+TextButton showMoreInfo(context) {
+  return TextButton(
+    style: const ButtonStyle(
+      padding: MaterialStatePropertyAll(EdgeInsets.all(10)),
+    ),
+    onPressed: () {
       Navigator.push(
         context,
         PageRouteBuilder(
@@ -308,7 +308,7 @@ InkWell showMoreInfo(context) {
         ),
       );
     },
-    child: const Text('Ver más información ...'),
+    child: regularAppText('Ver más información ...', 16, color: Colors.black),
   );
 }
 

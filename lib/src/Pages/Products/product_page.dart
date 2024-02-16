@@ -1,6 +1,8 @@
 import 'package:bisne/src/Pages/Products/Widgets/product_widgets.dart';
 import 'package:bisne/src/Pages/Products/product_page_controller.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
+import 'package:bisne/src/Utils/Entities/product.dart';
+import 'package:bisne/src/Utils/Entities/shop.dart';
 import 'package:bisne/src/Utils/comments.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
@@ -145,22 +147,26 @@ class ProductPage extends StatelessWidget {
       BuildContext context, ProductPageController productPageController) {
     return Row(
       children: [
-        Expanded(flex: context.width > 400 ? 1 : 3, child: saveButton(context)),
+        Expanded(
+            flex: context.width > 400 ? 1 : 3,
+            child: saveButton(context, productPageController)),
         SizedBox(
           width: context.width > 400 ? 20 : 10,
         ),
-        Expanded(flex: context.width > 400 ? 1 : 4, child: buyButton(context))
+        Expanded(
+            flex: context.width > 400 ? 1 : 4,
+            child: buyButton(context, productPageController))
       ],
     );
   }
 
-  Widget saveButton(BuildContext context) {
+  Widget saveButton(BuildContext context, ProductPageController _) {
     return TextButton(
         style: ButtonStyle(
             padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                vertical: 15, horizontal: context.width > 400 ? 40 : 0)),
+                vertical: 18, horizontal: context.width > 400 ? 40 : 0)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10))),
+                borderRadius: BorderRadius.circular(20))),
             backgroundColor:
                 MaterialStateProperty.all(const Color.fromRGBO(69, 77, 90, 1))),
         onPressed: () => {},
@@ -168,31 +174,75 @@ class ProductPage extends StatelessWidget {
             color: Colors.white));
   }
 
-  Widget buyButton(BuildContext context) {
+  Widget buyButton(BuildContext context, ProductPageController _) {
     return TextButton(
         style: ButtonStyle(
+            padding: MaterialStateProperty.all(
+                const EdgeInsets.only(top: 15, bottom: 15, right: 10)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10))),
+                borderRadius: BorderRadius.circular(20))),
             backgroundColor: MaterialStateProperty.all(bisneColorPrimary)),
-        onPressed: () => {},
+        onPressed: () {
+          ProductDump newProduct = ProductDump(
+            _.name,
+            _.price,
+            _.images[0],
+            _.description,
+            ShopDump(_.shopName, _.shopImage),
+          );
+          final _shop = Get.find<ShopPageController>();
+          if (isInCart(_shop.cart, newProduct)) {
+            addToCart(_shop.cart, newProduct, _.count);
+          } else {
+            _shop.cart[newProduct] = 1.obs;
+            _shop.cart[newProduct]!.value = _.count as int;
+          }
+        },
         child: Center(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              regularAppText('COMPRAR', context.width > 400 ? 30 : 20,
-                  color: Colors.white),
-              const SizedBox(
-                width: 20,
+              Expanded(
+                child: Center(
+                  child: regularAppText(
+                      'COMPRAR', context.width > 400 ? 30 : 20,
+                      color: Colors.white),
+                ),
               ),
               Container(
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
+                      borderRadius: BorderRadius.circular(30)),
                   child: const Icon(Icons.arrow_forward_ios_rounded,
                       color: iconAppColor, size: 30))
             ],
           ),
         ));
+  }
+
+  bool isInCart(Map<ProductDump, RxInt> cart, ProductDump newProduct) {
+    for (ProductDump product in cart.keys) {
+      if (product.name == newProduct.name &&
+          product.price == newProduct.price &&
+          product.description == newProduct.description &&
+          product.shopDump.shopName == newProduct.shopDump.shopName) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  void addToCart(
+      Map<ProductDump, RxInt> cart, ProductDump newProduct, int count) {
+    for (ProductDump product in cart.keys) {
+      if (product.name == newProduct.name &&
+          product.price == newProduct.price &&
+          product.description == newProduct.description &&
+          product.shopDump.shopName == newProduct.shopDump.shopName) {
+        cart[product]!.value += count;
+      }
+    }
   }
 }

@@ -61,29 +61,29 @@ class _EditShopInfoPageState extends State<EditShopInfoPage> {
               regularAppText(_shop.categories.join('\n'), 20),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 15),
-                child: whiteLabelInputTextWidget(
-                    context, "CAMBIAR DESCRIPCIÓN", Icons.edit,
+                child: whiteLabelInputTextWidget(context, "CAMBIAR DESCRIPCIÓN",
+                    iconData: Icons.edit,
                     controller: shopDescriptionController),
               ),
-              whiteLabelInputTextWidget(
-                  context, "Cambiar Horario 1", Icons.access_time),
+              whiteLabelInputTextWidget(context, "Cambiar Horario 1",
+                  iconData: Icons.access_time),
               const SizedBox(
                 height: 15,
               ),
-              whiteLabelInputTextWidget(
-                  context, "Cambiar Horario 2", Icons.access_time),
+              whiteLabelInputTextWidget(context, "Cambiar Horario 2",
+                  iconData: Icons.access_time),
               const SizedBox(
                 height: 15,
               ),
-              whiteLabelInputTextWidget(
-                  context, "Cambiar Horario 3", Icons.access_time),
+              whiteLabelInputTextWidget(context, "Cambiar Horario 3",
+                  iconData: Icons.access_time),
               Divider(
                 height: 60,
                 indent: MediaQuery.of(context).size.width * 0.1,
                 endIndent: MediaQuery.of(context).size.width * 0.1,
               ),
-              whiteLabelInputTextWidget(
-                  context, "Ubicación", Icons.location_on_outlined),
+              whiteLabelInputTextWidget(context, "Ubicación",
+                  iconData: Icons.location_on_outlined),
               const SizedBox(
                 height: 30,
               ),

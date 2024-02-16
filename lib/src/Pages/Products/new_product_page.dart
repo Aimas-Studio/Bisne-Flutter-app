@@ -21,17 +21,18 @@ class NewProductPage extends StatelessWidget {
               boldAppText("Nuevo Producto", 26),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 15),
-                child: whiteLabelInputTextWidget(
-                    context, "DEFINIR NOMBRE", Icons.edit),
+                child: whiteLabelInputTextWidget(context, "DEFINIR NOMBRE",
+                    iconData: Icons.edit),
               ),
-              whiteLabelInputTextWidget(
-                  context, "DEFINIR CATEGORÍA", Icons.edit),
+              whiteLabelInputTextWidget(context, "DEFINIR CATEGORÍA",
+                  iconData: Icons.edit),
               Container(
                 margin: const EdgeInsets.only(top: 15, bottom: 25),
-                child: whiteLabelInputTextWidget(
-                    context, "DEFINIR DESCRIPCIÓN", Icons.edit),
+                child: whiteLabelInputTextWidget(context, "DEFINIR DESCRIPCIÓN",
+                    iconData: Icons.edit),
               ),
-              whiteLabelInputTextWidget(context, "DEFINIR PRECIO", Icons.edit),
+              whiteLabelInputTextWidget(context, "DEFINIR PRECIO",
+                  iconData: Icons.edit),
               Container(
                 margin: const EdgeInsets.only(top: 40, bottom: 60),
                 width: MediaQuery.of(context).size.width * 0.83,

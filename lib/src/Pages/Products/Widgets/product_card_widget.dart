@@ -39,53 +39,30 @@ class ProductCard extends Card {
         clipBehavior: Clip.antiAlias,
         height: heightMedia,
         width: widthMedia,
-        child: Stack(
-          alignment: Alignment.topRight,
+        child: Column(
           children: [
-            Column(
-              children: [
-                Image(
-                  image: AssetImage(image),
-                  fit: BoxFit.cover,
-                  width: widthMedia,
-                ),
-                Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          regularAppText(
-                              name.length > 30
-                                  ? '${name.substring(0, 30)}...'
-                                  : name,
-                              context.width > 400 ? 18 : 16),
-                          Row(
-                            children: [
-                              boldAppText(price.toStringAsPrecision(5), 18),
-                              const SizedBox(width: 10),
-                              thinAppText('mm', 18)
-                            ],
-                          )
-                        ]),
-                  ),
-                ),
-              ],
+            Image(
+              image: AssetImage(image),
+              fit: BoxFit.cover,
+              width: widthMedia,
             ),
-            Positioned(
-              top: context.width > 400 ? 145 : 125,
-              right: 6,
+            Expanded(
               child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: bisneColorPrimary),
-                padding: const EdgeInsets.all(7),
-                child: const Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.white,
-                  size: 35,
-                ),
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      regularAppText(name, context.width > 400 ? 18 : 16,
+                          maxLines: 2),
+                      Row(
+                        children: [
+                          boldAppText(price.toStringAsPrecision(5), 18),
+                          const SizedBox(width: 10),
+                          thinAppText('mm', 18)
+                        ],
+                      )
+                    ]),
               ),
             ),
           ],

@@ -29,35 +29,35 @@ AppBar secondaryAppBar(context, bool returnButton,
 }
 
 Widget badge(BuildContext context, IconData iconData, ShopPageController? _) {
-  return Badge(
-    offset: const Offset(-3, 0),
-    isLabelVisible: _!.cart.value.isNotEmpty,
-    largeSize: 22,
-    alignment: Alignment.bottomLeft,
-    backgroundColor: bisneColorPrimary,
-    label: SizedBox(
-      width: 15,
-      child: Center(
-        child: Obx(() => Text(
-              _.cart.value.length > 99
-                  ? '${_.cart.value.length}+'
-                  : _.cart.value.length.toString(),
-              style: const TextStyle(color: Colors.white, fontSize: 15),
-            )),
-      ),
-    ),
-    child: IconButton(
-      icon: Icon(
-        iconData,
-        size: 40,
-      ),
-      onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => CartPage(),
+  return Obx(() => Badge(
+        offset: const Offset(-3, 0),
+        isLabelVisible: _!.cart.isNotEmpty,
+        largeSize: 22,
+        alignment: Alignment.bottomLeft,
+        backgroundColor: bisneColorPrimary,
+        label: SizedBox(
+          width: 15,
+          child: Center(
+            child: Obx(() => Text(
+                  _.cart.length > 99
+                      ? '${_.cart.length}+'
+                      : _.cart.length.toString(),
+                  style: const TextStyle(color: Colors.white, fontSize: 15),
+                )),
           ),
-        );
-      },
-    ),
-  );
+        ),
+        child: IconButton(
+          icon: Icon(
+            iconData,
+            size: 40,
+          ),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => CartPage(),
+              ),
+            );
+          },
+        ),
+      ));
 }
