@@ -1,4 +1,5 @@
 import 'package:bisne/src/Pages/Products/Controller/new_product_page_controller.dart';
+import 'package:bisne/src/Pages/Products/Widgets/product_widgets.dart';
 import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:bisne/src/Utils/decorations.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
@@ -9,11 +10,13 @@ import 'package:get/get.dart';
 
 import '../../Widgets/image_picker_widget.dart';
 
-final imagePicker1 = ImagePickerWidget();
-final imagePicker2 = ImagePickerWidget();
-final imagePicker3 = ImagePickerWidget();
-final imagePicker4 = ImagePickerWidget();
-final imagePicker5 = ImagePickerWidget();
+final List<ImagePickerWidget> imagesPickers = [
+  ImagePickerWidget(),
+  ImagePickerWidget(),
+  ImagePickerWidget(),
+  ImagePickerWidget(),
+  ImagePickerWidget(),
+];
 
 class NewProductPage extends StatelessWidget {
   const NewProductPage({super.key});
@@ -91,22 +94,22 @@ class NewProductPage extends StatelessWidget {
                         children: [
                           Column(
                             children: [
-                              imagePicker1,
+                              imagesPickers[0],
                               const SizedBox(height: 10),
-                              imagePicker2,
+                              imagesPickers[1],
                             ],
                           ),
                           Column(
                             children: [
-                              imagePicker3,
+                              imagesPickers[2],
                               const SizedBox(height: 10),
-                              imagePicker4,
+                              imagesPickers[3],
                             ],
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              imagePicker5,
+                              imagesPickers[4],
                             ],
                           )
                         ],
@@ -120,7 +123,12 @@ class NewProductPage extends StatelessWidget {
               Container(
                 decoration: whiteBoxDecoration,
                 child: Column(
-                  children: [],
+                  children: [
+                    productSwiper(
+                      context,
+                      getImagesPath(),
+                    )
+                  ],
                 ),
               )
             ],
@@ -128,5 +136,13 @@ class NewProductPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<String> getImagesPath() {
+    List<String> imagesPath = [];
+    for (var x in imagesPickers) {
+      if (x.image != null) imagesPath.add(x.image!.path);
+    }
+    return imagesPath;
   }
 }
