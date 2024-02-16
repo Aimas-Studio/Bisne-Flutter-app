@@ -4,50 +4,7 @@ import 'package:get/get.dart';
 
 class CartController extends GetxController {
   CartController();
-  final Map<ProductDump, RxInt> itemsToBuy = {
-    ProductDump(
-      'Cerveza',
-      20,
-      'assets/Images/shop2.png',
-      "",
-      ShopDump('Bar', 'assets/Images/shop2.png'),
-    ): 2.obs,
-    ProductDump(
-      'Bombones Rellenos',
-      150,
-      'assets/Images/shop1.png',
-      "",
-      ShopDump('Bar', 'assets/Images/shop2.png'),
-    ): 1.obs,
-    ProductDump(
-      'Chocolate Blanco',
-      200,
-      'assets/Images/shop2.png',
-      "",
-      ShopDump('Bar', 'assets/Images/shop2.png'),
-    ): 2.obs,
-    ProductDump(
-      'Chocolate Blanco',
-      200,
-      'assets/Images/shop2.png',
-      "",
-      ShopDump('Bar', 'assets/Images/shop2.png'),
-    ): 2.obs,
-    ProductDump(
-      'Chocolate Blanco',
-      200,
-      'assets/Images/shop2.png',
-      "",
-      ShopDump('Bar', 'assets/Images/shop2.png'),
-    ): 2.obs,
-    ProductDump(
-      'Chocolate Blanco',
-      200,
-      'assets/Images/shop2.png',
-      "",
-      ShopDump('Bar', 'assets/Images/shop2.png'),
-    ): 2.obs,
-  }.obs;
+  final RxMap itemsToBuy = {}.obs;
 
   void addItem(ProductDump product, int quantity) {
     if (itemsToBuy.containsKey(product)) {

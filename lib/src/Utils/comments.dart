@@ -3,6 +3,7 @@ import 'package:bisne/src/Pages/Shop/Widgets/commet_widget.dart';
 import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:bisne/src/Utils/Entities/comments_controller/coment_controller.dart';
 import 'package:bisne/src/Utils/custom_icons.dart';
+import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:bisne/src/Widgets/return_button_widget.dart';
@@ -73,37 +74,80 @@ Container commentsButtons(BuildContext context, _) {
 
 Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
   return showDialog(
+    barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
-      return AlertDialog(
-        title: Center(
-          child: circularImage(AssetImage(_.shopImage), 60),
-        ),
-        content: Column(children: [
-          Row(
+      return SingleChildScrollView(
+        child: AlertDialog(
+          backgroundColor: backgroundAppColor,
+          actionsAlignment: MainAxisAlignment.center,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              starsWidget(),
+              IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  Navigator.of(context).pop("comment");
+                },
+              )
             ],
           ),
-          whiteLabelInputTextWidget(context, 'Escriba un comentario',
-              isComment: true)
-        ]),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('Cancelar'),
-            onPressed: () {
-              Navigator.of(context).pop("comment"); // Cierra el diálogo
-            },
+          content: IntrinsicHeight(
+            child: Column(children: [
+              Center(
+                child: circularImage(AssetImage(_.shopImage), 70),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              starsWidget(),
+              const SizedBox(
+                height: 30,
+              ),
+              whiteLabelInputTextWidget(context, 'Escriba un comentario',
+                  isComment: true)
+            ]),
           ),
-          TextButton(
-            child: const Text('Aceptar'),
-            onPressed: () {
-              // Coloca aquí el código que se ejecutará cuando se presione el botón "Aceptar"
-              Navigator.of(context).pop("comment"); // Cierra el diálogo
-            },
-          ),
-        ],
+          actions: <Widget>[sendButton(context)],
+        ),
       );
+    },
+  );
+}
+
+TextButton sendButton(BuildContext context) {
+  return TextButton(
+    child: Container(
+      height: 50,
+      width: 200,
+      decoration: const BoxDecoration(
+          color: iconAppColor,
+          borderRadius: BorderRadius.all(Radius.circular(15))),
+      child: Center(
+          child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          children: [
+            Expanded(
+                child: Center(
+                    child: regularAppText("ENVIAR", 17, color: Colors.white))),
+            Container(
+              height: 30,
+              width: 30,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(40))),
+              child: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 20,
+              ),
+            )
+          ],
+        ),
+      )),
+    ),
+    onPressed: () {
+      Navigator.of(context).pop("comment"); // Cierra el diálogo
     },
   );
 }
@@ -117,8 +161,11 @@ Widget starsWidget() {
         return IconButton(
           onPressed: () => commentController.setStars(index),
           icon: commentController.stars[index]
-              ? const Icon(Icons.star)
-              : const Icon(Icons.star_border),
+              ? const Icon(
+                  Icons.star,
+                  size: 30,
+                )
+              : const Icon(Icons.star_border, size: 30),
         );
       }),
     );

@@ -74,7 +74,7 @@ class ProductPage extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        regularAppText(_.description, 21),
+        regularAppText(_.description, 21, maxLines: 5),
         const SizedBox(
           height: 20,
         ),
@@ -111,7 +111,9 @@ class ProductPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(width: context.width * 0.7, child: boldAppText(_.name, 40)),
+        SizedBox(
+            width: context.width * 0.7,
+            child: boldAppText(_.name, 40, maxLines: 2)),
         Container(
           alignment: Alignment.topLeft,
           decoration: const BoxDecoration(
@@ -225,7 +227,7 @@ class ProductPage extends StatelessWidget {
         ));
   }
 
-  bool isInCart(Map<ProductDump, RxInt> cart, ProductDump newProduct) {
+  bool isInCart(Map<dynamic, dynamic> cart, ProductDump newProduct) {
     for (ProductDump product in cart.keys) {
       if (product.name == newProduct.name &&
           product.price == newProduct.price &&
@@ -238,7 +240,7 @@ class ProductPage extends StatelessWidget {
   }
 
   void addToCart(
-      Map<ProductDump, RxInt> cart, ProductDump newProduct, int count) {
+      Map<dynamic, dynamic> cart, ProductDump newProduct, int count) {
     for (ProductDump product in cart.keys) {
       if (product.name == newProduct.name &&
           product.price == newProduct.price &&
