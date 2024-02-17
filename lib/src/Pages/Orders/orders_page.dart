@@ -1,9 +1,11 @@
+import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Orders/Providers/order_provider.dart';
 import 'package:bisne/src/Pages/Orders/Widgets/order_widget.dart';
 import 'package:bisne/src/Utils/Entities/facture.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../Utils/texts.dart';
 
@@ -12,6 +14,9 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      Get.find<BasePageController>().showBottomNavBar.value = false;
+    });
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,

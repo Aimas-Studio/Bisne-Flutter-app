@@ -30,6 +30,9 @@ class FacturesPage extends StatelessWidget {
                 height: 15,
               ),
               boldAppText("Pedidos Realizados", 27),
+              const SizedBox(
+                height: 20,
+              ),
               FutureBuilder(
                   future: getPurchases(facture),
                   builder: (context, AsyncSnapshot snapshot) {

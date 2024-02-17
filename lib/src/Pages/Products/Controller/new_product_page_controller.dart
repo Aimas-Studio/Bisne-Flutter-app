@@ -1,19 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../Widgets/image_picker_widget.dart';
+
 class NewProductPageController extends GetxController {
-  final nameController = TextEditingController();
-  final categoryController = TextEditingController();
-  final descriptionController = TextEditingController();
-  final priceController = TextEditingController();
-
-  late RxString productName;
-  late RxString productDescription;
-  late RxString productPrice;
-
-  NewProductPageController() {
-    productName = nameController.value.text.obs;
-    productDescription = descriptionController.value.text.obs;
-    productPrice = priceController.value.text.obs;
-  }
+  final nameController = TextEditingController().obs;
+  final categoryController = TextEditingController().obs;
+  final descriptionController = TextEditingController().obs;
+  final priceController = TextEditingController().obs;
+  final List<ImagePickerWidget> imagesPickers = [
+    ImagePickerWidget(),
+    ImagePickerWidget(),
+    ImagePickerWidget(),
+    ImagePickerWidget(),
+    ImagePickerWidget(),
+  ];
 }

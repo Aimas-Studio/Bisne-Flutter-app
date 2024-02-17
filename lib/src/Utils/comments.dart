@@ -2,11 +2,9 @@ import 'package:bisne/src/Pages/Shop/Providers/comment_provider.dart';
 import 'package:bisne/src/Pages/Shop/Widgets/commet_widget.dart';
 import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:bisne/src/Utils/Entities/comments_controller/coment_controller.dart';
-import 'package:bisne/src/Utils/custom_icons.dart';
 import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:bisne/src/Widgets/circular_image.dart';
-import 'package:bisne/src/Widgets/return_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -98,7 +96,7 @@ Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
                 child: circularImage(AssetImage(_.shopImage), 70),
               ),
               const SizedBox(
-                height: 5,
+                height: 40,
               ),
               starsWidget(),
               const SizedBox(
@@ -158,14 +156,19 @@ Widget starsWidget() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(5, (index) {
-        return IconButton(
-          onPressed: () => commentController.setStars(index),
-          icon: commentController.stars[index]
+        return InkWell(
+          onTap: () => commentController.setStars(index),
+          child: commentController.stars[index]
               ? const Icon(
-                  Icons.star,
-                  size: 30,
+                  Icons.star_rounded,
+                  size: 50,
+                  color: Color.fromRGBO(241, 196, 14, 1),
                 )
-              : const Icon(Icons.star_border, size: 30),
+              : const Icon(
+                  Icons.star_border_rounded,
+                  size: 50,
+                  color: Color.fromRGBO(241, 196, 14, 1),
+                ),
         );
       }),
     );

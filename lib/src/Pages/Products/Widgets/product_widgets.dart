@@ -13,9 +13,12 @@ Widget productSwiper(BuildContext context, List<ImageProvider> images) {
         child: Swiper(
           itemBuilder: (context, index) {
             return Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: context.width > 400 ? 80 : 55),
-                child: Image(image: images[index]));
+              padding: EdgeInsets.symmetric(
+                  horizontal: context.width > 400 ? 80 : 55),
+              child: Container(
+                color: Colors.black,
+              ),
+            );
           },
           autoplay: false,
           itemCount: images.length,
