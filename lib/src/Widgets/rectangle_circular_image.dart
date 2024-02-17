@@ -7,7 +7,6 @@ Widget rectangleCircularImage(ImageProvider imageProvider, double size,
     size: Size.square(size),
     child: Container(
       decoration: const ShapeDecoration(
-        color: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(14)),
         ),
@@ -18,11 +17,11 @@ Widget rectangleCircularImage(ImageProvider imageProvider, double size,
           )
         ],
       ),
-      // child: FadeInImage(
-      //   placeholder: placeholder,
-      //   image: imageProvider,
-      //   fit: BoxFit.cover,
-      // ),
+      child: FadeInImage(
+        placeholder: placeholder,
+        image: imageProvider,
+        fit: BoxFit.cover,
+      ),
     ),
   );
 }

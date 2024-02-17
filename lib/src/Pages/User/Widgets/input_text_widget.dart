@@ -4,8 +4,14 @@ import 'package:flutter/material.dart';
 
 import '../../../Utils/interfaces.dart';
 
-Widget whiteLabelInputTextWidget(context, String labelText,
-    {TextEditingController? controller, IconData? iconData, bool? isComment}) {
+Widget whiteLabelInputTextWidget(
+  context,
+  String labelText, {
+  TextEditingController? controller,
+  IconData? iconData,
+  bool? isComment,
+  Function(String s)? onChanged,
+}) {
   return Container(
     width: MediaQuery.of(context).size.width * 0.75,
     decoration: whiteBoxDecoration,
@@ -24,6 +30,7 @@ Widget whiteLabelInputTextWidget(context, String labelText,
         ),
         Expanded(
           child: TextField(
+            onChanged: onChanged ?? (s) {},
             maxLines: null,
             cursorColor: fontAppColor,
             style: const TextStyle(
