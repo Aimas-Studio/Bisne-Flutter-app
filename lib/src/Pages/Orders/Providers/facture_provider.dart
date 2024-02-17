@@ -7,16 +7,18 @@ Future<Map<ProductDump, int>> getPurchases(Facture facture) async {
     ProductDump(
       "arroz",
       18,
-      "imageUrl",
+      ["imageUrl"],
       "description",
       ShopDump("shopName", "imageUrl"),
+      "category 1",
     ): 2,
     ProductDump(
       "arroz",
       18,
-      "imageUrl",
+      ["imageUrl"],
       "description",
       ShopDump("shopName", "imageUrl"),
+      "category 2",
     ): 2,
   };
 

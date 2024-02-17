@@ -6,7 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import '../Utils/interfaces.dart';
 
 class ImagePickerWidget extends StatefulWidget {
-  ImagePickerWidget({this.updateParentState, super.key});
+  ImagePickerWidget({this.updateParentState, super.key, this.defaultImage});
+
+  ImageProvider? defaultImage;
   File? image;
   VoidCallback? updateParentState;
 
@@ -37,20 +39,31 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
       ),
       onPressed: () => getImage(),
       child: widget.image == null
-          ? addImageHolder()
+          ? imageHolder()
           : ClipRRect(
               borderRadius: const BorderRadius.all(
                 Radius.circular(12),
               ),
               child: SizedBox.expand(
-                child: Image(
-                  image: FileImage(widget.image!),
-                  fit: BoxFit.cover,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 5, top: 5),
+                  alignment: Alignment.topLeft,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: FileImage(widget.image!),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.edit,
+                    color: bisneColorPrimary,
+                  ),
                 ),
               ),
             ),
     );
   }
+
   //TODO refactor this code
 
   Future getImage() async {
@@ -64,12 +77,34 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
     });
   }
 
-  Widget addImageHolder() {
-    return const Center(
-      child: Icon(
-        Icons.add_photo_alternate_outlined,
-        color: fontAppColor,
-      ),
-    );
+  Widget imageHolder() {
+    return widget.defaultImage == null
+        ? const Center(
+            child: Icon(
+              Icons.add_photo_alternate_outlined,
+              color: fontAppColor,
+            ),
+          )
+        : ClipRRect(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(12),
+            ),
+            child: SizedBox.expand(
+              child: Container(
+                padding: const EdgeInsets.only(left: 5, top: 5),
+                alignment: Alignment.topLeft,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: widget.defaultImage!,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: const Icon(
+                  Icons.edit,
+                  color: bisneColorPrimary,
+                ),
+              ),
+            ),
+          );
   }
 }

@@ -15,7 +15,6 @@ class NewProductPage extends StatelessWidget {
 
   @override
   Widget build(context) {
-    Get.lazyPut(() => NewProductPageController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,

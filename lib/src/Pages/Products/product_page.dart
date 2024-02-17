@@ -191,9 +191,10 @@ class ProductPage extends StatelessWidget {
           ProductDump newProduct = ProductDump(
             _.name,
             _.price,
-            _.images[0],
+            _.images,
             _.description,
             ShopDump(_.shopName, _.shopImage),
+            "category",
           );
           final _shop = Get.find<ShopPageController>();
           if (isInCart(_shop.cart, newProduct)) {

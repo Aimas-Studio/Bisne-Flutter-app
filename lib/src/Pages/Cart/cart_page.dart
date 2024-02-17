@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
 import 'package:bisne/src/Pages/Cart/imputs_info_cart.dart';
@@ -168,7 +166,7 @@ Widget productItemCart(
     margin: const EdgeInsets.only(bottom: 10),
     child: Row(
       children: [
-        circularImage(AssetImage(product.imageUrl), 50),
+        circularImage(AssetImage(product.imagesUrl[0]), 50),
         const SizedBox(width: 20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -8,7 +8,7 @@ Widget factureWidget(ProductDump product, int amount) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-      circularImage(NetworkImage(product.imageUrl), 45),
+      circularImage(NetworkImage(product.imagesUrl[0]), 45),
       Container(
         margin: const EdgeInsets.only(left: 15),
         child: Column(
