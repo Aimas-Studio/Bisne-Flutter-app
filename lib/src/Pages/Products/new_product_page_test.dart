@@ -33,11 +33,14 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
     ImagePickerWidget(),
   ];
 
-  @override
-  Widget build(context) {
+  _NewProductPageTestState() {
     for (ImagePickerWidget imagePicker in imagesPickers) {
       imagePicker.updateParentState = refresh;
     }
+  }
+
+  @override
+  Widget build(context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,

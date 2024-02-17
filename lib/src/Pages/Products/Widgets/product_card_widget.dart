@@ -1,15 +1,14 @@
 import 'package:bisne/src/Pages/Products/product_page.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductCard extends Card {
-  String name;
-  String image;
-  int price;
+  final String name;
+  final String image;
+  final int price;
 
-  ProductCard({
+  const ProductCard({
     Key? key,
     required this.name,
     required this.image,

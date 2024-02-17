@@ -38,18 +38,15 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
       onPressed: () => getImage(),
       child: widget.image == null
           ? addImageHolder()
-          : Container(
-              decoration: ShapeDecoration(
-                image: DecorationImage(
-                    image: FileImage(widget.image!), fit: BoxFit.cover),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ),
-                ),
+          : ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(12),
               ),
-              child: const SizedBox.expand(
-                child: null,
+              child: SizedBox.expand(
+                child: Image(
+                  image: FileImage(widget.image!),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
     );
