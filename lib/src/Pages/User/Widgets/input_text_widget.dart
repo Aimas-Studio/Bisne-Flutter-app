@@ -1,5 +1,7 @@
+import 'package:bisne/src/Utils/custom_icons.dart';
 import 'package:bisne/src/Utils/decorations.dart';
 import 'package:bisne/src/Utils/texts.dart';
+import 'package:bisne/src/Utils/validations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Utils/interfaces.dart';
@@ -7,49 +9,29 @@ import '../../../Utils/interfaces.dart';
 Widget whiteLabelInputTextWidget(
   context,
   String labelText, {
-  TextEditingController? controller,
+  String? hintText,
   IconData? iconData,
-  bool? isComment,
+  TextEditingController? controller,
+  bool isComment = false,
   Function(String s)? onChanged,
 }) {
   return Container(
     width: MediaQuery.of(context).size.width * 0.75,
     decoration: whiteBoxDecoration,
-    padding: EdgeInsets.symmetric(
-      horizontal: isComment != null ? 0 : 10,
-    ),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          margin: EdgeInsets.only(right: isComment != null ? 0 : 10, top: 20),
-          child: Icon(
-            iconData,
-            color: iconAppColor,
-          ),
-        ),
-        Expanded(
-          child: TextField(
-            onChanged: onChanged ?? (s) {},
-            maxLines: null,
-            cursorColor: fontAppColor,
-            style: const TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 15,
-              fontFamily: 'Neusa',
-              color: fontAppColor,
-            ),
-            controller: controller,
-            decoration: InputDecoration(
-              constraints: BoxConstraints(
-                minHeight: isComment != null ? 200 : 0,
-              ),
-              border: InputBorder.none,
-              label: inputText(labelText),
-            ),
-          ),
-        ),
-      ],
+    padding: EdgeInsets.symmetric(horizontal: isComment ? 0 : 10),
+    child: TextField(
+      onChanged: onChanged ?? (s) {},
+      maxLines: null,
+      cursorColor: fontAppColor,
+      style: _inputStyle,
+      controller: controller,
+      decoration: InputDecoration(
+        label: inputText(labelText),
+        hintText: hintText ?? "",
+        icon: Icon(iconData, color: fontAppColor),
+        constraints: BoxConstraints(minHeight: isComment ? 200 : 0),
+        border: InputBorder.none,
+      ),
     ),
   );
 }
@@ -70,3 +52,36 @@ Widget listWhiteLabelInput(
     ),
   );
 }
+
+Widget passwordInputText(
+  context, {
+  required TextEditingController controller,
+  required Function(String s) onChange,
+}) {
+  String? error = AppValidations.validatePassword(controller.value.text);
+
+  return Container(
+    width: MediaQuery.of(context).size.width * 0.75,
+    padding: const EdgeInsets.symmetric(horizontal: 10),
+    decoration: whiteBoxDecoration,
+    child: TextField(
+      onChanged: onChange,
+      style: _inputStyle,
+      controller: controller,
+      decoration: InputDecoration(
+        icon: const Icon(CustomIcons.password, color: fontAppColor),
+        border: InputBorder.none,
+        label:
+            inputText("CONTRASEÑA", color: error == null ? null : Colors.red),
+        errorText: error,
+      ),
+    ),
+  );
+}
+
+const TextStyle _inputStyle = TextStyle(
+  fontWeight: FontWeight.normal,
+  fontSize: 15,
+  fontFamily: 'Neusa',
+  color: fontAppColor,
+);

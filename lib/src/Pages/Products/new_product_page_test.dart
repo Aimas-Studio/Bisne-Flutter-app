@@ -1,5 +1,4 @@
 import 'package:bisne/src/Pages/User/Widgets/profiles_pages_button.dart';
-import 'package:bisne/src/Utils/custom_icons.dart';
 import 'package:flutter/material.dart';
 
 import '../../Utils/decorations.dart';
@@ -14,18 +13,19 @@ import 'Widgets/product_widgets.dart';
 class NewProductPageTest extends StatefulWidget {
   NewProductPageTest({super.key});
 
-  final nameController = TextEditingController();
-  final categoryController = TextEditingController();
-  final descriptionController = TextEditingController();
-  final priceController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _categoryController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final _priceController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   State<NewProductPageTest> createState() => _NewProductPageTestState();
 }
 
 class _NewProductPageTestState extends State<NewProductPageTest> {
-  List<FileImage> previewImages = [];
-  final imagesPickers = [
+  List<FileImage> _previewImages = [];
+  final _imagesPickers = [
     ImagePickerWidget(),
     ImagePickerWidget(),
     ImagePickerWidget(),
@@ -34,7 +34,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
   ];
 
   _NewProductPageTestState() {
-    for (ImagePickerWidget imagePicker in imagesPickers) {
+    for (ImagePickerWidget imagePicker in _imagesPickers) {
       imagePicker.updateParentState = refresh;
     }
   }
@@ -56,7 +56,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                   context,
                   "DEFINIR NOMBRE",
                   iconData: Icons.edit,
-                  controller: widget.nameController,
+                  controller: widget._nameController,
                   onChanged: updateTexts,
                 ),
               ),
@@ -64,7 +64,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                 context,
                 "DEFINIR CATEGORÍA",
                 iconData: Icons.edit,
-                controller: widget.categoryController,
+                controller: widget._categoryController,
               ),
               Container(
                 margin: const EdgeInsets.only(top: 15, bottom: 25),
@@ -72,7 +72,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                   context,
                   "DEFINIR DESCRIPCIÓN",
                   iconData: Icons.edit,
-                  controller: widget.descriptionController,
+                  controller: widget._descriptionController,
                   onChanged: updateTexts,
                 ),
               ),
@@ -80,7 +80,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                 context,
                 "DEFINIR PRECIO",
                 iconData: Icons.edit,
-                controller: widget.priceController,
+                controller: widget._priceController,
                 onChanged: updateTexts,
               ),
               Container(
@@ -113,22 +113,22 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                         children: [
                           Column(
                             children: [
-                              imagesPickers[0],
+                              _imagesPickers[0],
                               const SizedBox(height: 10),
-                              imagesPickers[1],
+                              _imagesPickers[1],
                             ],
                           ),
                           Column(
                             children: [
-                              imagesPickers[2],
+                              _imagesPickers[2],
                               const SizedBox(height: 10),
-                              imagesPickers[3],
+                              _imagesPickers[3],
                             ],
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              imagesPickers[4],
+                              _imagesPickers[4],
                             ],
                           )
                         ],
@@ -147,7 +147,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                   children: [
                     productSwiper(
                       context,
-                      previewImages,
+                      _previewImages,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,20 +155,20 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                         regularAppText(getShopInfo().shopName, 19),
                         Container(
                           margin: const EdgeInsets.only(top: 10, bottom: 20),
-                          child:
-                              boldAppText(widget.nameController.value.text, 25),
+                          child: boldAppText(
+                              widget._nameController.value.text, 25),
                         ),
                         lightAppText(
-                          widget.descriptionController.value.text,
+                          widget._descriptionController.value.text,
                           15,
                         ),
                         const SizedBox(height: 10),
                         Row(
                           children: [
                             boldAppText(
-                                widget.priceController.value.text == ""
+                                widget._priceController.value.text == ""
                                     ? "\$\$"
-                                    : widget.priceController.value.text,
+                                    : widget._priceController.value.text,
                                 20),
                             regularAppText("mn", 18),
                           ],
@@ -188,10 +188,10 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                   14,
                 ),
               ),
-              whiteLabelInputTextWidget(
+              passwordInputText(
                 context,
-                "Contraseña",
-                iconData: CustomIcons.password,
+                controller: widget._passwordController,
+                onChange: updateTexts,
               ),
               const SizedBox(height: 30),
               Padding(
@@ -214,7 +214,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
 
   List<FileImage> getImagesPath() {
     List<FileImage> imagesPath = [];
-    for (ImagePickerWidget fileImages in imagesPickers) {
+    for (ImagePickerWidget fileImages in _imagesPickers) {
       if (fileImages.image != null) {
         imagesPath.add(FileImage(fileImages.image!));
       }
@@ -228,7 +228,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
 
   void refresh() {
     setState(() {
-      previewImages = getImagesPath();
+      _previewImages = getImagesPath();
     });
   }
 }

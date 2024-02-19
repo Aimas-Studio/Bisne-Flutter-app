@@ -62,14 +62,14 @@ Text lightAppText(String text, double size, {Color? color, int? maxLines}) {
   );
 }
 
-Text inputText(String text) {
+Text inputText(String text, {Color? color}) {
   return Text(
     text,
     style: TextStyle(
       fontWeight: FontWeight.w300,
       fontFamily: 'Neusa',
       fontSize: 11,
-      color: fontAppColor.withOpacity(0.5),
+      color: color ?? fontAppColor.withOpacity(0.5),
     ),
   );
 }
