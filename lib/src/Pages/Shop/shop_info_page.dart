@@ -1,10 +1,10 @@
 import 'package:bisne/src/Pages/Products/new_product_page_test.dart';
 import 'package:bisne/src/Pages/Shop/edit_shop_info_page.dart';
-import 'package:bisne/src/Utils/Entities/content_panel.dart';
 import 'package:flutter/material.dart';
 
-import '../../Utils/custom_icons.dart';
-import '../../Utils/interfaces.dart';
+import '../../core/Utils/Entities/content_panel.dart';
+import '../../core/Utils/custom_icons.dart';
+import '../../core/Utils/interfaces.dart';
 import '../User/Widgets/profile_widget.dart';
 import '../User/Widgets/user_page_widgets.dart';
 import 'Providers/shop_provider.dart';

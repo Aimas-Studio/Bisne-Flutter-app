@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../Widgets/image_picker_widget.dart';
+import '../../../core/widgets/image_picker_widget.dart';
 
 class NewProductPageController extends GetxController {
   final nameController = TextEditingController().obs;

@@ -1,10 +1,10 @@
-import 'package:bisne/src/Utils/custom_icons.dart';
-import 'package:bisne/src/Utils/decorations.dart';
-import 'package:bisne/src/Utils/texts.dart';
-import 'package:bisne/src/Utils/validations.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Utils/interfaces.dart';
+import '../../../core/Utils/custom_icons.dart';
+import '../../../core/Utils/decorations.dart';
+import '../../../core/Utils/interfaces.dart';
+import '../../../core/Utils/texts.dart';
+import '../../../core/Utils/validations.dart';
 
 Widget whiteLabelInputTextWidget(
   context,

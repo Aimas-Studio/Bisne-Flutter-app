@@ -1,7 +1,7 @@
-import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Utils/interfaces.dart';
+import '../../../core/Utils/interfaces.dart';
+import '../../../core/Utils/texts.dart';
 import '../../User/Providers/user_providers.dart';
 
 Widget totalOrderWidget(context, String date, String totalPrice) {

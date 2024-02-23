@@ -1,15 +1,16 @@
 import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
 import 'package:bisne/src/Pages/Shop/shop_more_info_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
-import 'package:bisne/src/Utils/comments.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Utils/texts.dart';
-import 'package:bisne/src/Widgets/banner_promotional_widget.dart';
-import 'package:bisne/src/Widgets/card_tables.dart';
-import 'package:bisne/src/Widgets/search_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../core/Utils/comments.dart';
+import '../../../core/Utils/interfaces.dart';
+import '../../../core/Utils/texts.dart';
+import '../../../core/widgets/banner_promotional_widget.dart';
+import '../../../core/widgets/card_tables.dart';
+import '../../../core/widgets/search_input_widget.dart';
 
 Column iconView(int viewsCount) {
   return Column(

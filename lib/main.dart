@@ -7,7 +7,7 @@ import 'package:bisne/src/Pages/Search/search_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'src/Utils/shared_persistent_data.dart';
+import 'src/core/Utils/shared_persistent_data.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +18,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
+
   final BasePageController _BasePageController = Get.put(BasePageController());
   final SearchPageController _SearchPageController =
       Get.put(SearchPageController());

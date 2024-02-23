@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 
-import '../Pages/Home/Providers/PromotionalProvider.dart';
+import '../../Pages/Home/Providers/PromotionalProvider.dart';
+
 
 class BannerPromotionalWidget extends StatelessWidget {
   final List<dynamic> images;

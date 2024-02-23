@@ -1,8 +1,9 @@
-import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Widgets/rectangle_circular_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
+
+import '../../../core/Utils/interfaces.dart';
+import '../../../core/widgets/rectangle_circular_image.dart';
 
 Widget productSwiper(BuildContext context, List<ImageProvider> images) {
   Swiper swiper = Swiper(

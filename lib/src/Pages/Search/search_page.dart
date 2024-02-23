@@ -2,12 +2,12 @@
 
 //Flutter Imports
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
-import 'package:bisne/src/Widgets/card_tables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../Utils/interfaces.dart';
-import '../../Widgets/search_input_widget.dart';
+import '../../core/Utils/interfaces.dart';
+import '../../core/widgets/card_tables.dart';
+import '../../core/widgets/search_input_widget.dart';
 import 'Widgets/drawer_search_widget.dart';
 
 class SearchPage extends StatefulWidget {

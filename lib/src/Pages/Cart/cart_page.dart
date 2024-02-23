@@ -1,17 +1,19 @@
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
 import 'package:bisne/src/Pages/Cart/imputs_info_cart.dart';
-import 'package:bisne/src/Utils/Entities/product.dart';
-import 'package:bisne/src/Utils/custom_icons.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Utils/texts.dart';
-import 'package:bisne/src/Widgets/circular_image.dart';
-import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/Utils/Entities/product.dart';
+import '../../core/Utils/custom_icons.dart';
+import '../../core/Utils/interfaces.dart';
+import '../../core/Utils/texts.dart';
+import '../../core/widgets/circular_image.dart';
+import '../../core/widgets/secondary_app_bar.dart';
+
 class CartPage extends StatelessWidget {
   CartPage({super.key});
+
   final BasePageController _basePageController = Get.find<BasePageController>();
   final TextEditingController _textPhoneNumberController =
       TextEditingController(text: '54252449');

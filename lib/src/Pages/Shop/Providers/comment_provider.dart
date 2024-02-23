@@ -1,5 +1,5 @@
-import '../../../Utils/Entities/comment.dart';
-import '../../../Utils/Entities/user.dart';
+import '../../../core/Utils/Entities/comment.dart';
+import '../../../core/Utils/Entities/user.dart';
 
 Future<List<AppComment>> getComment() async {
   return Future.delayed(const Duration(seconds: 2), () {

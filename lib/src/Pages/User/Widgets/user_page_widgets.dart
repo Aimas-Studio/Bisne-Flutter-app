@@ -1,9 +1,9 @@
 //Flutter Imports
-import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Utils/Entities/content_panel.dart';
-import '../../../Utils/interfaces.dart';
+import '../../../core/Utils/Entities/content_panel.dart';
+import '../../../core/Utils/interfaces.dart';
+import '../../../core/Utils/texts.dart';
 
 Widget userServicesList(List<ContentPanel> content, context) {
   return Container(

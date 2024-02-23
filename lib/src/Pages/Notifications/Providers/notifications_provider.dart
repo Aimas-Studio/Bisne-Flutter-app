@@ -1,5 +1,5 @@
-import '../../../Utils/Entities/notification.dart';
-import '../../../Utils/Entities/shop.dart';
+import '../../../core/Utils/Entities/notification.dart';
+import '../../../core/Utils/Entities/shop.dart';
 
 Future<List<AppNotification>> getNotifications() async {
   return Future.delayed(const Duration(seconds: 2), () {

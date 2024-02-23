@@ -1,8 +1,8 @@
-import 'package:bisne/src/Utils/texts.dart';
-import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Utils/Entities/product.dart';
+import '../../../core/Utils/Entities/product.dart';
+import '../../../core/Utils/texts.dart';
+import '../../../core/widgets/circular_image.dart';
 
 Widget factureWidget(ProductDump product, int amount) {
   return Row(

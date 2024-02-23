@@ -1,9 +1,10 @@
 import 'package:bisne/src/Pages/Home/Providers/CategoryProvider.dart';
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
-import 'package:bisne/src/Widgets/card_tables.dart';
-import 'package:bisne/src/Widgets/search_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../core/widgets/card_tables.dart';
+import '../../../core/widgets/search_input_widget.dart';
 
 AppBar appbarHomePage() {
   return AppBar(

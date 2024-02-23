@@ -1,9 +1,9 @@
-import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../Utils/interfaces.dart';
-import '../../Utils/texts.dart';
-import '../../Widgets/secondary_app_bar.dart';
+import '../../core/Utils/interfaces.dart';
+import '../../core/Utils/texts.dart';
+import '../../core/widgets/circular_image.dart';
+import '../../core/widgets/secondary_app_bar.dart';
 import 'Providers/user_providers.dart';
 import 'Widgets/input_text_widget.dart';
 import 'Widgets/profiles_pages_button.dart';

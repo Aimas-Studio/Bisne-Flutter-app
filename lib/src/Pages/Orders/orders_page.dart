@@ -1,13 +1,13 @@
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Orders/Providers/order_provider.dart';
 import 'package:bisne/src/Pages/Orders/Widgets/order_widget.dart';
-import 'package:bisne/src/Utils/Entities/facture.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Utils/texts.dart';
+import '../../core/Utils/Entities/facture.dart';
+import '../../core/Utils/interfaces.dart';
+import '../../core/Utils/texts.dart';
+import '../../core/widgets/secondary_app_bar.dart';
 
 class OrderPage extends StatelessWidget {
   const OrderPage({super.key});

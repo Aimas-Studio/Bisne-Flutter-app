@@ -1,10 +1,10 @@
 import 'package:bisne/src/Pages/Orders/facture_page.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Utils/texts.dart';
-import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Utils/Entities/facture.dart';
+import '../../../core/Utils/Entities/facture.dart';
+import '../../../core/Utils/interfaces.dart';
+import '../../../core/Utils/texts.dart';
+import '../../../core/widgets/circular_image.dart';
 import '../../User/Widgets/profiles_pages_button.dart';
 
 Widget shopOrderWidget(context, Facture facture) {

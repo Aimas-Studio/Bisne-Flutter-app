@@ -1,12 +1,13 @@
 import 'package:bisne/src/Pages/Shop/Providers/comment_provider.dart';
 import 'package:bisne/src/Pages/Shop/Widgets/commet_widget.dart';
 import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
-import 'package:bisne/src/Utils/Entities/comments_controller/coment_controller.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Utils/texts.dart';
-import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../widgets/circular_image.dart';
+import 'Entities/comments_controller/coment_controller.dart';
+import 'interfaces.dart';
+import 'texts.dart';
 
 Widget comments(
   BuildContext context,

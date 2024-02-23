@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../Utils/Entities/notification.dart';
-import '../../../Utils/Entities/shop.dart';
-import '../../../Utils/texts.dart';
-import '../../../Widgets/circular_image.dart';
+import '../../../core/Utils/Entities/notification.dart';
+import '../../../core/Utils/Entities/shop.dart';
+import '../../../core/Utils/texts.dart';
+import '../../../core/widgets/circular_image.dart';
 
 Widget notificationWidget(ShopDump shopDump, String body, String date) {
   return Container(

@@ -1,8 +1,10 @@
-import 'package:bisne/src/Utils/Entities/product.dart';
 import 'package:get/get.dart';
+
+import '../../core/Utils/Entities/product.dart';
 
 class CartController extends GetxController {
   CartController();
+
   final RxMap itemsToBuy = {}.obs;
 
   void addItem(ProductDump product, int quantity) {

@@ -1,6 +1,6 @@
-import 'package:bisne/src/Utils/Entities/facture.dart';
-import 'package:bisne/src/Utils/Entities/product.dart';
-import 'package:bisne/src/Utils/Entities/shop.dart';
+import '../../../core/Utils/Entities/facture.dart';
+import '../../../core/Utils/Entities/product.dart';
+import '../../../core/Utils/Entities/shop.dart';
 
 Future<Map<ProductDump, int>> getPurchases(Facture facture) async {
   Map<ProductDump, int> result = {

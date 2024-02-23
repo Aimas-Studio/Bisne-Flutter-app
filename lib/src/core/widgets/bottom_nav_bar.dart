@@ -1,9 +1,9 @@
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
-import 'package:bisne/src/Pages/Notifications/Widgets/notification_widget.dart';
 import 'package:bisne/src/Pages/User/Providers/user_providers.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../Utils/interfaces.dart';
 
 class BottomNavBar extends StatelessWidget {
   BottomNavBar({super.key});

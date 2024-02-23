@@ -1,7 +1,7 @@
-import 'package:bisne/src/Widgets/circular_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Utils/texts.dart';
+import '../../../core/Utils/texts.dart';
+import '../../../core/widgets/circular_image.dart';
 import 'profiles_pages_button.dart';
 
 class ProfileWidget extends StatelessWidget {

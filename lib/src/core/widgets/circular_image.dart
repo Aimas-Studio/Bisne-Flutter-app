@@ -1,5 +1,6 @@
-import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:flutter/material.dart';
+
+import '../Utils/interfaces.dart';
 
 Widget circularImage(ImageProvider image, double size,
     {ImageProvider placeholder = placeHolderImageApp}) {

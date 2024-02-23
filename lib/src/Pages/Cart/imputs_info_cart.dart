@@ -1,6 +1,7 @@
-import 'package:bisne/src/Utils/decorations.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/Utils/decorations.dart';
+import '../../core/Utils/interfaces.dart';
 
 Widget inputTextCartWidget(context, String labelText, IconData iconData,
     {TextEditingController? controller}) {

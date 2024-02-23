@@ -1,7 +1,7 @@
-import 'package:bisne/src/Utils/texts.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Utils/interfaces.dart';
+import '../../../core/Utils/interfaces.dart';
+import '../../../core/Utils/texts.dart';
 
 Widget profilesPageButton(String text, VoidCallback function) {
   return ElevatedButton(

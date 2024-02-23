@@ -1,4 +1,4 @@
-import 'package:bisne/src/Utils/Entities/shop.dart';
+import '../../../core/Utils/Entities/shop.dart';
 
 Shop getShopInfo() {
   return Shop(

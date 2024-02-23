@@ -1,13 +1,13 @@
 import 'package:bisne/src/Pages/Products/Widgets/product_widgets.dart';
 import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
-import 'package:bisne/src/Utils/Entities/product.dart';
-import 'package:bisne/src/Utils/decorations.dart';
-import 'package:bisne/src/Utils/texts.dart';
-import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../Utils/custom_icons.dart';
-import '../../Widgets/image_picker_widget.dart';
+import '../../core/Utils/Entities/product.dart';
+import '../../core/Utils/custom_icons.dart';
+import '../../core/Utils/decorations.dart';
+import '../../core/Utils/texts.dart';
+import '../../core/widgets/image_picker_widget.dart';
+import '../../core/widgets/secondary_app_bar.dart';
 import '../User/Widgets/profiles_pages_button.dart';
 
 class EditProductPage extends StatefulWidget {

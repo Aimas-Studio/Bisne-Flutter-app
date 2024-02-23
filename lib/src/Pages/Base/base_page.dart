@@ -4,13 +4,15 @@ import 'package:bisne/src/Pages/Home/home_page.dart';
 import 'package:bisne/src/Pages/Notifications/notifications_page.dart';
 import 'package:bisne/src/Pages/Search/search_page.dart';
 import 'package:bisne/src/Pages/User/user_info_page.dart';
-import 'package:bisne/src/Widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../core/widgets/bottom_nav_bar.dart';
 
 class BasePage extends StatelessWidget {
   final BasePageController _basePageController = Get.find<BasePageController>();
   List<Navigator> _navigators = [];
+
   BasePage({super.key}) {
     _navigators =
         List<Navigator>.generate(5, (index) => _buildNavigator(index));

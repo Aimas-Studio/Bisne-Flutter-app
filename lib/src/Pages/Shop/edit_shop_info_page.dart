@@ -1,12 +1,13 @@
 import 'package:bisne/src/Pages/Shop/Providers/shop_provider.dart';
 import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:bisne/src/Pages/User/Widgets/profiles_pages_button.dart';
-import 'package:bisne/src/Utils/custom_icons.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Utils/texts.dart';
-import 'package:bisne/src/Widgets/circular_image.dart';
-import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/Utils/custom_icons.dart';
+import '../../core/Utils/interfaces.dart';
+import '../../core/Utils/texts.dart';
+import '../../core/widgets/circular_image.dart';
+import '../../core/widgets/secondary_app_bar.dart';
 
 final _shop = getShopInfo();
 

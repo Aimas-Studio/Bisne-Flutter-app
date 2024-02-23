@@ -1,9 +1,9 @@
 import 'package:bisne/src/Pages/Cart/cart_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
+import '../utils/interfaces.dart';
 import 'return_button_widget.dart';
 
 AppBar secondaryAppBar(context, bool returnButton,

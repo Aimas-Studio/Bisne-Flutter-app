@@ -1,16 +1,17 @@
 import 'package:bisne/src/Pages/Orders/Providers/facture_provider.dart';
 import 'package:bisne/src/Pages/Orders/Widgets/facture_widget.dart';
 import 'package:bisne/src/Pages/Orders/Widgets/total_order_widget.dart';
-import 'package:bisne/src/Utils/Entities/facture.dart';
-import 'package:bisne/src/Utils/interfaces.dart';
-import 'package:bisne/src/Utils/texts.dart';
-import 'package:bisne/src/Widgets/secondary_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../Utils/Entities/product.dart';
+import '../../core/Utils/Entities/facture.dart';
+import '../../core/Utils/Entities/product.dart';
+import '../../core/Utils/interfaces.dart';
+import '../../core/Utils/texts.dart';
+import '../../core/widgets/secondary_app_bar.dart';
 
 class FacturesPage extends StatelessWidget {
   final Facture facture;
+
   const FacturesPage(this.facture, {super.key});
 
   @override
