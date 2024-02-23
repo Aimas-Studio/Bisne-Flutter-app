@@ -4,15 +4,12 @@ import 'package:bisne/src/Pages/Base/base_page.dart';
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
 import 'package:bisne/src/Pages/Search/search_page_controller.dart';
+import 'package:bisne/src/init_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'src/core/Utils/shared_persistent_data.dart';
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final appData = PersistentData();
-  await appData.loadData();
+  await initApp();
   runApp(MyApp());
 }
 

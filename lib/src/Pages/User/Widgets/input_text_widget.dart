@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../../core/Utils/custom_icons.dart';
 import '../../../core/Utils/decorations.dart';
@@ -85,3 +87,77 @@ const TextStyle _inputStyle = TextStyle(
   fontFamily: 'Neusa',
   color: fontAppColor,
 );
+
+class WhiteLabelInputText extends StatefulWidget {
+  final String formName;
+  final String? labelText;
+  final String? hintText;
+  final String? helperText;
+  final bool enabled;
+  final bool passwordFieldShowOrHide;
+  final IconData? prefixIcon;
+  final Function(FormControl formControl)? onChange;
+  final Color fillColor;
+  final Color cursorColor;
+
+  const WhiteLabelInputText({
+    super.key,
+    required this.formName,
+    this.hintText,
+    this.labelText,
+    this.passwordFieldShowOrHide = false,
+    this.onChange,
+    this.prefixIcon,
+    this.enabled = true,
+    this.fillColor = Colors.white,
+    this.cursorColor = bisneColorPrimary,
+    this.helperText,
+  });
+
+  @override
+  State<WhiteLabelInputText> createState() => _WhiteLabelInputTextState();
+}
+
+class _WhiteLabelInputTextState extends State<WhiteLabelInputText> {
+  late bool obscureText;
+
+  @override
+  void initState() {
+    obscureText = widget.passwordFieldShowOrHide;
+    super.initState();
+  }
+
+  @override
+  Widget build(context) {
+    return ReactiveTextField(
+      onChanged: widget.onChange,
+      formControlName: widget.formName,
+      cursorColor: widget.cursorColor,
+      decoration: InputDecoration(
+        enabled: widget.enabled,
+        icon: Icon(widget.prefixIcon, color: fontAppColor),
+        labelText: widget.labelText,
+        helperText: widget.helperText,
+        hintText: widget.hintText,
+        filled: true,
+        fillColor: widget.fillColor,
+        suffixIcon: widget.passwordFieldShowOrHide
+            ? GestureDetector(
+                dragStartBehavior: DragStartBehavior.start,
+                onTap: () {
+                  setState(() {
+                    obscureText = !obscureText;
+                  });
+                },
+                child: Icon(
+                  obscureText ? Icons.visibility : Icons.visibility_off,
+                  color: const Color.fromRGBO(103, 103, 103, 1),
+                ),
+              )
+            : null,
+        border: const UnderlineInputBorder(),
+      ),
+      obscureText: obscureText,
+    );
+  }
+}
