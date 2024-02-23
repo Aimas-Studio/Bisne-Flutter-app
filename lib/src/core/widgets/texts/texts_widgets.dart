@@ -140,7 +140,7 @@ class InputLightText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.normal,
         fontFamily: 'Neusa',
         fontSize: size,
         color: color,

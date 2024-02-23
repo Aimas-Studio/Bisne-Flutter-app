@@ -6,17 +6,17 @@ import 'package:image_picker/image_picker.dart';
 import '../../utils/colors.dart';
 
 class ImagePickerWidget extends StatefulWidget {
-  ImagePickerWidget({this.updateParentState, super.key, this.defaultImage});
-
-  ImageProvider? defaultImage;
-  File? image;
-  VoidCallback? updateParentState;
+  const ImagePickerWidget({this.onTap, super.key, this.defaultImage});
+  final ImageProvider? defaultImage;
+  final VoidCallback? onTap;
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
 }
 
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
+  File? image;
+
   @override
   Widget build(context) {
     return ElevatedButton(
@@ -38,7 +38,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
         ),
       ),
       onPressed: () => getImage(),
-      child: widget.image == null
+      child: image == null
           ? imageHolder()
           : ClipRRect(
               borderRadius: const BorderRadius.all(
@@ -50,7 +50,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                   alignment: Alignment.topLeft,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: FileImage(widget.image!),
+                      image: FileImage(image!),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -72,8 +72,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
     if (pickImage == null) return;
 
     setState(() {
-      widget.image = File(pickImage.path);
-      widget.updateParentState!();
+      image = File(pickImage.path);
     });
   }
 

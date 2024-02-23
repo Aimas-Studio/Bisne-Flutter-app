@@ -1,7 +1,7 @@
 import 'package:bisne/src/Pages/Shop/Providers/comment_provider.dart';
 import 'package:bisne/src/Pages/Shop/Widgets/commet_widget.dart';
 import 'package:bisne/src/core/widgets/images/circular_image.dart';
-import 'package:bisne/src/core/widgets/input_text_widget.dart';
+import 'package:bisne/src/core/widgets/inputs/custom_reactive_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -103,7 +103,7 @@ Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
               const SizedBox(
                 height: 30,
               ),
-              const WhiteLabelInputText(isComment: true),
+              const CustomReactiveTextField(formName: '', isComment: true),
             ]),
           ),
           actions: <Widget>[sendButton(context)],

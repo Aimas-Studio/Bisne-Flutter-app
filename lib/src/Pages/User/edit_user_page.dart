@@ -1,29 +1,20 @@
+import 'package:bisne/src/Pages/User/Providers/user_providers.dart';
+import 'package:bisne/src/Pages/User/controllers/edit_user_controller.dart';
+import 'package:bisne/src/core/Utils/decorations.dart';
+import 'package:bisne/src/core/widgets/inputs/white_input_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
+import '../../core/entities/user.dart';
 import '../../core/utils/colors.dart';
+import '../../core/widgets/buttons/custom_outline_button.dart';
 import '../../core/widgets/images/circular_image.dart';
-import '../../core/widgets/input_text_widget.dart';
 import '../../core/widgets/secondary_app_bar.dart';
 import '../../core/widgets/texts/texts_widgets.dart';
-import 'Providers/user_providers.dart';
-import 'Widgets/profiles_pages_button.dart';
 
-class EditUserPage extends StatefulWidget {
-  const EditUserPage({super.key});
-
-  @override
-  State<EditUserPage> createState() => _EditUserPageState();
-}
-
-class _EditUserPageState extends State<EditUserPage> {
-  late TextEditingController _usernameTextController;
-  final user = getUserInfo();
-
-  @override
-  void initState() {
-    super.initState();
-    _usernameTextController = TextEditingController(text: user.username);
-  }
+class EditUserPage extends StatelessWidget {
+  final User user;
+  const EditUserPage({super.key, required this.user});
 
   @override
   Widget build(context) {
@@ -32,40 +23,58 @@ class _EditUserPageState extends State<EditUserPage> {
         appBar: secondaryAppBar(context, true),
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                CircularImage(image: AssetImage(user.imageUrl), size: 70),
-                Container(
-                    margin: const EdgeInsets.only(bottom: 10, top: 15),
-                    child: profilesPageButton("ELEGIR FOTO", () => {})),
-                BoldAppText(text: user.username, size: 30),
-                Padding(
-                  padding: const EdgeInsets.only(top: 3),
-                  child: RegularAppText(text: user.email, size: 16),
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                whiteLabelInputTextWidget(context, "Editar Usuario",
-                    iconData: Icons.edit, controller: _usernameTextController),
-                const SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  constraints: const BoxConstraints(
-                    maxWidth: 300,
+          child: GetBuilder(
+            init: EditUserController(user: getUserInfo()),
+            builder: (controller) => SizedBox(
+              width: double.infinity,
+              child: Column(
+                children: [
+                  CircularImage(image: AssetImage(user.imageUrl), size: 70),
+                  Padding(
+                      padding: const EdgeInsets.only(bottom: 10, top: 15),
+                      child: OutlineAppButton(
+                        child: const LightAppText(text: "ELEGIR FOTO"),
+                        onPressed: () {},
+                      )),
+                  BoldAppText(text: user.username, size: 30),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 3),
+                    child: RegularAppText(text: user.email, size: 16),
                   ),
-                  margin: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  Container(
+                    decoration: whiteBoxDecoration,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    child: WhiteInputTextWidget(
+                      controller: controller.nameController,
+                      labelText: "EDITAR USUARIO",
+                      prefixIcon: Icons.edit,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      profilesPageButton("GUARDAR CAMBIOS", () => {}),
-                      profilesPageButton("DESCARTAR", () => {}),
+                      OutlineAppButton(
+                        onPressed: () {},
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: const LightAppText(text: "GUARDAR CAMBIOS"),
+                      ),
+                      const SizedBox(width: 10),
+                      OutlineAppButton(
+                        onPressed: () {},
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: const LightAppText(text: "DESCARTAR"),
+                      ),
                     ],
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
         ),

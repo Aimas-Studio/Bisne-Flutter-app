@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core/persistent data/shared_persistent_data.dart';
+import '../persistent data/shared_persistent_data.dart';
 
 Future<void> initApp() async {
   WidgetsFlutterBinding.ensureInitialized();

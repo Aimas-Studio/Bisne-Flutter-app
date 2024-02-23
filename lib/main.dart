@@ -4,7 +4,7 @@ import 'package:bisne/src/Pages/Base/base_page.dart';
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
 import 'package:bisne/src/Pages/Search/search_page_controller.dart';
-import 'package:bisne/src/init_app.dart';
+import 'package:bisne/src/core/init/init_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

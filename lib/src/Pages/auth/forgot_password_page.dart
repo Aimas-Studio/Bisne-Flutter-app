@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../core/utils/decorations.dart';
-import '../../core/widgets/input_text_widget.dart';
-import 'widgets/custom_button_arrow_icon.dart';
+import '../../core/widgets/buttons/custom_button_arrow_icon.dart';
+import '../../core/widgets/inputs/custom_reactive_text_field.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   ForgotPasswordPage({super.key});
@@ -49,7 +49,7 @@ class ForgotPasswordPage extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: 10),
-                        WhiteLabelInputText(
+                        CustomReactiveTextField(
                           formName: 'email',
                           prefixIcon: Icons.email_outlined,
                           labelText: 'E-MAIL',

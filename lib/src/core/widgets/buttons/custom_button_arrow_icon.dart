@@ -1,7 +1,7 @@
 import 'package:bisne/src/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets/texts/texts_widgets.dart';
+import '../texts/texts_widgets.dart';
 
 class CustomButtonArrowIcon extends StatelessWidget {
   final bool enabled;

@@ -1,13 +1,13 @@
-import 'package:bisne/src/Pages/auth/widgets/custom_button_arrow_icon.dart';
 import 'package:bisne/src/core/utils/colors.dart';
 import 'package:bisne/src/core/utils/custom_icons.dart';
 import 'package:bisne/src/core/utils/decorations.dart';
+import 'package:bisne/src/core/widgets/buttons/custom_button_arrow_icon.dart';
 import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../core/widgets/input_text_widget.dart';
+import '../../core/widgets/inputs/custom_reactive_text_field.dart';
 import 'controllers/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
                             child: Column(
                               children: [
                                 const SizedBox(height: 10),
-                                WhiteLabelInputText(
+                                CustomReactiveTextField(
                                   formName: 'email',
                                   prefixIcon: Icons.email_outlined,
                                   labelText: 'E-MAIL',
@@ -58,7 +58,7 @@ class LoginPage extends StatelessWidget {
                                   cursorColor: bisneColorPrimary,
                                 ),
                                 const SizedBox(height: 5),
-                                WhiteLabelInputText(
+                                CustomReactiveTextField(
                                   formName: 'password',
                                   prefixIcon: CustomIcons.password,
                                   labelText: 'CONTRASEÑA',

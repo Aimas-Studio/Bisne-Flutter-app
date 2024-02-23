@@ -2,58 +2,28 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../utils/colors.dart';
-import '../utils/custom_icons.dart';
-import '../utils/decorations.dart';
-import '../utils/validations.dart';
-import 'texts/texts_widgets.dart';
+import '../../utils/colors.dart';
+import '../../utils/custom_icons.dart';
+import '../../utils/decorations.dart';
+import '../../utils/validations.dart';
+import '../texts/texts_widgets.dart';
 
-Widget whiteLabelInputTextWidget(
-  context,
-  String labelText, {
-  String? hintText,
-  IconData? iconData,
-  TextEditingController? controller,
-  bool isComment = false,
-  Function(String s)? onChanged,
-}) {
-  return Container(
-    width: MediaQuery.of(context).size.width * 0.75,
-    decoration: whiteBoxDecoration,
-    padding: EdgeInsets.symmetric(horizontal: isComment ? 0 : 10),
-    child: TextField(
-      onChanged: onChanged ?? (s) {},
-      maxLines: null,
-      cursorColor: fontAppColor,
-      style: _inputStyle,
-      controller: controller,
-      decoration: InputDecoration(
-        label: InputLightText(text: labelText),
-        hintText: hintText ?? "",
-        icon: Icon(iconData, color: fontAppColor),
-        constraints: BoxConstraints(minHeight: isComment ? 200 : 0),
-        border: InputBorder.none,
-      ),
-    ),
-  );
-}
-
-Widget listWhiteLabelInput(
-    context, List<(String, IconData, TextEditingController)> content) {
-  List<Widget> textsInputs = [];
-  for (var element in content) {
-    textsInputs.add(whiteLabelInputTextWidget(context, element.$1,
-        iconData: element.$2, controller: element.$3));
-  }
-
-  return Container(
-    width: MediaQuery.of(context).size.width * 0.75,
-    decoration: whiteBoxDecoration,
-    child: Column(
-      children: textsInputs,
-    ),
-  );
-}
+// Widget listWhiteLabelInput(
+//     context, List<(String, IconData, TextEditingController)> content) {
+//   List<Widget> textsInputs = [];
+//   for (var element in content) {
+//     textsInputs.add(whiteLabelInputTextWidget(context, element.$1,
+//         iconData: element.$2, controller: element.$3));
+//   }
+//
+//   return Container(
+//     width: MediaQuery.of(context).size.width * 0.75,
+//     decoration: whiteBoxDecoration,
+//     child: Column(
+//       children: textsInputs,
+//     ),
+//   );
+// }
 
 Widget passwordInputText(
   context, {
@@ -87,8 +57,9 @@ const TextStyle _inputStyle = TextStyle(
   color: fontAppColor,
 );
 
-class WhiteLabelInputText extends StatefulWidget {
-  final String? formName;
+class CustomReactiveTextField extends StatefulWidget {
+  final TextEditingController? controller;
+  final String formName;
   final String? labelText;
   final String? hintText;
   final String? helperText;
@@ -100,9 +71,9 @@ class WhiteLabelInputText extends StatefulWidget {
   final Color fillColor;
   final Color cursorColor;
 
-  const WhiteLabelInputText({
+  const CustomReactiveTextField({
     super.key,
-    this.formName = '',
+    required this.formName,
     this.hintText,
     this.labelText,
     this.passwordFieldShowOrHide = false,
@@ -113,13 +84,15 @@ class WhiteLabelInputText extends StatefulWidget {
     this.cursorColor = bisneColorPrimary,
     this.helperText,
     this.isComment = false,
+    this.controller,
   });
 
   @override
-  State<WhiteLabelInputText> createState() => _WhiteLabelInputTextState();
+  State<CustomReactiveTextField> createState() =>
+      _CustomReactiveTextFieldState();
 }
 
-class _WhiteLabelInputTextState extends State<WhiteLabelInputText> {
+class _CustomReactiveTextFieldState extends State<CustomReactiveTextField> {
   late bool obscureText;
 
   @override
@@ -133,6 +106,7 @@ class _WhiteLabelInputTextState extends State<WhiteLabelInputText> {
     return ReactiveTextField(
       onChanged: widget.onChange,
       formControlName: widget.formName,
+      controller: widget.controller,
       cursorColor: widget.cursorColor,
       decoration: InputDecoration(
         enabled: widget.enabled,

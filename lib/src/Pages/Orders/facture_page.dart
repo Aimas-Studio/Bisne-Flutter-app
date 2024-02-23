@@ -27,7 +27,7 @@ class FacturesPage extends StatelessWidget {
         appBar: secondaryAppBar(context, true),
         bottomNavigationBar: totalOrderWidget(
             context, facture.date.toString(), facture.totalPrice.toString()),
-        body: Container(
+        body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +59,7 @@ Widget getFacturesWidget(context, Map<ProductDump, int> purchases) {
   List<Widget> factures = [];
   purchases.forEach((product, amount) {
     factures
-      ..add(factureWidget(product, amount))
+      ..add(FactureWidget(product: product, amount: amount))
       ..add(SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         height: 20,

@@ -1,13 +1,13 @@
 import 'package:bisne/src/Pages/auth/controllers/register_controller.dart';
-import 'package:bisne/src/Pages/auth/widgets/custom_button_arrow_icon.dart';
 import 'package:bisne/src/core/Utils/decorations.dart';
+import 'package:bisne/src/core/widgets/buttons/custom_button_arrow_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../core/utils/colors.dart';
+import '../../core/widgets/inputs/custom_reactive_text_field.dart';
 import '../../core/widgets/texts/texts_widgets.dart';
-import '../../core/widgets/input_text_widget.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
@@ -48,14 +48,14 @@ class RegisterPage extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 15),
                             child: Column(
                               children: [
-                                WhiteLabelInputText(
+                                CustomReactiveTextField(
                                   formName: 'email',
                                   prefixIcon: Icons.email_outlined,
                                   labelText: 'E-MAIL',
                                   cursorColor: bisneColorPrimary,
                                 ),
                                 SizedBox(height: 5),
-                                WhiteLabelInputText(
+                                CustomReactiveTextField(
                                   formName: 'password',
                                   prefixIcon: Icons.lock_outline,
                                   labelText: 'CONTRASEÑA',

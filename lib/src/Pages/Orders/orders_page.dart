@@ -48,7 +48,7 @@ Widget getOrdersWidget(context, List<Facture> factures) {
         height: 50,
         child: const Divider(),
       ))
-      ..add(ShopOrderWidget(element, isCheckBox: true));
+      ..add(ShopOrderWidget(facture: element, isCheckBox: true));
   }
   return Column(
     children: orders,

@@ -3,14 +3,14 @@ import 'package:bisne/src/Pages/Orders/facture_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/entities/facture.dart';
+import '../../../core/widgets/buttons/custom_outline_button.dart';
 import '../../../core/widgets/images/circular_image.dart';
 import '../../../core/widgets/texts/texts_widgets.dart';
-import '../../User/Widgets/profiles_pages_button.dart';
 
 class ShopOrderWidget extends StatelessWidget {
   final Facture facture;
   final bool? isCheckBox;
-  const ShopOrderWidget(this.facture, {this.isCheckBox, super.key});
+  const ShopOrderWidget({required this.facture, this.isCheckBox, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class ShopOrderWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         CircularImage(image: NetworkImage(facture.shop.imageUrl), size: 45),
-        Container(
+        const SizedBox(width: 20),
+        SizedBox(
           height: 90,
-          margin: const EdgeInsets.only(left: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,19 +29,20 @@ class ShopOrderWidget extends StatelessWidget {
               ThinAppText(text: facture.date.toString(), size: 13),
               RegularAppText(text: "${facture.totalPrice} cup", size: 15),
               Expanded(
-                child: Container(
+                child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: profilesPageButton(
-                      "Ver Pedido",
-                      () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => FacturesPage(facture)))),
+                  child: OutlineAppButton(
+                      child: const LightAppText(text: "Ver Pedido"),
+                      onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => FacturesPage(facture)))),
                 ),
               ),
             ],
           ),
         ),
         Expanded(
-          child: Container(
+          child: Align(
             alignment: Alignment.bottomRight,
             child: isCheckBox != null
                 ? CheckWidget(isChecked: isCheckBox ?? isCheckBox!)

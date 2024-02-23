@@ -1,38 +1,46 @@
 //Flutter Imports
+import 'package:bisne/src/core/Utils/decorations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/entities/content_panel.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/widgets/texts/texts_widgets.dart';
 
-Widget userServicesList(List<ContentPanel> content, context) {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-    //add box shadow for elevation effect
-    decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(12))),
-    child: Column(
-      children: getServices(content, context),
-    ),
-  );
+class WhiteOptionButtonList extends StatelessWidget {
+  final List<ContentPanel> content;
+  const WhiteOptionButtonList({super.key, required this.content});
+
+  @override
+  Widget build(context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      padding: EdgeInsets.zero,
+      decoration: whiteBoxDecoration,
+      child: SizedBox(
+        child: Column(
+          children: getServices(content, context),
+        ),
+      ),
+    );
+  }
 }
 
 List<Widget> getServices(List<ContentPanel> content, context) {
-  List<Widget> serviceList = [
-    const SizedBox(
-      height: 10,
-    ),
-  ];
+  List<Widget> serviceList = [];
   for (var element in content) {
     serviceList
       ..add(
-        ElevatedButton(
+        TextButton(
           style: const ButtonStyle(
-            elevation: MaterialStatePropertyAll(0),
+            shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            padding: MaterialStatePropertyAll(
+                EdgeInsets.symmetric(vertical: 20, horizontal: 15)),
             backgroundColor: MaterialStatePropertyAll(Colors.white),
-            padding:
-                MaterialStatePropertyAll(EdgeInsets.only(left: 15, right: 10)),
           ),
           onPressed: () => element.function(context),
           child: Row(
@@ -61,11 +69,11 @@ List<Widget> getServices(List<ContentPanel> content, context) {
         ),
       )
       ..add(const Divider(
+        height: 5,
         endIndent: 15,
         indent: 38,
       ));
   }
   serviceList.removeLast();
-  serviceList.add(const SizedBox(height: 8));
   return serviceList;
 }
