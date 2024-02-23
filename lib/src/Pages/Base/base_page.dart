@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/widgets/bottom_nav_bar.dart';
+import '../User/Providers/user_providers.dart';
 
 class BasePage extends StatelessWidget {
   final BasePageController _basePageController = Get.find<BasePageController>();
@@ -52,7 +53,7 @@ class BasePage extends StatelessWidget {
             case 3:
               return const FavoritePage();
             case 4:
-              return UserInfoPage();
+              return UserInfoPage(user: getUserInfo());
             default:
               return const HomePage();
           }

@@ -3,16 +3,16 @@ import 'package:bisne/src/Pages/User/edit_user_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/Utils/Entities/content_panel.dart';
+import '../../core/Utils/Entities/user.dart';
 import '../../core/Utils/custom_icons.dart';
-import '../../core/Utils/interfaces.dart';
-import 'Providers/user_providers.dart';
+import '../../core/utils/interfaces.dart';
 import 'Widgets/profile_widget.dart';
 import 'Widgets/user_page_widgets.dart';
 
 class UserInfoPage extends StatelessWidget {
-  final user = getUserInfo();
+  final User user;
 
-  UserInfoPage({super.key});
+  const UserInfoPage({super.key, required this.user});
 
   @override
   Widget build(context) {
