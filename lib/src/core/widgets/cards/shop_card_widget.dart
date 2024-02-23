@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Pages/Shop/shop_page.dart';
+import '../../../Pages/Shop/shop_page.dart';
 
 class ShopCard extends Card {
   String name;

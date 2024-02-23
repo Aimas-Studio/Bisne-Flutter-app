@@ -1,13 +1,13 @@
-import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:bisne/src/Pages/auth/widgets/custom_button_arrow_icon.dart';
+import 'package:bisne/src/core/utils/colors.dart';
 import 'package:bisne/src/core/utils/custom_icons.dart';
 import 'package:bisne/src/core/utils/decorations.dart';
-import 'package:bisne/src/core/utils/interfaces.dart';
-import 'package:bisne/src/core/utils/texts.dart';
+import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../core/widgets/input_text_widget.dart';
 import 'controllers/login_controller.dart';
 
 class LoginPage extends StatelessWidget {

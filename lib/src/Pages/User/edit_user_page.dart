@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../core/Utils/interfaces.dart';
-import '../../core/Utils/texts.dart';
-import '../../core/widgets/circular_image.dart';
+import '../../core/utils/colors.dart';
+import '../../core/widgets/images/circular_image.dart';
+import '../../core/widgets/input_text_widget.dart';
 import '../../core/widgets/secondary_app_bar.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
 import 'Providers/user_providers.dart';
-import 'Widgets/input_text_widget.dart';
 import 'Widgets/profiles_pages_button.dart';
 
 class EditUserPage extends StatefulWidget {
@@ -35,14 +35,14 @@ class _EditUserPageState extends State<EditUserPage> {
           child: Center(
             child: Column(
               children: [
-                circularImage(AssetImage(user.imageUrl), 70),
+                CircularImage(image: AssetImage(user.imageUrl), size: 70),
                 Container(
                     margin: const EdgeInsets.only(bottom: 10, top: 15),
                     child: profilesPageButton("ELEGIR FOTO", () => {})),
-                boldAppText(user.username, 30),
+                BoldAppText(text: user.username, size: 30),
                 Padding(
                   padding: const EdgeInsets.only(top: 3),
-                  child: regularAppText(user.email, 16),
+                  child: RegularAppText(text: user.email, size: 16),
                 ),
                 const SizedBox(
                   height: 18,

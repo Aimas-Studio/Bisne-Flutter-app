@@ -2,11 +2,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../../core/Utils/custom_icons.dart';
-import '../../../core/Utils/decorations.dart';
-import '../../../core/Utils/interfaces.dart';
-import '../../../core/Utils/texts.dart';
-import '../../../core/Utils/validations.dart';
+import '../utils/colors.dart';
+import '../utils/custom_icons.dart';
+import '../utils/decorations.dart';
+import '../utils/validations.dart';
+import 'texts/texts_widgets.dart';
 
 Widget whiteLabelInputTextWidget(
   context,
@@ -28,7 +28,7 @@ Widget whiteLabelInputTextWidget(
       style: _inputStyle,
       controller: controller,
       decoration: InputDecoration(
-        label: inputText(labelText),
+        label: InputLightText(text: labelText),
         hintText: hintText ?? "",
         icon: Icon(iconData, color: fontAppColor),
         constraints: BoxConstraints(minHeight: isComment ? 200 : 0),
@@ -73,8 +73,7 @@ Widget passwordInputText(
       decoration: InputDecoration(
         icon: const Icon(CustomIcons.password, color: fontAppColor),
         border: InputBorder.none,
-        label:
-            inputText("CONTRASEÑA", color: error == null ? null : Colors.red),
+        label: const InputLightText(text: "CONTRASEÑA"),
         errorText: error,
       ),
     ),
@@ -89,10 +88,11 @@ const TextStyle _inputStyle = TextStyle(
 );
 
 class WhiteLabelInputText extends StatefulWidget {
-  final String formName;
+  final String? formName;
   final String? labelText;
   final String? hintText;
   final String? helperText;
+  final bool isComment;
   final bool enabled;
   final bool passwordFieldShowOrHide;
   final IconData? prefixIcon;
@@ -102,7 +102,7 @@ class WhiteLabelInputText extends StatefulWidget {
 
   const WhiteLabelInputText({
     super.key,
-    required this.formName,
+    this.formName = '',
     this.hintText,
     this.labelText,
     this.passwordFieldShowOrHide = false,
@@ -112,6 +112,7 @@ class WhiteLabelInputText extends StatefulWidget {
     this.fillColor = Colors.white,
     this.cursorColor = bisneColorPrimary,
     this.helperText,
+    this.isComment = false,
   });
 
   @override
@@ -136,7 +137,7 @@ class _WhiteLabelInputTextState extends State<WhiteLabelInputText> {
       decoration: InputDecoration(
         enabled: widget.enabled,
         icon: Icon(widget.prefixIcon, color: fontAppColor),
-        labelText: widget.labelText,
+        label: InputLightText(text: widget.labelText ?? ''),
         helperText: widget.helperText,
         hintText: widget.hintText,
         filled: true,
@@ -156,6 +157,7 @@ class _WhiteLabelInputTextState extends State<WhiteLabelInputText> {
               )
             : null,
         border: const UnderlineInputBorder(),
+        constraints: BoxConstraints(minHeight: widget.isComment ? 200 : 0),
       ),
       obscureText: obscureText,
     );

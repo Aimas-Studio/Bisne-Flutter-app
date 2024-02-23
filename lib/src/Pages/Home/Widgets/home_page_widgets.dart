@@ -3,7 +3,7 @@ import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../core/widgets/card_tables.dart';
+import '../../../core/widgets/cards/card_tables.dart';
 import '../../../core/widgets/search_input_widget.dart';
 
 AppBar appbarHomePage() {

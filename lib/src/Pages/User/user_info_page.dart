@@ -2,10 +2,10 @@ import 'package:bisne/src/Pages/Orders/orders_page.dart';
 import 'package:bisne/src/Pages/User/edit_user_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/Utils/Entities/content_panel.dart';
-import '../../core/Utils/Entities/user.dart';
 import '../../core/Utils/custom_icons.dart';
-import '../../core/utils/interfaces.dart';
+import '../../core/entities/content_panel.dart';
+import '../../core/entities/user.dart';
+import '../../core/utils/colors.dart';
 import 'Widgets/profile_widget.dart';
 import 'Widgets/user_page_widgets.dart';
 

@@ -5,7 +5,7 @@ import 'package:bisne/src/Pages/Notifications/notifications_page.dart';
 import 'package:bisne/src/Pages/Search/search_page.dart';
 import 'package:bisne/src/Pages/User/user_info_page.dart';
 import 'package:bisne/src/Pages/auth/login_page.dart';
-import 'package:bisne/src/core/utils/shared_persistent_data.dart';
+import 'package:bisne/src/core/persistent%20data/shared_persistent_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/Utils/Entities/comment.dart';
-import '../../../core/Utils/Entities/user.dart';
-import '../../../core/Utils/texts.dart';
-import '../../../core/widgets/circular_image.dart';
+import '../../../core/entities/comment.dart';
+import '../../../core/entities/user.dart';
+import '../../../core/widgets/images/circular_image.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 
 Widget commentWidget(UserDump userDump, String body, String date) {
   return Container(
@@ -11,10 +11,7 @@ Widget commentWidget(UserDump userDump, String body, String date) {
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        circularImage(
-          NetworkImage(userDump.imageUrl),
-          28,
-        ),
+        CircularImage(image: NetworkImage(userDump.imageUrl), size: 28),
         const SizedBox(
           width: 20,
         ),
@@ -22,12 +19,12 @@ Widget commentWidget(UserDump userDump, String body, String date) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              regularAppText(userDump.userName, 15),
-              thinAppText(body, 13),
+              RegularAppText(text: userDump.userName, size: 15),
+              ThinAppText(text: body, size: 13),
             ],
           ),
         ),
-        thinAppText(date, 14),
+        ThinAppText(text: date, size: 14),
       ],
     ),
   );

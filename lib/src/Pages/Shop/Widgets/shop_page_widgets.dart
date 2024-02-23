@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../core/Utils/comments.dart';
-import '../../../core/Utils/interfaces.dart';
-import '../../../core/Utils/texts.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/comment_widgets.dart';
 import '../../../core/widgets/banner_promotional_widget.dart';
-import '../../../core/widgets/card_tables.dart';
+import '../../../core/widgets/cards/card_tables.dart';
 import '../../../core/widgets/search_input_widget.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 
 Column iconView(int viewsCount) {
   return Column(
@@ -104,13 +104,13 @@ Column info(_, BuildContext context, isInfoPage) {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            thinAppText(
-              _.categories[0],
-              23,
+            ThinAppText(
+              text: _.categories[0],
+              size: 23,
             ),
-            boldAppText(
-              _.name,
-              context.width > 400 ? 47 : 38,
+            BoldAppText(
+              text: _.name,
+              size: context.width > 400 ? 47 : 38,
             )
           ],
         ),
@@ -142,15 +142,16 @@ Column info(_, BuildContext context, isInfoPage) {
         const SizedBox(
           width: 10,
         ),
-        thinAppText(
-            'Esta tienda${_.mensajeria ? '' : ' no'} dispone de mensajería',
-            context.width > 400 ? 20 : 13)
+        ThinAppText(
+            text:
+                'Esta tienda${_.mensajeria ? '' : ' no'} dispone de mensajería',
+            size: context.width > 400 ? 20 : 13)
       ],
     ),
     const SizedBox(
       height: 20,
     ),
-    thinAppText(_.descripcion, 21, maxLines: 5),
+    ThinAppText(text: _.descripcion, size: 21, maxLines: 5),
     const SizedBox(
       height: 15,
     ),
@@ -177,10 +178,10 @@ Widget link(_) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      regularAppText('Enlace a grupo', 26),
+      const RegularAppText(text: 'Enlace a grupo', size: 26),
       const SizedBox(height: 10),
       GestureDetector(
-        child: regularAppText(_.contact['link'], 20),
+        child: RegularAppText(text: _.contact['link'], size: 20),
         onTap: () async {
           Uri url = Uri.parse(_.contact['link']);
           if (await canLaunchUrl(url)) {
@@ -198,7 +199,7 @@ Widget contact(ShopPageController _) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      regularAppText('Contacto', 26),
+      const RegularAppText(text: 'Contacto', size: 26),
       const SizedBox(height: 10),
       Row(
         children: [
@@ -224,7 +225,7 @@ Row networkContact(Icon icon, String contact) {
     children: [
       icon,
       const SizedBox(width: 10),
-      thinAppText(contact, 20),
+      ThinAppText(text: contact, size: 20),
     ],
   );
 }
@@ -233,7 +234,7 @@ Widget address(BuildContext context, ShopPageController _) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      regularAppText('Dirección', 26),
+      const RegularAppText(text: 'Dirección', size: 26),
       const SizedBox(
         height: 10,
       ),
@@ -243,7 +244,7 @@ Widget address(BuildContext context, ShopPageController _) {
           const SizedBox(
             width: 10,
           ),
-          thinAppText(_.localitation, context.width > 400 ? 20 : 15)
+          ThinAppText(text: _.localitation, size: context.width > 400 ? 20 : 15)
         ],
       ),
       const SizedBox(
@@ -253,7 +254,8 @@ Widget address(BuildContext context, ShopPageController _) {
         height: 250,
         decoration:
             BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-        child: Center(child: regularAppText('Ubicación de Google Maps', 19)),
+        child: const Center(
+            child: RegularAppText(text: 'Ubicación de Google Maps', size: 19)),
       )
     ],
   );
@@ -263,7 +265,7 @@ Widget openingHours(BuildContext context, ShopPageController _) {
   List<Widget> hours = [];
   hours
     ..add(
-      regularAppText('Horario', 26),
+      const RegularAppText(text: 'Horario', size: 26),
     )
     ..add(
       const SizedBox(
@@ -279,7 +281,7 @@ Widget openingHours(BuildContext context, ShopPageController _) {
             const SizedBox(
               width: 10,
             ),
-            thinAppText(seccion, context.width > 400 ? 20 : 16)
+            ThinAppText(text: seccion, size: context.width > 400 ? 20 : 16)
           ],
         ),
       )
@@ -309,7 +311,8 @@ TextButton showMoreInfo(context) {
         ),
       );
     },
-    child: regularAppText('Ver más información ...', 16, color: Colors.black),
+    child: const RegularAppText(
+        text: 'Ver más información ...', size: 16, color: Colors.black),
   );
 }
 

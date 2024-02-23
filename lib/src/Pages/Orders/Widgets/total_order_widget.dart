@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/Utils/interfaces.dart';
-import '../../../core/Utils/texts.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 import '../../User/Providers/user_providers.dart';
 
 Widget totalOrderWidget(context, String date, String totalPrice) {
@@ -26,15 +26,15 @@ Widget totalOrderWidget(context, String date, String totalPrice) {
                   color: fontAppColor.withOpacity(0.5),
                 ),
               ),
-              boldAppText(totalPrice, 28),
+              BoldAppText(text: totalPrice, size: 28),
             ],
           ),
           IntrinsicHeight(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                regularAppText(getUserInfo().username, 13),
-                regularAppText(date, 12),
+                RegularAppText(text: getUserInfo().username, size: 13),
+                RegularAppText(text: date, size: 12),
               ],
             ),
           )

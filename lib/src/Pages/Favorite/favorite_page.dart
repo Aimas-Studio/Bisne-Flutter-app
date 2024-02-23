@@ -1,8 +1,8 @@
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/Utils/interfaces.dart';
-import '../../core/widgets/card_tables.dart';
+import '../../core/Utils/colors.dart';
+import '../../core/widgets/cards/card_tables.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});

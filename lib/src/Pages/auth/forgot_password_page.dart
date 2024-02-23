@@ -1,11 +1,11 @@
-import 'package:bisne/src/core/Utils/interfaces.dart';
-import 'package:bisne/src/core/utils/texts.dart';
+import 'package:bisne/src/core/Utils/colors.dart';
+import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../core/utils/decorations.dart';
-import '../User/Widgets/input_text_widget.dart';
+import '../../core/widgets/input_text_widget.dart';
 import 'widgets/custom_button_arrow_icon.dart';
 
 class ForgotPasswordPage extends StatelessWidget {

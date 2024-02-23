@@ -2,15 +2,15 @@ import 'package:bisne/src/Pages/Orders/Widgets/CheckWidget.dart';
 import 'package:bisne/src/Pages/Orders/facture_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/Entities/facture.dart';
-import '../../../core/utils/texts.dart';
-import '../../../core/widgets/circular_image.dart';
+import '../../../core/entities/facture.dart';
+import '../../../core/widgets/images/circular_image.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 import '../../User/Widgets/profiles_pages_button.dart';
 
 class ShopOrderWidget extends StatelessWidget {
-  ShopOrderWidget(this.facture, {this.isCheckBox, super.key});
-  Facture facture;
-  bool? isCheckBox;
+  final Facture facture;
+  final bool? isCheckBox;
+  const ShopOrderWidget(this.facture, {this.isCheckBox, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +18,16 @@ class ShopOrderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        circularImage(NetworkImage(facture.shop.imageUrl), 45),
+        CircularImage(image: NetworkImage(facture.shop.imageUrl), size: 45),
         Container(
           height: 90,
           margin: const EdgeInsets.only(left: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              regularAppText(facture.shop.shopName, 16),
-              thinAppText(facture.date.toString(), 13),
-              regularAppText("${facture.totalPrice} cup", 15),
+              RegularAppText(text: facture.shop.shopName, size: 16),
+              ThinAppText(text: facture.date.toString(), size: 13),
+              RegularAppText(text: "${facture.totalPrice} cup", size: 15),
               Expanded(
                 child: Container(
                   alignment: Alignment.bottomCenter,

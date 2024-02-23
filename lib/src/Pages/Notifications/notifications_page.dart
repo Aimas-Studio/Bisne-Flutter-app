@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/Utils/interfaces.dart';
-import '../../core/Utils/texts.dart';
+import '../../core/utils/colors.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
 import 'Providers/notifications_provider.dart';
 import 'Widgets/notification_widget.dart';
 
@@ -14,7 +14,8 @@ class NotificationPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: backgroundAppColor,
-          title: Center(child: boldAppText('Notificaciones', 25)),
+          title: const Center(
+              child: BoldAppText(text: 'Notificaciones', size: 25)),
         ),
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(

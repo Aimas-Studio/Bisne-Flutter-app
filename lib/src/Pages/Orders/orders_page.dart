@@ -1,10 +1,11 @@
 import 'package:bisne/src/Pages/Orders/Providers/order_provider.dart';
 import 'package:bisne/src/Pages/Orders/Widgets/order_widget.dart';
-import 'package:bisne/src/core/utils/Entities/facture.dart';
-import 'package:bisne/src/core/utils/interfaces.dart';
-import 'package:bisne/src/core/utils/texts.dart';
+import 'package:bisne/src/core/utils/colors.dart';
 import 'package:bisne/src/core/widgets/secondary_app_bar.dart';
+import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/entities/facture.dart';
 
 class OrderPage extends StatelessWidget {
   const OrderPage({super.key});
@@ -20,7 +21,7 @@ class OrderPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              boldAppText("Pedidos Realizados", 27),
+              const BoldAppText(text: "Pedidos Realizados", size: 27),
               FutureBuilder(
                 future: getShopOrdersInfo(),
                 // initialData: loadingPageWidget(),

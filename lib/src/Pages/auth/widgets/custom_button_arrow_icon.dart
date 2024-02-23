@@ -1,7 +1,7 @@
-import 'package:bisne/src/core/utils/interfaces.dart';
+import 'package:bisne/src/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/texts.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 
 class CustomButtonArrowIcon extends StatelessWidget {
   final bool enabled;
@@ -49,13 +49,13 @@ final defaultButtonChild = Padding(
         child: Align(
           alignment: Alignment.center,
           child:
-          RegularAppText(text: "INGRESAR", color: Colors.white, size: 20),
+              RegularAppText(text: "INGRESAR", color: Colors.white, size: 20),
         ),
       ),
       Container(
         padding: const EdgeInsets.all(5),
         decoration:
-        const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+            const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
         child: const Icon(Icons.arrow_forward_ios, color: fontAppColor),
       ),
     ],

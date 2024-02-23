@@ -2,7 +2,7 @@ import 'package:bisne/src/Pages/Products/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/Utils/texts.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 
 class ProductCard extends Card {
   final String name;
@@ -53,13 +53,16 @@ class ProductCard extends Card {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      regularAppText(name, context.width > 400 ? 18 : 16,
+                      RegularAppText(
+                          text: name,
+                          size: context.width > 400 ? 18 : 16,
                           maxLines: 2),
                       Row(
                         children: [
-                          boldAppText(price.toStringAsPrecision(5), 18),
+                          BoldAppText(
+                              text: price.toStringAsPrecision(5), size: 18),
                           const SizedBox(width: 10),
-                          thinAppText('mm', 18)
+                          const ThinAppText(text: 'mm', size: 18)
                         ],
                       )
                     ]),

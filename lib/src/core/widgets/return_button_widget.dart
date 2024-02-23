@@ -2,8 +2,8 @@ import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../utils/interfaces.dart';
-import '../utils/texts.dart';
+import '../utils/colors.dart';
+import 'texts/texts_widgets.dart';
 
 Widget returnButtonWidget(context) {
   return ElevatedButton(
@@ -15,16 +15,16 @@ Widget returnButtonWidget(context) {
         backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
         elevation: MaterialStatePropertyAll(0),
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Icon(
+          Icon(
             Icons.arrow_back_ios,
             size: 24,
             color: fontAppColor,
           ),
-          regularAppText("Regresar", 18),
+          RegularAppText(text: "Regresar", size: 18),
         ],
       ));
 }

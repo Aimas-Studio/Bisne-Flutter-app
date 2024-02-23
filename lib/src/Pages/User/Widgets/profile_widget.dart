@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/Utils/texts.dart';
-import '../../../core/widgets/circular_image.dart';
+import '../../../core/widgets/images/circular_image.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 import 'profiles_pages_button.dart';
 
 class ProfileWidget extends StatelessWidget {
@@ -25,7 +25,7 @@ class ProfileWidget extends StatelessWidget {
               left: MediaQuery.of(context).size.width * 0.1,
               right: 10,
               top: 10),
-          child: circularImage(image, 55),
+          child: CircularImage(image: image, size: 55),
         ),
         _userInformation(context),
       ],
@@ -40,9 +40,9 @@ class ProfileWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(top: 10, bottom: 0),
           margin: EdgeInsets.zero,
-          child: boldAppText(_mainInfo, 30),
+          child: BoldAppText(text: _mainInfo, size: 30),
         ),
-        regularAppText(_secondaryInfo, 16),
+        RegularAppText(text: _secondaryInfo, size: 16),
         const SizedBox(
           height: 11,
         ),

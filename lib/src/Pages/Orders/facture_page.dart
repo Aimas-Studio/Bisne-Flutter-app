@@ -5,11 +5,11 @@ import 'package:bisne/src/Pages/Orders/Widgets/total_order_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/utils/Entities/facture.dart';
-import '../../core/utils/Entities/product.dart';
-import '../../core/utils/interfaces.dart';
-import '../../core/utils/texts.dart';
+import '../../core/entities/facture.dart';
+import '../../core/entities/product.dart';
+import '../../core/utils/colors.dart';
 import '../../core/widgets/secondary_app_bar.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
 
 class FacturesPage extends StatelessWidget {
   final Facture facture;
@@ -35,7 +35,7 @@ class FacturesPage extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              boldAppText("Pedidos Realizados", 27),
+              const BoldAppText(text: "Pedidos Realizados", size: 27),
               const SizedBox(
                 height: 20,
               ),
@@ -44,7 +44,7 @@ class FacturesPage extends StatelessWidget {
                   builder: (context, AsyncSnapshot snapshot) {
                     return snapshot.hasData
                         ? getFacturesWidget(context, snapshot.data)
-                        : Container();
+                        : const SizedBox();
                     //TODO change the container and put a placeholder
                   }),
             ],

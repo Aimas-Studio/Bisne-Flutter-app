@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/Utils/colors.dart';
 import '../../core/Utils/decorations.dart';
-import '../../core/Utils/interfaces.dart';
 
 Widget inputTextCartWidget(context, String labelText, IconData iconData,
     {TextEditingController? controller}) {

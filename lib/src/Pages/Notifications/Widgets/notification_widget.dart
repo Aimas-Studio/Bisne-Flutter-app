@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/Utils/Entities/notification.dart';
-import '../../../core/Utils/Entities/shop.dart';
-import '../../../core/Utils/texts.dart';
-import '../../../core/widgets/circular_image.dart';
+import '../../../core/entities/notification.dart';
+import '../../../core/entities/shop.dart';
+import '../../../core/widgets/images/circular_image.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 
 Widget notificationWidget(ShopDump shopDump, String body, String date) {
   return Container(
@@ -11,10 +11,7 @@ Widget notificationWidget(ShopDump shopDump, String body, String date) {
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        circularImage(
-          NetworkImage(shopDump.imageUrl),
-          28,
-        ),
+        CircularImage(image: NetworkImage(shopDump.imageUrl), size: 28),
         const SizedBox(
           width: 20,
         ),
@@ -22,12 +19,12 @@ Widget notificationWidget(ShopDump shopDump, String body, String date) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              regularAppText(shopDump.shopName, 15),
-              lightAppText(body, 13),
+              RegularAppText(text: shopDump.shopName, size: 15),
+              LightAppText(text: body, size: 13),
             ],
           ),
         ),
-        lightAppText(date, 14),
+        LightAppText(text: date, size: 14),
       ],
     ),
   );

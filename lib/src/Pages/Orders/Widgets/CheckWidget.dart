@@ -1,4 +1,4 @@
-import 'package:bisne/src/core/utils/interfaces.dart';
+import 'package:bisne/src/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CheckWidget extends StatefulWidget {

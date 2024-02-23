@@ -1,9 +1,9 @@
 //Flutter Imports
 import 'package:flutter/material.dart';
 
-import '../../../core/Utils/Entities/content_panel.dart';
-import '../../../core/Utils/interfaces.dart';
-import '../../../core/Utils/texts.dart';
+import '../../../core/entities/content_panel.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 
 Widget userServicesList(List<ContentPanel> content, context) {
   return Container(
@@ -41,7 +41,7 @@ List<Widget> getServices(List<ContentPanel> content, context) {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15),
-                  child: regularAppText(element.title, 13),
+                  child: RegularAppText(text: element.title, size: 13),
                 ),
               ),
               Container(

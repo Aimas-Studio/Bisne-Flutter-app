@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../utils/interfaces.dart';
+import '../../utils/colors.dart';
 
 class ImagePickerWidget extends StatefulWidget {
   ImagePickerWidget({this.updateParentState, super.key, this.defaultImage});

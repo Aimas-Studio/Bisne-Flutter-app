@@ -1,13 +1,13 @@
 import 'package:bisne/src/Pages/User/Widgets/profiles_pages_button.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/Utils/decorations.dart';
-import '../../core/Utils/interfaces.dart';
-import '../../core/Utils/texts.dart';
-import '../../core/widgets/image_picker_widget.dart';
+import '../../core/utils/colors.dart';
+import '../../core/utils/decorations.dart';
+import '../../core/widgets/images/image_picker_widget.dart';
+import '../../core/widgets/input_text_widget.dart';
 import '../../core/widgets/secondary_app_bar.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
 import '../Shop/Providers/shop_provider.dart';
-import '../User/Widgets/input_text_widget.dart';
 import 'Widgets/product_widgets.dart';
 
 class NewProductPageTest extends StatefulWidget {
@@ -49,7 +49,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               secondaryAppBar(context, true),
-              boldAppText("Nuevo Producto", 26),
+              const BoldAppText(text: "Nuevo Producto", size: 26),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 15),
                 child: whiteLabelInputTextWidget(
@@ -96,11 +96,12 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                           margin: const EdgeInsets.only(left: 25, right: 10),
                           child: const Icon(Icons.add_photo_alternate_outlined),
                         ),
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            inputText("IMÁGENES"),
-                            regularAppText("Selecciona hasta 5 imágenes", 13),
+                            InputLightText(text: "IMÁGENES"),
+                            RegularAppText(
+                                text: "Selecciona hasta 5 imágenes", size: 13),
                           ],
                         ),
                       ],
@@ -138,7 +139,7 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                   ],
                 ),
               ),
-              boldAppText("Previsualización", 28),
+              const BoldAppText(text: "Previsualización", size: 28),
               Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
@@ -152,25 +153,26 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        regularAppText(getShopInfo().shopName, 19),
+                        RegularAppText(text: getShopInfo().shopName, size: 19),
                         Container(
                           margin: const EdgeInsets.only(top: 10, bottom: 20),
-                          child: boldAppText(
-                              widget._nameController.value.text, 25),
+                          child: BoldAppText(
+                              text: widget._nameController.value.text,
+                              size: 25),
                         ),
-                        lightAppText(
-                          widget._descriptionController.value.text,
-                          15,
+                        LightAppText(
+                          text: widget._descriptionController.value.text,
+                          size: 15,
                         ),
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            boldAppText(
-                                widget._priceController.value.text == ""
+                            BoldAppText(
+                                text: widget._priceController.value.text == ""
                                     ? "\$\$"
                                     : widget._priceController.value.text,
-                                20),
-                            regularAppText("mn", 18),
+                                size: 20),
+                            const RegularAppText(text: "mn", size: 18),
                           ],
                         ),
                       ],
@@ -180,12 +182,12 @@ class _NewProductPageTestState extends State<NewProductPageTest> {
                 ),
               ),
               const SizedBox(height: 40),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
-                child: lightAppText(
-                  "Nota : Debe ingresar su contraseña para guardar las modificaciones",
-                  14,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+                child: LightAppText(
+                  text:
+                      "Nota : Debe ingresar su contraseña para guardar las modificaciones",
+                  size: 14,
                 ),
               ),
               passwordInputText(

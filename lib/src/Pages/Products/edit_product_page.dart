@@ -1,13 +1,13 @@
 import 'package:bisne/src/Pages/Products/Widgets/product_widgets.dart';
-import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/Utils/Entities/product.dart';
-import '../../core/Utils/custom_icons.dart';
-import '../../core/Utils/decorations.dart';
-import '../../core/Utils/texts.dart';
-import '../../core/widgets/image_picker_widget.dart';
+import '../../core/entities/product.dart';
+import '../../core/utils/custom_icons.dart';
+import '../../core/utils/decorations.dart';
+import '../../core/widgets/images/image_picker_widget.dart';
+import '../../core/widgets/input_text_widget.dart';
 import '../../core/widgets/secondary_app_bar.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
 import '../User/Widgets/profiles_pages_button.dart';
 
 class EditProductPage extends StatefulWidget {
@@ -76,9 +76,9 @@ class _EditProductPageState extends State<EditProductPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: boldAppText("Editar Producto", 26),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: BoldAppText(text: "Editar Producto", size: 26),
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -88,20 +88,23 @@ class _EditProductPageState extends State<EditProductPage> {
                       children: [
                         productSwiper(context, widget.images),
                         const SizedBox(height: 20),
-                        regularAppText(
-                          widget.productDump.shopDump.shopName,
-                          16,
+                        RegularAppText(
+                          text: widget.productDump.shopDump.shopName,
+                          size: 16,
                         ),
-                        boldAppText(widget.nameController.value.text, 24),
+                        BoldAppText(
+                            text: widget.nameController.value.text, size: 24),
                         const SizedBox(height: 15),
-                        lightAppText(
-                          widget.descriptionController.value.text,
-                          15,
+                        LightAppText(
+                          text: widget.descriptionController.value.text,
+                          size: 15,
                         ),
                         Row(
                           children: [
-                            boldAppText(widget.priceController.value.text, 20),
-                            regularAppText("mn", 18),
+                            BoldAppText(
+                                text: widget.priceController.value.text,
+                                size: 20),
+                            const RegularAppText(text: "mn", size: 18),
                           ],
                         ),
                         const SizedBox(height: 50),
@@ -160,12 +163,13 @@ class _EditProductPageState extends State<EditProductPage> {
                                   child: const Icon(
                                       Icons.add_photo_alternate_outlined),
                                 ),
-                                Column(
+                                const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    inputText("IMÁGENES"),
-                                    regularAppText(
-                                        "Selecciona hasta 5 imágenes", 13),
+                                    InputLightText(text: "IMÁGENES"),
+                                    RegularAppText(
+                                        text: "Selecciona hasta 5 imágenes",
+                                        size: 13),
                                   ],
                                 ),
                               ],
@@ -204,12 +208,13 @@ class _EditProductPageState extends State<EditProductPage> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 25),
-                        child: lightAppText(
-                          "Nota : Debe ingresar su contraseña para guardar las modificaciones",
-                          14,
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+                        child: LightAppText(
+                          text:
+                              "Nota : Debe ingresar su contraseña para guardar las modificaciones",
+                          size: 14,
                         ),
                       ),
                       whiteLabelInputTextWidget(

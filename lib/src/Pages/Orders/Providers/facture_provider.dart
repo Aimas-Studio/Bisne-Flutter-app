@@ -1,6 +1,6 @@
-import '../../../core/utils/Entities/facture.dart';
-import '../../../core/utils/Entities/product.dart';
-import '../../../core/utils/Entities/shop.dart';
+import '../../../core/entities/facture.dart';
+import '../../../core/entities/product.dart';
+import '../../../core/entities/shop.dart';
 
 Future<Map<ProductDump, int>> getPurchases(Facture facture) async {
   Map<ProductDump, int> result = {

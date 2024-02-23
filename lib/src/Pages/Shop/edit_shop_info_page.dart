@@ -1,13 +1,13 @@
 import 'package:bisne/src/Pages/Shop/Providers/shop_provider.dart';
-import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:bisne/src/Pages/User/Widgets/profiles_pages_button.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/Utils/custom_icons.dart';
-import '../../core/Utils/interfaces.dart';
-import '../../core/Utils/texts.dart';
-import '../../core/widgets/circular_image.dart';
+import '../../core/utils/colors.dart';
+import '../../core/utils/custom_icons.dart';
+import '../../core/widgets/images/circular_image.dart';
+import '../../core/widgets/input_text_widget.dart';
 import '../../core/widgets/secondary_app_bar.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
 
 final _shop = getShopInfo();
 
@@ -54,13 +54,13 @@ class _EditShopInfoPageState extends State<EditShopInfoPage> {
               const SizedBox(
                 height: 15,
               ),
-              circularImage(AssetImage(_shop.imageUrl), 65),
+              CircularImage(image: AssetImage(_shop.imageUrl), size: 65),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 child: profilesPageButton('ELEGIR FOTO', () {}),
               ),
-              boldAppText(_shop.shopName, 34),
-              regularAppText(_shop.categories.join('\n'), 20),
+              BoldAppText(text: _shop.shopName, size: 34),
+              RegularAppText(text: _shop.categories.join('\n'), size: 20),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 15),
                 child: whiteLabelInputTextWidget(context, "CAMBIAR DESCRIPCIÓN",

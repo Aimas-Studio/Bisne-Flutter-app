@@ -1,5 +1,5 @@
-import '../../../core/utils/Entities/facture.dart';
-import '../../../core/utils/Entities/shop.dart';
+import '../../../core/entities/facture.dart';
+import '../../../core/entities/shop.dart';
 
 Future<List<Facture>> getShopOrdersInfo() async {
   return Future.delayed(

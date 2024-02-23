@@ -1,4 +1,4 @@
-import '../../../core/Utils/Entities/user.dart';
+import '../../../core/entities/user.dart';
 
 User getUserInfo() {
   return User(1, "Jane Doe", "fullName", "testemail@gmail.com",

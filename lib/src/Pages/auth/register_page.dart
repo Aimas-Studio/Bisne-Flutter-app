@@ -1,4 +1,3 @@
-import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
 import 'package:bisne/src/Pages/auth/controllers/register_controller.dart';
 import 'package:bisne/src/Pages/auth/widgets/custom_button_arrow_icon.dart';
 import 'package:bisne/src/core/Utils/decorations.dart';
@@ -6,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../core/utils/interfaces.dart';
-import '../../core/utils/texts.dart';
+import '../../core/utils/colors.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
+import '../../core/widgets/input_text_widget.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
