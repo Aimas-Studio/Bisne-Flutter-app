@@ -25,7 +25,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _basePageController.showBottomNavBar.value = false;
     });
     const bottomHeight = 100.0;

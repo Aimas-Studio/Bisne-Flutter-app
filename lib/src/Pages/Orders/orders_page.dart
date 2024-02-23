@@ -1,8 +1,5 @@
-import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Orders/Providers/order_provider.dart';
-import 'package:bisne/src/Pages/Orders/Widgets/order_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../core/Utils/Entities/facture.dart';
 import '../../core/Utils/interfaces.dart';
@@ -14,20 +11,17 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(context) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      Get.find<BasePageController>().showBottomNavBar.value = false;
-    });
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
         appBar: secondaryAppBar(context, true),
         body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               boldAppText("Pedidos Realizados", 27),
-              FutureBuilder(
+              FutureBuilder<List<Facture>>(
                 future: getShopOrdersInfo(),
                 // initialData: loadingPageWidget(),
                 builder: (
@@ -53,10 +47,10 @@ Widget getOrdersWidget(context, List<Facture> factures) {
     orders
       ..add(SizedBox(
         width: MediaQuery.of(context).size.width * 0.85,
-        height: 20,
+        height: 50,
         child: const Divider(),
       ))
-      ..add(shopOrderWidget(context, element));
+      ..add(shopOrderWidget(context, element, isCheckBox: true));
   }
   return Column(
     children: orders,

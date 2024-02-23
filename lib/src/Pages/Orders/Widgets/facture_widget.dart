@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/Utils/Entities/product.dart';
-import '../../../core/Utils/texts.dart';
+import '../../../core/utils/Entities/product.dart';
+import '../../../core/utils/texts.dart';
 import '../../../core/widgets/circular_image.dart';
 
 Widget factureWidget(ProductDump product, int amount) {

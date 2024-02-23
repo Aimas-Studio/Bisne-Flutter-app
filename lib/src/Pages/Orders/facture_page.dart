@@ -1,12 +1,14 @@
+import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:bisne/src/Pages/Orders/Providers/facture_provider.dart';
 import 'package:bisne/src/Pages/Orders/Widgets/facture_widget.dart';
 import 'package:bisne/src/Pages/Orders/Widgets/total_order_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../core/Utils/Entities/facture.dart';
-import '../../core/Utils/Entities/product.dart';
-import '../../core/Utils/interfaces.dart';
-import '../../core/Utils/texts.dart';
+import '../../core/utils/Entities/facture.dart';
+import '../../core/utils/Entities/product.dart';
+import '../../core/utils/interfaces.dart';
+import '../../core/utils/texts.dart';
 import '../../core/widgets/secondary_app_bar.dart';
 
 class FacturesPage extends StatelessWidget {
@@ -16,6 +18,9 @@ class FacturesPage extends StatelessWidget {
 
   @override
   Widget build(context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<BasePageController>().showBottomNavBar.value = false;
+    });
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,

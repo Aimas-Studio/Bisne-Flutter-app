@@ -196,12 +196,12 @@ class ProductPage extends StatelessWidget {
             ShopDump(_.shopName, _.shopImage),
             "category",
           );
-          final _shop = Get.find<ShopPageController>();
-          if (isInCart(_shop.cart, newProduct)) {
-            addToCart(_shop.cart, newProduct, _.count);
+          final shop = Get.find<ShopPageController>();
+          if (isInCart(shop.cart, newProduct)) {
+            addToCart(shop.cart, newProduct, _.count);
           } else {
-            _shop.cart[newProduct] = 1.obs;
-            _shop.cart[newProduct]!.value = _.count as int;
+            shop.cart[newProduct] = 1.obs;
+            shop.cart[newProduct]!.value = _.count as int;
           }
         },
         child: Center(

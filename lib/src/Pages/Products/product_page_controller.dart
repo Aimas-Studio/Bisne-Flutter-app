@@ -17,6 +17,6 @@ class ProductPageController extends GetxController {
   final int price = 300;
   final double rate = 4.5;
 
-  set count(value) => this._count.value = value;
-  get count => this._count.value;
+  set count(value) => _count.value = value;
+  get count => _count.value;
 }

@@ -64,7 +64,7 @@ class DrawerHomeWidget extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Scaffold(), // Page 2
+          builder: (context) => const Scaffold(), // Page 2
         ));
         break;
     }
@@ -85,12 +85,12 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = Color.fromRGBO(114, 124, 142, 100);
-    final hoverColor = Colors.white70;
+    const color = Color.fromRGBO(114, 124, 142, 100);
+    const hoverColor = Colors.white70;
 
     return ListTile(
       leading: Icon(icon, color: color),
-      title: Text(text, style: TextStyle(color: color)),
+      title: Text(text, style: const TextStyle(color: color)),
       hoverColor: hoverColor,
       onTap: onClicked,
     );
