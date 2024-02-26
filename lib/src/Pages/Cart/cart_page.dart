@@ -4,12 +4,12 @@ import 'package:bisne/src/Pages/Cart/imputs_info_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/Utils/Entities/product.dart';
-import '../../core/Utils/custom_icons.dart';
-import '../../core/Utils/interfaces.dart';
-import '../../core/Utils/texts.dart';
-import '../../core/widgets/circular_image.dart';
+import '../../core/entities/product.dart';
+import '../../core/utils/colors.dart';
+import '../../core/utils/custom_icons.dart';
+import '../../core/widgets/images/circular_image.dart';
 import '../../core/widgets/secondary_app_bar.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
 
 class CartPage extends StatelessWidget {
   CartPage({super.key});
@@ -57,9 +57,10 @@ class CartPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              thinAppText('Total', 14),
-              regularAppText('${sumOfItems()} mm', 27),
-              thinAppText('No incluye el precio de la mensajería', 14)
+              const ThinAppText(text: 'Total', size: 14),
+              RegularAppText(text: '${sumOfItems()} mm', size: 27),
+              const ThinAppText(
+                  text: 'No incluye el precio de la mensajería', size: 14)
             ],
           ),
         ),
@@ -118,9 +119,9 @@ class CartPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
+            const Row(
               children: [
-                boldAppText('Datos requeridos', 30),
+                BoldAppText(text: 'Datos requeridos', size: 30),
               ],
             ),
             const SizedBox(
@@ -168,16 +169,18 @@ Widget productItemCart(
     margin: const EdgeInsets.only(bottom: 10),
     child: Row(
       children: [
-        circularImage(AssetImage(product.imagesUrl[0]), 50),
+        CircularImage(image: AssetImage(product.imagesUrl[0]), size: 50),
         const SizedBox(width: 20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            regularAppText(product.name, 16),
-            thinAppText(product.shopDump.shopName, 14),
+            RegularAppText(text: product.name, size: 16),
+            ThinAppText(text: product.shopDump.shopName, size: 14),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
-              child: regularAppText('${product.price} mm', 16,
+              child: RegularAppText(
+                  text: '${product.price} mm',
+                  size: 16,
                   color: bisneColorPrimary),
             ),
             countController(context, _, product),
@@ -208,7 +211,8 @@ Widget countController(
       Obx(() => SizedBox(
           width: 20,
           child: Center(
-              child: boldAppText(_.itemsToBuy[product].toString(), 15)))),
+              child: BoldAppText(
+                  text: _.itemsToBuy[product].toString(), size: 15)))),
       IconButton(
           onPressed: () {
             _.addItem(product, 1);

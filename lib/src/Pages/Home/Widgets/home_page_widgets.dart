@@ -1,8 +1,8 @@
 import 'package:bisne/src/Pages/Home/Providers/CategoryProvider.dart';
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:bisne/src/Pages/User/Providers/user_providers.dart';
-import 'package:bisne/src/core/Utils/interfaces.dart';
-import 'package:bisne/src/core/Utils/texts.dart';
+import 'package:bisne/src/core/utils/colors.dart';
+import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,8 +13,9 @@ AppBar appbarHomePage() {
   return AppBar(
     toolbarHeight: 100,
     title: ListTile(
-      title: thinAppText('Bienvenido ${getUserInfo().username},', 16),
-      subtitle: regularAppText('Explora y haz tu bisne', 18),
+      title:
+          ThinAppText(text: 'Bienvenido ${getUserInfo().username},', size: 16),
+      subtitle: const RegularAppText(text: 'Explora y haz tu bisne', size: 18),
       leading: const CircleAvatar(
         backgroundImage: AssetImage('assets/Images/hero.png'),
         radius: 30,

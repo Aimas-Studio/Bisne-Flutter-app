@@ -9,12 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../core/Utils/comments.dart';
-import '../../../core/Utils/interfaces.dart';
-import '../../../core/Utils/texts.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/comment_widgets.dart';
 import '../../../core/widgets/banner_promotional_widget.dart';
 import '../../../core/widgets/cards/card_tables.dart';
+import '../../../core/widgets/cards/card_tables.dart';
 import '../../../core/widgets/search_input_widget.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 
 Column iconView(int viewsCount) {
   return Column(
@@ -100,8 +101,8 @@ Column info(ShopPageController _, BuildContext context, isInfoPage) {
       height: 20,
     ),
     ListTile(
-      title: regularAppText(_.name, 30),
-      subtitle: thinAppText(_.categories[0], 20),
+      title: RegularAppText(text: _.name, size: 30),
+      subtitle: ThinAppText(text: _.categories[0], size: 20),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,11 +119,11 @@ Column info(ShopPageController _, BuildContext context, isInfoPage) {
               height: 25,
               width: 40,
               child: Center(
-                  child: thinAppText(
-                      _.viewsCount > 999
+                  child: ThinAppText(
+                      text: _.viewsCount > 999
                           ? '${(_.viewsCount / 1000).toString()} K'
                           : _.viewsCount.toString(),
-                      20))),
+                      size: 20))),
         ],
       ),
     ),
@@ -156,11 +157,11 @@ Column info(ShopPageController _, BuildContext context, isInfoPage) {
       height: 10,
     ),
     ListTile(
-      title: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        child: regularAppText('Descripción', 26),
+      title: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: RegularAppText(text: 'Descripción', size: 26),
       ),
-      subtitle: thinAppText(_.descripcion, 20, maxLines: 5),
+      subtitle: ThinAppText(text: _.descripcion, size: 20, maxLines: 5),
     ),
     isInfoPage ? moreInfoPage(context, _) : showMoreInfo(context)
   ]);
@@ -197,7 +198,7 @@ class _FavoriteLargeButtonState extends State<FavoriteLargeButton> {
           const SizedBox(
             width: 5,
           ),
-          regularAppText('Guardar favorito', 18),
+          const RegularAppText(text: 'Guardar favorito', size: 18),
           const SizedBox(
             width: 10,
           )
@@ -224,10 +225,10 @@ Widget link(_) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      regularAppText('Enlace a grupo', 26),
+      const RegularAppText(text: 'Enlace a grupo', size: 26),
       const SizedBox(height: 10),
       GestureDetector(
-        child: regularAppText(_.contact['link'], 20),
+        child: RegularAppText(text: _.contact['link'], size: 20),
         onTap: () async {
           Uri url = Uri.parse(_.contact['link']);
           if (await canLaunchUrl(url)) {
@@ -245,7 +246,7 @@ Widget contact(ShopPageController _) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      regularAppText('Contacto', 26),
+      const RegularAppText(text: 'Contacto', size: 26),
       const SizedBox(height: 10),
       Row(
         children: [
@@ -271,7 +272,7 @@ Row networkContact(Icon icon, String contact) {
     children: [
       icon,
       const SizedBox(width: 10),
-      thinAppText(contact, 20),
+      ThinAppText(text: contact, size: 20),
     ],
   );
 }
@@ -280,7 +281,7 @@ Widget address(BuildContext context, ShopPageController _) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      regularAppText('Dirección', 26),
+      const RegularAppText(text: 'Dirección', size: 26),
       const SizedBox(
         height: 10,
       ),
@@ -290,7 +291,7 @@ Widget address(BuildContext context, ShopPageController _) {
           const SizedBox(
             width: 10,
           ),
-          thinAppText(_.localitation, context.width > 400 ? 20 : 15)
+          ThinAppText(text: _.localitation, size: context.width > 400 ? 20 : 15)
         ],
       ),
       const SizedBox(
@@ -300,7 +301,8 @@ Widget address(BuildContext context, ShopPageController _) {
         height: 250,
         decoration:
             BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-        child: Center(child: regularAppText('Ubicación de Google Maps', 19)),
+        child: const Center(
+            child: RegularAppText(text: 'Ubicación de Google Maps', size: 19)),
       )
     ],
   );
@@ -310,7 +312,7 @@ Widget openingHours(BuildContext context, ShopPageController _) {
   List<Widget> hours = [];
   hours
     ..add(
-      regularAppText('Horario', 26),
+      const RegularAppText(text: 'Horario', size: 26),
     )
     ..add(
       const SizedBox(
@@ -326,7 +328,7 @@ Widget openingHours(BuildContext context, ShopPageController _) {
             const SizedBox(
               width: 10,
             ),
-            thinAppText(seccion, context.width > 400 ? 20 : 16)
+            ThinAppText(text: seccion, size: context.width > 400 ? 20 : 16)
           ],
         ),
       )
@@ -356,7 +358,22 @@ TextButton showMoreInfo(context) {
         ),
       );
     },
-    child: boldAppText('Ver más ...', 16, color: Colors.black),
+    child: const RegularAppText(
+        text: 'Ver más información ...', size: 16, color: Colors.black),
+  );
+}
+
+Column categorySession(BuildContext context, _) {
+  return Column(
+    children: [
+      const SizedBox(
+        height: 15,
+      ),
+      SearchInput(
+          searchController: SearchController(),
+          hintText: 'Buscar en esta tienda...'),
+      setCategories(context, _)
+    ],
   );
 }
 

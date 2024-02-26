@@ -4,6 +4,8 @@ import 'package:bisne/src/Pages/Home/home_page.dart';
 import 'package:bisne/src/Pages/Notifications/notifications_page.dart';
 import 'package:bisne/src/Pages/Search/search_page.dart';
 import 'package:bisne/src/Pages/User/user_info_page.dart';
+import 'package:bisne/src/Pages/auth/login_page.dart';
+import 'package:bisne/src/core/persistent%20data/shared_persistent_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +13,7 @@ import '../../core/widgets/bottom_nav_bar.dart';
 import '../User/Providers/user_providers.dart';
 
 class BasePage extends StatelessWidget {
+  final appData = PersistentData();
   final BasePageController _basePageController = Get.find<BasePageController>();
   List<Navigator> _navigators = [];
 
@@ -45,7 +48,7 @@ class BasePage extends StatelessWidget {
         return MaterialPageRoute(builder: (_) {
           switch (indexPage) {
             case 0:
-              return const NotificationPage();
+              return appData.loggedIn ? const NotificationPage() : LoginPage();
             case 1:
               return const SearchPage();
             case 2:
@@ -54,6 +57,7 @@ class BasePage extends StatelessWidget {
               return const FavoritePage();
             case 4:
               return UserInfoPage(user: getUserInfo());
+
             default:
               return const HomePage();
           }

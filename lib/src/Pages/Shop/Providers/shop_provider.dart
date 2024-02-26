@@ -1,4 +1,4 @@
-import '../../../core/Utils/Entities/shop.dart';
+import '../../../core/entities/shop.dart';
 
 Shop getShopInfo() {
   return Shop(

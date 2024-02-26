@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../core/Utils/interfaces.dart';
+import '../../../core/Utils/colors.dart';
 
 class DrawerSearchWidget extends StatelessWidget {
   DrawerSearchWidget({super.key});

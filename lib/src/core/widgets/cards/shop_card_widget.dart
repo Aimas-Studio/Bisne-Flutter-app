@@ -1,6 +1,7 @@
-import 'package:bisne/src/core/utils/texts.dart';
 import 'package:bisne/src/core/widgets/cards/photo_card_widget.dart';
+import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_link_previewer/flutter_link_previewer.dart';
 
 import '../../../Pages/Shop/shop_page.dart';
 
@@ -43,11 +44,12 @@ class ShopCard extends Card {
             const SizedBox(height: 10),
             SizedBox(
                 width: widthMedia,
-                child: regularAppText(name, 16, color: Colors.black)),
+                child:
+                    RegularAppText(text: name, size: 16, color: Colors.black)),
             const SizedBox(height: 5),
             SizedBox(
                 width: widthMedia,
-                child: regularAppText(description, 12, maxLines: 1))
+                child: RegularAppText(text: description, size: 12, maxLines: 1))
           ],
         ));
   }

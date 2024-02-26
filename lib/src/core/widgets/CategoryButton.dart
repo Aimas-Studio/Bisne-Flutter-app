@@ -1,5 +1,5 @@
-import 'package:bisne/src/core/Utils/interfaces.dart';
-import 'package:bisne/src/core/Utils/texts.dart';
+import 'package:bisne/src/core/utils/colors.dart';
+import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 
 class CategoryButton extends StatelessWidget {
@@ -27,7 +27,9 @@ class CategoryButton extends StatelessWidget {
         ),
         backgroundColor: isPressed ? bisneColorPrimary : Colors.transparent,
       ),
-      child: regularAppText(label, 14,
+      child: RegularAppText(
+          text: label,
+          size: 14,
           color: isPressed ? Colors.white : iconAppColor),
     );
   }

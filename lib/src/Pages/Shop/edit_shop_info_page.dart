@@ -1,104 +1,121 @@
 import 'package:bisne/src/Pages/Shop/Providers/shop_provider.dart';
-import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
-import 'package:bisne/src/Pages/User/Widgets/profiles_pages_button.dart';
+import 'package:bisne/src/Pages/Shop/controllers/edit_shop_controller.dart';
+import 'package:bisne/src/core/widgets/buttons/custom_outline_button.dart';
+import 'package:bisne/src/core/widgets/inputs/custom_reactive_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../core/Utils/custom_icons.dart';
-import '../../core/Utils/interfaces.dart';
-import '../../core/Utils/texts.dart';
-import '../../core/widgets/circular_image.dart';
+import '../../core/utils/colors.dart';
+import '../../core/utils/custom_icons.dart';
+import '../../core/widgets/images/circular_image.dart';
 import '../../core/widgets/secondary_app_bar.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
 
-final _shop = getShopInfo();
+const List<(String, IconData)> _contactInfo = [
+  ("Teléfono", Icons.phone),
+  ("WhatsApp", CustomIcons.whatsapp),
+  ("Instagram", CustomIcons.instagram),
+  ("Facebook", CustomIcons.facebook),
+  ("Enlace", Icons.link),
+];
 
-class EditShopInfoPage extends StatefulWidget {
-  const EditShopInfoPage({super.key});
-
-  @override
-  State<EditShopInfoPage> createState() => _EditShopInfoPageState();
-}
-
-class _EditShopInfoPageState extends State<EditShopInfoPage> {
-  final shopDescriptionController =
-      TextEditingController(text: _shop.shopDescription);
-  final openingHour1 = TextEditingController(text: _shop.openingHours[0]);
-  final phoneController = TextEditingController(text: _shop.phoneNumber);
-  final whatsAppController = TextEditingController(text: _shop.whatsAppNumber);
-  final instagramController =
-      TextEditingController(text: _shop.instagramAccount);
-  final facebookController = TextEditingController(text: _shop.facebookAccount);
-  final linkController = TextEditingController(text: _shop.optionalLink);
-
-  @override
-  void initState() {
-    super.initState();
-  }
+class EditShopInfoPage extends StatelessWidget {
+  final _form = FormGroup({});
+  EditShopInfoPage({super.key});
 
   @override
   Widget build(context) {
-    List<(String, IconData, TextEditingController)> contactInfo = [
-      ("Teléfono", Icons.phone, phoneController),
-      ("WhatsApp", CustomIcons.whatsapp, whatsAppController),
-      ("Instagram", CustomIcons.instagram, instagramController),
-      ("Facebook", CustomIcons.facebook, facebookController),
-      ("Enlace", Icons.link, linkController),
-    ];
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              secondaryAppBar(context, true),
-              const SizedBox(
-                height: 15,
-              ),
-              circularImage(AssetImage(_shop.imageUrl), 65),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 20),
-                child: profilesPageButton('ELEGIR FOTO', () {}),
-              ),
-              boldAppText(_shop.shopName, 34),
-              regularAppText(_shop.categories.join('\n'), 20),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 15),
-                child: whiteLabelInputTextWidget(context, "CAMBIAR DESCRIPCIÓN",
-                    iconData: Icons.edit,
-                    controller: shopDescriptionController),
-              ),
-              whiteLabelInputTextWidget(context, "Cambiar Horario 1",
-                  iconData: Icons.access_time),
-              const SizedBox(
-                height: 15,
-              ),
-              whiteLabelInputTextWidget(context, "Cambiar Horario 2",
-                  iconData: Icons.access_time),
-              const SizedBox(
-                height: 15,
-              ),
-              whiteLabelInputTextWidget(context, "Cambiar Horario 3",
-                  iconData: Icons.access_time),
-              Divider(
-                height: 60,
-                indent: MediaQuery.of(context).size.width * 0.1,
-                endIndent: MediaQuery.of(context).size.width * 0.1,
-              ),
-              whiteLabelInputTextWidget(context, "Ubicación",
-                  iconData: Icons.location_on_outlined),
-              const SizedBox(
-                height: 30,
-              ),
-              listWhiteLabelInput(context, contactInfo),
-              const SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  profilesPageButton("GUARDAR CAMBIOS", () {}),
-                  profilesPageButton("DESCARTAR", () {})
-                ],
-              )
-            ],
+          child: SizedBox(
+            width: double.infinity,
+            child: GetBuilder(
+              init: EditShopController(shop: getShopInfo()),
+              builder: (controller) {
+                return ReactiveForm(
+                  formGroup: _form,
+                  child: Column(
+                    children: [
+                      secondaryAppBar(context, true),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      CircularImage(
+                          image: AssetImage(controller.shop.imageUrl),
+                          size: 65),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: OutlineAppButton(
+                          child: const LightAppText(text: 'ELEGIR FOTO'),
+                          onPressed: () {},
+                        ),
+                      ),
+                      BoldAppText(text: controller.shop.shopName, size: 34),
+                      RegularAppText(
+                          text: controller.shop.categories.join('\n'),
+                          size: 20),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 15),
+                        child: CustomReactiveTextField(
+                          formName: '',
+                          labelText: "CAMBIAR DESCRIPCIÓN",
+                          prefixIcon: Icons.edit,
+                        ),
+                      ),
+                      const CustomReactiveTextField(
+                          formName: '',
+                          labelText: "Cambiar Horario 1",
+                          prefixIcon: Icons.access_time),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const CustomReactiveTextField(
+                        formName: '',
+                        labelText: "Cambiar Horario 2",
+                        prefixIcon: Icons.access_time,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const CustomReactiveTextField(
+                          formName: '',
+                          labelText: "Cambiar Horario 3",
+                          prefixIcon: Icons.access_time),
+                      Divider(
+                        height: 60,
+                        indent: MediaQuery.of(context).size.width * 0.1,
+                        endIndent: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      const CustomReactiveTextField(
+                          formName: '',
+                          labelText: "Ubicación",
+                          prefixIcon: Icons.location_on_outlined),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      // listWhiteLabelInput(context, _contactInfo),
+                      const SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          OutlineAppButton(
+                            child: const LightAppText(text: "GUARDAR CAMBIOS"),
+                            onPressed: () {},
+                          ),
+                          OutlineAppButton(
+                            child: const LightAppText(text: "DESCARTAR"),
+                            onPressed: () {},
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),

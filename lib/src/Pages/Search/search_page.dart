@@ -6,12 +6,11 @@ import 'dart:ffi';
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:bisne/src/Pages/Search/Widgets/drawer_search_widget.dart';
 import 'package:bisne/src/Pages/Search/search_page_controller.dart';
-import 'package:bisne/src/core/Utils/texts.dart';
 import 'package:bisne/src/core/widgets/CategoryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/Utils/interfaces.dart';
+import '../../core/Utils/colors.dart';
 import '../../core/widgets/cards/card_tables.dart';
 import '../../core/widgets/search_input_widget.dart';
 

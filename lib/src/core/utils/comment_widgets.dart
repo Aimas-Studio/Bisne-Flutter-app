@@ -1,13 +1,13 @@
 import 'package:bisne/src/Pages/Shop/Providers/comment_provider.dart';
 import 'package:bisne/src/Pages/Shop/Widgets/commet_widget.dart';
-import 'package:bisne/src/Pages/User/Widgets/input_text_widget.dart';
+import 'package:bisne/src/core/widgets/images/circular_image.dart';
+import 'package:bisne/src/core/widgets/inputs/custom_reactive_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../widgets/circular_image.dart';
-import 'Entities/comments_controller/coment_controller.dart';
-import 'interfaces.dart';
-import 'texts.dart';
+import '../entities/comments_controller/coment_controller.dart';
+import '../widgets/texts/texts_widgets.dart';
+import 'colors.dart';
 
 Widget comments(
   BuildContext context,
@@ -49,7 +49,7 @@ Container commentsButtons(BuildContext context, _) {
                 )),
               ),
               onPressed: () => {},
-              child: regularAppText('VER MÁS', 13)),
+              child: const RegularAppText(text: 'VER MÁS', size: 13)),
         ),
         SizedBox(
           width: context.width > 400 ? 180 : 150,
@@ -64,7 +64,7 @@ Container commentsButtons(BuildContext context, _) {
               onPressed: () async {
                 String comment = await showAlertDialogComments(context, _);
               },
-              child: regularAppText('HACER COMENTARIO', 13)),
+              child: const RegularAppText(text: 'HACER COMENTARIO', size: 13)),
         ),
       ],
     ),
@@ -94,7 +94,7 @@ Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
           content: IntrinsicHeight(
             child: Column(children: [
               Center(
-                child: circularImage(AssetImage(_.shopImage), 70),
+                child: CircularImage(image: AssetImage(_.shopImage), size: 70),
               ),
               const SizedBox(
                 height: 40,
@@ -103,8 +103,7 @@ Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
               const SizedBox(
                 height: 30,
               ),
-              whiteLabelInputTextWidget(context, 'Escriba un comentario',
-                  isComment: true)
+              const CustomReactiveTextField(formName: '', isComment: true),
             ]),
           ),
           actions: <Widget>[sendButton(context)],
@@ -127,9 +126,10 @@ TextButton sendButton(BuildContext context) {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: [
-            Expanded(
+            const Expanded(
                 child: Center(
-                    child: regularAppText("ENVIAR", 17, color: Colors.white))),
+                    child: RegularAppText(
+                        text: "ENVIAR", size: 17, color: Colors.white))),
             Container(
               height: 30,
               width: 30,

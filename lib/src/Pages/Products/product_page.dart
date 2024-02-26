@@ -4,13 +4,13 @@ import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/Utils/Entities/comments_controller/coment_controller.dart';
-import '../../core/Utils/Entities/product.dart';
-import '../../core/Utils/Entities/shop.dart';
-import '../../core/Utils/comments.dart';
-import '../../core/Utils/interfaces.dart';
-import '../../core/Utils/texts.dart';
+import '../../core/entities/comments_controller/coment_controller.dart';
+import '../../core/entities/product.dart';
+import '../../core/entities/shop.dart';
+import '../../core/utils/colors.dart';
+import '../../core/utils/comment_widgets.dart';
 import '../../core/widgets/secondary_app_bar.dart';
+import '../../core/widgets/texts/texts_widgets.dart';
 import '../Shop/Widgets/shop_page_widgets.dart';
 
 class ProductPage extends StatelessWidget {
@@ -69,22 +69,22 @@ class ProductPage extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        regularAppText(_.shopName, 32),
+        RegularAppText(text: _.shopName, size: 32),
         nameAndRate(context, _),
         const SizedBox(
           height: 20,
         ),
-        regularAppText(_.description, 21, maxLines: 5),
+        RegularAppText(text: _.description, size: 21, maxLines: 5),
         const SizedBox(
           height: 20,
         ),
         Row(
           children: [
-            boldAppText(_.price.toStringAsPrecision(5), 35),
+            BoldAppText(text: _.price.toStringAsPrecision(5), size: 35),
             const SizedBox(
               width: 10,
             ),
-            regularAppText('mm', 30)
+            const RegularAppText(text: 'mm', size: 30)
           ],
         ),
         const SizedBox(
@@ -113,7 +113,7 @@ class ProductPage extends StatelessWidget {
       children: [
         SizedBox(
             width: context.width * 0.7,
-            child: boldAppText(_.name, 40, maxLines: 2)),
+            child: BoldAppText(text: _.name, size: 40, maxLines: 2)),
         Container(
           alignment: Alignment.topLeft,
           decoration: const BoxDecoration(
@@ -138,7 +138,8 @@ class ProductPage extends StatelessWidget {
             icon: const Icon(Icons.remove_circle, size: 40)),
         Obx(() => SizedBox(
             width: 50,
-            child: Center(child: boldAppText(_.count.toString(), 40)))),
+            child: Center(
+                child: BoldAppText(text: _.count.toString(), size: 40)))),
         IconButton(
             onPressed: () {
               _.count++;
@@ -175,7 +176,9 @@ class ProductPage extends StatelessWidget {
             backgroundColor:
                 MaterialStateProperty.all(const Color.fromRGBO(69, 77, 90, 1))),
         onPressed: () => {},
-        child: regularAppText('GUARDAR', context.width > 400 ? 30 : 20,
+        child: RegularAppText(
+            text: 'GUARDAR',
+            size: context.width > 400 ? 30 : 20,
             color: Colors.white));
   }
 
@@ -210,8 +213,9 @@ class ProductPage extends StatelessWidget {
             children: [
               Expanded(
                 child: Center(
-                  child: regularAppText(
-                      'COMPRAR', context.width > 400 ? 30 : 20,
+                  child: RegularAppText(
+                      text: 'COMPRAR',
+                      size: context.width > 400 ? 30 : 20,
                       color: Colors.white),
                 ),
               ),

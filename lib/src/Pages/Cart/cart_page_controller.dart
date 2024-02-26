@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../core/Utils/Entities/product.dart';
+import '../../core/entities/product.dart';
 
 class CartController extends GetxController {
   CartController();

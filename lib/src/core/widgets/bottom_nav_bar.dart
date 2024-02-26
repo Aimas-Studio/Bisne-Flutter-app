@@ -3,7 +3,7 @@ import 'package:bisne/src/Pages/User/Providers/user_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../Utils/interfaces.dart';
+import '../Utils/colors.dart';
 
 class BottomNavBar extends StatelessWidget {
   BottomNavBar({super.key});

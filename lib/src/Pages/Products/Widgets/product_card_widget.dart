@@ -3,7 +3,7 @@ import 'package:bisne/src/core/widgets/cards/photo_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/Utils/texts.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 
 class ProductCard extends Card {
   final String name;
@@ -45,16 +45,37 @@ class ProductCard extends Card {
           const SizedBox(height: 10),
           SizedBox(
               width: widthMedia,
-              child: regularAppText(name, 16, color: Colors.black)),
+              child: RegularAppText(text: name, size: 16, color: Colors.black)),
           const SizedBox(height: 5),
           SizedBox(
               width: widthMedia,
-              child: regularAppText(description, 12, maxLines: 1)),
+              child: RegularAppText(text: description, size: 12, maxLines: 1)),
           const SizedBox(height: 5),
           SizedBox(
-              width: widthMedia,
-              child: regularAppText('${price.toStringAsPrecision(5)} mm', 18,
-                  maxLines: 1))
+            width: widthMedia,
+          ),
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RegularAppText(
+                        text: name,
+                        size: context.width > 400 ? 18 : 16,
+                        maxLines: 2),
+                    Row(
+                      children: [
+                        BoldAppText(
+                            text: price.toStringAsPrecision(5), size: 18),
+                        const SizedBox(width: 10),
+                        const ThinAppText(text: 'mm', size: 18)
+                      ],
+                    )
+                  ]),
+            ),
+          ),
         ],
       ),
     );

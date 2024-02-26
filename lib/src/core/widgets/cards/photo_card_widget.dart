@@ -1,5 +1,5 @@
-import 'package:bisne/src/core/utils/texts.dart';
 import 'package:bisne/src/core/widgets/cards/favorite_button_widget.dart';
+import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 
 class PhotoCard extends StatelessWidget {
@@ -39,7 +39,7 @@ class PhotoCard extends StatelessWidget {
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
               child: Row(
                 children: [
-                  thinAppText(rate, 20),
+                  ThinAppText(text: rate, size: 20),
                   const Icon(Icons.star_rounded,
                       color: Color.fromRGBO(253, 217, 75, 1), size: 25),
                 ],

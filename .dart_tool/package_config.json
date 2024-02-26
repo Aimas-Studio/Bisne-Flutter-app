@@ -326,6 +326,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///C:/Users/cbamb/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.19.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "js",
       "rootUri": "file:///C:/Users/cbamb/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
@@ -448,6 +454,12 @@
     {
       "name": "pointycastle",
       "rootUri": "file:///C:/Users/cbamb/AppData/Local/Pub/Cache/hosted/pub.dev/pointycastle-3.7.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "reactive_forms",
+      "rootUri": "file:///C:/Users/cbamb/AppData/Local/Pub/Cache/hosted/pub.dev/reactive_forms-16.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -662,7 +674,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-02-26T18:35:20.219354Z",
+  "generated": "2024-02-26T21:29:06.034354Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }

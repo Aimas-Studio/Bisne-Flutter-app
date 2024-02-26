@@ -2,12 +2,12 @@ import 'package:bisne/src/Pages/Orders/orders_page.dart';
 import 'package:bisne/src/Pages/User/edit_user_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/Utils/Entities/content_panel.dart';
-import '../../core/Utils/Entities/user.dart';
 import '../../core/Utils/custom_icons.dart';
-import '../../core/utils/interfaces.dart';
+import '../../core/entities/content_panel.dart';
+import '../../core/entities/user.dart';
+import '../../core/utils/colors.dart';
 import 'Widgets/profile_widget.dart';
-import 'Widgets/user_page_widgets.dart';
+import 'Widgets/white_option_button_list.dart';
 
 class UserInfoPage extends StatelessWidget {
   final User user;
@@ -27,18 +27,22 @@ class UserInfoPage extends StatelessWidget {
                 height: 20,
               ),
               ProfileWidget(
-                user.username,
-                user.email,
-                "EDITAR PERFIL",
-                const EditUserPage(),
-                AssetImage(user.imageUrl),
-              ),
+                  mainInfo: user.username,
+                  secondaryInfo: user.email,
+                  buttonLabel: "EDITAR PERFIL",
+                  image: AssetImage(user.imageUrl),
+                  buttonAction: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditUserPage(user: user)));
+                  }),
               const SizedBox(
                 height: 18,
               ),
-              userServicesList(contentPanel1, context),
+              WhiteOptionButtonList(content: _contentPanel1),
               const SizedBox(height: 20),
-              userServicesList(contentPanel2, context),
+              WhiteOptionButtonList(content: _contentPanel2),
             ],
           ),
         ),
@@ -47,7 +51,7 @@ class UserInfoPage extends StatelessWidget {
   }
 }
 
-final List<ContentPanel> contentPanel1 = [
+final List<ContentPanel> _contentPanel1 = [
   ContentPanel(CustomIcons.finished, "Pedidos Realizados", (context) {
     Navigator.push(context,
         PageRouteBuilder(pageBuilder: (context, a, b) => const OrderPage()));
@@ -55,7 +59,7 @@ final List<ContentPanel> contentPanel1 = [
   ContentPanel(Icons.add, "Publicar Negocio", (context) {})
 ];
 
-final List<ContentPanel> contentPanel2 = [
+final List<ContentPanel> _contentPanel2 = [
   //TODO contactar equipo mensaje a presi
   ContentPanel(CustomIcons.employed, "Contactar Equipo", (context) {}),
   //TODO

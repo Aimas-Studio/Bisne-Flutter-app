@@ -14,6 +14,15 @@ class PersistentData {
     _appData = await SharedPreferences.getInstance();
   }
 
+  //LoggedIn
+  bool get loggedIn {
+    return _appData.getBool('loggedIn') ?? false;
+  }
+
+  set loggedIn(bool value) {
+    _appData.setBool("loggedIn", value);
+  }
+
   //Username
   String get username {
     return _appData.getString('username') ?? "";

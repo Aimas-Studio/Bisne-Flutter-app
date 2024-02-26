@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/Entities/product.dart';
-import '../../../core/utils/texts.dart';
-import '../../../core/widgets/circular_image.dart';
+import '../../../core/entities/product.dart';
+import '../../../core/widgets/images/circular_image.dart';
+import '../../../core/widgets/texts/texts_widgets.dart';
 
-Widget factureWidget(ProductDump product, int amount) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      circularImage(NetworkImage(product.imagesUrl[0]), 45),
-      Container(
-        margin: const EdgeInsets.only(left: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            regularAppText(product.name, 15),
-            thinAppText(product.shopDump.shopName, 12),
-            const SizedBox(
-              height: 10,
-            ),
-            regularAppText(product.price.toString(), 14),
-            thinAppText("cant:$amount", 11),
-          ],
-        ),
-      )
-    ],
-  );
+class FactureWidget extends StatelessWidget {
+  final ProductDump product;
+  final int amount;
+  const FactureWidget({super.key, required this.product, required this.amount});
+
+  @override
+  Widget build(context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        CircularImage(image: NetworkImage(product.imagesUrl[0]), size: 45),
+        Padding(
+          padding: const EdgeInsets.only(left: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              RegularAppText(text: product.name, size: 15),
+              ThinAppText(text: product.shopDump.shopName, size: 12),
+              const SizedBox(
+                height: 10,
+              ),
+              RegularAppText(text: product.price.toString(), size: 14),
+              ThinAppText(text: "cant:$amount", size: 11),
+            ],
+          ),
+        )
+      ],
+    );
+  }
 }
