@@ -121,7 +121,7 @@ class ProductPage extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5))),
           height: 50,
           width: 50,
-          child: Center(child: iconStar(_)),
+          child: Center(child: RateWidget(rate: _.rate)),
         )
       ],
     );

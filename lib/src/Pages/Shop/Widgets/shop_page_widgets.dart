@@ -1,6 +1,10 @@
+import 'dart:ffi';
+
 import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
 import 'package:bisne/src/Pages/Shop/shop_more_info_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
+import 'package:bisne/src/core/Utils/custom_icons.dart';
+import 'package:bisne/src/core/widgets/cards/favorite_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -9,7 +13,7 @@ import '../../../core/Utils/comments.dart';
 import '../../../core/Utils/interfaces.dart';
 import '../../../core/Utils/texts.dart';
 import '../../../core/widgets/banner_promotional_widget.dart';
-import '../../../core/widgets/card_tables.dart';
+import '../../../core/widgets/cards/card_tables.dart';
 import '../../../core/widgets/search_input_widget.dart';
 
 Column iconView(int viewsCount) {
@@ -24,42 +28,36 @@ Column iconView(int viewsCount) {
   );
 }
 
-Column iconStar(_) {
-  return Column(
-    children: [
-      const Icon(Icons.star_rate_rounded, color: Colors.yellow),
-      Text(
-        _.rate.toString(),
-        style: const TextStyle(color: Color.fromARGB(129, 0, 0, 0)),
-      )
-    ],
-  );
-}
+class RateWidget extends StatelessWidget {
+  const RateWidget({
+    super.key,
+    required this.rate,
+  });
+  final rate;
 
-Container perfilSession(BuildContext context, _, isInfoPage) {
-  return Container(
-    decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.elliptical(30, 40),
-            topRight: Radius.elliptical(40, 30))),
-    padding: EdgeInsets.only(
-        left: context.width * 0.07,
-        right: context.width * 0.07,
-        top: context.width * 0.05),
-    child: Column(
-      children: [
-        photo(context, _),
-        const SizedBox(
-          height: 30.0,
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 45,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          10,
         ),
-        info(_, context, isInfoPage),
-        const SizedBox(
-          height: 30.0,
-        )
-      ],
-    ),
-  );
+        color: const Color.fromRGBO(255, 254, 225, 1),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.star_rate_rounded, color: Colors.yellow),
+          Text(
+            rate.toString(),
+            style: const TextStyle(color: Color.fromARGB(129, 0, 0, 0)),
+          )
+        ],
+      ),
+    );
+  }
 }
 
 Row photo(BuildContext context, _) {
@@ -90,72 +88,121 @@ Row photo(BuildContext context, _) {
             borderRadius: BorderRadius.all(Radius.circular(5))),
         height: 40,
         width: 40,
-        child: Center(child: iconStar(_)),
+        child: Center(child: RateWidget(rate: _.rate)),
       )
     ],
   );
 }
 
-Column info(_, BuildContext context, isInfoPage) {
+Column info(ShopPageController _, BuildContext context, isInfoPage) {
   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-    Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            thinAppText(
-              _.categories[0],
-              23,
-            ),
-            boldAppText(
-              _.name,
-              context.width > 400 ? 47 : 38,
-            )
-          ],
-        ),
-        Row(
-          children: [
-            IconButton(
-                iconSize: 25,
-                onPressed: () {},
-                icon: const Icon(Icons.heart_broken)),
-            Container(
-              height: 30,
-              width: 40,
-              decoration: const BoxDecoration(
-                  color: Color.fromRGBO(106, 237, 138, 1),
-                  borderRadius: BorderRadius.all(Radius.circular(6))),
-              child: const Icon(Icons.delivery_dining),
-            )
-          ],
-        ),
-      ],
-    ),
-    Row(
-      children: [
-        const Icon(
-          Icons.delivery_dining,
-          size: 35,
-          color: Colors.black45,
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        thinAppText(
-            'Esta tienda${_.mensajeria ? '' : ' no'} dispone de mensajería',
-            context.width > 400 ? 20 : 13)
-      ],
-    ),
     const SizedBox(
       height: 20,
     ),
-    thinAppText(_.descripcion, 21, maxLines: 5),
+    ListTile(
+      title: regularAppText(_.name, 30),
+      subtitle: thinAppText(_.categories[0], 20),
+      trailing: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            width: 30,
+            child: Icon(
+              CustomIcons.eye,
+              size: 16,
+              color: iconAppColor,
+            ),
+          ),
+          SizedBox(
+              height: 25,
+              width: 40,
+              child: Center(
+                  child: thinAppText(
+                      _.viewsCount > 999
+                          ? '${(_.viewsCount / 1000).toString()} K'
+                          : _.viewsCount.toString(),
+                      20))),
+        ],
+      ),
+    ),
     const SizedBox(
-      height: 15,
+      height: 10,
+    ),
+    Row(
+      children: [
+        RateWidget(rate: _.rate),
+        const SizedBox(
+          width: 20,
+        ),
+        const FavoriteLargeButton(),
+        const SizedBox(
+          width: 10,
+        ),
+        IconButton(
+            onPressed: () {},
+            style: ButtonStyle(
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10))),
+                side: const MaterialStatePropertyAll(
+                    BorderSide(color: Colors.black26, width: 1))),
+            icon: const Icon(
+              Icons.share_sharp,
+              size: 30,
+            ))
+      ],
+    ),
+    const SizedBox(
+      height: 10,
+    ),
+    ListTile(
+      title: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: regularAppText('Descripción', 26),
+      ),
+      subtitle: thinAppText(_.descripcion, 20, maxLines: 5),
     ),
     isInfoPage ? moreInfoPage(context, _) : showMoreInfo(context)
   ]);
+}
+
+class FavoriteLargeButton extends StatefulWidget {
+  const FavoriteLargeButton({
+    super.key,
+  });
+
+  @override
+  State<FavoriteLargeButton> createState() => _FavoriteLargeButtonState();
+}
+
+class _FavoriteLargeButtonState extends State<FavoriteLargeButton> {
+  bool _isPressed = false;
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+        onPressed: () {
+          setState(() {
+            _isPressed = !_isPressed;
+          });
+        },
+        style: ButtonStyle(
+            side: const MaterialStatePropertyAll(
+                BorderSide(color: Colors.black26, width: 1)),
+            shape: MaterialStatePropertyAll(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+            padding: const MaterialStatePropertyAll(EdgeInsets.all(10))),
+        child: Row(children: [
+          Icon(_isPressed ? Icons.favorite_sharp : Icons.favorite_border,
+              color: _isPressed ? Colors.red : iconAppColor),
+          const SizedBox(
+            width: 5,
+          ),
+          regularAppText('Guardar favorito', 18),
+          const SizedBox(
+            width: 10,
+          )
+        ]));
+  }
 }
 
 Widget moreInfoPage(BuildContext context, _) {
@@ -309,21 +356,7 @@ TextButton showMoreInfo(context) {
         ),
       );
     },
-    child: regularAppText('Ver más información ...', 16, color: Colors.black),
-  );
-}
-
-Column categorySession(BuildContext context, _) {
-  return Column(
-    children: [
-      const SizedBox(
-        height: 15,
-      ),
-      SearchInputFb1(
-          searchController: SearchController(),
-          hintText: 'Buscar en esta tienda...'),
-      setCategories(context, _)
-    ],
+    child: boldAppText('Ver más ...', 16, color: Colors.black),
   );
 }
 

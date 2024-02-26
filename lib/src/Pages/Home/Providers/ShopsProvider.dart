@@ -1,28 +1,25 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:get/get.dart';
 
-class _ShopsProvider {
+class ShopsProvider {
   List<Map<String, dynamic>> shops = [];
 
-  _ShopsProvider();
-
-  Future<List<Map<String, dynamic>>> cargarData() async {
-    if (shops.isEmpty) {
-      final respuesta = await rootBundle.loadString('data/shops.json');
-      Map<dynamic, dynamic> shopsJson = json.decode(respuesta);
-
-      for (var shop in shopsJson["populate"]) {
-        shops.add({
-          "name": shop["name"],
-          "categories": shop["categories"],
-          "image": shop["image"],
-          "rate": shop["rate"]
-        });
-      }
+  Future<List<Map<String, dynamic>>> cargarData(int indexTest) async {
+    final respuesta = await rootBundle.loadString('data/shops.json');
+    Map<dynamic, dynamic> shopsJson = json.decode(respuesta);
+    for (var shop in shopsJson["populate"]) {
+      shops.add({
+        "name": shop["name"],
+        "description": shop["description"],
+        "image": shop["image"],
+        "rate": shop["rate"]
+      });
     }
-    return shops;
+
+    return Future.delayed(const Duration(seconds: 2), () {
+      return shops;
+    });
   }
 }
-
-final ShopsProvider = _ShopsProvider();

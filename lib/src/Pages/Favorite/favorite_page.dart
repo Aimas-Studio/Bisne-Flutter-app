@@ -2,7 +2,7 @@ import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/Utils/interfaces.dart';
-import '../../core/widgets/card_tables.dart';
+import '../../core/widgets/cards/card_tables.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -40,7 +40,7 @@ class FavoritePage extends StatelessWidget {
         body: Container(
           margin: const EdgeInsets.only(top: 20),
           child: FutureBuilder(
-              future: ShopsProvider.cargarData(),
+              future: ShopsProvider().cargarData(8),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return TabBarView(

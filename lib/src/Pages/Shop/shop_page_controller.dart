@@ -3,10 +3,11 @@ import 'package:get/get.dart';
 
 class ShopPageController extends GetxController {
   ShopPageController();
+
   final cart = Get.find<CartController>().itemsToBuy;
   final int viewsCount = 1200;
   final double rate = 4.5;
-  final List<String> categories = ['Alimentos'];
+  final List<String> categories = ['Alimentos', "Tecnologia", "Agro"];
   final List<String> openingHours = [
     'De lunes a viernes. 7 AM - 11 PM',
     'Sábados y domingos. 10 AM - 2 PM'

@@ -11,7 +11,7 @@ TableCardWidget<ShopCard> createShopTable(
     data: data,
     cardFactory: (shop) => ShopCard(
       name: shop["name"]!,
-      categories: shop["categories"]!,
+      description: shop["description"]!,
       image: shop["image"]!,
       rate: shop["rate"]!,
     ),

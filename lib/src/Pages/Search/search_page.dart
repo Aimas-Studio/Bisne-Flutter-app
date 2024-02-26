@@ -1,111 +1,117 @@
 //Dart Imports
 
 //Flutter Imports
+import 'dart:ffi';
+
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
+import 'package:bisne/src/Pages/Search/Widgets/drawer_search_widget.dart';
+import 'package:bisne/src/Pages/Search/search_page_controller.dart';
+import 'package:bisne/src/core/Utils/texts.dart';
+import 'package:bisne/src/core/widgets/CategoryButton.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../core/Utils/interfaces.dart';
-import '../../core/widgets/card_tables.dart';
+import '../../core/widgets/cards/card_tables.dart';
 import '../../core/widgets/search_input_widget.dart';
-import 'Widgets/drawer_search_widget.dart';
 
-class SearchPage extends StatefulWidget {
+class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
-
-  @override
-  State<SearchPage> createState() => _SearchPageState();
-}
-
-class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        appBar: appbarSearchPage(),
-        endDrawer: DrawerSearchWidget(),
-        drawerScrimColor: Colors.white70,
-        body: FutureBuilder(
-          future: ShopsProvider.cargarData(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return TabBarView(
+    final SearchPageController _ = Get.find<SearchPageController>();
+    return Scaffold(
+      endDrawer: DrawerSearchWidget(),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: <Widget>[
+          SliverAppBar(
+            stretch: true,
+            onStretchTrigger: () async {},
+            stretchTriggerOffset: 150.0,
+            actions: [Container()],
+            expandedHeight: 160.0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: SizedBox(
+                height: 100,
+                child: appbarSearchPage(),
+              ),
+              titlePadding: const EdgeInsets.only(bottom: 0),
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  ListView(
-                    children: [
-                      const SizedBox(height: 20),
-                      createShopTable(context, snapshot.data!)
-                    ],
-                  ),
-                  ListView(
-                    children: [
-                      const SizedBox(height: 20),
-                      createShopTable(context, snapshot.data!)
-                    ],
-                  ),
-                  ListView(
-                    children: [
-                      const SizedBox(height: 20),
-                      createShopTable(context, snapshot.data!)
-                    ],
-                  ),
-                  ListView(
-                    children: [
-                      const SizedBox(height: 20),
-                      createShopTable(context, snapshot.data!)
-                    ],
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: buildButtons(context, _),
+                    ),
                   ),
                 ],
-              );
-            } else {
-              return TabBarView(
-                children: [ListView(), ListView(), ListView(), ListView()],
-              );
-            }
-          },
-        ),
-        endDrawerEnableOpenDragGesture: false,
+              ),
+            ),
+            floating: false,
+            pinned: true,
+            snap: false,
+          ),
+          SliverToBoxAdapter(
+              child: StreamBuilder(
+            stream: _.indexStream,
+            builder: (context, snapshot) {
+              return FutureBuilder(
+                  key: UniqueKey(),
+                  future: ShopsProvider().cargarData(_.selectedIndex.value),
+                  builder: (context, snapshot) => snapshot.hasData
+                      ? createShopTable(context, snapshot.data!)
+                      : const Center(child: CircularProgressIndicator()));
+            },
+          )),
+        ],
       ),
+      endDrawerEnableOpenDragGesture: false,
     );
+  }
+
+  List<Widget> buildButtons(BuildContext context, SearchPageController _) {
+    List<String> labels = ["Tiendas", "Productos", "Servicios"];
+    List<Widget> buttons = [];
+
+    for (int i = 0; i < labels.length; i++) {
+      buttons.add(
+        SizedBox(
+          width: MediaQuery.of(context).size.width > 400 ? 90 : 65,
+          height: 30,
+          child: Obx(() => CategoryButton(
+              isPressed: _.selectedIndex.value == i,
+              // ignore: void_checks
+              onPressed: () {
+                _.selectedIndex.value = i;
+              },
+              label: labels[i])),
+        ),
+      );
+    }
+
+    return buttons;
   }
 
   AppBar appbarSearchPage() {
     return AppBar(
       actions: [
-        filterIcon(),
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: filterIcon(),
+        ),
       ],
       backgroundColor: backgroundAppColor,
-      title: SearchInputFb1(
+      title: SearchInput(
         hintText: 'Buscar Productos...',
         searchController: SearchController(),
       ),
-      toolbarHeight: 80,
+      toolbarHeight: 100,
       shadowColor: backgroundAppColor,
-      bottom: const TabBar(
-        indicatorColor: bisneColorPrimary,
-        indicatorPadding: EdgeInsets.only(bottom: 7),
-        indicatorSize: TabBarIndicatorSize.label,
-        tabs: [
-          Tab(
-              child: Text(
-            'Tiendas',
-            style: TextStyle(color: fontAppColor, fontSize: 12),
-          )),
-          Tab(
-              child: Text('Productos',
-                  style: TextStyle(
-                      color: Color.fromRGBO(81, 92, 111, 41), fontSize: 12))),
-          Tab(
-              child: Text('Servicio',
-                  style: TextStyle(
-                      color: Color.fromRGBO(81, 92, 111, 41), fontSize: 12))),
-          Tab(
-              child: Text('Eventos',
-                  style: TextStyle(
-                      color: Color.fromRGBO(81, 92, 111, 41), fontSize: 12)))
-        ],
-      ),
     );
   }
 
@@ -116,15 +122,13 @@ class _SearchPageState extends State<SearchPage> {
             Scaffold.of(context).openEndDrawer();
           },
           child: Container(
-              width: 50,
-              margin: const EdgeInsets.only(top: 15, right: 10, bottom: 15),
+              width: 60,
+              height: 60,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
               ),
-              child: Center(
-                child: SvgPicture.asset('assets/Icons/filter_search_icon.svg'),
-              )));
+              child: const Icon(Icons.filter_alt, color: iconAppColor)));
     });
   }
 }

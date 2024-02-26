@@ -12,8 +12,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double media =
-        context.width > 400 ? context.height * 0.24 : context.height * 0.15;
     double mediaViewPort = context.width > 400 ? 0.14 : 0.25;
     return Scaffold(
       appBar: appbarHomePage(),
@@ -27,13 +25,13 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 25.0,
             ),
+            searchRow(),
+            const SizedBox(height: 15.0),
             categoryText(),
             const SizedBox(
               height: 18.0,
             ),
-            categoryIcons(media, mediaViewPort, section),
-            searchRow(),
-            const SizedBox(height: 15.0),
+            categoryIcons(mediaViewPort, section),
             sectionName(section),
             const SizedBox(
               height: 15.0,

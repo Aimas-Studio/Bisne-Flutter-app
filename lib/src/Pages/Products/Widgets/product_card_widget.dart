@@ -1,4 +1,5 @@
 import 'package:bisne/src/Pages/Products/product_page.dart';
+import 'package:bisne/src/core/widgets/cards/photo_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,9 @@ class ProductCard extends Card {
   final String name;
   final String image;
   final int price;
+  final String rate = '4.5';
+  final String description =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
   const ProductCard({
     Key? key,
@@ -15,11 +19,10 @@ class ProductCard extends Card {
     required this.image,
     required this.price,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    double heightMedia = MediaQuery.of(context).size.width > 400 ? 260 : 250;
-    double widthMedia = MediaQuery.of(context).size.width > 400 ? 165 : 145;
+    double heightMedia = MediaQuery.of(context).size.width > 400 ? 190 : 155;
+    double widthMedia = MediaQuery.of(context).size.width > 400 ? 160 : 145;
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -31,42 +34,28 @@ class ProductCard extends Card {
           ),
         );
       },
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(25.0),
-            boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 3.0)]),
-        clipBehavior: Clip.antiAlias,
-        height: heightMedia,
-        width: widthMedia,
-        child: Column(
-          children: [
-            Image(
-              image: AssetImage(image),
-              fit: BoxFit.cover,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PhotoCard(
+              widthMedia: widthMedia,
+              heightMedia: heightMedia,
+              image: image,
+              rate: rate),
+          const SizedBox(height: 10),
+          SizedBox(
               width: widthMedia,
-            ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(top: 10),
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      regularAppText(name, context.width > 400 ? 18 : 16,
-                          maxLines: 2),
-                      Row(
-                        children: [
-                          boldAppText(price.toStringAsPrecision(5), 18),
-                          const SizedBox(width: 10),
-                          thinAppText('mm', 18)
-                        ],
-                      )
-                    ]),
-              ),
-            ),
-          ],
-        ),
+              child: regularAppText(name, 16, color: Colors.black)),
+          const SizedBox(height: 5),
+          SizedBox(
+              width: widthMedia,
+              child: regularAppText(description, 12, maxLines: 1)),
+          const SizedBox(height: 5),
+          SizedBox(
+              width: widthMedia,
+              child: regularAppText('${price.toStringAsPrecision(5)} mm', 18,
+                  maxLines: 1))
+        ],
       ),
     );
   }

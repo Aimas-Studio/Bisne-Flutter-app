@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 
 class SearchPageController extends GetxController {
   SearchPageController();
+  final _streamController = StreamController<int>();
+  var selectedIndex = 0.obs;
 
   var category = ''.obs;
   var province = ''.obs;
@@ -40,6 +44,22 @@ class SearchPageController extends GetxController {
     'CUP',
     'MLC',
   ];
+
+  @override
+  void onInit() {
+    super.onInit();
+    selectedIndex.listen((index) {
+      _streamController.add(index);
+    });
+  }
+
+  Stream<int> get indexStream => _streamController.stream;
+
+  @override
+  void onClose() {
+    super.onClose();
+    _streamController.close();
+  }
 
   List<String> getListProperty(property) {
     switch (property) {

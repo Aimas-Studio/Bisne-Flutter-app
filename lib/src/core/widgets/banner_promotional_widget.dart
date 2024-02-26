@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../Pages/Home/Providers/PromotionalProvider.dart';
 
-
 class BannerPromotionalWidget extends StatelessWidget {
   final List<dynamic> images;
   final bool rounded;
@@ -16,40 +15,28 @@ class BannerPromotionalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double mediaHeight = MediaQuery.sizeOf(context).width > 400 ? 260.0 : 250.0;
-    return Center(
-      child: Container(
-          height: mediaHeight,
-          width: rounded ? context.width * 0.9 : context.width,
-          child: Swiper(
-              layout: SwiperLayout.DEFAULT,
-              containerHeight: 50,
-              autoplayDisableOnInteraction: true,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                    padding: const EdgeInsets.only(bottom: 33.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: rounded
-                              ? BorderRadius.circular(15)
-                              : BorderRadius.circular(0),
-                          color: Color.fromRGBO(0, 105, 126, 1)),
-                      child: FadeInImage(
-                          placeholder: AssetImage('assets/Images/hero.png'),
-                          image: AssetImage(images[index])),
-                    ));
-              },
-              autoplay: false,
-              autoplayDelay: 6000,
-              itemCount: images.length,
-              pagination: new SwiperPagination(
-                  alignment: Alignment.bottomCenter,
-                  builder: new DotSwiperPaginationBuilder(
-                    color: Colors.grey[350],
-                    activeColor: Colors.green[400],
-                    size: 10.0,
-                    space: 2,
-                  )))),
+    double mediaHeight = MediaQuery.sizeOf(context).width > 400 ? 200.0 : 150.0;
+    double mediaWidth = MediaQuery.sizeOf(context).width > 400 ? 100.0 : 80.0;
+
+    return Container(
+      height: mediaHeight,
+      child: Swiper(
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+              width: mediaWidth,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: AssetImage(images[index]),
+                  fit: BoxFit.cover,
+                ),
+              ));
+        },
+        scale: 0.7,
+        viewportFraction: MediaQuery.sizeOf(context).width > 400 ? 0.6 : 0.7,
+        itemCount: images.length,
+        pagination: RectSwiperPaginationBuilder(),
+      ),
     );
   }
 }
