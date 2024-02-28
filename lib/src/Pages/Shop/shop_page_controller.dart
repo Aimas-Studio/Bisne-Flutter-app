@@ -1,13 +1,27 @@
+import 'dart:async';
+
 import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
+import 'package:bisne/src/core/utils/interfaces_controller.dart';
 import 'package:get/get.dart';
 
-class ShopPageController extends GetxController {
-  ShopPageController();
-
+class ShopPageController extends IndexButtonController {
   final cart = Get.find<CartController>().itemsToBuy;
   final int viewsCount = 1200;
   final double rate = 4.5;
-  final List<String> categories = ['Alimentos', "Tecnologia", "Agro"];
+  final List<String> categories = [
+    'Alimentos',
+    "Tecnologia",
+    "Agro",
+    'Alimentos',
+    "Tecnologia",
+    "Agro",
+    'Alimentos',
+    "Tecnologia",
+    "Agro",
+    'Alimentos',
+    "Tecnologia",
+    "Agro"
+  ];
   final List<String> openingHours = [
     'De lunes a viernes. 7 AM - 11 PM',
     'Sábados y domingos. 10 AM - 2 PM'
@@ -25,4 +39,24 @@ class ShopPageController extends GetxController {
   final bool favorito = false;
   final String descripcion =
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor, Aenean massa Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor, Aenean massa.";
+
+  @override
+  RxInt indexButton = 0.obs;
+
+  final _streamController = StreamController<int>();
+  @override
+  void onInit() {
+    super.onInit();
+    indexButton.listen((index) {
+      _streamController.add(index);
+    });
+  }
+
+  Stream<int> get indexStream => _streamController.stream;
+
+  @override
+  void onClose() {
+    super.onClose();
+    _streamController.close();
+  }
 }

@@ -1,7 +1,6 @@
 import 'package:bisne/src/Pages/Products/product_page.dart';
 import 'package:bisne/src/core/widgets/cards/photo_card_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../core/widgets/texts/texts_widgets.dart';
 
@@ -54,28 +53,13 @@ class ProductCard extends Card {
           SizedBox(
             width: widthMedia,
           ),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(top: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RegularAppText(
-                        text: name,
-                        size: context.width > 400 ? 18 : 16,
-                        maxLines: 2),
-                    Row(
-                      children: [
-                        BoldAppText(
-                            text: price.toStringAsPrecision(5), size: 18),
-                        const SizedBox(width: 10),
-                        const ThinAppText(text: 'mm', size: 18)
-                      ],
-                    )
-                  ]),
-            ),
-          ),
+          Row(
+            children: [
+              BoldAppText(text: price.toStringAsPrecision(5), size: 18),
+              const SizedBox(width: 10),
+              const ThinAppText(text: 'mm', size: 18)
+            ],
+          )
         ],
       ),
     );

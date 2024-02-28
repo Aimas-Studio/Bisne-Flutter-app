@@ -1,6 +1,9 @@
+import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
 import 'package:bisne/src/Pages/Products/Widgets/product_widgets.dart';
 import 'package:bisne/src/Pages/Products/product_page_controller.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
+import 'package:bisne/src/core/widgets/banner_promotional_widget.dart';
+import 'package:bisne/src/core/widgets/cards/card_tables.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +34,25 @@ class ProductPage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          othersProducts(context, Get.find<ShopPageController>())
+          Padding(
+            padding: const EdgeInsets.only(top: 50.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FutureBuilder(
+                  future: ProductsProvider().cargarData(8),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return createProductTable(context, snapshot.data!);
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
+                const BannerSwiper(rounded: true)
+              ],
+            ),
+          )
         ],
       ),
       backgroundColor: const Color.fromRGBO(245, 246, 248, 1),
@@ -56,10 +77,6 @@ class ProductPage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget othersProducts(context, _) {
-    return setCategories(context, _);
   }
 
   Widget productInfo(BuildContext context, ProductPageController _) {

@@ -1,10 +1,9 @@
-import 'dart:ffi';
-
 import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
+import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:bisne/src/Pages/Shop/shop_more_info_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:bisne/src/core/Utils/custom_icons.dart';
-import 'package:bisne/src/core/widgets/cards/favorite_button_widget.dart';
+import 'package:bisne/src/core/entities/shop.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,7 +11,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/comment_widgets.dart';
 import '../../../core/widgets/banner_promotional_widget.dart';
-import '../../../core/widgets/cards/card_tables.dart';
 import '../../../core/widgets/cards/card_tables.dart';
 import '../../../core/widgets/search_input_widget.dart';
 import '../../../core/widgets/texts/texts_widgets.dart';
@@ -361,57 +359,4 @@ TextButton showMoreInfo(context) {
     child: const RegularAppText(
         text: 'Ver más información ...', size: 16, color: Colors.black),
   );
-}
-
-Column categorySession(BuildContext context, _) {
-  return Column(
-    children: [
-      const SizedBox(
-        height: 15,
-      ),
-      SearchInput(
-          searchController: SearchController(),
-          hintText: 'Buscar en esta tienda...'),
-      setCategories(context, _)
-    ],
-  );
-}
-
-Column setCategories(BuildContext context, ShopPageController _) {
-  List<Widget> categoryList = [];
-  for (var category in _.categories) {
-    categoryList.add(Container(
-      padding: const EdgeInsets.only(top: 50.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-            child: Text(
-              category,
-              style: const TextStyle(fontSize: 20),
-            ),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-            child: FutureBuilder(
-              future: productProvider.cargarData(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return createProductTable(context, snapshot.data!);
-                } else {
-                  return Container();
-                }
-              },
-            ),
-          ),
-          const BannerSwiper(rounded: true)
-        ],
-      ),
-    ));
-  }
-  return Column(children: categoryList);
 }

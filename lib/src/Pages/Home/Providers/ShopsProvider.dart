@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:get/get.dart';
 
 class ShopsProvider {
   List<Map<String, dynamic>> shops = [];

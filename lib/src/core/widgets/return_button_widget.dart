@@ -3,28 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../utils/colors.dart';
-import 'texts/texts_widgets.dart';
 
-Widget returnButtonWidget(context) {
-  return ElevatedButton(
+class ReturnButtonAppbar extends StatelessWidget {
+  const ReturnButtonAppbar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
       onPressed: () => {
-            Get.find<BasePageController>().showBottomNavBar.value = true,
-            Navigator.pop(context),
-          },
+        Get.find<BasePageController>().showBottomNavBar.value = true,
+        Navigator.pop(context),
+      },
       style: const ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
-        elevation: MaterialStatePropertyAll(0),
+          backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
+          elevation: MaterialStatePropertyAll(0),
+          padding: MaterialStatePropertyAll(EdgeInsets.only(left: 7))),
+      icon: const Icon(
+        Icons.arrow_back_ios,
+        size: 24,
+        color: iconAppColor,
       ),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.arrow_back_ios,
-            size: 24,
-            color: iconAppColor,
-          ),
-          RegularAppText(text: "Regresar", size: 18),
-        ],
-      ));
+    );
+  }
 }

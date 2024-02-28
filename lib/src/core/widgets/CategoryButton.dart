@@ -1,6 +1,7 @@
 import 'package:bisne/src/core/utils/colors.dart';
 import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class CategoryButton extends StatelessWidget {
   const CategoryButton({
@@ -10,8 +11,8 @@ class CategoryButton extends StatelessWidget {
     required this.isPressed,
   });
 
-  final onPressed;
-  final isPressed;
+  final Callback onPressed;
+  final bool isPressed;
   final String label;
 
   @override
