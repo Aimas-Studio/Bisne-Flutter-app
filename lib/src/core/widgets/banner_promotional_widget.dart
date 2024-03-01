@@ -15,8 +15,8 @@ class BannerPromotionalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double mediaHeight = MediaQuery.sizeOf(context).width > 400 ? 200.0 : 150.0;
-    double mediaWidth = MediaQuery.sizeOf(context).width > 400 ? 100.0 : 80.0;
+    double mediaHeight = MediaQuery.sizeOf(context).width > 550 ? 200.0 : 150.0;
+    double mediaWidth = MediaQuery.sizeOf(context).width > 550 ? 100.0 : 80.0;
 
     return Container(
       height: mediaHeight,
@@ -33,7 +33,7 @@ class BannerPromotionalWidget extends StatelessWidget {
               ));
         },
         scale: 0.7,
-        viewportFraction: MediaQuery.sizeOf(context).width > 400 ? 0.6 : 0.7,
+        viewportFraction: MediaQuery.sizeOf(context).width > 550 ? 0.6 : 0.7,
         itemCount: images.length,
         pagination: RectSwiperPaginationBuilder(),
       ),

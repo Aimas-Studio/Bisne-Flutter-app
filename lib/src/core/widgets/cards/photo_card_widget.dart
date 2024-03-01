@@ -21,7 +21,7 @@ class PhotoCard extends StatelessWidget {
     return Container(
         width: widthMedia,
         height: heightMedia,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
@@ -34,14 +34,15 @@ class PhotoCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              padding: const EdgeInsets.only(left: 8, right: 3),
+              padding:
+                  const EdgeInsets.only(left: 8, right: 3, top: 3, bottom: 3),
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Row(
                 children: [
-                  ThinAppText(text: rate, size: 20),
+                  RegularAppText(text: rate, size: 16),
                   const Icon(Icons.star_rounded,
-                      color: Color.fromRGBO(253, 217, 75, 1), size: 25),
+                      color: Color.fromRGBO(253, 217, 75, 1), size: 20),
                 ],
               ),
             ),

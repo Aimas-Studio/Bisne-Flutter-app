@@ -80,7 +80,7 @@ class SearchPage extends StatelessWidget {
     for (int i = 0; i < labels.length; i++) {
       buttons.add(
         SizedBox(
-          width: MediaQuery.of(context).size.width > 400 ? 90 : 65,
+          width: MediaQuery.of(context).size.width > 550 ? 90 : 65,
           height: 30,
           child: Obx(() => CategoryButton(
               isPressed: _.selectedIndex.value == i,

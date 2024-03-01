@@ -108,7 +108,7 @@ class IconBottomBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           child: Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: context.width > 400
+                horizontal: context.width > 550
                     ? 25
                     : 0), // Ajusta este valor según tus necesidades
             child: Container(
@@ -150,7 +150,7 @@ class NotificationButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           child: Padding(
             padding:
-                EdgeInsets.symmetric(horizontal: context.width > 400 ? 25 : 0),
+                EdgeInsets.symmetric(horizontal: context.width > 550 ? 25 : 0),
             child: Container(
               decoration: BoxDecoration(
                   color: selected ? selectColor : normalColor,
@@ -158,7 +158,7 @@ class NotificationButton extends StatelessWidget {
               width: 55,
               height: 55,
               child: Badge(
-                offset: Offset(context.width > 400 ? 3 : 0, 2),
+                offset: Offset(context.width > 550 ? 3 : 0, 2),
                 largeSize: 20,
                 backgroundColor: bisneColorPrimary,
                 alignment: AlignmentDirectional.topEnd,

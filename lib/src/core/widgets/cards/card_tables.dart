@@ -7,7 +7,7 @@ import 'table_card_widget.dart';
 TableCardWidget<ShopCard> createShopTable(
     BuildContext context, List<Map<String, dynamic>> data) {
   return TableCardWidget(
-    maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2,
+    maxColumns: MediaQuery.sizeOf(context).width > 550 ? 3 : 2,
     data: data,
     cardFactory: (shop) => ShopCard(
       name: shop["name"]!,
@@ -21,7 +21,7 @@ TableCardWidget<ShopCard> createShopTable(
 TableCardWidget<ProductCard> createProductTable(
     BuildContext context, List<Map<String, dynamic>> data) {
   return TableCardWidget(
-    maxColumns: MediaQuery.sizeOf(context).width > 400 ? 3 : 2,
+    maxColumns: MediaQuery.sizeOf(context).width > 550 ? 3 : 2,
     data: data,
     cardFactory: (product) => ProductCard(
       name: product["name"]!,
