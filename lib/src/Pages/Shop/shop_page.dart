@@ -1,12 +1,15 @@
 import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
 import 'package:bisne/src/Pages/Shop/Widgets/shop_page_widgets.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
+import 'package:bisne/src/core/utils/colors.dart';
+import 'package:bisne/src/core/utils/custom_icons.dart';
 import 'package:bisne/src/core/utils/interfaces_controller.dart';
 import 'package:bisne/src/core/widgets/banner_promotional_widget.dart';
 import 'package:bisne/src/core/widgets/cards/card_tables.dart';
 import 'package:bisne/src/core/widgets/category_button.dart';
 import 'package:bisne/src/core/widgets/return_button_widget.dart';
 import 'package:bisne/src/core/widgets/search_input_widget.dart';
+import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -59,40 +62,70 @@ class ShopPage extends StatelessWidget {
                     horizontal: MediaQuery.of(context).size.width * 0.05),
                 child: Column(
                   children: [
-                    info(_shopPageController, context, false),
+                    InfoWidget(
+                      title: _shopPageController.name,
+                      subtitle: _shopPageController.categories[0],
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            width: 30,
+                            child: Icon(
+                              CustomIcons.eye,
+                              size: 16,
+                              color: iconAppColor,
+                            ),
+                          ),
+                          SizedBox(
+                              height: 25,
+                              width: 40,
+                              child: Center(
+                                  child: ThinAppText(
+                                      text: _shopPageController.viewsCount > 999
+                                          ? '${(_shopPageController.viewsCount / 1000).toString()} K'
+                                          : _shopPageController.viewsCount
+                                              .toString(),
+                                      size: 20))),
+                        ],
+                      ),
+                      rate: _shopPageController.rate.toString(),
+                      description: _shopPageController.descripcion,
+                    ),
+                    // isInfoPage ? moreInfoPage(context, _) :
+                    const TextButtonShowMoreInfo(),
                     const SizedBox(
                       height: 20,
                     ),
                     SearchInput(
                         searchController: SearchController(),
                         hintText: 'Buscar en esta tienda...'),
-                    CategorySection(
-                      categories: _shopPageController.categories,
-                      controller: _shopPageController,
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 50.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          StreamBuilder(
-                              stream: _shopPageController.indexStream,
-                              builder: (context, snapshot) {
-                                return FutureBuilder(
-                                    key: UniqueKey(),
-                                    future: ProductsProvider().cargarData(8),
-                                    builder: (context, snapshot) => snapshot
-                                            .hasData
-                                        ? createProductTable(
-                                            context, snapshot.data!)
-                                        : const Center(
-                                            child:
-                                                CircularProgressIndicator()));
-                              }),
-                          const BannerSwiper(rounded: true)
-                        ],
+                      padding: const EdgeInsets.all(10.0),
+                      child: CategorySection(
+                        categories: _shopPageController.categories,
+                        controller: _shopPageController,
                       ),
-                    )
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        StreamBuilder(
+                            stream: _shopPageController.indexStream,
+                            builder: (context, snapshot) {
+                              return FutureBuilder(
+                                  key: UniqueKey(),
+                                  future: ProductsProvider().cargarData(8),
+                                  builder: (context, snapshot) => snapshot
+                                          .hasData
+                                      ? createProductTable(
+                                          context, snapshot.data!)
+                                      : const Center(
+                                          child: CircularProgressIndicator()));
+                            }),
+                        const BannerSwiper(rounded: true)
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -117,10 +150,10 @@ class CategorySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: 70,
+      height: 60,
       child: Obx(() => PageView(
           padEnds: false,
-          controller: PageController(viewportFraction: 0.2),
+          controller: PageController(viewportFraction: 0.25),
           scrollDirection: Axis.horizontal,
           children: categoriesButton(categories, controller))),
     );

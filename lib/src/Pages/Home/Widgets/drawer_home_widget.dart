@@ -8,7 +8,7 @@ class DrawerHomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: context.width > 400 ? context.width * 0.4 : context.width * 0.8,
+      width: context.width > 550 ? context.width * 0.4 : context.width * 0.8,
       child: Material(
         color: Colors.white,
         child: ListView(

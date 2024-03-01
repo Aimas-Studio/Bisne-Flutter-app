@@ -4,7 +4,9 @@ import 'package:bisne/src/Pages/Products/product_page_controller.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:bisne/src/core/widgets/banner_promotional_widget.dart';
 import 'package:bisne/src/core/widgets/cards/card_tables.dart';
+import 'package:bisne/src/core/widgets/return_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 
 import '../../core/entities/comments_controller/coment_controller.dart';
@@ -23,41 +25,119 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.lazyPut(() => CommentController());
     Get.lazyPut(() => ProductPageController());
+    final controller = Get.find<ProductPageController>();
+    double mediaWidth = MediaQuery.sizeOf(context).width > 550 ? 100.0 : 80.0;
     return Scaffold(
-      appBar: secondaryAppBar(context, true,
-          iconData: Icons.shopping_cart_outlined,
-          shopPageController: Get.find<ShopPageController>()),
-      body: ListView(
+      body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
-        children: [
-          productContainer(context, Get.find<ProductPageController>()),
-          const SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                FutureBuilder(
-                  future: ProductsProvider().cargarData(8),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return createProductTable(context, snapshot.data!);
-                    } else {
-                      return Container();
-                    }
+        slivers: <Widget>[
+          SliverAppBar(
+            stretch: true,
+            onStretchTrigger: () async {},
+            stretchTriggerOffset: 300.0,
+            expandedHeight: 300.0,
+            leading: const SizedBox(),
+            title: const ReturnButtonAppbar(),
+            titleSpacing: -30,
+            elevation: 0,
+            toolbarHeight: 70,
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+            actions: const [IconCartWidget(), SizedBox(width: 15)],
+            flexibleSpace: FlexibleSpaceBar(
+              background: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50)),
+                child: Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return const Image(
+                      image: AssetImage('assets/Images/hero.png'),
+                      fit: BoxFit.cover,
+                    );
                   },
+                  itemCount: 3,
+                  pagination: const SwiperPagination(
+                      builder: DotSwiperPaginationBuilder(
+                          size: 15.0,
+                          activeSize: 15.0,
+                          color: Color.fromRGBO(223, 224, 223, 1),
+                          activeColor: Colors.white),
+                      alignment: Alignment.bottomCenter),
                 ),
-                const BannerSwiper(rounded: true)
-              ],
+              ),
             ),
-          )
+            pinned: true,
+            floating: false,
+            snap: false,
+          ),
+          SliverToBoxAdapter(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05),
+                child: Column(
+                  children: [
+                    InfoWidget(
+                        title: controller.name,
+                        subtitle: controller.shopName,
+                        trailing: RegularAppText(
+                          text: '${controller.price} mm',
+                          size: 30,
+                        ),
+                        rate: controller.rate.toString(),
+                        description: controller.description)
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
-      backgroundColor: const Color.fromRGBO(245, 246, 248, 1),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   Get.lazyPut(() => CommentController());
+  //   Get.lazyPut(() => ProductPageController());
+  //   return Scaffold(
+  //     appBar: secondaryAppBar(context, true,
+  //         iconData: Icons.shopping_cart_outlined,
+  //         shopPageController: Get.find<ShopPageController>()),
+  //     body: ListView(
+  //       physics: const BouncingScrollPhysics(),
+  //       children: [
+  //         productContainer(context, Get.find<ProductPageController>()),
+  //         const SizedBox(
+  //           height: 20,
+  //         ),
+  //         Padding(
+  //           padding: const EdgeInsets.only(top: 50.0),
+  //           child: Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             children: [
+  //               FutureBuilder(
+  //                 future: ProductsProvider().cargarData(8),
+  //                 builder: (context, snapshot) {
+  //                   if (snapshot.hasData) {
+  //                     return createProductTable(context, snapshot.data!);
+  //                   } else {
+  //                     return Container();
+  //                   }
+  //                 },
+  //               ),
+  // const BannerSwiper(rounded: true)
+  //             ],
+  //           ),
+  //         )
+  //       ],
+  //     ),
+  //     backgroundColor: const Color.fromRGBO(245, 246, 248, 1),
+  //   );
+  // }
 
   Widget productContainer(BuildContext context, ProductPageController _) {
     return Container(
@@ -138,7 +218,7 @@ class ProductPage extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5))),
           height: 50,
           width: 50,
-          child: Center(child: RateWidget(rate: _.rate)),
+          child: Center(child: RateWidget(rate: _.rate.toString())),
         )
       ],
     );
@@ -171,13 +251,13 @@ class ProductPage extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-            flex: context.width > 400 ? 1 : 3,
+            flex: context.width > 550 ? 1 : 3,
             child: saveButton(context, productPageController)),
         SizedBox(
-          width: context.width > 400 ? 20 : 10,
+          width: context.width > 550 ? 20 : 10,
         ),
         Expanded(
-            flex: context.width > 400 ? 1 : 4,
+            flex: context.width > 550 ? 1 : 4,
             child: buyButton(context, productPageController))
       ],
     );
@@ -187,7 +267,7 @@ class ProductPage extends StatelessWidget {
     return TextButton(
         style: ButtonStyle(
             padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                vertical: 18, horizontal: context.width > 400 ? 40 : 0)),
+                vertical: 18, horizontal: context.width > 550 ? 40 : 0)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),
             backgroundColor:
@@ -195,7 +275,7 @@ class ProductPage extends StatelessWidget {
         onPressed: () => {},
         child: RegularAppText(
             text: 'GUARDAR',
-            size: context.width > 400 ? 30 : 20,
+            size: context.width > 550 ? 30 : 20,
             color: Colors.white));
   }
 
@@ -232,7 +312,7 @@ class ProductPage extends StatelessWidget {
                 child: Center(
                   child: RegularAppText(
                       text: 'COMPRAR',
-                      size: context.width > 400 ? 30 : 20,
+                      size: context.width > 550 ? 30 : 20,
                       color: Colors.white),
                 ),
               ),

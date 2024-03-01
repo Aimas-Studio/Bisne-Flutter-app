@@ -1,18 +1,11 @@
-import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
-import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:bisne/src/Pages/Shop/shop_more_info_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
-import 'package:bisne/src/core/Utils/custom_icons.dart';
-import 'package:bisne/src/core/entities/shop.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/comment_widgets.dart';
-import '../../../core/widgets/banner_promotional_widget.dart';
-import '../../../core/widgets/cards/card_tables.dart';
-import '../../../core/widgets/search_input_widget.dart';
 import '../../../core/widgets/texts/texts_widgets.dart';
 
 Column iconView(int viewsCount) {
@@ -32,7 +25,7 @@ class RateWidget extends StatelessWidget {
     super.key,
     required this.rate,
   });
-  final rate;
+  final String rate;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +68,7 @@ Row photo(BuildContext context, _) {
         )
       ]),
       SizedBox(
-        height: context.width > 400 ? 300 : 170,
+        height: context.width > 550 ? 300 : 170,
         child: const FadeInImage(
             placeholder: placeHolderImageApp,
             image: AssetImage('assets/Images/logo_empresa.png')),
@@ -93,76 +86,70 @@ Row photo(BuildContext context, _) {
   );
 }
 
-Column info(ShopPageController _, BuildContext context, isInfoPage) {
-  return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-    const SizedBox(
-      height: 20,
-    ),
-    ListTile(
-      title: RegularAppText(text: _.name, size: 30),
-      subtitle: ThinAppText(text: _.categories[0], size: 20),
-      trailing: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+class InfoWidget extends StatelessWidget {
+  const InfoWidget({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.trailing,
+    required this.rate,
+    required this.description,
+  });
+  final String title;
+  final String subtitle;
+  final Widget trailing;
+  final String rate;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      const SizedBox(
+        height: 20,
+      ),
+      ListTile(
+        title: RegularAppText(text: title, size: 30),
+        subtitle: ThinAppText(text: subtitle, size: 20),
+        trailing: trailing,
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      Row(
         children: [
+          RateWidget(rate: rate),
           const SizedBox(
-            width: 30,
-            child: Icon(
-              CustomIcons.eye,
-              size: 16,
-              color: iconAppColor,
-            ),
+            width: 20,
           ),
-          SizedBox(
-              height: 25,
-              width: 40,
-              child: Center(
-                  child: ThinAppText(
-                      text: _.viewsCount > 999
-                          ? '${(_.viewsCount / 1000).toString()} K'
-                          : _.viewsCount.toString(),
-                      size: 20))),
+          const FavoriteLargeButton(),
+          const SizedBox(
+            width: 10,
+          ),
+          IconButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10))),
+                  side: const MaterialStatePropertyAll(
+                      BorderSide(color: Colors.black26, width: 1))),
+              icon: const Icon(
+                Icons.share_sharp,
+                size: 30,
+              ))
         ],
       ),
-    ),
-    const SizedBox(
-      height: 10,
-    ),
-    Row(
-      children: [
-        RateWidget(rate: _.rate),
-        const SizedBox(
-          width: 20,
-        ),
-        const FavoriteLargeButton(),
-        const SizedBox(
-          width: 10,
-        ),
-        IconButton(
-            onPressed: () {},
-            style: ButtonStyle(
-                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10))),
-                side: const MaterialStatePropertyAll(
-                    BorderSide(color: Colors.black26, width: 1))),
-            icon: const Icon(
-              Icons.share_sharp,
-              size: 30,
-            ))
-      ],
-    ),
-    const SizedBox(
-      height: 10,
-    ),
-    ListTile(
-      title: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 10),
-        child: RegularAppText(text: 'Descripción', size: 26),
+      const SizedBox(
+        height: 10,
       ),
-      subtitle: ThinAppText(text: _.descripcion, size: 20, maxLines: 5),
-    ),
-    isInfoPage ? moreInfoPage(context, _) : showMoreInfo(context)
-  ]);
+      ListTile(
+        title: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: RegularAppText(text: 'Descripción', size: 26),
+        ),
+        subtitle: ThinAppText(text: description, size: 20, maxLines: 5),
+      ),
+    ]);
+  }
 }
 
 class FavoriteLargeButton extends StatefulWidget {
@@ -289,7 +276,7 @@ Widget address(BuildContext context, ShopPageController _) {
           const SizedBox(
             width: 10,
           ),
-          ThinAppText(text: _.localitation, size: context.width > 400 ? 20 : 15)
+          ThinAppText(text: _.localitation, size: context.width > 550 ? 20 : 15)
         ],
       ),
       const SizedBox(
@@ -326,7 +313,7 @@ Widget openingHours(BuildContext context, ShopPageController _) {
             const SizedBox(
               width: 10,
             ),
-            ThinAppText(text: seccion, size: context.width > 400 ? 20 : 16)
+            ThinAppText(text: seccion, size: context.width > 550 ? 20 : 16)
           ],
         ),
       )
@@ -342,21 +329,33 @@ Widget openingHours(BuildContext context, ShopPageController _) {
   );
 }
 
-TextButton showMoreInfo(context) {
-  return TextButton(
-    style: const ButtonStyle(
-      padding: MaterialStatePropertyAll(EdgeInsets.all(10)),
-    ),
-    onPressed: () {
-      Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (context, animation1, animation2) => ShopMoreInfoPage(),
-          transitionDuration: const Duration(seconds: 0),
+class TextButtonShowMoreInfo extends StatelessWidget {
+  const TextButtonShowMoreInfo({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        TextButton(
+          style: const ButtonStyle(
+            padding: MaterialStatePropertyAll(EdgeInsets.all(10)),
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    ShopMoreInfoPage(),
+                transitionDuration: const Duration(seconds: 0),
+              ),
+            );
+          },
+          child: const RegularAppText(
+              text: 'Ver más información ...', size: 16, color: Colors.black),
         ),
-      );
-    },
-    child: const RegularAppText(
-        text: 'Ver más información ...', size: 16, color: Colors.black),
-  );
+      ],
+    );
+  }
 }

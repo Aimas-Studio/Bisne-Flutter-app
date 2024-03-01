@@ -20,8 +20,8 @@ class ProductCard extends Card {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double heightMedia = MediaQuery.of(context).size.width > 400 ? 190 : 155;
-    double widthMedia = MediaQuery.of(context).size.width > 400 ? 160 : 145;
+    double heightMedia = MediaQuery.of(context).size.width > 550 ? 190 : 155;
+    double widthMedia = MediaQuery.of(context).size.width > 550 ? 160 : 145;
     return InkWell(
       onTap: () {
         Navigator.push(

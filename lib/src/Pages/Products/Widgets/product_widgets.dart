@@ -35,8 +35,8 @@ Widget productSwiper(BuildContext context, List<ImageProvider> images) {
   return Center(
     child: Container(
       alignment: Alignment.center,
-      height: context.width > 400 ? 250 : 150,
-      width: context.width > 400 ? context.width * 0.70 : context.width * 0.80,
+      height: context.width > 550 ? 250 : 150,
+      width: context.width > 550 ? context.width * 0.70 : context.width * 0.80,
       child: Padding(
         padding: EdgeInsets.zero,
         child: images.isEmpty ? swiperHolder : swiper,

@@ -17,7 +17,7 @@ class ShopMoreInfoPage extends StatelessWidget {
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          info(_shopPageController, context, true),
+          // info(_shopPageController, context, true),
           const SizedBox(
             height: 20,
           ),

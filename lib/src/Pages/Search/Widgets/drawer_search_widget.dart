@@ -16,7 +16,7 @@ class DrawerSearchWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 35),
       child: Drawer(
-        width: context.width > 400 ? context.width * 0.6 : context.width * 0.7,
+        width: context.width > 550 ? context.width * 0.6 : context.width * 0.7,
         child: Material(
             color: Colors.white,
             child: Container(

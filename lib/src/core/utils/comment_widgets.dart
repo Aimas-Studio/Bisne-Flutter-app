@@ -34,12 +34,12 @@ Widget comments(
 
 Container commentsButtons(BuildContext context, _) {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: context.width > 400 ? 30 : 0),
+    padding: EdgeInsets.symmetric(horizontal: context.width > 550 ? 30 : 0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          width: context.width > 400 ? 120 : 90,
+          width: context.width > 550 ? 120 : 90,
           child: OutlinedButton(
               style: ButtonStyle(
                 minimumSize:
@@ -52,7 +52,7 @@ Container commentsButtons(BuildContext context, _) {
               child: const RegularAppText(text: 'VER MÁS', size: 13)),
         ),
         SizedBox(
-          width: context.width > 400 ? 180 : 150,
+          width: context.width > 550 ? 180 : 150,
           child: OutlinedButton(
               style: ButtonStyle(
                 minimumSize:

@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double mediaViewPort = context.width > 400 ? 0.14 : 0.25;
+    double mediaViewPort = context.width > 550 ? 0.14 : 0.25;
     return Scaffold(
       appBar: appbarHomePage(),
       endDrawer: const DrawerHomeWidget(),
