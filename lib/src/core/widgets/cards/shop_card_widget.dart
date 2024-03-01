@@ -1,7 +1,6 @@
 import 'package:bisne/src/core/widgets/cards/photo_card_widget.dart';
 import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_link_previewer/flutter_link_previewer.dart';
 
 import '../../../Pages/Shop/shop_page.dart';
 

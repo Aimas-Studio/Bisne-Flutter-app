@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/widgets/secondary_app_bar.dart';
-import 'Widgets/shop_page_widgets.dart';
 
 class ShopMoreInfoPage extends StatelessWidget {
   ShopMoreInfoPage({super.key});

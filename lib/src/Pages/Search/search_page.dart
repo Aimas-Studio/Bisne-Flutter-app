@@ -1,7 +1,6 @@
 //Dart Imports
 
 //Flutter Imports
-import 'dart:ffi';
 
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:bisne/src/Pages/Search/Widgets/drawer_search_widget.dart';
@@ -80,11 +79,9 @@ class SearchPage extends StatelessWidget {
     for (int i = 0; i < labels.length; i++) {
       buttons.add(
         SizedBox(
-          width: MediaQuery.of(context).size.width > 550 ? 90 : 65,
           height: 30,
           child: Obx(() => CategoryButton(
               isPressed: _.selectedIndex.value == i,
-              // ignore: void_checks
               onPressed: () {
                 _.selectedIndex.value = i;
               },

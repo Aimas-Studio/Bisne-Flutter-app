@@ -50,7 +50,7 @@ class RegularAppText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: color ?? fontAppColor,
+        color: color,
         fontFamily: 'Poppins',
         fontSize: size,
         fontWeight: FontWeight.w400,
