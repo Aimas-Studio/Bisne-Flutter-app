@@ -1,7 +1,7 @@
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/Utils/colors.dart';
+import '../../core/presentation/themes/colors.dart';
 import '../../core/presentation/widgets/cards/card_tables.dart';
 
 class FavoritePage extends StatelessWidget {

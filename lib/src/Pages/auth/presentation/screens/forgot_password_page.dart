@@ -1,8 +1,8 @@
-import 'package:bisne/src/core/Utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/themes/decorations.dart';
 import '../../../../core/presentation/widgets/buttons/custom_button_arrow_icon.dart';
 import '../../../../core/presentation/widgets/inputs/custom_reactive_text_field.dart';

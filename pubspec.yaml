@@ -37,16 +37,16 @@ dependencies:
   flutter_swiper_null_safety: ^1.0.2
   flutter_side_menu: ^0.4.0
   flutter_svg: ^2.0.9
-  image_picker: ^1.0.7
-  shared_preferences: ^2.2.2
-  path_provider: ^2.1.1
-  url_launcher: ^6.0.12
-  flutter_swiper_view: ^1.1.8
   flutter_link_previewer: ^3.2.2
-  google_maps_flutter: ^2.5.3
+  flutter_swiper_view: ^1.1.8
+  get: ^4.6.6
+  graphql_flutter: ^5.1.2
+  image_picker: ^1.0.7
+  path_provider: ^2.1.1
   reactive_forms: ^16.1.1
-  get:
-#  graphql_flutter: ^5.2.0-beta.6
+  shared_preferences: ^2.2.2
+  url_launcher: ^6.0.12
+
 
 dev_dependencies:
   flutter_test:

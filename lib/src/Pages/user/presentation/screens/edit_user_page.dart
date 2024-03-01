@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-import '../../../../core/Utils/decorations.dart';
 import '../../../../core/presentation/themes/colors.dart';
+import '../../../../core/presentation/themes/decorations.dart';
 import '../../../../core/presentation/widgets/buttons/custom_outline_button.dart';
 import '../../../../core/presentation/widgets/images/circular_image.dart';
 import '../../../../core/presentation/widgets/inputs/white_input_text_widget.dart';

@@ -1,8 +1,8 @@
 import 'package:bisne/src/Pages/Orders/orders_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/Utils/custom_icons.dart';
 import '../../../../core/entities/content_panel.dart';
+import '../../../../core/presentation/icons/custom_icons.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../domain/entities/user.dart';
 import '../widgets/profile_widget.dart';

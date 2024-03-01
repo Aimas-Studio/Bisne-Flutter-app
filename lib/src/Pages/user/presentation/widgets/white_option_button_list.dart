@@ -1,9 +1,9 @@
 //Flutter Imports
-import 'package:bisne/src/core/Utils/decorations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/entities/content_panel.dart';
 import '../../../../core/presentation/themes/colors.dart';
+import '../../../../core/presentation/themes/decorations.dart';
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class WhiteOptionButtonList extends StatelessWidget {
