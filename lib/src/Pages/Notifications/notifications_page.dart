@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/utils/colors.dart';
-import '../../core/widgets/texts/texts_widgets.dart';
+import '../../core/presentation/themes/colors.dart';
+import '../../core/presentation/widgets/texts/texts_widgets.dart';
 import 'Providers/notifications_provider.dart';
 import 'Widgets/notification_widget.dart';
 

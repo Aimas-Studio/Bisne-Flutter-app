@@ -1,8 +1,8 @@
 import 'package:bisne/src/Pages/Products/product_page.dart';
-import 'package:bisne/src/core/widgets/cards/photo_card_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets/texts/texts_widgets.dart';
+import '../../../core/presentation/widgets/cards/photo_card_widget.dart';
+import '../../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class ProductCard extends Card {
   final String name;

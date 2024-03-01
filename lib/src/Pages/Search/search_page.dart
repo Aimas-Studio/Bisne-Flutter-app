@@ -2,14 +2,14 @@
 
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:bisne/src/Pages/Search/Widgets/drawer_search_widget.dart';
-import 'package:bisne/src/Pages/Search/search_page_controller.dart';
-import 'package:bisne/src/core/widgets/category_button.dart';
+import 'package:bisne/src/Pages/Search/controllers/search_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/Utils/colors.dart';
-import '../../core/widgets/cards/card_tables.dart';
-import '../../core/widgets/search_input_widget.dart';
+import '../../core/presentation/widgets/cards/card_tables.dart';
+import '../../core/presentation/widgets/category_button.dart';
+import '../../core/presentation/widgets/search_input_widget.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -77,7 +77,6 @@ class SearchPage extends StatelessWidget {
     for (int i = 0; i < labels.length; i++) {
       buttons.add(
         SizedBox(
-          width: MediaQuery.of(context).size.width > 550 ? 90 : 65,
           height: 30,
           child: Obx(() => CategoryButton(
               isPressed: _.selectedIndex.value == i,

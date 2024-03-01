@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/entities/comment.dart';
-import '../../../core/entities/user.dart';
-import '../../../core/widgets/images/circular_image.dart';
-import '../../../core/widgets/texts/texts_widgets.dart';
+import '../../../core/presentation/widgets/images/circular_image.dart';
+import '../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../user/domain/entities/user.dart';
 
 Widget commentWidget(UserDump userDump, String body, String date) {
   return Container(

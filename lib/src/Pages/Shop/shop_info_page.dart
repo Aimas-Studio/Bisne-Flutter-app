@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../core/Utils/colors.dart';
 import '../../core/Utils/custom_icons.dart';
 import '../../core/entities/content_panel.dart';
-import '../User/Widgets/profile_widget.dart';
-import '../User/Widgets/white_option_button_list.dart';
+import '../user/presentation/widgets/profile_widget.dart';
+import '../user/presentation/widgets/white_option_button_list.dart';
 import 'Providers/shop_provider.dart';
 
 class ShopInfoPage extends StatelessWidget {

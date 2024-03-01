@@ -1,4 +1,4 @@
-import 'package:bisne/src/Pages/Search/search_page_controller.dart';
+import 'package:bisne/src/Pages/Search/controllers/search_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

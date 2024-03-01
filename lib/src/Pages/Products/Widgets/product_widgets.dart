@@ -3,7 +3,7 @@ import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 
 import '../../../core/Utils/colors.dart';
-import '../../../core/widgets/images/rectangle_circular_image.dart';
+import '../../../core/presentation/widgets/images/rectangle_circular_image.dart';
 
 Widget productSwiper(BuildContext context, List<ImageProvider> images) {
   Swiper swiper = Swiper(

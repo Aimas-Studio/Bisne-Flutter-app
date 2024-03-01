@@ -1,16 +1,16 @@
-import 'package:bisne/src/Pages/Base/base_page_controller.dart';
-import 'package:bisne/src/Pages/Favorite/favorite_page.dart';
-import 'package:bisne/src/Pages/Home/home_page.dart';
-import 'package:bisne/src/Pages/Notifications/notifications_page.dart';
-import 'package:bisne/src/Pages/Search/search_page.dart';
-import 'package:bisne/src/Pages/User/user_info_page.dart';
-import 'package:bisne/src/Pages/auth/login_page.dart';
-import 'package:bisne/src/core/persistent%20data/shared_persistent_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/widgets/bottom_nav_bar.dart';
-import '../User/Providers/user_providers.dart';
+import '../../core/infrastructure/persistent data/shared_persistent_data.dart';
+import '../../core/presentation/widgets/bottom_nav_bar.dart';
+import '../Favorite/favorite_page.dart';
+import '../Home/home_page.dart';
+import '../Notifications/notifications_page.dart';
+import '../Search/search_page.dart';
+import '../auth/presentation/screens/login_page.dart';
+import '../user/Providers/user_providers.dart';
+import '../user/presentation/screens/user_info_page.dart';
+import 'base_page_controller.dart';
 
 class BasePage extends StatelessWidget {
   final appData = PersistentData();

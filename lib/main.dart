@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:bisne/src/Pages/Base/base_page.dart';
-import 'package:bisne/src/Pages/Base/base_page_controller.dart';
-import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
-import 'package:bisne/src/Pages/Search/search_page_controller.dart';
-import 'package:bisne/src/core/init/init_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'src/Pages/Base/base_page.dart';
+import 'src/Pages/Base/base_page_controller.dart';
+import 'src/Pages/Cart/cart_page_controller.dart';
+import 'src/Pages/Search/controllers/search_page_controller.dart';
+import 'src/core/infrastructure/init/init_app.dart';
 
 void main() async {
   await initApp();

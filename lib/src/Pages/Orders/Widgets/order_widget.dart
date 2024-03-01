@@ -3,9 +3,9 @@ import 'package:bisne/src/Pages/Orders/facture_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/entities/facture.dart';
-import '../../../core/widgets/buttons/custom_outline_button.dart';
-import '../../../core/widgets/images/circular_image.dart';
-import '../../../core/widgets/texts/texts_widgets.dart';
+import '../../../core/presentation/widgets/buttons/custom_outline_button.dart';
+import '../../../core/presentation/widgets/images/circular_image.dart';
+import '../../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class ShopOrderWidget extends StatelessWidget {
   final Facture facture;

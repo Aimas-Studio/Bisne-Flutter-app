@@ -1,12 +1,12 @@
+import 'package:bisne/src/Pages/Shop/controllers/shop_page_controller.dart';
 import 'package:bisne/src/Pages/Shop/shop_more_info_page.dart';
-import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../core/utils/colors.dart';
+import '../../../core/presentation/themes/colors.dart';
+import '../../../core/presentation/widgets/texts/texts_widgets.dart';
 import '../../../core/utils/comment_widgets.dart';
-import '../../../core/widgets/texts/texts_widgets.dart';
 
 Column iconView(int viewsCount) {
   return Column(

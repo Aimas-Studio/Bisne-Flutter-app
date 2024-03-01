@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 
 import '../../core/entities/facture.dart';
 import '../../core/entities/product.dart';
-import '../../core/utils/colors.dart';
-import '../../core/widgets/secondary_app_bar.dart';
-import '../../core/widgets/texts/texts_widgets.dart';
+import '../../core/presentation/themes/colors.dart';
+import '../../core/presentation/widgets/secondary_app_bar.dart';
+import '../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class FacturesPage extends StatelessWidget {
   final Facture facture;
