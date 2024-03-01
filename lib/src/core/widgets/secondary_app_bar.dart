@@ -2,7 +2,6 @@ import 'package:bisne/src/Pages/Cart/cart_page.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../utils/colors.dart';
 import 'return_button_widget.dart';
@@ -37,7 +36,7 @@ class IconCartWidget extends StatelessWidget {
     final _ = Get.find<ShopPageController>();
     return Badge(
       offset: const Offset(-3, 0),
-      isLabelVisible: _!.cart.isNotEmpty,
+      isLabelVisible: _.cart.isNotEmpty,
       largeSize: 22,
       alignment: Alignment.bottomLeft,
       backgroundColor: bisneColorPrimary,

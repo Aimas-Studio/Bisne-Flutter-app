@@ -30,8 +30,7 @@ class CustomButtonArrowIcon extends StatelessWidget {
         onPressed: enabled ? onPressed : () {},
         style: ButtonStyle(
           padding: const MaterialStatePropertyAll(EdgeInsets.zero),
-          shape: MaterialStatePropertyAll(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          shape: const MaterialStatePropertyAll(StadiumBorder()),
           backgroundColor: MaterialStatePropertyAll(color),
         ),
         child: child,

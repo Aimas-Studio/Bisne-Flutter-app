@@ -1,12 +1,9 @@
 //Dart Imports
 
-//Flutter Imports
-import 'dart:ffi';
-
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:bisne/src/Pages/Search/Widgets/drawer_search_widget.dart';
 import 'package:bisne/src/Pages/Search/search_page_controller.dart';
-import 'package:bisne/src/core/widgets/CategoryButton.dart';
+import 'package:bisne/src/core/widgets/category_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

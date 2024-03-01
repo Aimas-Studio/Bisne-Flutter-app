@@ -1,17 +1,13 @@
-import 'dart:async';
-import 'dart:ffi';
-
 import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
 import 'package:bisne/src/Pages/Shop/Widgets/shop_page_widgets.dart';
 import 'package:bisne/src/Pages/Shop/shop_page_controller.dart';
 import 'package:bisne/src/core/utils/interfaces_controller.dart';
-import 'package:bisne/src/core/widgets/CategoryButton.dart';
 import 'package:bisne/src/core/widgets/banner_promotional_widget.dart';
 import 'package:bisne/src/core/widgets/cards/card_tables.dart';
+import 'package:bisne/src/core/widgets/category_button.dart';
 import 'package:bisne/src/core/widgets/return_button_widget.dart';
 import 'package:bisne/src/core/widgets/search_input_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
 
 import '../../core/widgets/secondary_app_bar.dart';
