@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/entities/product.dart';
-import '../../core/utils/colors.dart';
-import '../../core/utils/custom_icons.dart';
-import '../../core/widgets/images/circular_image.dart';
-import '../../core/widgets/secondary_app_bar.dart';
-import '../../core/widgets/texts/texts_widgets.dart';
+import '../../core/presentation/icons/custom_icons.dart';
+import '../../core/presentation/themes/colors.dart';
+import '../../core/presentation/widgets/images/circular_image.dart';
+import '../../core/presentation/widgets/secondary_app_bar.dart';
+import '../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class CartPage extends StatelessWidget {
   CartPage({super.key});

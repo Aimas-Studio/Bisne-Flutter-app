@@ -1,7 +1,8 @@
-import 'package:bisne/src/core/utils/colors.dart';
-import 'package:bisne/src/core/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
+
+import '../presentation/themes/colors.dart';
+import '../presentation/widgets/texts/texts_widgets.dart';
 
 class CategoryButton extends StatelessWidget {
   const CategoryButton({

@@ -1,4 +1,4 @@
-import 'user.dart';
+import '../../Pages/user/domain/entities/user.dart';
 
 class AppComment {
   UserDump user;

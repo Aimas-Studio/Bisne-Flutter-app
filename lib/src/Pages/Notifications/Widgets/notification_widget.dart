@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/entities/notification.dart';
 import '../../../core/entities/shop.dart';
-import '../../../core/widgets/images/circular_image.dart';
-import '../../../core/widgets/texts/texts_widgets.dart';
+import '../../../core/presentation/widgets/images/circular_image.dart';
+import '../../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class NotificationWidget extends StatelessWidget {
   final ShopDump shopDump;

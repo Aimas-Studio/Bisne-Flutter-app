@@ -2,7 +2,7 @@ import 'package:bisne/src/Pages/Home/Widgets/drawer_home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/widgets/banner_promotional_widget.dart';
+import '../../core/presentation/widgets/banner_promotional_widget.dart';
 import 'Widgets/home_page_widgets.dart';
 
 class HomePage extends StatelessWidget {

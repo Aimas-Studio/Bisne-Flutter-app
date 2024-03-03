@@ -1,17 +1,15 @@
 //Dart Imports
 
-//Flutter Imports
-
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
 import 'package:bisne/src/Pages/Search/Widgets/drawer_search_widget.dart';
-import 'package:bisne/src/Pages/Search/search_page_controller.dart';
-import 'package:bisne/src/core/widgets/CategoryButton.dart';
+import 'package:bisne/src/Pages/Search/controllers/search_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/Utils/colors.dart';
-import '../../core/widgets/cards/card_tables.dart';
-import '../../core/widgets/search_input_widget.dart';
+import '../../core/presentation/themes/colors.dart';
+import '../../core/presentation/widgets/cards/card_tables.dart';
+import '../../core/presentation/widgets/category_button.dart';
+import '../../core/presentation/widgets/search_input_widget.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});

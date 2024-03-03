@@ -1,9 +1,9 @@
-import 'package:bisne/src/Pages/Search/search_page_controller.dart';
+import 'package:bisne/src/Pages/Search/controllers/search_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../core/Utils/colors.dart';
+import '../../../core/presentation/themes/colors.dart';
 
 class DrawerSearchWidget extends StatelessWidget {
   DrawerSearchWidget({super.key});

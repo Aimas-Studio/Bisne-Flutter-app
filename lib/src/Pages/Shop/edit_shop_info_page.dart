@@ -1,16 +1,16 @@
 import 'package:bisne/src/Pages/Shop/Providers/shop_provider.dart';
 import 'package:bisne/src/Pages/Shop/controllers/edit_shop_controller.dart';
-import 'package:bisne/src/core/widgets/buttons/custom_outline_button.dart';
-import 'package:bisne/src/core/widgets/inputs/custom_reactive_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../core/utils/colors.dart';
-import '../../core/utils/custom_icons.dart';
-import '../../core/widgets/images/circular_image.dart';
-import '../../core/widgets/secondary_app_bar.dart';
-import '../../core/widgets/texts/texts_widgets.dart';
+import '../../core/presentation/icons/custom_icons.dart';
+import '../../core/presentation/themes/colors.dart';
+import '../../core/presentation/widgets/buttons/custom_outline_button.dart';
+import '../../core/presentation/widgets/images/circular_image.dart';
+import '../../core/presentation/widgets/inputs/custom_reactive_text_field.dart';
+import '../../core/presentation/widgets/secondary_app_bar.dart';
+import '../../core/presentation/widgets/texts/texts_widgets.dart';
 
 const List<(String, IconData)> _contactInfo = [
   ("Teléfono", Icons.phone),
