@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bisne/src/Pages/Home/presentations/controllers/home_page_controller.dart';
 import 'package:bisne/src/Pages/shop/domain/dtos/create_shop_dto.dart';
 import 'package:bisne/src/Pages/shop/domain/dtos/edit_shop_dto.dart';
 import 'package:bisne/src/Pages/shop/infrastructure/services/create_shop.dart';
@@ -54,7 +55,6 @@ class EditOrCreateShopController extends GetxController {
   }
 
   void cancelEdit() {
-    form.controls.clear();
     Get.back();
   }
 
@@ -73,8 +73,9 @@ class EditOrCreateShopController extends GetxController {
       schedule: form.control('schedule').value,
       whatsAppNumber: form.control('whatsAppNumber').value,
     );
-
-    createShop(shopDto: shopDto);
+    await createShop(shopDto: shopDto);
+    update([HomePageController.idController]);
+    Get.back();
   }
 
   void editShopSubmit() async {

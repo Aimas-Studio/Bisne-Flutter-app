@@ -57,7 +57,17 @@ class PersistentData {
     _appData.setInt("idUser", value);
   }
 
-  //Username
+  //USER HAS A PROFILE PHOTO
+
+  bool get userHasImage {
+    return _appData.getBool('userHasImage') ?? false;
+  }
+
+  set userHasImage(bool userHasImage) {
+    _appData.setBool('userHasImage', userHasImage);
+  }
+
+  //USERNAME
   String get userName {
     return _appData.getString('username') ?? "";
   }
@@ -66,7 +76,7 @@ class PersistentData {
     _appData.setString("username", value);
   }
 
-  //Email
+  //EMAIL
   String get userEmail {
     return _appData.getString("userEmail") ?? "";
   }
@@ -75,7 +85,7 @@ class PersistentData {
     _appData.setString("userEmail", email);
   }
 
-  //User Phone
+  //PHONE
   String get userPhone {
     return _appData.getString('userPhone') ?? "";
   }
@@ -84,7 +94,7 @@ class PersistentData {
     _appData.setString("userPhone", value);
   }
 
-  //User Address
+  //USER LOCATION
   String get userAddress {
     return _appData.getString('userAddress') ?? "";
   }
@@ -93,6 +103,7 @@ class PersistentData {
     _appData.setString("userAddress", value);
   }
 
+  //USER IMAGE URL
   String get userImageUrl {
     return _appData.getString('userImageUrl') ?? "";
   }
