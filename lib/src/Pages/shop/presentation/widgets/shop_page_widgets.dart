@@ -1,12 +1,13 @@
-import 'package:bisne/src/Pages/Shop/controllers/shop_page_controller.dart';
-import 'package:bisne/src/Pages/Shop/shop_more_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../core/presentation/themes/colors.dart';
-import '../../../core/presentation/widgets/texts/texts_widgets.dart';
-import '../../../core/utils/comment_widgets.dart';
+import '../../../../core/presentation/themes/colors.dart';
+import '../../../../core/presentation/themes/place_holders.dart';
+import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/utils/comment_widgets.dart';
+import '../controllers/shop_page_controller.dart';
+import '../screens/shop_more_info_page.dart';
 
 Column iconView(int viewsCount) {
   return Column(
@@ -25,6 +26,7 @@ class RateWidget extends StatelessWidget {
     super.key,
     required this.rate,
   });
+
   final String rate;
 
   @override
@@ -95,6 +97,7 @@ class InfoWidget extends StatelessWidget {
     required this.rate,
     required this.description,
   });
+
   final String title;
   final String subtitle;
   final Widget trailing;
@@ -163,6 +166,7 @@ class FavoriteLargeButton extends StatefulWidget {
 
 class _FavoriteLargeButtonState extends State<FavoriteLargeButton> {
   bool _isPressed = false;
+
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(

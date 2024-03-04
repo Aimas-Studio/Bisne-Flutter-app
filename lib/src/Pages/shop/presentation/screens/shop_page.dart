@@ -1,19 +1,19 @@
 import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
-import 'package:bisne/src/Pages/Shop/Widgets/shop_page_widgets.dart';
-import 'package:bisne/src/Pages/Shop/controllers/shop_page_controller.dart';
 import 'package:bisne/src/core/presentation/icons/custom_icons.dart';
 import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:bisne/src/core/utils/interfaces_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/presentation/widgets/banner_promotional_widget.dart';
-import '../../core/presentation/widgets/cards/card_tables.dart';
-import '../../core/presentation/widgets/category_button.dart';
-import '../../core/presentation/widgets/return_button_widget.dart';
-import '../../core/presentation/widgets/search_input_widget.dart';
-import '../../core/presentation/widgets/secondary_app_bar.dart';
-import '../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/presentation/widgets/banner_promotional_widget.dart';
+import '../../../../core/presentation/widgets/cards/card_tables.dart';
+import '../../../../core/presentation/widgets/category_button.dart';
+import '../../../../core/presentation/widgets/return_button_widget.dart';
+import '../../../../core/presentation/widgets/search_input_widget.dart';
+import '../../../../core/presentation/widgets/secondary_app_bar.dart';
+import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../controllers/shop_page_controller.dart';
+import '../widgets/shop_page_widgets.dart';
 
 class ShopPage extends StatelessWidget {
   const ShopPage({super.key});
@@ -143,6 +143,7 @@ class CategorySection extends StatelessWidget {
     required this.categories,
     required this.controller,
   });
+
   final List<String> categories;
   final IndexButtonController controller;
 

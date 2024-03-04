@@ -1,6 +1,7 @@
-import 'package:bisne/src/Pages/Shop/shop_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../shop/presentation/screens/shop_info_page.dart';
 
 class DrawerHomeWidget extends StatelessWidget {
   const DrawerHomeWidget({super.key});

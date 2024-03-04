@@ -15,9 +15,9 @@ class CustomReactiveTextField extends StatefulWidget {
   final bool enabled;
   final bool passwordFieldShowOrHide;
   final IconData? prefixIcon;
-  final Function(FormControl formControl)? onChange;
   final Color fillColor;
   final Color cursorColor;
+  final Function(FormControl formControl)? onChange;
 
   const CustomReactiveTextField({
     super.key,
@@ -52,6 +52,7 @@ class _CustomReactiveTextFieldState extends State<CustomReactiveTextField> {
   @override
   Widget build(context) {
     return ReactiveTextField(
+      maxLines: widget.passwordFieldShowOrHide ? 1 : null,
       onChanged: widget.onChange,
       formControlName: widget.formName,
       controller: widget.controller,
@@ -78,7 +79,7 @@ class _CustomReactiveTextFieldState extends State<CustomReactiveTextField> {
                 ),
               )
             : null,
-        border: const UnderlineInputBorder(),
+        border: InputBorder.none,
         constraints: BoxConstraints(minHeight: widget.isComment ? 200 : 0),
       ),
       obscureText: obscureText,

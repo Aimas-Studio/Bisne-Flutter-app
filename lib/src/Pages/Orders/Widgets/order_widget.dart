@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 import '../../../core/entities/facture.dart';
 import '../../../core/presentation/widgets/buttons/custom_outline_button.dart';
-import '../../../core/presentation/widgets/images/circular_image.dart';
 import '../../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class ShopOrderWidget extends StatelessWidget {
   final Facture facture;
   final bool? isCheckBox;
+
   const ShopOrderWidget({required this.facture, this.isCheckBox, super.key});
 
   @override
@@ -18,7 +18,7 @@ class ShopOrderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        CircularImage(image: NetworkImage(facture.shop.imageUrl), size: 45),
+        // CircularImage(image: NetworkImage(facture.shop.imageUrl), size: 45),
         const SizedBox(width: 20),
         SizedBox(
           height: 90,

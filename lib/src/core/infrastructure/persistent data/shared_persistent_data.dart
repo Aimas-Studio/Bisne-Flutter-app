@@ -3,9 +3,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 //this is the local storage saved data
 class PersistentData {
   static final PersistentData _persistentData = PersistentData._();
+
   factory PersistentData() {
     return _persistentData;
   }
+
   PersistentData._();
 
   late SharedPreferences _appData;
@@ -14,6 +16,29 @@ class PersistentData {
     _appData = await SharedPreferences.getInstance();
   }
 
+  //
+  //
+  //
+  //JSON WEB TOKEN
+  //
+  //
+
+  String get jkt {
+    return _appData.getString('jkt') ?? '';
+  }
+
+  set jkt(String jkt) {
+    _appData.setString('jkt', jkt);
+  }
+
+  //
+  //
+  //
+  //USER DATA
+  //
+  //
+  //
+
   //LoggedIn
   bool get loggedIn {
     return _appData.getBool('loggedIn') ?? false;
@@ -21,6 +46,15 @@ class PersistentData {
 
   set loggedIn(bool value) {
     _appData.setBool("loggedIn", value);
+  }
+
+  //idUser
+  int get idUser {
+    return _appData.getInt('idUser') ?? -1;
+  }
+
+  set idUser(int value) {
+    _appData.setInt("idUser", value);
   }
 
   //Username
@@ -59,7 +93,20 @@ class PersistentData {
     _appData.setString("userEmail", email);
   }
 
-  //Shop Description
+  //
+  //
+  //
+  //SHOP DATA
+  //
+  //
+  String get shopName {
+    return _appData.getString('shopName') ?? "";
+  }
+
+  set shopName(String name) {
+    _appData.setString('shopName', name);
+  }
+
   String get shopDescription {
     return _appData.getString("shopDescription") ?? "";
   }
@@ -90,5 +137,21 @@ class PersistentData {
 
   set shopPhoneNumber(String phone) {
     _appData.setString("phone", phone);
+  }
+
+  String get shopImagePath {
+    return _appData.getString("imagePath") ?? "";
+  }
+
+  set shopImagePath(String path) {
+    _appData.setString("imagePath", path);
+  }
+
+  String get shopImageUrl {
+    return _appData.getString("imageUrl") ?? "";
+  }
+
+  set shopImageUrl(String url) {
+    _appData.setString("imageUrl", url);
   }
 }

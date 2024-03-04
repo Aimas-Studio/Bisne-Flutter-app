@@ -1,6 +1,5 @@
 import 'package:bisne/src/Pages/Products/Widgets/product_widgets.dart';
 import 'package:bisne/src/Pages/Products/product_page_controller.dart';
-import 'package:bisne/src/Pages/Shop/controllers/shop_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,8 @@ import '../../core/presentation/widgets/return_button_widget.dart';
 import '../../core/presentation/widgets/secondary_app_bar.dart';
 import '../../core/presentation/widgets/texts/texts_widgets.dart';
 import '../../core/utils/comment_widgets.dart';
-import '../Shop/Widgets/shop_page_widgets.dart';
+import '../shop/presentation/controllers/shop_page_controller.dart';
+import '../shop/presentation/widgets/shop_page_widgets.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});

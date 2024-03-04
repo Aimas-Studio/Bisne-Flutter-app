@@ -8,6 +8,7 @@ import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class WhiteOptionButtonList extends StatelessWidget {
   final List<ContentPanel> content;
+
   const WhiteOptionButtonList({super.key, required this.content});
 
   @override
@@ -42,7 +43,7 @@ List<Widget> getServices(List<ContentPanel> content, context) {
                 EdgeInsets.symmetric(vertical: 20, horizontal: 15)),
             backgroundColor: MaterialStatePropertyAll(Colors.white),
           ),
-          onPressed: () => element.function(context),
+          onPressed: element.function,
           child: Row(
             children: [
               Icon(element.iconData, color: iconAppColor, size: 25),

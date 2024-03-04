@@ -1,8 +1,8 @@
-import 'package:bisne/src/Pages/Shop/Providers/comment_provider.dart';
-import 'package:bisne/src/Pages/Shop/Widgets/commet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Pages/shop/infrastructure/services/get_shop_comments.dart';
+import '../../Pages/shop/presentation/widgets/commet_widget.dart';
 import '../entities/comments_controller/coment_controller.dart';
 import '../presentation/themes/colors.dart';
 import '../presentation/widgets/images/circular_image.dart';
@@ -18,7 +18,7 @@ Widget comments(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FutureBuilder(
-          future: getComment(),
+          future: getShopComments(),
           builder: (context, AsyncSnapshot snapshot) {
             return snapshot.hasData
                 ? commentsList(context, snapshot.data)
@@ -94,7 +94,8 @@ Future<dynamic> showAlertDialogComments(BuildContext context, _) async {
           content: IntrinsicHeight(
             child: Column(children: [
               Center(
-                child: CircularImage(image: AssetImage(_.shopImage), size: 70),
+                child: CircularImage(
+                    size: 70, child: Image(image: AssetImage(_.shopImage))),
               ),
               const SizedBox(
                 height: 40,

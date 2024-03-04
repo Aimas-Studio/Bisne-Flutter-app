@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../themes/colors.dart';
 
+//TODO add styles when button is disabled
 class OutlineAppButton extends StatelessWidget {
   final double borderWidth;
   final double height;
@@ -32,14 +33,14 @@ class OutlineAppButton extends StatelessWidget {
       height: height,
       child: OutlinedButton(
         style: ButtonStyle(
-          padding: MaterialStatePropertyAll(padding),
+          padding: MaterialStatePropertyAll(
+              padding ?? const EdgeInsets.symmetric(horizontal: 12)),
           side: MaterialStatePropertyAll(BorderSide(
               width: borderWidth, color: borderColor.withOpacity(0.5))),
-          shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(23)))),
+          shape: const MaterialStatePropertyAll(StadiumBorder()),
           backgroundColor: MaterialStatePropertyAll(color),
         ),
-        onPressed: onPressed,
+        onPressed: enabled ? onPressed : () {},
         child: child,
       ),
     );

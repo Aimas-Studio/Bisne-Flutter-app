@@ -129,6 +129,7 @@ class InputLightText extends StatelessWidget {
   final String text;
   final Color color;
   final double size;
+
   const InputLightText(
       {super.key,
       required this.text,

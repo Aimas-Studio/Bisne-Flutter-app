@@ -1,6 +1,6 @@
-import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../themes/colors.dart';
 import '../texts/texts_widgets.dart';
 
 class CustomButtonArrowIcon extends StatelessWidget {
