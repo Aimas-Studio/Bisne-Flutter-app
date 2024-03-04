@@ -8,7 +8,7 @@ import '../Home/home_page.dart';
 import '../Notifications/notifications_page.dart';
 import '../Search/search_page.dart';
 import '../auth/presentation/screens/login_page.dart';
-import '../user/Providers/user_providers.dart';
+import '../user/export.dart';
 import '../user/presentation/screens/user_info_page.dart';
 import 'base_page_controller.dart';
 

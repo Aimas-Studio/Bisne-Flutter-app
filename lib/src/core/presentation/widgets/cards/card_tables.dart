@@ -1,6 +1,6 @@
-import 'package:bisne/src/Pages/Products/Widgets/product_card_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../Pages/products/presentation/widgets/product_card_widget.dart';
 import 'shop_card_widget.dart';
 import 'table_card_widget.dart';
 

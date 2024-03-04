@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/presentation/themes/colors.dart';
-import '../../../core/presentation/widgets/texts/texts_widgets.dart';
-import '../../User/Providers/user_providers.dart';
+import '../../../../core/presentation/themes/colors.dart';
+import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../user/export.dart';
 
 Widget totalOrderWidget(context, String date, String totalPrice) {
   return Container(

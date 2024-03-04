@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TableCardWidget<T extends Card> extends StatelessWidget {
+class TableCardWidget<T extends StatelessWidget> extends StatelessWidget {
   final int maxColumns;
   final List<Map<String, dynamic>> data;
   final T Function(Map<String, dynamic>) cardFactory;
+
   const TableCardWidget(
       {Key? key,
       this.maxColumns = 2,

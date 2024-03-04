@@ -15,6 +15,8 @@ class RegisterPage extends StatelessWidget {
   final _form = FormGroup({
     'email': FormControl<String>(
         validators: [Validators.required, Validators.email]),
+    'username': FormControl<String>(
+        validators: [Validators.required, Validators.minLength(4)]),
     'password': FormControl<String>(
         validators: [Validators.required, Validators.minLength(4)]),
   });
@@ -52,15 +54,20 @@ class RegisterPage extends StatelessWidget {
                                   formName: 'email',
                                   prefixIcon: Icons.email_outlined,
                                   labelText: 'E-MAIL',
-                                  cursorColor: bisneColorPrimary,
                                 ),
-                                SizedBox(height: 5),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 5),
+                                  child: CustomReactiveTextField(
+                                    formName: 'email',
+                                    prefixIcon: Icons.email_outlined,
+                                    labelText: 'E-MAIL',
+                                  ),
+                                ),
                                 CustomReactiveTextField(
                                   formName: 'password',
                                   prefixIcon: Icons.lock_outline,
                                   labelText: 'CONTRASEÑA',
                                   passwordFieldShowOrHide: true,
-                                  cursorColor: bisneColorPrimary,
                                 ),
                               ],
                             ),

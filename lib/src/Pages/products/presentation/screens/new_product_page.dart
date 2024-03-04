@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../core/presentation/icons/custom_icons.dart';
-import '../../core/presentation/themes/colors.dart';
-import '../../core/presentation/widgets/buttons/custom_outline_button.dart';
-import '../../core/presentation/widgets/inputs/custom_reactive_text_field.dart';
-import '../../core/presentation/widgets/texts/texts_widgets.dart';
-import 'controllers/new_product_page_controller.dart';
-import 'widgets/preview_product_widget.dart';
+import '../../../../core/presentation/icons/custom_icons.dart';
+import '../../../../core/presentation/themes/colors.dart';
+import '../../../../core/presentation/widgets/widgets_export.dart';
+import '../controllers/new_product_page_controller.dart';
+import '../widgets/preview_product_widget.dart';
 
 class NewProductPage extends StatelessWidget {
   NewProductPage({super.key});

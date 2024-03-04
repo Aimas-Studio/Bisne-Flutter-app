@@ -1,10 +1,9 @@
-import 'package:bisne/src/Pages/Orders/Widgets/CheckWidget.dart';
-import 'package:bisne/src/Pages/Orders/facture_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/entities/facture.dart';
-import '../../../core/presentation/widgets/buttons/custom_outline_button.dart';
-import '../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/presentation/widgets/widgets_export.dart';
+import '../../domain/facture_entity.dart';
+import '../screens/facture_page.dart';
+import 'check_widget.dart';
 
 class ShopOrderWidget extends StatelessWidget {
   final Facture facture;
@@ -18,7 +17,10 @@ class ShopOrderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        // CircularImage(image: NetworkImage(facture.shop.imageUrl), size: 45),
+        CircularImage(
+            size: 45,
+            child:
+                CustomFadeInImage(image: NetworkImage(facture.shop.imageUrl))),
         const SizedBox(width: 20),
         SizedBox(
           height: 90,

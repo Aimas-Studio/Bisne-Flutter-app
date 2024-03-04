@@ -1,10 +1,6 @@
-import 'package:bisne/src/Pages/shop/infrastructure/services/get_shop_info.dart';
-import 'package:bisne/src/core/presentation/widgets/images/circular_image.dart';
-import 'package:bisne/src/core/presentation/widgets/images/custom_fade_in_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/widgets/buttons/custom_outline_button.dart';
-import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/presentation/widgets/widgets_export.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String mainInfo;
@@ -34,7 +30,7 @@ class ProfileWidget extends StatelessWidget {
               top: 10),
           child: CircularImage(
             size: 55,
-            child: CustomFadeInImage(image: getShopImage()),
+            child: CustomFadeInImage(image: image!),
           ),
         ),
         Column(

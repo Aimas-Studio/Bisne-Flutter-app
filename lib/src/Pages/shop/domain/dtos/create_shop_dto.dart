@@ -1,24 +1,24 @@
 class CreateShopDto {
   String name;
   String description;
+  String urlImage;
   String? schedule;
   String? whatsAppNumber;
   String? phoneNumber;
   String? facebook;
   String? instagram;
   String? link;
-  String? urlImage;
 
   CreateShopDto({
     required this.name,
     required this.description,
+    required this.urlImage,
     this.schedule,
     this.whatsAppNumber,
     this.link,
     this.phoneNumber,
     this.facebook,
     this.instagram,
-    this.urlImage,
   });
 
   @override

@@ -1,15 +1,15 @@
 import 'package:bisne/src/Pages/Base/base_page_controller.dart';
-import 'package:bisne/src/Pages/Orders/Providers/facture_provider.dart';
-import 'package:bisne/src/Pages/Orders/Widgets/facture_widget.dart';
-import 'package:bisne/src/Pages/Orders/Widgets/total_order_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/entities/facture.dart';
-import '../../core/entities/product.dart';
-import '../../core/presentation/themes/colors.dart';
-import '../../core/presentation/widgets/secondary_app_bar.dart';
-import '../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/entities/product.dart';
+import '../../../../core/presentation/themes/colors.dart';
+import '../../../../core/presentation/widgets/secondary_app_bar.dart';
+import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../domain/facture_entity.dart';
+import '../../infrastructure/services/orders_services.dart';
+import '../widgets/facture_widget.dart';
+import '../widgets/total_order_widget.dart';
 
 class FacturesPage extends StatelessWidget {
   final Facture facture;

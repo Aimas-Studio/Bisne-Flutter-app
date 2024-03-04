@@ -1,6 +1,5 @@
 import 'package:bisne/src/Pages/Home/Providers/CategoryProvider.dart';
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
-import 'package:bisne/src/Pages/User/Providers/user_providers.dart';
 import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../core/presentation/widgets/cards/card_tables.dart';
 import '../../../core/presentation/widgets/search_input_widget.dart';
 import '../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../user/export.dart';
 
 AppBar appbarHomePage() {
   return AppBar(

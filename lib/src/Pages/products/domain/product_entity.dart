@@ -1,14 +1,14 @@
-import 'shop.dart';
+import '../../shop/export.dart';
 
-class ProductDump {
+class Product {
   String name;
   List<String> imagesUrl;
   String description;
   String category;
   num price;
-  ShopDump shopDump;
+  Shop shopDump;
 
-  ProductDump(
+  Product(
     this.name,
     this.price,
     this.imagesUrl,
