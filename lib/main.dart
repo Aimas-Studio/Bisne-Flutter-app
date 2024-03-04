@@ -1,7 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'package:bisne/src/core/infrastructure/graphql/graphql_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'src/Pages/Base/base_page.dart';
 import 'src/Pages/Base/base_page_controller.dart';
@@ -24,13 +24,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'El Bisne',
-      initialRoute: '/',
-      routes: {
-        '/': (BuildContext context) => BasePage(),
-      },
+    return GraphQLProvider(
+      client: ValueNotifier<GraphQLClient>(client),
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'El Bisne',
+        initialRoute: '/',
+        routes: {
+          '/': (BuildContext context) => BasePage(),
+        },
+      ),
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:bisne/src/Pages/shop/infrastructure/services/get_shop_info.dart';
 import 'package:bisne/src/core/presentation/widgets/images/circular_image.dart';
 import 'package:bisne/src/core/presentation/widgets/images/custom_fade_in_image.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +33,7 @@ class ProfileWidget extends StatelessWidget {
               top: 10),
           child: CircularImage(
             size: 55,
-            child: CustomFadeInImage(image: getShopImage()),
+            child: CustomFadeInImage(image: image!),
           ),
         ),
         Column(
