@@ -80,7 +80,6 @@ class SearchPage extends StatelessWidget {
           height: 30,
           child: Obx(() => CategoryButton(
               isPressed: _.selectedIndex.value == i,
-              // ignore: void_checks
               onPressed: () {
                 _.selectedIndex.value = i;
               },

@@ -10,7 +10,7 @@ class ShopPageController extends IndexButtonController {
   final double rate = 4.5;
   final List<String> categories = [
     'Alimentos',
-    "Tecnologia",
+    "Tecnologiahbefve",
     "Agro",
     'Alimentos',
     "Tecnologia",

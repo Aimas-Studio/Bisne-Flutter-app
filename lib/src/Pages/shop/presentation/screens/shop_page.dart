@@ -16,12 +16,12 @@ import '../controllers/shop_page_controller.dart';
 import '../widgets/shop_page_widgets.dart';
 
 class ShopPage extends StatelessWidget {
-  ShopPage({super.key});
-
-  final ShopPageController _shopPageController = Get.put(ShopPageController());
+  const ShopPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => ShopPageController());
+    ShopPageController shopPageController = Get.find<ShopPageController>();
     return Scaffold(
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
@@ -63,8 +63,8 @@ class ShopPage extends StatelessWidget {
                 child: Column(
                   children: [
                     InfoWidget(
-                      title: _shopPageController.name,
-                      subtitle: _shopPageController.categories[0],
+                      title: shopPageController.name,
+                      subtitle: shopPageController.categories[0],
                       trailing: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,15 +82,15 @@ class ShopPage extends StatelessWidget {
                               width: 40,
                               child: Center(
                                   child: ThinAppText(
-                                      text: _shopPageController.viewsCount > 999
-                                          ? '${(_shopPageController.viewsCount / 1000).toString()} K'
-                                          : _shopPageController.viewsCount
+                                      text: shopPageController.viewsCount > 999
+                                          ? '${(shopPageController.viewsCount / 1000).toString()} K'
+                                          : shopPageController.viewsCount
                                               .toString(),
                                       size: 20))),
                         ],
                       ),
-                      rate: _shopPageController.rate.toString(),
-                      description: _shopPageController.descripcion,
+                      rate: shopPageController.rate.toString(),
+                      description: shopPageController.descripcion,
                     ),
                     // isInfoPage ? moreInfoPage(context, _) :
                     const TextButtonShowMoreInfo(),
@@ -103,15 +103,15 @@ class ShopPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: CategorySection(
-                        categories: _shopPageController.categories,
-                        controller: _shopPageController,
+                        categories: shopPageController.categories,
+                        controller: shopPageController,
                       ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         StreamBuilder(
-                            stream: _shopPageController.indexStream,
+                            stream: shopPageController.indexStream,
                             builder: (context, snapshot) {
                               return FutureBuilder(
                                   key: UniqueKey(),
@@ -150,13 +150,15 @@ class CategorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: 60,
-      child: Obx(() => PageView(
-          padEnds: false,
-          controller: PageController(viewportFraction: 0.25),
-          scrollDirection: Axis.horizontal,
-          children: categoriesButton(categories, controller))),
+      // width: MediaQuery.of(context).size.width,
+      height: 45,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          return categoriesButton(categories, controller)[index];
+        },
+      ),
     );
   }
 
@@ -164,14 +166,27 @@ class CategorySection extends StatelessWidget {
       List<String> categories, IndexButtonController controller) {
     List<Widget> buttons = [];
     for (int i = 0; i < categories.length; i++) {
-      buttons.add(Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CategoryButton(
-              onPressed: () {
-                controller.indexButton.value = i;
-              },
-              label: categories[i],
-              isPressed: controller.indexButton.value == i)));
+      buttons.add(
+        i == 0
+            ? Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Obx(() => CategoryButton(
+                    onPressed: () {
+                      controller.indexButton.value = i;
+                    },
+                    label: categories[i],
+                    isPressed: controller.indexButton.value == i)),
+              )
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Obx(() => CategoryButton(
+                    onPressed: () {
+                      controller.indexButton.value = i;
+                    },
+                    label: categories[i],
+                    isPressed: controller.indexButton.value == i)),
+              ),
+      );
     }
     return buttons;
   }

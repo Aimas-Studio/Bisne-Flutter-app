@@ -15,22 +15,20 @@ import 'base_page_controller.dart';
 class BasePage extends StatelessWidget {
   final appData = PersistentData();
   final BasePageController _basePageController = Get.find<BasePageController>();
-  List<Navigator> _navigators = [];
 
-  BasePage({super.key}) {
-    _navigators =
-        List<Navigator>.generate(5, (index) => _buildNavigator(index));
-  }
+  BasePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<Navigator> navigators =
+        List<Navigator>.generate(5, (index) => _buildNavigator(index));
     return GetBuilder<BasePageController>(
       builder: (_) {
         return Obx(
           () => Scaffold(
             body: IndexedStack(
               index: _basePageController.obj,
-              children: _navigators,
+              children: navigators,
             ),
             bottomNavigationBar: _basePageController.showBottomNavBar.value
                 ? BottomNavBar()
@@ -57,7 +55,6 @@ class BasePage extends StatelessWidget {
               return const FavoritePage();
             case 4:
               return UserInfoPage(user: getUserInfo());
-
             default:
               return const HomePage();
           }

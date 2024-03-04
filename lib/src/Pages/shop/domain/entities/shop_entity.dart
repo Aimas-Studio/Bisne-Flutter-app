@@ -8,10 +8,10 @@ class Shop {
   String whatsAppNumber;
   String instagramAccount;
   String facebookAccount;
+  String telegramAccount;
   String optionalLink;
-  bool delivery;
-  String category;
   String imageUrl;
+  String category;
 
   Shop({
     required this.id,
@@ -25,7 +25,23 @@ class Shop {
     this.instagramAccount = '',
     this.facebookAccount = '',
     this.optionalLink = '',
-    this.delivery = false,
+    this.telegramAccount = '',
     this.category = '',
   });
+
+  factory Shop.fromMap(Map<String, dynamic> map) {
+    return Shop(
+      id: map['id'],
+      shopName: map['nombre'],
+      shopDescription: map['descripcion'],
+      openingHours: map['horario'],
+      whatsAppNumber: map['numeroWhatsapp'] ?? '',
+      phoneNumber: map['numeroTelefono'] ?? '',
+      telegramAccount: map['usuarioTelegram'] ?? '',
+      facebookAccount: map['linkFacebook'] ?? '',
+      instagramAccount: map['linkInstagram'] ?? '',
+      optionalLink: map['linkExtra'] ?? '',
+      imageUrl: map['imageURL'] ?? '',
+    );
+  }
 }

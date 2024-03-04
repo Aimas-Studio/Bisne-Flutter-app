@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new, prefer_const_constructors, sized_box_for_whitespace
-
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
@@ -17,7 +15,7 @@ class BannerPromotionalWidget extends StatelessWidget {
     double mediaHeight = MediaQuery.sizeOf(context).width > 550 ? 200.0 : 150.0;
     double mediaWidth = MediaQuery.sizeOf(context).width > 550 ? 100.0 : 80.0;
 
-    return Container(
+    return SizedBox(
       height: mediaHeight,
       child: Swiper(
         itemBuilder: (BuildContext context, int index) {
@@ -34,7 +32,7 @@ class BannerPromotionalWidget extends StatelessWidget {
         scale: 0.7,
         viewportFraction: MediaQuery.sizeOf(context).width > 550 ? 0.6 : 0.7,
         itemCount: images.length,
-        pagination: RectSwiperPaginationBuilder(),
+        pagination: const RectSwiperPaginationBuilder(),
       ),
     );
   }
