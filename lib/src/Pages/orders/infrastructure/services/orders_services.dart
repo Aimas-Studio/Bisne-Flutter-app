@@ -1,9 +1,9 @@
-import '../../../../core/entities/product.dart';
+import '../../../products/export.dart';
 import '../../../shop/export.dart';
 import '../../domain/facture_entity.dart';
 
-Future<Map<ProductDump, int>> getPurchases(Facture facture) async {
-  Map<ProductDump, int> result = {};
+Future<Map<Product, int>> getPurchases(Facture facture) async {
+  Map<Product, int> result = {};
 
   return await Future.delayed(const Duration(seconds: 2), () => result);
 }

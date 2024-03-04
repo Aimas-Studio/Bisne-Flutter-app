@@ -3,13 +3,13 @@ import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/entities/comments_controller/coment_controller.dart';
-import '../../../../core/entities/product.dart';
-import '../../../../core/entities/shop.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
 import '../../../../core/utils/comment_widgets.dart';
+import '../../../shop/export.dart';
 import '../../../shop/presentation/controllers/shop_page_controller.dart';
 import '../../../shop/presentation/widgets/shop_page_widgets.dart';
+import '../../domain/product_entity.dart';
 import '../controllers/product_page_controller.dart';
 import '../widgets/product_widgets.dart';
 
@@ -283,12 +283,16 @@ class ProductPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20))),
             backgroundColor: MaterialStateProperty.all(bisneColorPrimary)),
         onPressed: () {
-          ProductDump newProduct = ProductDump(
+          Product newProduct = Product(
             _.name,
             _.price,
             _.images,
             _.description,
-            ShopDump(_.shopName, _.shopImage),
+            Shop(
+                shopName: _.shopName,
+                imageUrl: _.shopImage,
+                shopDescription: '',
+                id: 4),
             "category",
           );
           final shop = Get.find<ShopPageController>();
@@ -324,8 +328,8 @@ class ProductPage extends StatelessWidget {
         ));
   }
 
-  bool isInCart(Map<dynamic, dynamic> cart, ProductDump newProduct) {
-    for (ProductDump product in cart.keys) {
+  bool isInCart(Map<dynamic, dynamic> cart, Product newProduct) {
+    for (Product product in cart.keys) {
       if (product.name == newProduct.name &&
           product.price == newProduct.price &&
           product.description == newProduct.description &&
@@ -336,9 +340,8 @@ class ProductPage extends StatelessWidget {
     return false;
   }
 
-  void addToCart(
-      Map<dynamic, dynamic> cart, ProductDump newProduct, int count) {
-    for (ProductDump product in cart.keys) {
+  void addToCart(Map<dynamic, dynamic> cart, Product newProduct, int count) {
+    for (Product product in cart.keys) {
       if (product.name == newProduct.name &&
           product.price == newProduct.price &&
           product.description == newProduct.description &&

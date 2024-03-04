@@ -1,12 +1,12 @@
+import 'package:bisne/src/Pages/search/presentation/controllers/search_page_controller.dart';
 import 'package:bisne/src/core/infrastructure/graphql/graphql_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'src/Pages/Base/base_page.dart';
-import 'src/Pages/Base/base_page_controller.dart';
-import 'src/Pages/Cart/cart_page_controller.dart';
-import 'src/Pages/Search/controllers/search_page_controller.dart';
+import 'src/Pages/Base/presentation/controllers/base_page_controller.dart';
+import 'src/Pages/Base/presentation/screens/base_page.dart';
+import 'src/Pages/Cart/presentation/controllers/cart_page_controller.dart';
 import 'src/core/infrastructure/init/init_app.dart';
 
 void main() async {

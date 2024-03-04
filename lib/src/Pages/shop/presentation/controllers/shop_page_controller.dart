@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bisne/src/Pages/Cart/cart_page_controller.dart';
+import 'package:bisne/src/Pages/Cart/presentation/controllers/cart_page_controller.dart';
 import 'package:bisne/src/core/utils/interfaces_controller.dart';
 import 'package:get/get.dart';
 
@@ -44,6 +44,7 @@ class ShopPageController extends IndexButtonController {
   RxInt indexButton = 0.obs;
 
   final _streamController = StreamController<int>();
+
   @override
   void onInit() {
     super.onInit();

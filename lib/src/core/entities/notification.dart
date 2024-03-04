@@ -1,7 +1,7 @@
-import 'shop.dart';
+import '../../Pages/shop/export.dart';
 
 class AppNotification {
-  ShopDump shop;
+  Shop shop;
   String body;
   String date;
 

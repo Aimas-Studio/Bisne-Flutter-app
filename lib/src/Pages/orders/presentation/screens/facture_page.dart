@@ -1,11 +1,11 @@
-import 'package:bisne/src/Pages/Base/base_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/entities/product.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/secondary_app_bar.dart';
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../base/presentation/controllers/base_page_controller.dart';
+import '../../../products/export.dart';
 import '../../domain/facture_entity.dart';
 import '../../infrastructure/services/orders_services.dart';
 import '../widgets/facture_widget.dart';
@@ -55,7 +55,7 @@ class FacturesPage extends StatelessWidget {
   }
 }
 
-Widget getFacturesWidget(context, Map<ProductDump, int> purchases) {
+Widget getFacturesWidget(context, Map<Product, int> purchases) {
   List<Widget> factures = [];
   purchases.forEach((product, amount) {
     factures
