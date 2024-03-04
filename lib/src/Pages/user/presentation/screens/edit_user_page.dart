@@ -4,7 +4,6 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/themes/decorations.dart';
 import '../../../../core/presentation/widgets/buttons/custom_outline_button.dart';
-import '../../../../core/presentation/widgets/images/circular_image.dart';
 import '../../../../core/presentation/widgets/inputs/white_input_text_widget.dart';
 import '../../../../core/presentation/widgets/secondary_app_bar.dart';
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
@@ -14,6 +13,7 @@ import '../controllers/edit_user_controller.dart';
 
 class EditUserPage extends StatelessWidget {
   final User user;
+
   const EditUserPage({super.key, required this.user});
 
   @override
@@ -29,7 +29,7 @@ class EditUserPage extends StatelessWidget {
               width: double.infinity,
               child: Column(
                 children: [
-                  CircularImage(image: AssetImage(user.imageUrl), size: 70),
+                  // CircularImage(image: AssetImage(user.imageUrl), size: 70),
                   Padding(
                       padding: const EdgeInsets.only(bottom: 10, top: 15),
                       child: OutlineAppButton(

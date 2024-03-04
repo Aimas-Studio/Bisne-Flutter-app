@@ -1,7 +1,7 @@
-import '../../../core/entities/comment.dart';
-import '../../user/domain/entities/user.dart';
+import '../../../../core/entities/comment.dart';
+import '../../../user/domain/entities/user.dart';
 
-Future<List<AppComment>> getComment() async {
+Future<List<AppComment>> getShopComments() async {
   return Future.delayed(const Duration(seconds: 2), () {
     return [
       AppComment(

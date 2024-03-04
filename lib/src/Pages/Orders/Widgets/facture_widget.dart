@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/entities/product.dart';
-import '../../../core/presentation/widgets/images/circular_image.dart';
 import '../../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class FactureWidget extends StatelessWidget {
   final ProductDump product;
   final int amount;
+
   const FactureWidget({super.key, required this.product, required this.amount});
 
   @override
@@ -14,7 +14,7 @@ class FactureWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        CircularImage(image: NetworkImage(product.imagesUrl[0]), size: 45),
+        // CircularImage(image: NetworkImage(product.imagesUrl[0]), size: 45),
         Padding(
           padding: const EdgeInsets.only(left: 15),
           child: Column(

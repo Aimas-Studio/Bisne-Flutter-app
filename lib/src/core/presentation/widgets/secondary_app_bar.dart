@@ -1,13 +1,12 @@
-import 'package:bisne/src/Pages/Cart/cart_page.dart';
-import 'package:bisne/src/Pages/Shop/controllers/shop_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../Pages/Cart/cart_page.dart';
+import '../../../Pages/shop/presentation/controllers/shop_page_controller.dart';
 import '../themes/colors.dart';
 import 'return_button_widget.dart';
 
-AppBar secondaryAppBar(context, bool returnButton,
-    {IconData? iconData, ShopPageController? shopPageController}) {
+AppBar secondaryAppBar(context, bool returnButton, {IconData? iconData}) {
   return AppBar(
     forceMaterialTransparency: true,
     backgroundColor: backgroundAppColor,
@@ -16,14 +15,45 @@ AppBar secondaryAppBar(context, bool returnButton,
     actions: [
       returnButton ? const ReturnButtonAppbar() : const SizedBox(),
       Expanded(
-        child: Container(
+        child: Align(
           alignment: Alignment.centerRight,
-          child: iconData == null ? Container() : const IconCartWidget(),
+          child: iconData == null ? const SizedBox() : const IconCartWidget(),
         ),
       ),
       const SizedBox(width: 10)
     ],
   );
+}
+
+class CustomAppBar extends StatelessWidget {
+  final bool returnButton;
+  final IconData? iconData;
+
+  const CustomAppBar({
+    this.returnButton = true,
+    this.iconData,
+    super.key,
+  });
+
+  @override
+  Widget build(context) {
+    return AppBar(
+      forceMaterialTransparency: true,
+      backgroundColor: backgroundAppColor,
+      toolbarHeight: MediaQuery.of(context).size.height * 0.09,
+      elevation: 0,
+      actions: [
+        returnButton ? const ReturnButtonAppbar() : const SizedBox(),
+        Expanded(
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: iconData == null ? const SizedBox() : const IconCartWidget(),
+          ),
+        ),
+        const SizedBox(width: 10)
+      ],
+    );
+  }
 }
 
 class IconCartWidget extends StatelessWidget {

@@ -1,238 +1,121 @@
-// import 'package:bisne/src/core/widgets/buttons/custom_outline_button.dart';
-// import 'package:flutter/material.dart';
-//
-// import '../../core/utils/colors.dart';
-// import '../../core/utils/decorations.dart';
-// import '../../core/widgets/images/image_picker_widget.dart';
-// import '../../core/widgets/custom_reactive_text_field.dart';
-// import '../../core/widgets/secondary_app_bar.dart';
-// import '../../core/widgets/texts/texts_widgets.dart';
-// import '../Shop/Providers/shop_provider.dart';
-// import 'Widgets/product_widgets.dart';
-//
-// //TODO fix this shit
-//
-// class NewProductPageTest extends StatefulWidget {
-//   NewProductPageTest({super.key});
-//
-//   final _nameController = TextEditingController();
-//   final _categoryController = TextEditingController();
-//   final _descriptionController = TextEditingController();
-//   final _priceController = TextEditingController();
-//   final _passwordController = TextEditingController();
-//
-//   @override
-//   State<NewProductPageTest> createState() => _NewProductPageTestState();
-// }
-//
-// class _NewProductPageTestState extends State<NewProductPageTest> {
-//   List<FileImage> _previewImages = [];
-//   final _imagesPickers = [
-//     ImagePickerWidget(),
-//     ImagePickerWidget(),
-//     ImagePickerWidget(),
-//     ImagePickerWidget(),
-//     ImagePickerWidget(),
-//   ];
-//
-//   @override
-//   Widget build(context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         backgroundColor: backgroundAppColor,
-//         body: SingleChildScrollView(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               secondaryAppBar(context, true),
-//               const BoldAppText(text: "Nuevo Producto", size: 26),
-//               Container(
-//                 margin: const EdgeInsets.symmetric(vertical: 15),
-//                 child: whiteLabelInputTextWidget(
-//                   context,
-//                   "DEFINIR NOMBRE",
-//                   iconData: Icons.edit,
-//                   controller: widget._nameController,
-//                   onChanged: updateTexts,
-//                 ),
-//               ),
-//               whiteLabelInputTextWidget(
-//                 context,
-//                 "DEFINIR CATEGORÍA",
-//                 iconData: Icons.edit,
-//                 controller: widget._categoryController,
-//               ),
-//               Container(
-//                 margin: const EdgeInsets.only(top: 15, bottom: 25),
-//                 child: whiteLabelInputTextWidget(
-//                   context,
-//                   "DEFINIR DESCRIPCIÓN",
-//                   iconData: Icons.edit,
-//                   controller: widget._descriptionController,
-//                   onChanged: updateTexts,
-//                 ),
-//               ),
-//               whiteLabelInputTextWidget(
-//                 context,
-//                 "DEFINIR PRECIO",
-//                 iconData: Icons.edit,
-//                 controller: widget._priceController,
-//                 onChanged: updateTexts,
-//               ),
-//               Container(
-//                 margin: const EdgeInsets.only(top: 40, bottom: 60),
-//                 width: MediaQuery.of(context).size.width * 0.83,
-//                 decoration: whiteBoxDecoration,
-//                 child: Column(
-//                   children: [
-//                     const SizedBox(height: 10),
-//                     Row(
-//                       children: [
-//                         Container(
-//                           margin: const EdgeInsets.only(left: 25, right: 10),
-//                           child: const Icon(Icons.add_photo_alternate_outlined),
-//                         ),
-//                         const Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           children: [
-//                             InputLightText(text: "IMÁGENES"),
-//                             RegularAppText(
-//                                 text: "Selecciona hasta 5 imágenes", size: 13),
-//                           ],
-//                         ),
-//                       ],
-//                     ),
-//                     Container(
-//                       margin: const EdgeInsets.only(top: 20, bottom: 5),
-//                       child: Row(
-//                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           Column(
-//                             children: [
-//                               _imagesPickers[0],
-//                               const SizedBox(height: 10),
-//                               _imagesPickers[1],
-//                             ],
-//                           ),
-//                           Column(
-//                             children: [
-//                               _imagesPickers[2],
-//                               const SizedBox(height: 10),
-//                               _imagesPickers[3],
-//                             ],
-//                           ),
-//                           Column(
-//                             mainAxisAlignment: MainAxisAlignment.start,
-//                             children: [
-//                               _imagesPickers[4],
-//                             ],
-//                           )
-//                         ],
-//                       ),
-//                     ),
-//                     const SizedBox(height: 10),
-//                   ],
-//                 ),
-//               ),
-//               const BoldAppText(text: "Previsualización", size: 28),
-//               Container(
-//                 padding:
-//                     const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-//                 decoration: whiteBoxDecoration,
-//                 child: Column(
-//                   children: [
-//                     productSwiper(
-//                       context,
-//                       _previewImages,
-//                     ),
-//                     Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         RegularAppText(text: getShopInfo().shopName, size: 19),
-//                         Container(
-//                           margin: const EdgeInsets.only(top: 10, bottom: 20),
-//                           child: BoldAppText(
-//                               text: widget._nameController.value.text,
-//                               size: 25),
-//                         ),
-//                         LightAppText(
-//                           text: widget._descriptionController.value.text,
-//                           size: 15,
-//                         ),
-//                         const SizedBox(height: 10),
-//                         Row(
-//                           children: [
-//                             BoldAppText(
-//                                 text: widget._priceController.value.text == ""
-//                                     ? "\$\$"
-//                                     : widget._priceController.value.text,
-//                                 size: 20),
-//                             const RegularAppText(text: "mn", size: 18),
-//                           ],
-//                         ),
-//                       ],
-//                     ),
-//                     const SizedBox(height: 40),
-//                   ],
-//                 ),
-//               ),
-//               const SizedBox(height: 40),
-//               const Padding(
-//                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 25),
-//                 child: LightAppText(
-//                   text:
-//                       "Nota : Debe ingresar su contraseña para guardar las modificaciones",
-//                   size: 14,
-//                 ),
-//               ),
-//               passwordInputText(
-//                 context,
-//                 controller: widget._passwordController,
-//                 onChange: updateTexts,
-//               ),
-//               const SizedBox(height: 30),
-//               Padding(
-//                 padding: const EdgeInsets.symmetric(horizontal: 20),
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                   children: [
-//                     OutlineAppButton(
-//                       onPressed: () {},
-//                       child: const LightAppText(text: "CREAR PRODUCTO"),
-//                     ),
-//                     OutlineAppButton(
-//                       child: const LightAppText(text: "CANCELAR"),
-//                       onPressed: () {},
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//               const SizedBox(height: 45),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-//
-//   List<FileImage> getImagesPath() {
-//     List<FileImage> imagesPath = [];
-//     for (ImagePickerWidget fileImages in _imagesPickers) {
-//       if (fileImages.image != null) {
-//         imagesPath.add(FileImage(fileImages.image!));
-//       }
-//     }
-//     return imagesPath;
-//   }
-//
-//   void updateTexts(String s) {
-//     setState(() {});
-//   }
-//
-//   void refresh() {
-//     setState(() {
-//       _previewImages = getImagesPath();
-//     });
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:reactive_forms/reactive_forms.dart';
+
+import '../../core/presentation/icons/custom_icons.dart';
+import '../../core/presentation/themes/colors.dart';
+import '../../core/presentation/widgets/buttons/custom_outline_button.dart';
+import '../../core/presentation/widgets/inputs/custom_reactive_text_field.dart';
+import '../../core/presentation/widgets/texts/texts_widgets.dart';
+import 'controllers/new_product_page_controller.dart';
+import 'widgets/preview_product_widget.dart';
+
+class NewProductPage extends StatelessWidget {
+  NewProductPage({super.key});
+
+  final form = FormGroup({
+    'productName': FormControl<String>(validators: [Validators.required]),
+    'categoryProduct': FormControl<String>(validators: [Validators.required]),
+    'descriptionProduct':
+        FormControl<String>(validators: [Validators.required]),
+    'priceProduct': FormControl<double>(
+        validators: [Validators.required, Validators.number]),
+    'password': FormControl<String>(validators: [Validators.required]),
+  });
+
+  @override
+  Widget build(context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundAppColor,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: BoldAppText(text: 'Nuevo Producto', size: 30),
+              ),
+              GetBuilder(
+                id: NewProductPageController.idController,
+                init: NewProductPageController(),
+                builder: (controller) => ReactiveForm(
+                  formGroup: form,
+                  child: Column(
+                    children: [
+                      const CustomReactiveTextField(
+                        formName: 'productName',
+                        labelText: 'DEFINIR NOMBRE',
+                        prefixIcon: Icons.edit,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 30),
+                        child: CustomReactiveTextField(
+                            formName: 'categoryProduct',
+                            labelText: 'DEFINIR CATEGORÍA'),
+                      ),
+                      const CustomReactiveTextField(
+                        formName: 'descriptionProduct',
+                        labelText: 'DEFINIR DESCRIPCIÓN',
+                        prefixIcon: Icons.edit,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 50),
+                        child: CustomReactiveTextField(
+                          formName: 'priceProduct',
+                          labelText: 'DEFINIR PRECIO',
+                          prefixIcon: Icons.edit,
+                        ),
+                      ),
+                      //
+                      //ImagesPicker
+                      //
+                      const Padding(
+                        padding: EdgeInsets.only(top: 50, bottom: 15),
+                        child: BoldAppText(text: 'Previsualización', size: 27),
+                      ),
+                      const PreviewProductWidget(),
+                      const SizedBox(height: 50),
+                      const LightAppText(
+                        text:
+                            "NOTA: Debe ingresar su contraseña para guardar las modificaciones",
+                        size: 14,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20, bottom: 50),
+                        child: CustomReactiveTextField(
+                          formName: 'password',
+                          prefixIcon: CustomIcons.password,
+                          passwordFieldShowOrHide: true,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          ReactiveFormConsumer(
+                            builder: (context, formGroup, child) {
+                              return OutlineAppButton(
+                                enabled: form.valid,
+                                onPressed: controller.createProduct,
+                                child:
+                                    const LightAppText(text: 'GUARDAR CAMBIOS'),
+                              );
+                            },
+                          ),
+                          OutlineAppButton(
+                            onPressed: () {
+                              form.value.clear();
+                            },
+                            child: const LightAppText(text: 'Cancelar'),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

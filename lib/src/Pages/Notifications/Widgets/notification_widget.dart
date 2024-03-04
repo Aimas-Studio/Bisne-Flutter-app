@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../core/entities/notification.dart';
 import '../../../core/entities/shop.dart';
-import '../../../core/presentation/widgets/images/circular_image.dart';
 import '../../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class NotificationWidget extends StatelessWidget {
@@ -23,7 +22,7 @@ class NotificationWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircularImage(image: NetworkImage(shopDump.imageUrl), size: 28),
+          // CircularImage(image: NetworkImage(shopDump.imageUrl), size: 28),
           const SizedBox(width: 20),
           Expanded(
             child: Column(

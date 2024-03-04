@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../themes/colors.dart';
+import '../../themes/place_holders.dart';
 
 class RectangleCircularImage extends StatelessWidget {
   final ImageProvider? image;

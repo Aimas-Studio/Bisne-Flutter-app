@@ -1,8 +1,8 @@
-import 'package:bisne/src/Pages/Shop/controllers/shop_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/presentation/widgets/secondary_app_bar.dart';
+import '../../../../core/presentation/widgets/secondary_app_bar.dart';
+import '../controllers/shop_page_controller.dart';
 
 class ShopMoreInfoPage extends StatelessWidget {
   ShopMoreInfoPage({super.key});

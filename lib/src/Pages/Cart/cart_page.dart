@@ -169,7 +169,8 @@ Widget productItemCart(
     margin: const EdgeInsets.only(bottom: 10),
     child: Row(
       children: [
-        CircularImage(image: AssetImage(product.imagesUrl[0]), size: 50),
+        CircularImage(
+            size: 50, child: Image(image: AssetImage(product.imagesUrl[0]))),
         const SizedBox(width: 20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

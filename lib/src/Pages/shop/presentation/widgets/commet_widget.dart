@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/entities/comment.dart';
-import '../../../core/presentation/widgets/images/circular_image.dart';
-import '../../../core/presentation/widgets/texts/texts_widgets.dart';
-import '../../user/domain/entities/user.dart';
+import '../../../../core/entities/comment.dart';
+import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../user/domain/entities/user.dart';
 
 Widget commentWidget(UserDump userDump, String body, String date) {
   return Container(
@@ -11,7 +10,7 @@ Widget commentWidget(UserDump userDump, String body, String date) {
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CircularImage(image: NetworkImage(userDump.imageUrl), size: 28),
+        // CircularImage(image: NetworkImage(userDump.imageUrl), size: 28),
         const SizedBox(
           width: 20,
         ),
