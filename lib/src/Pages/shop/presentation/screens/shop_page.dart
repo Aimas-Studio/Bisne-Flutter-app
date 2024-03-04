@@ -118,8 +118,9 @@ class ShopPage extends StatelessWidget {
                                   future: ProductsProvider().cargarData(8),
                                   builder: (context, snapshot) => snapshot
                                           .hasData
-                                      ? createProductTable(
-                                          context, snapshot.data!)
+                                      ? Container()
+                                      // createProductTable(
+                                      // context, snapshot.data!)
                                       : const Center(
                                           child: CircularProgressIndicator()));
                             }),

@@ -26,7 +26,6 @@ class HomePageController extends GetxController {
         .map((data) =>
             data == null ? null : Shop.fromMap(data as Map<String, dynamic>))
         .toList();
-
     return tiendas;
   }
 }

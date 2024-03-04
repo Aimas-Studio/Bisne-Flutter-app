@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:bisne/src/Pages/shop/domain/dtos/create_shop_dto.dart';
 import 'package:bisne/src/Pages/shop/domain/dtos/edit_shop_dto.dart';
+import 'package:bisne/src/Pages/shop/infrastructure/services/create_shop.dart';
+import 'package:bisne/src/Pages/user/infrastructure/services/user_services.dart';
 import 'package:bisne/src/core/infrastructure/cloudinary/upload_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -60,6 +62,7 @@ class EditOrCreateShopController extends GetxController {
     final urlImage = await uploadImage(image!);
 
     final CreateShopDto shopDto = CreateShopDto(
+      adminId: getUserInfo().id,
       name: form.control('shopName').value,
       urlImage: urlImage,
       description: form.control('description').value,
@@ -70,6 +73,8 @@ class EditOrCreateShopController extends GetxController {
       schedule: form.control('schedule').value,
       whatsAppNumber: form.control('whatsAppNumber').value,
     );
+
+    createShop(shopDto: shopDto);
   }
 
   void editShopSubmit() async {

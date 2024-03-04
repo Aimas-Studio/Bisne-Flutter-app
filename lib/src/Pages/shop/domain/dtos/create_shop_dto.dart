@@ -1,4 +1,5 @@
 class CreateShopDto {
+  int adminId;
   String name;
   String description;
   String urlImage;
@@ -10,6 +11,7 @@ class CreateShopDto {
   String? link;
 
   CreateShopDto({
+    required this.adminId,
     required this.name,
     required this.description,
     required this.urlImage,

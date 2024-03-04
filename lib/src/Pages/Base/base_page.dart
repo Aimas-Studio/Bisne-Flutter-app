@@ -50,10 +50,16 @@ class BasePage extends StatelessWidget {
             case 1:
               return const SearchPage();
             case 2:
+              // return const NotificationPage();
+
               return const HomePage();
             case 3:
+              // return const NotificationPage();
+
               return const FavoritePage();
             case 4:
+              // return const NotificationPage();
+
               return UserInfoPage(user: getUserInfo());
             default:
               return const HomePage();

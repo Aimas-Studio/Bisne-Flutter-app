@@ -60,7 +60,8 @@ class SearchPage extends StatelessWidget {
                   key: UniqueKey(),
                   future: ShopsProvider().cargarData(_.selectedIndex.value),
                   builder: (context, snapshot) => snapshot.hasData
-                      ? createShopTable(context, snapshot.data!)
+                      ? Container()
+                      // createShopTable(context, snapshot.data!)
                       : const Center(child: CircularProgressIndicator()));
             },
           )),

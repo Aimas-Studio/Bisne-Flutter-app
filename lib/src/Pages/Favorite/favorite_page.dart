@@ -46,16 +46,24 @@ class FavoritePage extends StatelessWidget {
                   return TabBarView(
                     children: [
                       ListView(
-                        children: [createShopTable(context, snapshot.data!)],
+                        children: [
+                          // createShopTable(context, snapshot.data!)
+                        ],
                       ),
                       ListView(
-                        children: [createShopTable(context, snapshot.data!)],
+                        children: [
+                          // createShopTable(context, snapshot.data!)
+                        ],
                       ),
                       ListView(
-                        children: [createShopTable(context, snapshot.data!)],
+                        children: [
+                          // createShopTable(context, snapshot.data!)
+                        ],
                       ),
                       ListView(
-                        children: [createShopTable(context, snapshot.data!)],
+                        children: [
+                          // createShopTable(context, snapshot.data!)
+                        ],
                       ),
                     ],
                   );

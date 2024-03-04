@@ -2,6 +2,7 @@ import 'package:bisne/src/Pages/Home/Widgets/drawer_home_widget.dart';
 import 'package:bisne/src/Pages/Home/infrastructure/graphql/query.dart';
 import 'package:bisne/src/Pages/Home/presentations/controllers/home_page_controller.dart';
 import 'package:bisne/src/Pages/shop/domain/entities/shop_entity.dart';
+import 'package:bisne/src/core/presentation/widgets/cards/card_tables.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -44,7 +45,16 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: 15.0,
                 ),
-                sectionShops(context),
+                FutureBuilder(
+                  future: controller.fetchShops(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return createShopTable(context, snapshot.data!);
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
                 const SizedBox(
                   height: 20.0,
                 )

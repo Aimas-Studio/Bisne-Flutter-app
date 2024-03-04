@@ -28,17 +28,17 @@ class UserInfoPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              ProfileWidget(
-                  mainInfo: user.username,
-                  secondaryInfo: user.email,
-                  buttonLabel: "EDITAR PERFIL",
-                  image: AssetImage(user.imageUrl),
-                  buttonAction: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EditUserPage(user: user)));
-                  }),
+              // ProfileWidget(
+              //     mainInfo: user.username,
+              //     secondaryInfo: user.email,
+              //     buttonLabel: "EDITAR PERFIL",
+              //     image: AssetImage(user.imageUrl),
+              //     buttonAction: () {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (context) => EditUserPage(user: user)));
+              //     }),
               const SizedBox(
                 height: 18,
               ),

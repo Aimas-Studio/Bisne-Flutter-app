@@ -1,8 +1,10 @@
 import 'package:bisne/src/Pages/Home/Providers/CategoryProvider.dart';
 import 'package:bisne/src/Pages/Home/Providers/ShopsProvider.dart';
+import 'package:bisne/src/Pages/shop/domain/entities/shop_entity.dart';
 import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 import '../../../core/presentation/widgets/cards/card_tables.dart';
 import '../../../core/presentation/widgets/search_input_widget.dart';
@@ -34,19 +36,6 @@ AppBar appbarHomePage() {
               )),
     ],
     forceMaterialTransparency: true,
-  );
-}
-
-Widget sectionShops(BuildContext context) {
-  return FutureBuilder(
-    future: ShopsProvider().cargarData(8),
-    builder: (context, snapshot) {
-      if (snapshot.hasData) {
-        return createShopTable(context, snapshot.data!);
-      } else {
-        return Container();
-      }
-    },
   );
 }
 
