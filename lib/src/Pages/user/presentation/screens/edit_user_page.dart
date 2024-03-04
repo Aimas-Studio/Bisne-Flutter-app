@@ -7,8 +7,8 @@ import '../../../../core/presentation/widgets/buttons/custom_outline_button.dart
 import '../../../../core/presentation/widgets/inputs/white_input_text_widget.dart';
 import '../../../../core/presentation/widgets/secondary_app_bar.dart';
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
-import '../../Providers/user_providers.dart';
 import '../../domain/entities/user.dart';
+import '../../infrastructure/services/user_services.dart';
 import '../controllers/edit_user_controller.dart';
 
 class EditUserPage extends StatelessWidget {

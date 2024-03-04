@@ -1,8 +1,9 @@
-import 'shop.dart';
+import '../../shop/export.dart';
 
 class Facture {
-  ShopDump shop;
+  Shop shop;
   String date;
   num totalPrice;
+
   Facture(this.shop, this.date, this.totalPrice);
 }

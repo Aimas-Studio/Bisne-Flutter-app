@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../core/entities/content_panel.dart';
 import '../../../../core/presentation/icons/custom_icons.dart';
 import '../../../../core/presentation/themes/colors.dart';
-import '../../../Orders/orders_page.dart';
+import '../../../Orders/presentation/screens/orders_page.dart';
 import '../../../shop/presentation/screens/edit_or_create_shop_info_page.dart';
 import '../../domain/entities/user.dart';
 import '../widgets/profile_widget.dart';
@@ -54,11 +54,10 @@ class UserInfoPage extends StatelessWidget {
 }
 
 final List<ContentPanel> _contentPanel1 = [
-  ContentPanel(CustomIcons.finished, "Pedidos Realizados", () {
-    Get.off(() => const OrderPage());
-  }),
+  ContentPanel(CustomIcons.finished, "Pedidos Realizados",
+      () => Get.to(() => const OrderPage())),
   ContentPanel(Icons.add, "Publicar Negocio",
-      () => Get.off(() => EditOrCreateShopInfoPage(createShop: true)))
+      () => Get.to(() => const EditOrCreateShopInfoPage(createShop: true)))
 ];
 
 final List<ContentPanel> _contentPanel2 = [

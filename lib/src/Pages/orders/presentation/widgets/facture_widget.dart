@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/entities/product.dart';
-import '../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/entities/product.dart';
+import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
 
 class FactureWidget extends StatelessWidget {
   final ProductDump product;

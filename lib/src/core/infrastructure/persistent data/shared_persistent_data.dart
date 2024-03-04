@@ -58,17 +58,21 @@ class PersistentData {
   }
 
   //Username
-  String get username {
+  String get userName {
     return _appData.getString('username') ?? "";
   }
 
-  set username(String value) {
+  set userName(String value) {
     _appData.setString("username", value);
   }
 
   //Email
   String get userEmail {
     return _appData.getString("userEmail") ?? "";
+  }
+
+  set userEmail(String email) {
+    _appData.setString("userEmail", email);
   }
 
   //User Phone
@@ -89,8 +93,20 @@ class PersistentData {
     _appData.setString("userAddress", value);
   }
 
-  set userEmail(String email) {
-    _appData.setString("userEmail", email);
+  String get userImageUrl {
+    return _appData.getString('userImageUrl') ?? "";
+  }
+
+  set userImageUrl(String value) {
+    _appData.setString('userImageUrl', value);
+  }
+
+  String get userImagePath {
+    return _appData.getString('userImagePath') ?? "";
+  }
+
+  set userImagePath(String value) {
+    _appData.setString('userImagePath', value);
   }
 
   //
@@ -99,6 +115,16 @@ class PersistentData {
   //SHOP DATA
   //
   //
+
+  bool get shopExists {
+    return _appData.getBool('shopExists') ?? false;
+  }
+
+  set shopExists(bool value) {
+    _appData.setBool('shopExists', value);
+  }
+
+  //SHOP NAME
   String get shopName {
     return _appData.getString('shopName') ?? "";
   }
@@ -106,6 +132,8 @@ class PersistentData {
   set shopName(String name) {
     _appData.setString('shopName', name);
   }
+
+  //SHOP DESCRIPTION
 
   String get shopDescription {
     return _appData.getString("shopDescription") ?? "";
@@ -115,13 +143,17 @@ class PersistentData {
     _appData.setString("shopDescription", description);
   }
 
-  List<String> get shopOpeningTime {
-    return _appData.getStringList('shopOpeningTime') ?? [];
+  //SHOP OPENING TIME
+
+  String get shopOpeningTime {
+    return _appData.getString('shopOpeningTime') ?? '';
   }
 
-  set shopOpeningTime(List<String> openingTime) {
-    _appData.setStringList("shopOpeningTime", openingTime);
+  set shopOpeningTime(String openingTime) {
+    _appData.setString("shopOpeningTime", openingTime);
   }
+
+  //SHOP ADDRESS
 
   String get shopAddress {
     return _appData.getString("address") ?? "";
@@ -131,6 +163,8 @@ class PersistentData {
     _appData.setString("address", address);
   }
 
+  //SHOP PHONE
+
   String get shopPhoneNumber {
     return _appData.getString("phone") ?? "";
   }
@@ -139,6 +173,8 @@ class PersistentData {
     _appData.setString("phone", phone);
   }
 
+  //SHOP IMAGE PATH
+
   String get shopImagePath {
     return _appData.getString("imagePath") ?? "";
   }
@@ -146,6 +182,8 @@ class PersistentData {
   set shopImagePath(String path) {
     _appData.setString("imagePath", path);
   }
+
+  //SHOP IMAGE URL
 
   String get shopImageUrl {
     return _appData.getString("imageUrl") ?? "";

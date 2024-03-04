@@ -1,9 +1,6 @@
-import 'package:bisne/src/core/presentation/widgets/images/circular_image.dart';
-import 'package:bisne/src/core/presentation/widgets/images/custom_fade_in_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/widgets/buttons/custom_outline_button.dart';
-import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/presentation/widgets/widgets_export.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String mainInfo;

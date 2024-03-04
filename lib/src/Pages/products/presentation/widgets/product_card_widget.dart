@@ -1,10 +1,9 @@
-import 'package:bisne/src/Pages/Products/product_page.dart';
+import 'package:bisne/src/Pages/Products/presentation/screens/product_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/presentation/widgets/cards/photo_card_widget.dart';
-import '../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/presentation/widgets/widgets_export.dart';
 
-class ProductCard extends Card {
+class ProductCard extends StatelessWidget {
   final String name;
   final String image;
   final int price;
@@ -18,6 +17,7 @@ class ProductCard extends Card {
     required this.image,
     required this.price,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double heightMedia = MediaQuery.of(context).size.width > 550 ? 190 : 155;
