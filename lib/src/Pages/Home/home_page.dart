@@ -27,21 +27,6 @@ class HomePage extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                ListTile(
-                  title: FutureBuilder<List<Shop?>>(
-                    future: controller.fetchShops(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final shops = snapshot.data!;
-                        return Text(shops[0]!.shopName);
-                      } else if (snapshot.hasError) {
-                        return Text('Error');
-                      } else {
-                        return CircularProgressIndicator();
-                      }
-                    },
-                  ),
-                ),
                 const BannerSwiper(
                   rounded: false,
                 ),
