@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/entities/product.dart';
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../products/export.dart';
 
 class FactureWidget extends StatelessWidget {
-  final ProductDump product;
+  final Product product;
   final int amount;
 
   const FactureWidget({super.key, required this.product, required this.amount});

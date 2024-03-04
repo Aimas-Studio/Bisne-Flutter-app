@@ -50,7 +50,7 @@ class PersistentData {
 
   //idUser
   int get idUser {
-    return _appData.getInt('idUser') ?? -1;
+    return _appData.getInt('idUser') ?? 1;
   }
 
   set idUser(int value) {

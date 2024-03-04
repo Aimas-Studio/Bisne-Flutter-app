@@ -1,4 +1,3 @@
-import 'package:bisne/src/Pages/Home/Providers/ProductsProvider.dart';
 import 'package:bisne/src/core/presentation/icons/custom_icons.dart';
 import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:bisne/src/core/utils/interfaces_controller.dart';
@@ -12,6 +11,7 @@ import '../../../../core/presentation/widgets/return_button_widget.dart';
 import '../../../../core/presentation/widgets/search_input_widget.dart';
 import '../../../../core/presentation/widgets/secondary_app_bar.dart';
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../home/infrastructure/services/products_provider.dart';
 import '../controllers/shop_page_controller.dart';
 import '../widgets/shop_page_widgets.dart';
 
