@@ -21,7 +21,7 @@ class CategoryButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 0),
         side: BorderSide(
             color: isPressed ? Colors.transparent : Colors.black26, width: 1),
         shape: RoundedRectangleBorder(
