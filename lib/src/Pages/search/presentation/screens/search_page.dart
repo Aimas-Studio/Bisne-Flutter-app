@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/presentation/themes/colors.dart';
-import '../../../../core/presentation/widgets/cards/card_tables.dart';
-import '../../../../core/presentation/widgets/category_button.dart';
-import '../../../../core/presentation/widgets/search_input_widget.dart';
+import '../../../../core/presentation/widgets/buttons/category_button.dart';
+import '../../../../core/presentation/widgets/inputs/search_input_widget.dart';
 import '../../../home/infrastructure/services/shops_provider.dart';
 import '../controllers/search_page_controller.dart';
 import '../widgets/drawer_search_widget.dart';

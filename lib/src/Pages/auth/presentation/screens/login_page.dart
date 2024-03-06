@@ -1,14 +1,13 @@
-import 'package:bisne/src/core/presentation/icons/custom_icons.dart';
-import 'package:bisne/src/core/presentation/themes/colors.dart';
-import 'package:bisne/src/core/presentation/themes/decorations.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../../../core/presentation/widgets/buttons/custom_button_arrow_icon.dart';
-import '../../../../core/presentation/widgets/inputs/custom_reactive_text_field.dart';
-import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/presentation/icons/custom_icons.dart';
+import '../../../../core/presentation/themes/themes_export.dart';
+import '../../../../core/presentation/widgets/widgets_export.dart';
 import '../controllers/login_controller.dart';
+import 'forgot_password_page.dart';
+import 'register_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -82,8 +81,8 @@ class LoginPage extends StatelessWidget {
                             },
                             enabled: formGroup.valid,
                             color: formGroup.valid
-                                ? buttonColor
-                                : buttonColor.withOpacity(0.5),
+                                ? bisneColorPrimary
+                                : buttonColor,
                             child: defaultButtonChild,
                           );
                         }),
@@ -95,6 +94,22 @@ class LoginPage extends StatelessWidget {
                               "Créala hoy mismo de manera rápida \n y disfruta de las ventajas",
                           color: fontAppColor.withOpacity(0.5),
                           align: TextAlign.center,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: CustomLinkWidget(
+                            text: 'Registrarse en el Bisne',
+                            onPressed: () {
+                              Get.to(() => RegisterPage());
+                            },
+                          ),
+                        ),
+                        CustomLinkWidget(
+                          text: '¿Olvidaste tu contraseña?',
+                          color: Colors.red,
+                          onPressed: () {
+                            Get.to(() => ForgotPasswordPage());
+                          },
                         ),
                       ],
                     ),

@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/presentation/widgets/banner_promotional_widget.dart';
-import '../../../../core/presentation/widgets/cards/card_tables.dart';
-import '../../../../core/presentation/widgets/category_button.dart';
+import '../../../../core/presentation/widgets/buttons/category_button.dart';
+import '../../../../core/presentation/widgets/inputs/search_input_widget.dart';
 import '../../../../core/presentation/widgets/return_button_widget.dart';
-import '../../../../core/presentation/widgets/search_input_widget.dart';
 import '../../../../core/presentation/widgets/secondary_app_bar.dart';
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
 import '../../../home/infrastructure/services/products_provider.dart';

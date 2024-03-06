@@ -40,16 +40,18 @@ class BannerPromotionalWidget extends StatelessWidget {
 
 class BannerSwiper extends StatelessWidget {
   final bool rounded;
+
   const BannerSwiper({super.key, required this.rounded});
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: PromoProvider.cargarData(),
-        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
-          return snapshot.hasData
-              ? BannerPromotionalWidget(
-                  images: snapshot.data!, rounded: rounded)
-              : Container();
-        });
+      future: PromoProvider.cargarData(),
+      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        return snapshot.hasData
+            ? BannerPromotionalWidget(images: snapshot.data!, rounded: rounded)
+            : const SizedBox();
+      },
+    );
   }
 }

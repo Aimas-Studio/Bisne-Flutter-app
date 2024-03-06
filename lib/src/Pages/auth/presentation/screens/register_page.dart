@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../../../core/presentation/themes/colors.dart';
-import '../../../../core/presentation/themes/decorations.dart';
-import '../../../../core/presentation/widgets/buttons/custom_button_arrow_icon.dart';
-import '../../../../core/presentation/widgets/inputs/custom_reactive_text_field.dart';
-import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
+import '../../../../core/presentation/themes/themes_export.dart';
+import '../../../../core/presentation/widgets/widgets_export.dart';
 import '../controllers/register_controller.dart';
+import 'login_page.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
@@ -15,7 +13,7 @@ class RegisterPage extends StatelessWidget {
   final _form = FormGroup({
     'email': FormControl<String>(
         validators: [Validators.required, Validators.email]),
-    'username': FormControl<String>(
+    'userName': FormControl<String>(
         validators: [Validators.required, Validators.minLength(4)]),
     'password': FormControl<String>(
         validators: [Validators.required, Validators.minLength(4)]),
@@ -51,9 +49,9 @@ class RegisterPage extends StatelessWidget {
                             child: Column(
                               children: [
                                 CustomReactiveTextField(
-                                  formName: 'email',
+                                  formName: 'userName',
                                   prefixIcon: Icons.email_outlined,
-                                  labelText: 'E-MAIL',
+                                  labelText: 'USERNAME',
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(vertical: 5),
@@ -78,9 +76,7 @@ class RegisterPage extends StatelessWidget {
                           return CustomButtonArrowIcon(
                             width: MediaQuery.of(context).size.width * 0.5,
                             enabled: form.valid,
-                            color: form.valid
-                                ? fontAppColor
-                                : fontAppColor.withOpacity(0.5),
+                            color: form.valid ? bisneColorPrimary : buttonColor,
                             onPressed: () {
                               form.unfocus();
                             },
@@ -95,6 +91,13 @@ class RegisterPage extends StatelessWidget {
                               "Si es asi puedes iniciar sesión \n en nuestra app",
                           color: fontAppColor.withOpacity(0.5),
                           align: TextAlign.center,
+                        ),
+                        const SizedBox(height: 10),
+                        CustomLinkWidget(
+                          text: 'Iniciar Sesión',
+                          onPressed: () {
+                            Get.to(() => LoginPage());
+                          },
                         )
                       ],
                     ),
