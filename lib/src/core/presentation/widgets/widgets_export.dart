@@ -1,8 +1,8 @@
-export 'banner_promotional_widget.dart';
-export 'bottom_nav_bar.dart';
+export '../../../models/base/presentation/widgets/bottom_nav_bar.dart';
 export 'buttons/category_button.dart';
 export 'buttons/custom_button_arrow_icon.dart';
 export 'buttons/custom_outline_button.dart';
+export 'buttons/return_button_widget.dart';
 export 'cards/abstract_card.dart';
 export 'cards/card_tables.dart';
 export 'cards/favorite_button_widget.dart';
@@ -16,6 +16,6 @@ export 'inputs/custom_reactive_text_field.dart';
 export 'inputs/search_input_widget.dart';
 export 'inputs/white_input_text_widget.dart';
 export 'links/link_widget.dart';
-export 'return_button_widget.dart';
+export 'promotions/banner_promotional_widget.dart';
 export 'secondary_app_bar.dart';
 export 'texts/texts_widgets.dart';

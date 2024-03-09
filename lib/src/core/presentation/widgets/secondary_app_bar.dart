@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../Pages/Cart/presentation/screens/cart_page.dart';
-import '../../../Pages/shop/presentation/controllers/shop_page_controller.dart';
+import '../../../models/cart/presentation/screens/cart_page.dart';
+import '../../../models/shop/presentation/controllers/shop_page_controller.dart';
 import '../themes/colors.dart';
-import 'return_button_widget.dart';
+import 'buttons/return_button_widget.dart';
 
 AppBar secondaryAppBar(context, bool returnButton, {IconData? iconData}) {
   return AppBar(

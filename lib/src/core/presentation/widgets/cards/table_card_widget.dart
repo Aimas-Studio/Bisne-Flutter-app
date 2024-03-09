@@ -1,13 +1,12 @@
-import 'package:bisne/src/Pages/products/presentation/screens/product_page.dart';
-import 'package:bisne/src/Pages/products/presentation/widgets/product_card_widget.dart';
-import 'package:bisne/src/Pages/shop/presentation/screens/shop_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../Pages/shop/domain/entities/shop_entity.dart';
+import '../../../../models/products/presentation/widgets/product_card_widget.dart';
+import '../../../../models/shop/export.dart';
 
 class TableCardWidget extends StatelessWidget {
   final int maxColumns;
   final List<Shop?> data;
+
   const TableCardWidget({Key? key, this.maxColumns = 2, required this.data})
       : super(key: key);
 

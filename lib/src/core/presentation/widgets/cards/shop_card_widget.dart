@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../Pages/shop/presentation/screens/shop_page.dart';
+import '../../../../models/shop/presentation/screens/shop_page.dart';
 import '../texts/texts_widgets.dart';
 import 'photo_card_widget.dart';
 

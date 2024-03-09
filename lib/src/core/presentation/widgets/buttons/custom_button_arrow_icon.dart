@@ -9,7 +9,7 @@ class CustomButtonArrowIcon extends StatelessWidget {
   final VoidCallback? onPressed;
   final double width;
   final double height;
-  final Widget? child;
+  final String text;
 
   const CustomButtonArrowIcon({
     super.key,
@@ -17,8 +17,8 @@ class CustomButtonArrowIcon extends StatelessWidget {
     this.onPressed,
     this.width = double.infinity,
     this.height = 70,
-    this.child,
-    this.enabled = false,
+    this.text = '',
+    this.enabled = true,
   });
 
   @override
@@ -33,30 +33,28 @@ class CustomButtonArrowIcon extends StatelessWidget {
           shape: const MaterialStatePropertyAll(StadiumBorder()),
           backgroundColor: MaterialStatePropertyAll(color),
         ),
-        child: child,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Expanded(
+                child: Align(
+                  alignment: Alignment.center,
+                  child:
+                      RegularAppText(text: text, color: Colors.white, size: 20),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.white),
+                child: const Icon(Icons.arrow_forward_ios, color: fontAppColor),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
-
-final defaultButtonChild = Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 14),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.end,
-    children: [
-      const Expanded(
-        child: Align(
-          alignment: Alignment.center,
-          child:
-              RegularAppText(text: "INGRESAR", color: Colors.white, size: 20),
-        ),
-      ),
-      Container(
-        padding: const EdgeInsets.all(5),
-        decoration:
-            const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-        child: const Icon(Icons.arrow_forward_ios, color: fontAppColor),
-      ),
-    ],
-  ),
-);

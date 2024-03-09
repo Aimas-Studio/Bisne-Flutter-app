@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Pages/shop/infrastructure/services/get_shop_comments.dart';
-import '../../Pages/shop/presentation/widgets/commet_widget.dart';
+import '../../models/shop/infrastructure/services/get_shop_comments.dart';
+import '../../models/shop/presentation/widgets/commet_widget.dart';
 import '../entities/comments_controller/coment_controller.dart';
 import '../presentation/themes/colors.dart';
-import '../presentation/widgets/images/circular_image.dart';
-import '../presentation/widgets/inputs/custom_reactive_text_field.dart';
-import '../presentation/widgets/texts/texts_widgets.dart';
+import '../presentation/widgets/widgets_export.dart';
 
 Widget comments(
   BuildContext context,
