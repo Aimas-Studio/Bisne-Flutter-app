@@ -28,7 +28,7 @@ class ProductItemCart extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RegularAppText(text: product.name),
-            ThinAppText(text: product.shop.shopName),
+            ThinAppText(text: product.shop.name),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: RegularAppText(

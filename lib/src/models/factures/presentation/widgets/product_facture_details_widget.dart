@@ -22,7 +22,7 @@ class ProductFactureDetailsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RegularAppText(text: product.name, size: 15),
-              ThinAppText(text: product.shop.shopName, size: 12),
+              ThinAppText(text: product.shop.name, size: 12),
               const SizedBox(
                 height: 10,
               ),

@@ -69,7 +69,7 @@ class EditOrCreateShopInfoPage extends StatelessWidget {
                                 ),
                               )
                             : BoldAppText(
-                                text: controller.shop!.shopName, size: 34),
+                                text: controller.shop!.name, size: 34),
                         createShop
                             ? const SizedBox(height: 15)
                             : RegularAppText(

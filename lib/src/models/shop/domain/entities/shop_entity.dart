@@ -1,9 +1,9 @@
 class Shop {
   int id;
-  String shopName;
-  String shopDescription;
+  String name;
+  String description;
   String shopLocation;
-  String openingHours;
+  List<String> openingHours;
   String phoneNumber;
   String whatsAppNumber;
   String instagramAccount;
@@ -12,29 +12,30 @@ class Shop {
   String optionalLink;
   String imageUrl;
   String category;
+  List<String> subcategories = ['Subcategoria provisional'];
 
   Shop({
     required this.id,
-    required this.shopName,
-    required this.shopDescription,
+    required this.name,
+    required this.description,
     required this.imageUrl,
     this.shopLocation = '',
-    this.openingHours = '',
+    this.openingHours = const [],
     this.phoneNumber = '',
     this.whatsAppNumber = '',
     this.instagramAccount = '',
     this.facebookAccount = '',
     this.optionalLink = '',
     this.telegramAccount = '',
-    this.category = '',
+    this.category = 'Alimentos',
   });
 
   factory Shop.fromMap(Map<String, dynamic> map) {
     return Shop(
       id: map['id'],
-      shopName: map['nombre'],
-      shopDescription: map['descripcion'],
-      openingHours: map['horario'],
+      name: map['nombre'],
+      description: map['descripcion'],
+      openingHours: [map['horario']],
       whatsAppNumber: map['numeroWhatsapp'] ?? '',
       phoneNumber: map['numeroTelefono'] ?? '',
       telegramAccount: map['usuarioTelegram'] ?? '',

@@ -15,7 +15,9 @@ import '../controllers/product_page_controller.dart';
 import '../widgets/product_widgets.dart';
 
 class ProductPage extends StatelessWidget {
-  const ProductPage({super.key});
+  final Product product;
+
+  const ProductPage({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class ProductPage extends StatelessWidget {
                   children: [
                     InfoWidget(
                         title: controller.name,
-                        subtitle: controller.shopName,
+                        subtitle: RegularAppText(text: controller.shopName),
                         trailing: RegularAppText(
                           text: '${controller.price} mm',
                           size: 30,
@@ -290,9 +292,9 @@ class ProductPage extends StatelessWidget {
             _.images,
             _.description,
             Shop(
-                shopName: _.shopName,
+                name: _.shopName,
                 imageUrl: _.shopImage,
-                shopDescription: '',
+                description: '',
                 id: 4),
             "category",
           );
@@ -334,7 +336,7 @@ class ProductPage extends StatelessWidget {
       if (product.name == newProduct.name &&
           product.price == newProduct.price &&
           product.description == newProduct.description &&
-          product.shop.shopName == newProduct.shop.shopName) {
+          product.shop.name == newProduct.shop.name) {
         return true;
       }
     }
@@ -346,7 +348,7 @@ class ProductPage extends StatelessWidget {
       if (product.name == newProduct.name &&
           product.price == newProduct.price &&
           product.description == newProduct.description &&
-          product.shop.shopName == newProduct.shop.shopName) {
+          product.shop.name == newProduct.shop.name) {
         cart[product]!.value += count;
       }
     }

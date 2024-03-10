@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/shop/presentation/screens/shop_page.dart';
 import '../texts/texts_widgets.dart';
 import 'photo_card_widget.dart';
 
@@ -23,15 +22,7 @@ class ShopCard extends Card {
     double heightMedia = MediaQuery.of(context).size.width > 550 ? 170 : 130;
     double widthMedia = MediaQuery.of(context).size.width > 550 ? 180 : 145;
     return InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (context, animation1, animation2) => ShopPage(),
-              transitionDuration: const Duration(seconds: 0),
-            ),
-          );
-        },
+        onTap: () {},
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

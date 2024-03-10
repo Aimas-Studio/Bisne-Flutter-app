@@ -1,11 +1,15 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
+import '../../../../models/products/domain/product_entity.dart';
+import '../../../../models/products/presentation/screens/product_page.dart';
 import '../../../../models/products/presentation/widgets/product_card_widget.dart';
 import '../../../../models/shop/export.dart';
 
 class TableCardWidget extends StatelessWidget {
   final int maxColumns;
-  final List<Shop?> data;
+  final List<dynamic> data;
 
   const TableCardWidget({Key? key, this.maxColumns = 2, required this.data})
       : super(key: key);
@@ -20,77 +24,61 @@ class TableCardWidget extends StatelessWidget {
   }
 
   List<TableRow> _createTableRow(
-      {required List<Shop?> cards, required BuildContext context}) {
+      {required List<dynamic> cards, required BuildContext context}) {
     List<TableRow> listOfColums = [];
-    int columIndex = 1;
     List<Container> colmuns = [];
-    for (Shop? card in cards) {
-      print(columIndex);
-      if (columIndex == maxColumns) {
+
+    int totalCards = cards.length;
+    int totalCardsInSquare = pow(((sqrt(totalCards)).floor()) + 1, 2) as int;
+
+    double heightCard = MediaQuery.sizeOf(context).width > 550 ? 170 : 130;
+    double widthCard = MediaQuery.sizeOf(context).width > 550 ? 180 : 145;
+
+    if (data is List<Product>) {
+      heightCard = MediaQuery.of(context).size.width > 550 ? 190 : 155;
+      widthCard = MediaQuery.of(context).size.width > 550 ? 160 : 145;
+    }
+
+    for (int i = 0; i < totalCardsInSquare; i++) {
+      if (i < totalCards) {
         colmuns.add(
           Container(
-            margin: const EdgeInsets.only(bottom: 15),
+            margin: const EdgeInsets.only(bottom: 15, left: 10),
             child: Align(
               alignment: Alignment.center,
               child: BisneCard(
-                name: card!.shopName,
-                description: card.shopDescription,
-                image: card.imageUrl,
+                name: cards[i]!.name,
+                description: cards[i]!.description,
+                image: cards[i]!.imageUrl is List<String>
+                    ? cards[i]!.imageUrl[0]
+                    : cards[i]!.imageUrl,
                 rate: '4.5',
-                heightCard: MediaQuery.sizeOf(context).width > 550 ? 170 : 130,
-                widthCard: MediaQuery.sizeOf(context).width > 550 ? 180 : 145,
+                heightCard: heightCard,
+                widthCard: widthCard,
                 onpressed: () {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
                       pageBuilder: (context, animation1, animation2) =>
-                          const ShopPage(),
+                          (data is List<Product>)
+                              ? ProductPage(product: data[i])
+                              : ShopPage(shop: data[i]),
                       transitionDuration: const Duration(seconds: 0),
                     ),
                   );
                 },
+                price: (data is List<Product>) ? cards[i].price : null,
               ),
             ),
           ),
         );
-
-        listOfColums.add(
-          TableRow(
-            children: colmuns,
-          ),
-        );
-        colmuns = [];
-        columIndex = 1;
-
-        continue;
+      } else {
+        colmuns.add(Container());
       }
-      colmuns.add(
-        Container(
-          margin: const EdgeInsets.only(bottom: 20),
-          child: Align(
-            alignment: Alignment.center,
-            child: BisneCard(
-              name: card!.shopName,
-              description: card.shopDescription,
-              image: card.imageUrl,
-              rate: '4.5',
-              heightCard: MediaQuery.sizeOf(context).width > 550 ? 170 : 130,
-              widthCard: MediaQuery.sizeOf(context).width > 550 ? 180 : 145,
-              onpressed: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation1, animation2) =>
-                        const ShopPage(),
-                    transitionDuration: const Duration(seconds: 0),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
-      );
-      columIndex++;
+      if (colmuns.length == maxColumns) {
+        listOfColums.add(TableRow(children: colmuns));
+        colmuns = [];
+      }
     }
 
     return listOfColums;

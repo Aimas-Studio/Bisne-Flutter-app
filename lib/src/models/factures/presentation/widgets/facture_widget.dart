@@ -27,7 +27,7 @@ class FactureWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RegularAppText(text: facture.shop.shopName, size: 16),
+              RegularAppText(text: facture.shop.name, size: 16),
               ThinAppText(text: facture.date.toString(), size: 13),
               RegularAppText(text: "${facture.totalPrice} cup", size: 15),
               Expanded(
