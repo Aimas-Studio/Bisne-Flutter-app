@@ -15,7 +15,8 @@ import '../controllers/product_page_controller.dart';
 import '../widgets/product_widgets.dart';
 
 class ProductPage extends StatelessWidget {
-  const ProductPage({super.key});
+  final Product product;
+  const ProductPage({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class ProductPage extends StatelessWidget {
                   children: [
                     InfoWidget(
                         title: controller.name,
-                        subtitle: controller.shopName,
+                        subtitle: ThinAppText(text: controller.name),
                         trailing: RegularAppText(
                           text: '${controller.price} mm',
                           size: 30,
@@ -162,7 +163,7 @@ class ProductPage extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        RegularAppText(text: _.shopName, size: 32),
+        RegularAppText(text: _.name, size: 32),
         nameAndRate(context, _),
         const SizedBox(
           height: 20,
@@ -289,11 +290,7 @@ class ProductPage extends StatelessWidget {
             _.price,
             _.images,
             _.description,
-            Shop(
-                shopName: _.shopName,
-                imageUrl: _.shopImage,
-                shopDescription: '',
-                id: 4),
+            Shop(name: _.name, imageUrl: _.shopImage, description: '', id: 4),
             "category",
           );
           final shop = Get.find<ShopPageController>();
@@ -334,7 +331,7 @@ class ProductPage extends StatelessWidget {
       if (product.name == newProduct.name &&
           product.price == newProduct.price &&
           product.description == newProduct.description &&
-          product.shop.shopName == newProduct.shop.shopName) {
+          product.shop.name == newProduct.shop.name) {
         return true;
       }
     }
@@ -346,7 +343,7 @@ class ProductPage extends StatelessWidget {
       if (product.name == newProduct.name &&
           product.price == newProduct.price &&
           product.description == newProduct.description &&
-          product.shop.shopName == newProduct.shop.shopName) {
+          product.shop.name == newProduct.shop.name) {
         cart[product]!.value += count;
       }
     }

@@ -32,10 +32,16 @@ class IconCartWidget extends StatelessWidget {
             ),
           ),
           child: const DecoratedBox(
-            decoration: BoxDecoration(color: Colors.white),
-            child: Icon(
-              Icons.shopping_cart_outlined,
-              color: Colors.white,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(12))),
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(
+                Icons.shopping_cart_outlined,
+                color: iconAppColor,
+                size: 40,
+              ),
             ),
           ),
         ),

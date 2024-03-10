@@ -99,7 +99,7 @@ class InfoWidget extends StatelessWidget {
   });
 
   final String title;
-  final String subtitle;
+  final Widget subtitle;
   final Widget trailing;
   final String rate;
   final String description;
@@ -111,8 +111,12 @@ class InfoWidget extends StatelessWidget {
         height: 20,
       ),
       ListTile(
-        title: RegularAppText(text: title, size: 30),
-        subtitle: ThinAppText(text: subtitle, size: 20),
+        title: BoldAppText(
+          text: title,
+          size: 30,
+          color: Colors.black,
+        ),
+        subtitle: subtitle,
         trailing: trailing,
       ),
       const SizedBox(
@@ -146,8 +150,12 @@ class InfoWidget extends StatelessWidget {
       ),
       ListTile(
         title: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: RegularAppText(text: 'Descripción', size: 26),
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+          child: BoldAppText(
+            text: 'Descripción',
+            size: 26,
+            color: Colors.black,
+          ),
         ),
         subtitle: ThinAppText(text: description, size: 20, maxLines: 5),
       ),
@@ -356,8 +364,8 @@ class TextButtonShowMoreInfo extends StatelessWidget {
               ),
             );
           },
-          child: const RegularAppText(
-              text: 'Ver más información ...', size: 16, color: Colors.black),
+          child: const BoldAppText(
+              text: 'Ver más...', size: 16, color: iconAppColor),
         ),
       ],
     );

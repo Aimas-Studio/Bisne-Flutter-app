@@ -183,7 +183,7 @@ class CartPage extends StatelessWidget {
 //           crossAxisAlignment: CrossAxisAlignment.start,
 //           children: [
 //             RegularAppText(text: product.name, size: 16),
-//             ThinAppText(text: product.shopDump.shopName, size: 14),
+//             ThinAppText(text: product.shopDump.name, size: 14),
 //             Padding(
 //               padding: const EdgeInsets.symmetric(vertical: 5),
 //               child: RegularAppText(

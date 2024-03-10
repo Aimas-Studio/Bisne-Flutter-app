@@ -9,9 +9,9 @@ class ProductPageController extends GetxController {
     'assets/Images/shop2.png',
     'assets/Images/shop2.png'
   ];
-  final String shopName = 'Chocothay';
+  final String name = 'Chocothay';
   final String shopImage = 'assets/Images/shop2.png';
-  final String name = 'Bombones rellenos de fresa';
+  final String Shopname = 'Bombones rellenos de fresa';
   final String description =
       'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor, Aenean massa Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor, Aenean massa.';
   final double price = 300;

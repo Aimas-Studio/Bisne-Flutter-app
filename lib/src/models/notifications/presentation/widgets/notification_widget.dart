@@ -25,7 +25,7 @@ class NotificationWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RegularAppText(text: shop.shopName, size: 15),
+                RegularAppText(text: shop.name, size: 15),
                 LightAppText(text: body, size: 13),
               ],
             ),

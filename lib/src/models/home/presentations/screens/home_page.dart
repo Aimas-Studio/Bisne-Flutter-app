@@ -1,4 +1,5 @@
 import 'package:bisne/src/core/presentation/widgets/cards/card_tables.dart';
+import 'package:bisne/src/core/presentation/widgets/cards/table_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,15 +47,16 @@ class HomePage extends StatelessWidget {
                   future: controller.fetchShops(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return createShopTable(context, snapshot.data!);
+                      return TableCardWidget(
+                        maxColumns:
+                            MediaQuery.sizeOf(context).width > 550 ? 3 : 2,
+                        data: snapshot.data!,
+                      );
                     } else {
                       return Container();
                     }
                   },
                 ),
-                const SizedBox(
-                  height: 20.0,
-                )
               ],
             ),
           ),

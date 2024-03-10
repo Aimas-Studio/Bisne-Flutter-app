@@ -24,8 +24,8 @@ Future<bool> createShop({required CreateShopDto shopDto}) async {
     document: createShopMutation,
     variables: {
       'adminId': shopDto.adminId,
-      'shopName': shopDto.name,
-      'shopDescription': shopDto.description,
+      'name': shopDto.name,
+      'description': shopDto.description,
       'shopSchedule': shopDto.schedule,
       'urlImage': shopDto.urlImage,
       'shopPhoneNumber': shopDto.phoneNumber,

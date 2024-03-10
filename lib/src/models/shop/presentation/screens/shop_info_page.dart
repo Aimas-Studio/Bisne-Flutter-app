@@ -38,7 +38,7 @@ class ShopInfoPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 10, bottom: 0),
-                        child: BoldAppText(text: shop.shopName, size: 30),
+                        child: BoldAppText(text: shop.name, size: 30),
                       ),
                       RegularAppText(text: shop.category, size: 16),
                       const SizedBox(height: 11),

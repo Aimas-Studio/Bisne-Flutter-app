@@ -12,8 +12,8 @@ final persistentData = PersistentData();
 Shop getShopInfo() {
   return Shop(
     id: 1,
-    shopName: persistentData.shopName,
-    shopDescription: persistentData.shopDescription,
+    name: persistentData.name,
+    description: persistentData.description,
     imageUrl: '',
   );
 }

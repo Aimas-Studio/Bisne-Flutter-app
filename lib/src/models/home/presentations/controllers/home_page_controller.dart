@@ -1,3 +1,4 @@
+import 'package:bisne/src/core/infrastructure/env/env.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -15,7 +16,9 @@ class HomePageController extends GetxController {
       document: getAllShops,
     );
 
+    // print(Env.apiUrl);
     final QueryResult result = await client.query(options);
+    print('Hola');
 
     if (result.hasException) {
       print(result.exception.toString());

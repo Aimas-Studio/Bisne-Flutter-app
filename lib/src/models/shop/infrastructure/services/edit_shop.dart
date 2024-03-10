@@ -12,7 +12,7 @@ Future<bool> editShop(EditShopDto shopDto) async {
     document: editShopMutation,
     variables: {
       'id': persistentData.idUser,
-      'shopDescription': shopDto.description,
+      'description': shopDto.description,
       'shopSchedule': shopDto.schedule,
       'urlImage': shopDto.urlImage,
       'shopPhoneNumber': shopDto.phoneNumber,

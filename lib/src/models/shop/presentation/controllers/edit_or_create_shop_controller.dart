@@ -39,7 +39,7 @@ class EditOrCreateShopController extends GetxController {
     hasImage = (shop != null);
     if (createShop) {
       form.addAll({
-        'shopName': FormControl<String>(validators: [Validators.required])
+        'name': FormControl<String>(validators: [Validators.required])
       });
     }
   }
@@ -68,7 +68,7 @@ class EditOrCreateShopController extends GetxController {
       adminId: getUserInfo().id,
       region: 'La Habana',
       municipality: 'Boyeros',
-      name: form.control('shopName').value,
+      name: form.control('name').value,
       urlImage: urlImage,
       description: form.control('description').value,
       facebook: form.control('facebook').value,

@@ -24,13 +24,13 @@ class ShopCard extends Card {
     double widthMedia = MediaQuery.of(context).size.width > 550 ? 180 : 145;
     return InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (context, animation1, animation2) => ShopPage(),
-              transitionDuration: const Duration(seconds: 0),
-            ),
-          );
+          // Navigator.push(
+          // context,
+          // PageRouteBuilder(
+          // pageBuilder: (context, animation1, animation2) => ShopPage(),
+          // transitionDuration: const Duration(seconds: 0),
+          // ),
+          // );
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

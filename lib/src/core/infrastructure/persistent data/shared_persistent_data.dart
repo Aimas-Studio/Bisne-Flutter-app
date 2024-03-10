@@ -136,22 +136,22 @@ class PersistentData {
   }
 
   //SHOP NAME
-  String get shopName {
-    return _appData.getString('shopName') ?? "";
+  String get name {
+    return _appData.getString('name') ?? "";
   }
 
-  set shopName(String name) {
-    _appData.setString('shopName', name);
+  set name(String name) {
+    _appData.setString('name', name);
   }
 
   //SHOP DESCRIPTION
 
-  String get shopDescription {
-    return _appData.getString("shopDescription") ?? "";
+  String get description {
+    return _appData.getString("description") ?? "";
   }
 
-  set shopDescription(String description) {
-    _appData.setString("shopDescription", description);
+  set description(String description) {
+    _appData.setString("description", description);
   }
 
   //SHOP OPENING TIME

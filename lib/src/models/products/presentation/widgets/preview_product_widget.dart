@@ -31,7 +31,7 @@ class PreviewProductWidget extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 10),
-              child: RegularAppText(text: persistentData.shopName),
+              child: RegularAppText(text: persistentData.name),
             ),
             BoldAppText(text: productName, size: 30),
             Padding(

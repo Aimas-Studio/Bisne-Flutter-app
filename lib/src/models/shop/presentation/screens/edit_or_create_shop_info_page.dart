@@ -62,13 +62,13 @@ class EditOrCreateShopInfoPage extends StatelessWidget {
                         createShop
                             ? const DecoratedWhiteBox(
                                 child: CustomReactiveTextField(
-                                  formName: 'shopName',
+                                  formName: 'name',
                                   labelText: "ELEGIR NOMBRE DE LA TIENDA",
                                   prefixIcon: Icons.edit,
                                 ),
                               )
                             : BoldAppText(
-                                text: controller.shop!.shopName, size: 34),
+                                text: controller.shop!.name, size: 34),
                         createShop
                             ? const SizedBox(height: 15)
                             : RegularAppText(

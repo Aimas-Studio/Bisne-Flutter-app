@@ -89,7 +89,7 @@
 //                         productSwiper(context, widget.images),
 //                         const SizedBox(height: 20),
 //                         RegularAppText(
-//                           text: widget.productDump.shopDump.shopName,
+//                           text: widget.productDump.shopDump.name,
 //                           size: 16,
 //                         ),
 //                         BoldAppText(

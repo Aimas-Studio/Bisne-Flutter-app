@@ -13,35 +13,32 @@ import '../controllers/base_page_controller.dart';
 import '../widgets/bottom_nav_bar.dart';
 
 final appData = PersistentData();
-final BasePageController basePageController = Get.find<BasePageController>();
 
 class BasePage extends StatelessWidget {
   const BasePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Navigator> navigators =
-        List<Navigator>.generate(5, (index) => _buildNavigator(index));
     return GetBuilder<BasePageController>(
       id: BasePageController.idController,
       init: BasePageController(),
-      builder: (_) {
-        return Obx(
-          () => Scaffold(
-            body: IndexedStack(
-              index: basePageController.obj,
-              children: navigators,
-            ),
-            bottomNavigationBar: basePageController.showBottomNavBar.value
-                ? BottomNavBar()
-                : null,
+      builder: (basePageController) {
+        List<Navigator> navigators = List<Navigator>.generate(
+            5, (index) => _buildNavigator(index, basePageController));
+        return Scaffold(
+          body: IndexedStack(
+            index: basePageController.obj,
+            children: navigators,
           ),
+          bottomNavigationBar:
+              basePageController.showBottomNavBar.value ? BottomNavBar() : null,
         );
       },
     );
   }
 
-  Navigator _buildNavigator(int indexPage) {
+  Navigator _buildNavigator(
+      int indexPage, BasePageController basePageController) {
     return Navigator(
       key: basePageController.navigatorKeys[indexPage],
       onGenerateRoute: (RouteSettings settings) {
@@ -53,7 +50,6 @@ class BasePage extends StatelessWidget {
               return const SearchPage();
             case 2:
               // return const NotificationPage();
-
               return const HomePage();
             case 3:
               // return const NotificationPage();

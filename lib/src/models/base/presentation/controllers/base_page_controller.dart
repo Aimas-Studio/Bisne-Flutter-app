@@ -10,8 +10,8 @@ class BasePageController extends GetxController {
   final _obj = 2.obs;
 
   set obj(value) {
-    // update();
     _obj.value = value;
+    update([idController]);
   }
 
   get obj => _obj.value;
