@@ -7,7 +7,7 @@
 // import '../../core/widgets/buttons/custom_outline_button.dart';
 // import '../../core/widgets/images/image_picker_widget.dart';
 // import '../../core/widgets/custom_reactive_text_field.dart';
-// import '../../core/widgets/secondary_app_bar.dart';
+// import '../../core/widgets/custom_app_bar.dart';
 // import '../../core/widgets/texts/texts_widgets.dart';
 //
 // class EditProductPage extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/themes/themes_export.dart';
-import '../../../../core/presentation/widgets/secondary_app_bar.dart';
+import '../../../../core/presentation/widgets/custom_app_bar.dart';
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
 import '../../domain/facture_entity.dart';
 import '../../infrastructure/services/orders_services.dart';
@@ -15,7 +15,7 @@ class FacturesPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
-        appBar: secondaryAppBar(context, true),
+        appBar: CustomAppBar(),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(

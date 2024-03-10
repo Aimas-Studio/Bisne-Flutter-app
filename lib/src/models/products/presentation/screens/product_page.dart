@@ -6,6 +6,7 @@ import '../../../../core/entities/comments_controller/coment_controller.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
 import '../../../../core/utils/comment_widgets.dart';
+import '../../../cart/export.dart';
 import '../../../shop/export.dart';
 import '../../../shop/presentation/controllers/shop_page_controller.dart';
 import '../../../shop/presentation/widgets/shop_page_widgets.dart';

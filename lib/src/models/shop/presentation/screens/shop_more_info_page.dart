@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/presentation/widgets/secondary_app_bar.dart';
+import '../../../../core/presentation/widgets/custom_app_bar.dart';
 import '../controllers/shop_page_controller.dart';
 
 class ShopMoreInfoPage extends StatelessWidget {
@@ -12,7 +12,7 @@ class ShopMoreInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: secondaryAppBar(context, true),
+      appBar: CustomAppBar(),
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: const [

@@ -19,7 +19,7 @@ class CartPage extends StatelessWidget {
       id: CartController.idController,
       init: CartController(),
       builder: (controller) => Scaffold(
-        appBar: secondaryAppBar(context, true),
+        appBar: CustomAppBar(),
         backgroundColor: backgroundAppColor,
         body: Column(children: [
           //PRODUCTS

@@ -18,7 +18,7 @@ class FactureDetailPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
-        appBar: secondaryAppBar(context, true),
+        appBar: CustomAppBar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(

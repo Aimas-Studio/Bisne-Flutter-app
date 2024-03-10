@@ -13,7 +13,7 @@ class EditUserPage extends StatelessWidget {
   Widget build(context) {
     return SafeArea(
       child: Scaffold(
-        appBar: secondaryAppBar(context, true),
+        appBar: CustomAppBar(),
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(
           child: GetBuilder(
