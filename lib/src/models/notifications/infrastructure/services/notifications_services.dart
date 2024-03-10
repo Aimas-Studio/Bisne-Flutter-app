@@ -1,6 +1,8 @@
 import '../../../shop/export.dart';
 import '../../domain/entities/notification.dart';
 
+int _notificationCount = 0;
+
 Future<List<AppNotification>> getNotifications() async {
   return Future.delayed(const Duration(seconds: 2), () {
     return [
@@ -24,4 +26,8 @@ Future<List<AppNotification>> getNotifications() async {
           "7:35"),
     ];
   });
+}
+
+int getNotificationCount() {
+  return _notificationCount;
 }

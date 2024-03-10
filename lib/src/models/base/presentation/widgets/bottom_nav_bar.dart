@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/presentation/themes/colors.dart';
+import '../../../notifications/export.dart';
 import '../controllers/base_page_controller.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -191,8 +192,4 @@ class NotificationButton extends StatelessWidget {
       ),
     );
   }
-}
-
-int getNotificationCount() {
-  return 0;
 }

@@ -9,10 +9,6 @@ class BasePageController extends GetxController {
   final showBottomNavBar = true.obs;
   final _obj = 2.obs;
 
-  refresh() {
-    update([idController]);
-  }
-
   set obj(value) {
     // update();
     _obj.value = value;
