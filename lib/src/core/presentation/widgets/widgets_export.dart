@@ -12,6 +12,7 @@ export 'cards/table_card_widget.dart';
 export 'custom_app_bar.dart';
 export 'images/circular_image.dart';
 export 'images/custom_fade_in_image.dart';
+export 'images/image_picker.dart';
 export 'images/rectangle_circular_image.dart';
 export 'inputs/custom_reactive_text_field.dart';
 export 'inputs/search_input_widget.dart';

@@ -7,23 +7,23 @@ import 'package:flutter/cupertino.dart';
 import '../../../../core/infrastructure/persistent data/shared_persistent_data.dart';
 import '../../domain/entities/shop_entity.dart';
 
-final persistentData = PersistentData();
+final _persistentData = PersistentData();
 
 Shop getShopInfo() {
   return Shop(
     id: 1,
-    shopName: persistentData.shopName,
-    shopDescription: persistentData.shopDescription,
+    shopName: _persistentData.shopName,
+    shopDescription: _persistentData.shopDescription,
     imageUrl: '',
   );
 }
 
 Widget getShopImage() {
-  if (persistentData.shopImagePath.isNotEmpty) {
+  if (_persistentData.shopImagePath.isNotEmpty) {
     return CustomFadeInImage(
-        image: FileImage(File(persistentData.shopImagePath)));
-  } else if (persistentData.shopImageUrl.isNotEmpty) {
-    return CustomFadeInImage(image: NetworkImage(persistentData.shopImageUrl));
+        image: FileImage(File(_persistentData.shopImagePath)));
+  } else if (_persistentData.shopImageUrl.isNotEmpty) {
+    return CustomFadeInImage(image: NetworkImage(_persistentData.shopImageUrl));
   } else {
     return userPlaceHolder;
   }

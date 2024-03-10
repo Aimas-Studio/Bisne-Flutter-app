@@ -1,5 +1,5 @@
-import '../../../../core/entities/comment_entity.dart';
 import '../../../user/export.dart';
+import '../../../valorations/domain/entities/comment_entity.dart';
 
 Future<List<AppComment>> getShopComments() async {
   return Future.delayed(const Duration(seconds: 2), () {

@@ -9,7 +9,8 @@ Widget productSwiper(BuildContext context, List<ImageProvider> images) {
   Swiper swiper = Swiper(
     layout: SwiperLayout.DEFAULT,
     itemBuilder: (context, index) {
-      return RectangleCircularImage(image: images[index], size: 80);
+      return RectangleCircularImage(
+          size: 80, child: Image(image: images[index]));
     },
     autoplay: false,
     itemCount: images.length,

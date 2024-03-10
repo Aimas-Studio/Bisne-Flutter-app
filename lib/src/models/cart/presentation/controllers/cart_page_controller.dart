@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../core/infrastructure/persistent data/shared_persistent_data.dart';
 import '../../../products/export.dart';
 
-final persistentData = PersistentData();
+final _persistentData = PersistentData();
 
 class CartController extends GetxController {
   static final _cartController = CartController._();
@@ -19,11 +19,11 @@ class CartController extends GetxController {
   final Map<Product, int> itemsToBuy = {};
 
   final TextEditingController textPhoneNumberController =
-      TextEditingController(text: persistentData.userPhone);
+      TextEditingController(text: _persistentData.userPhone);
   final TextEditingController textUserNameController =
-      TextEditingController(text: persistentData.userName);
+      TextEditingController(text: _persistentData.userName);
   final TextEditingController textAddressController =
-      TextEditingController(text: persistentData.userAddress);
+      TextEditingController(text: _persistentData.userAddress);
 
   void addProduct(Product product, int quantity) {
     if (itemsToBuy.containsKey(product)) {

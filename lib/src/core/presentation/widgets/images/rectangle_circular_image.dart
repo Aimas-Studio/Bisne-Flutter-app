@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../themes/place_holders.dart';
-
 class RectangleCircularImage extends StatelessWidget {
-  final ImageProvider? image;
-  final ImageProvider placeholder;
   final double size;
   final double borderRadius;
+  final Widget? child;
 
   const RectangleCircularImage({
-    this.image,
     this.size = 50,
-    this.placeholder = placeHolderImageApp,
+    this.child,
     super.key,
     this.borderRadius = 23,
   });
@@ -22,11 +18,7 @@ class RectangleCircularImage extends StatelessWidget {
       borderRadius: BorderRadius.all(
         Radius.circular(borderRadius),
       ),
-      child: FadeInImage(
-        placeholder: placeholder,
-        image: image ?? placeholder,
-        fit: BoxFit.cover,
-      ),
+      child: child,
     );
   }
 }
