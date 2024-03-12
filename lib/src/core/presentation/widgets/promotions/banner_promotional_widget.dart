@@ -19,15 +19,14 @@ class BannerPromotionalWidget extends StatelessWidget {
       height: mediaHeight,
       child: Swiper(
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-              width: mediaWidth,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: AssetImage(images[index]),
-                  fit: BoxFit.cover,
-                ),
-              ));
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: FadeInImage(
+                fit: BoxFit.cover,
+                placeholder:
+                    const AssetImage('assets/Images/placeholder_baner.png'),
+                image: AssetImage(images[index])),
+          );
         },
         scale: 0.7,
         viewportFraction: MediaQuery.sizeOf(context).width > 550 ? 0.6 : 0.7,

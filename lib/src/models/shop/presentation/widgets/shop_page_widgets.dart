@@ -110,54 +110,64 @@ class InfoWidget extends StatelessWidget {
       const SizedBox(
         height: 20,
       ),
-      ListTile(
-        title: BoldAppText(
-          text: title,
-          size: 30,
-          color: Colors.black,
-        ),
-        subtitle: subtitle,
-        trailing: trailing,
-      ),
-      const SizedBox(
-        height: 10,
-      ),
       Row(
         children: [
-          RateWidget(rate: rate),
-          const SizedBox(
-            width: 20,
-          ),
-          const FavoriteLargeButton(),
-          const SizedBox(
-            width: 10,
-          ),
-          IconButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10))),
-                  side: const MaterialStatePropertyAll(
-                      BorderSide(color: Colors.black26, width: 1))),
-              icon: const Icon(
-                Icons.share_sharp,
-                size: 30,
+          Expanded(
+              flex: 80,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BoldAppText(
+                    text: title,
+                    size: 30,
+                    color: Colors.black,
+                  ),
+                  subtitle,
+                ],
+              )),
+          Expanded(
+              flex: 20,
+              child: Row(
+                children: [trailing],
               ))
         ],
       ),
       const SizedBox(
         height: 10,
       ),
-      ListTile(
-        title: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-          child: BoldAppText(
-            text: 'Descripción',
-            size: 26,
-            color: Colors.black,
+      Row(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              5,
+              (index) {
+                return index + 1 < double.parse(rate)
+                    ? const Icon(
+                        Icons.star_rounded,
+                        size: 30,
+                        color: Color.fromRGBO(253, 217, 75, 1),
+                      )
+                    : const Icon(Icons.star_rounded,
+                        size: 30, color: Color.fromRGBO(246, 237, 199, 1));
+              },
+            )..add(
+                RegularAppText(
+                  text: '($rate)',
+                  size: 20,
+                ),
+              ),
           ),
-        ),
-        subtitle: ThinAppText(text: description, size: 20, maxLines: 5),
+        ],
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      RegularAppText(
+        text: description,
+        size: 20,
+        maxLines: 5,
+        color: Colors.black,
       ),
     ]);
   }
@@ -352,8 +362,7 @@ class TextButtonShowMoreInfo extends StatelessWidget {
       children: [
         TextButton(
           style: const ButtonStyle(
-            padding: MaterialStatePropertyAll(EdgeInsets.all(10)),
-          ),
+              padding: MaterialStatePropertyAll(EdgeInsets.zero)),
           onPressed: () {
             Navigator.push(
               context,
@@ -365,7 +374,7 @@ class TextButtonShowMoreInfo extends StatelessWidget {
             );
           },
           child: const BoldAppText(
-              text: 'Ver más...', size: 16, color: iconAppColor),
+              text: 'Ver más información...', size: 18, color: Colors.black),
         ),
       ],
     );

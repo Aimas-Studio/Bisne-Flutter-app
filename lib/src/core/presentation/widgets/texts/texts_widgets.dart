@@ -7,13 +7,15 @@ class BoldAppText extends StatelessWidget {
   final double size;
   final Color color;
   final int? maxLines;
+  final TextAlign? align;
 
   const BoldAppText(
       {super.key,
       required this.text,
       this.size = 20,
       this.color = fontAppColor,
-      this.maxLines});
+      this.maxLines,
+      this.align});
 
   @override
   Widget build(context) {
@@ -25,6 +27,7 @@ class BoldAppText extends StatelessWidget {
         fontFamily: 'Poppins',
         fontWeight: FontWeight.bold,
       ),
+      textAlign: align,
       softWrap: true,
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
@@ -37,16 +40,19 @@ class RegularAppText extends StatelessWidget {
   final double size;
   final Color color;
   final int? maxLines;
+  final TextAlign? align;
 
   const RegularAppText(
       {super.key,
       required this.text,
       this.size = 15,
       this.color = fontAppColor,
-      this.maxLines});
+      this.maxLines,
+      this.align});
 
   @override
   Widget build(context) {
+    print(align);
     return Text(
       text,
       style: TextStyle(
@@ -55,6 +61,7 @@ class RegularAppText extends StatelessWidget {
         fontSize: size,
         fontWeight: FontWeight.w400,
       ),
+      textAlign: align,
       softWrap: true,
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,

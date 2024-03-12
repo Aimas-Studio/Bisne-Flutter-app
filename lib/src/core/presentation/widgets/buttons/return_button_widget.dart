@@ -11,9 +11,9 @@ class ReturnButtonAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => Get.back(),
+      onPressed: () => Navigator.pop(context),
       style: const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(backgroundAppColor),
+          backgroundColor: MaterialStatePropertyAll(Colors.white),
           elevation: MaterialStatePropertyAll(0),
           padding: MaterialStatePropertyAll(EdgeInsets.only(left: 7))),
       icon: const Icon(

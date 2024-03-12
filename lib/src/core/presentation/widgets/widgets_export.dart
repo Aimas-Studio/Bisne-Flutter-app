@@ -4,7 +4,6 @@ export 'buttons/custom_button_arrow_icon.dart';
 export 'buttons/custom_outline_button.dart';
 export 'buttons/return_button_widget.dart';
 export 'cards/abstract_card.dart';
-export 'cards/card_tables.dart';
 export 'cards/favorite_button_widget.dart';
 export 'cards/photo_card_widget.dart';
 export 'cards/shop_card_widget.dart';

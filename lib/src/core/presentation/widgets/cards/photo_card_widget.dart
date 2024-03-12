@@ -19,36 +19,51 @@ class PhotoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: widthMedia,
-        height: heightMedia,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          image: DecorationImage(
-            image: NetworkImage(image),
-            fit: BoxFit.cover,
-          ),
-        ),
-        alignment: Alignment.topCenter,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding:
-                  const EdgeInsets.only(left: 8, right: 3, top: 3, bottom: 3),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
-              child: Row(
-                children: [
-                  RegularAppText(text: rate, size: 16),
-                  const Icon(Icons.star_rounded,
-                      color: Color.fromRGBO(253, 217, 75, 1), size: 20),
-                ],
-              ),
+    return SizedBox(
+      width: widthMedia,
+      height: heightMedia,
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+            child: Hero(
+              tag: 'photo',
+              child: FadeInImage(
+                  placeholder:
+                      const AssetImage('assets/Images/placeholder_baner.png'),
+                  image: NetworkImage(image),
+                  fit: BoxFit.cover,
+                  width: widthMedia),
             ),
-            const FavoriteButton(),
-          ],
-        ));
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                      left: 8, right: 3, top: 3, bottom: 3),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Row(
+                    children: [
+                      RegularAppText(text: rate, size: 16),
+                      const Icon(Icons.star_rounded,
+                          color: Color.fromRGBO(253, 217, 75, 1), size: 20),
+                    ],
+                  ),
+                ),
+                const FavoriteButton(
+                  size: 1,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

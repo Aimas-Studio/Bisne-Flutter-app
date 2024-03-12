@@ -16,6 +16,7 @@ import '../widgets/product_widgets.dart';
 
 class ProductPage extends StatelessWidget {
   final Product product;
+
   const ProductPage({super.key, required this.product});
 
   @override

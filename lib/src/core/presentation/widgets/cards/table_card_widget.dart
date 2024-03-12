@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/products/domain/product_entity.dart';
 import '../../../../models/products/presentation/screens/product_page.dart';
-import '../../../../models/products/presentation/widgets/product_card_widget.dart';
+import 'bisne_card_wiget.dart';
 import '../../../../models/shop/export.dart';
 
 class TableCardWidget extends StatelessWidget {
@@ -43,12 +43,13 @@ class TableCardWidget extends StatelessWidget {
       if (i < totalCards) {
         colmuns.add(
           Container(
-            margin: const EdgeInsets.only(bottom: 15, left: 10),
+            margin:
+                const EdgeInsets.only(bottom: 15, left: 10, right: 10, top: 5),
             child: Align(
               alignment: Alignment.center,
               child: BisneCard(
                 name: cards[i]!.name,
-                description: cards[i]!.description,
+                category: cards[i].category,
                 image: cards[i]!.imageUrl is List<String>
                     ? cards[i]!.imageUrl[0]
                     : cards[i]!.imageUrl,
@@ -56,16 +57,17 @@ class TableCardWidget extends StatelessWidget {
                 heightCard: heightCard,
                 widthCard: widthCard,
                 onpressed: () {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) =>
-                          (data is List<Product>)
-                              ? ProductPage(product: data[i])
-                              : ShopPage(shop: data[i]),
-                      transitionDuration: const Duration(seconds: 0),
-                    ),
-                  );
+                  WidgetsBinding.instance!.addPostFrameCallback((_) {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            (data is List<Product>)
+                                ? ProductPage(product: data[i])
+                                : ShopPage(shop: data[i]),
+                      ),
+                    );
+                  });
                 },
                 price: (data is List<Product>) ? cards[i].price : null,
               ),

@@ -1,5 +1,6 @@
 //Dart Imports
 
+import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -57,12 +58,54 @@ class SearchPage extends StatelessWidget {
             stream: _.indexStream,
             builder: (context, snapshot) {
               return FutureBuilder(
-                  key: UniqueKey(),
-                  future: ShopsProvider().cargarData(_.selectedIndex.value),
-                  builder: (context, snapshot) => snapshot.hasData
-                      ? Container()
-                      // createShopTable(context, snapshot.data!)
-                      : const Center(child: CircularProgressIndicator()));
+                key: UniqueKey(),
+                future: ShopsProvider().cargarData(_.selectedIndex.value),
+                builder: (context, snapshot) => snapshot.hasData
+                    ? const Padding(
+                        padding: EdgeInsets.only(top: 50),
+                        child: Column(
+                          children: [
+                            Image(
+                              image: AssetImage(
+                                  'assets/Images/placeholder_circle_logo.png'),
+                              height: 150,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            RegularAppText(
+                              text:
+                                  'Lo sentimos,\nno existen resultados\n para su búsqueda.',
+                              size: 20,
+                              align: TextAlign.center,
+                            )
+                          ],
+                        ),
+                      )
+                    // createShopTable(context, snapshot.data!)
+                    : Center(
+                        child: Table(
+                          children: const [
+                            TableRow(children: [
+                              Image(
+                                  image: AssetImage(
+                                      'assets/Images/placeholder_baner.png')),
+                              Image(
+                                  image: AssetImage(
+                                      'assets/Images/placeholder_baner.png'))
+                            ]),
+                            TableRow(children: [
+                              Image(
+                                  image: AssetImage(
+                                      'assets/Images/placeholder_baner.png')),
+                              Image(
+                                  image: AssetImage(
+                                      'assets/Images/placeholder_baner.png'))
+                            ])
+                          ],
+                        ),
+                      ),
+              );
             },
           )),
         ],
@@ -79,12 +122,15 @@ class SearchPage extends StatelessWidget {
       buttons.add(
         SizedBox(
           height: 30,
-          child: Obx(() => CategoryButton(
-              isPressed: _.selectedIndex.value == i,
-              onPressed: () {
-                _.selectedIndex.value = i;
-              },
-              label: labels[i])),
+          child: Obx(
+            () => CategoryButton(
+                isPressed: _.selectedIndex.value == i,
+                onPressed: () {
+                  _.selectedIndex.value = i;
+                },
+                label: labels[i],
+                maincolor: iconAppColor),
+          ),
         ),
       );
     }
@@ -102,7 +148,7 @@ class SearchPage extends StatelessWidget {
       ],
       backgroundColor: backgroundAppColor,
       title: SearchInput(
-        hintText: 'Buscar Productos...',
+        hintText: 'Buscar en el Bisne...',
         searchController: SearchController(),
       ),
       toolbarHeight: 100,
