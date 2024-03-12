@@ -11,9 +11,10 @@ class CustomAppBar extends AppBar {
       : super(
           forceMaterialTransparency: true,
           backgroundColor: backgroundAppColor,
-          toolbarHeight: 25,
+          toolbarHeight: 45,
           elevation: 0,
           actions: [
+            const SizedBox(width: 5),
             returnButton ? const ReturnButtonAppbar() : const SizedBox(),
             Expanded(
               child: Align(

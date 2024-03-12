@@ -12,7 +12,7 @@ import '../../export.dart';
 import '../widgets/white_option_button_list.dart';
 import 'edit_user_page.dart';
 
-final persistentData = PersistentData();
+final _persistentData = PersistentData();
 
 class UserInfoPage extends StatelessWidget {
   final User user;

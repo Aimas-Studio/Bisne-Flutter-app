@@ -10,11 +10,13 @@ class CategoryButton extends StatelessWidget {
     required this.onPressed,
     required this.label,
     required this.isPressed,
+    this.color = bisneColorPrimary,
   });
 
   final Callback onPressed;
   final bool isPressed;
   final String label;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class CategoryButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.0),
         ),
-        backgroundColor: isPressed ? bisneColorPrimary : Colors.transparent,
+        backgroundColor: isPressed ? color : Colors.transparent,
       ),
       child: RegularAppText(
           text: label,

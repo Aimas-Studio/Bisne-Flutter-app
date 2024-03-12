@@ -1,4 +1,4 @@
-import '../../models/user/export.dart';
+import '../../../user/export.dart';
 
 class AppComment {
   final User user;

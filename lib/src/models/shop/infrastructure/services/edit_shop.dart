@@ -5,14 +5,14 @@ import '../../../../core/infrastructure/persistent data/shared_persistent_data.d
 import '../../domain/dtos/edit_shop_dto.dart';
 import '../graphql/mutations.dart';
 
-final persistentData = PersistentData();
+final _persistentData = PersistentData();
 
 Future<bool> editShop(EditShopDto shopDto) async {
   final MutationOptions options = MutationOptions(
     document: editShopMutation,
     variables: {
-      'id': persistentData.idUser,
-      'description': shopDto.description,
+      'id': _persistentData.idUser,
+      'shopDescription': shopDto.description,
       'shopSchedule': shopDto.schedule,
       'urlImage': shopDto.urlImage,
       'shopPhoneNumber': shopDto.phoneNumber,

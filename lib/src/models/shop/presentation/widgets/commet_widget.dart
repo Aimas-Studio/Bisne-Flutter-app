@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/entities/comment_entity.dart';
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
 import '../../../user/domain/entities/user.dart';
+import '../../../valorations/domain/entities/comment_entity.dart';
 
 Widget commentWidget(User user, String body, String date) {
   return Container(

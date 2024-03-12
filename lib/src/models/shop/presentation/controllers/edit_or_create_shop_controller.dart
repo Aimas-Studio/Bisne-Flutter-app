@@ -19,9 +19,9 @@ class EditOrCreateShopController extends GetxController {
   late bool hasImage;
   bool hasImageChange = false;
   ImageProvider? shopImage;
-  File? image;
+  File? fileImage;
 
-  static const idController = 'createOrUpdateShopController';
+  static const idController = 'editOrCreateShopController';
 
   final form = FormGroup({
     'description': FormControl<String>(validators: [Validators.required]),
@@ -47,10 +47,10 @@ class EditOrCreateShopController extends GetxController {
   void pickImage() async {
     final file = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (file != null) {
-      image = File(file.path);
+      fileImage = File(file.path);
       hasImage = true;
       hasImageChange = true;
-      shopImage = FileImage(File(file.path));
+      shopImage = FileImage(fileImage!);
       update([idController]);
     }
   }
@@ -62,7 +62,7 @@ class EditOrCreateShopController extends GetxController {
 
   void createShopSubmit() async {
     form.unfocus();
-    final urlImage = await uploadImage(image!);
+    final urlImage = await uploadImage(fileImage!);
 
     final CreateShopDto shopDto = CreateShopDto(
       adminId: getUserInfo().id,
@@ -90,7 +90,8 @@ class EditOrCreateShopController extends GetxController {
   }
 
   void editShopSubmit() async {
-    final String? urlImage = hasImageChange ? await uploadImage(image!) : null;
+    final String? urlImage =
+        hasImageChange ? await uploadImage(fileImage!) : null;
 
     final EditShopDto shop = EditShopDto(
       urlImage: urlImage,

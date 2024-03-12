@@ -7,22 +7,22 @@ import '../../../../core/presentation/themes/themes_export.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
 import '../../domain/entities/user.dart';
 
-final persistentData = PersistentData();
+final _persistentData = PersistentData();
 
 User getUserInfo() {
   return User(
-    id: persistentData.idUser,
-    username: persistentData.userName,
-    email: persistentData.userEmail,
+    id: _persistentData.idUser,
+    username: _persistentData.userName,
+    email: _persistentData.userEmail,
   );
 }
 
 Widget getUserImage() {
-  if (persistentData.userImagePath.isNotEmpty) {
+  if (_persistentData.userImagePath.isNotEmpty) {
     return CustomFadeInImage(
-        image: FileImage(File(persistentData.userImagePath)));
-  } else if (persistentData.userImageUrl.isNotEmpty) {
-    return CustomFadeInImage(image: NetworkImage(persistentData.userImageUrl));
+        image: FileImage(File(_persistentData.userImagePath)));
+  } else if (_persistentData.userImageUrl.isNotEmpty) {
+    return CustomFadeInImage(image: NetworkImage(_persistentData.userImageUrl));
   } else {
     return userPlaceHolder;
   }

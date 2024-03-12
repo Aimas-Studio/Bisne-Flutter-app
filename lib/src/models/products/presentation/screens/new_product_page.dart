@@ -1,3 +1,4 @@
+import 'package:bisne/src/core/presentation/themes/decorations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -9,23 +10,14 @@ import '../controllers/new_product_page_controller.dart';
 import '../widgets/preview_product_widget.dart';
 
 class NewProductPage extends StatelessWidget {
-  NewProductPage({super.key});
-
-  final form = FormGroup({
-    'productName': FormControl<String>(validators: [Validators.required]),
-    'categoryProduct': FormControl<String>(validators: [Validators.required]),
-    'descriptionProduct':
-        FormControl<String>(validators: [Validators.required]),
-    'priceProduct': FormControl<double>(
-        validators: [Validators.required, Validators.number]),
-    'password': FormControl<String>(validators: [Validators.required]),
-  });
+  const NewProductPage({super.key});
 
   @override
   Widget build(context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
+        appBar: CustomAppBar(),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -37,34 +29,86 @@ class NewProductPage extends StatelessWidget {
                 id: NewProductPageController.idController,
                 init: NewProductPageController(),
                 builder: (controller) => ReactiveForm(
-                  formGroup: form,
+                  formGroup: controller.form,
                   child: Column(
                     children: [
-                      const CustomReactiveTextField(
-                        formName: 'productName',
-                        labelText: 'DEFINIR NOMBRE',
-                        prefixIcon: Icons.edit,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: DecoratedWhiteBox(
+                          child: CustomReactiveTextField(
+                            formName: 'productName',
+                            labelText: 'DEFINIR NOMBRE',
+                            prefixIcon: Icons.edit,
+                          ),
+                        ),
                       ),
                       const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 30),
-                        child: CustomReactiveTextField(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                        child: DecoratedWhiteBox(
+                          child: CustomReactiveTextField(
                             formName: 'categoryProduct',
-                            labelText: 'DEFINIR CATEGORÍA'),
-                      ),
-                      const CustomReactiveTextField(
-                        formName: 'descriptionProduct',
-                        labelText: 'DEFINIR DESCRIPCIÓN',
-                        prefixIcon: Icons.edit,
+                            labelText: 'DEFINIR CATEGORÍA',
+                            prefixIcon: Icons.edit,
+                          ),
+                        ),
                       ),
                       const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 50),
-                        child: CustomReactiveTextField(
-                          formName: 'priceProduct',
-                          labelText: 'DEFINIR PRECIO',
-                          prefixIcon: Icons.edit,
+                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: DecoratedWhiteBox(
+                          child: CustomReactiveTextField(
+                            formName: 'descriptionProduct',
+                            labelText: 'DEFINIR DESCRIPCIÓN',
+                            prefixIcon: Icons.edit,
+                          ),
+                        ),
+                      ),
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+                        child: DecoratedWhiteBox(
+                          child: CustomReactiveTextField(
+                            formName: 'priceProduct',
+                            labelText: 'DEFINIR PRECIO',
+                            prefixIcon: Icons.edit,
+                          ),
                         ),
                       ),
                       //
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: DecoratedWhiteBox(
+                          paddingVertical: 10,
+                          paddingHorizontal: 20,
+                          child: Column(
+                            children: [
+                              const Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.add_photo_alternate_outlined),
+                                  SizedBox(width: 10),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      LightAppText(
+                                        text: 'IMÁGENES',
+                                        size: 13,
+                                      ),
+                                      RegularAppText(
+                                          text: 'Selecciona una imagen'),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              ImagePicker(
+                                onTap: controller.pickImage,
+                                image: controller.productImage,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       //ImagesPicker
                       //
                       const Padding(
@@ -91,7 +135,7 @@ class NewProductPage extends StatelessWidget {
                           ReactiveFormConsumer(
                             builder: (context, formGroup, child) {
                               return OutlineAppButton(
-                                enabled: form.valid,
+                                enabled: controller.form.valid,
                                 onPressed: controller.createProduct,
                                 child:
                                     const LightAppText(text: 'GUARDAR CAMBIOS'),
@@ -100,7 +144,7 @@ class NewProductPage extends StatelessWidget {
                           ),
                           OutlineAppButton(
                             onPressed: () {
-                              form.value.clear();
+                              controller.form.value.clear();
                             },
                             child: const LightAppText(text: 'Cancelar'),
                           )

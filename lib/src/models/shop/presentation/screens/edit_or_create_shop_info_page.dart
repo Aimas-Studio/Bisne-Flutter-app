@@ -24,6 +24,7 @@ class EditOrCreateShopInfoPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
+        appBar: CustomAppBar(),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
