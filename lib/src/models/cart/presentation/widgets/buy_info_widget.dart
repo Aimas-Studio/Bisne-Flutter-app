@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:bisne/src/core/presentation/themes/colors.dart';
+import 'package:bisne/src/core/presentation/widgets/buttons/main_button_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/widgets/widgets_export.dart';
@@ -16,30 +19,33 @@ class BuyInfoCartWidget extends StatelessWidget {
     return SizedBox(
       height: height,
       width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.white),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const ThinAppText(text: 'Total', size: 14),
-                  RegularAppText(text: '$price mm', size: 27),
-                  const ThinAppText(
-                      text: 'No incluye el precio de la mensajería', size: 14),
-                ],
+      child: DecoratedBox(
+        decoration: const BoxDecoration(color: Colors.white),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const SizedBox(
+              width: 30,
+            ),
+            const RegularAppText(text: 'Total: ', size: 22),
+            BoldAppText(text: '$price mm', size: 27),
+            const SizedBox(
+              width: 30,
+            ),
+            Expanded(
+              child: MainButton(
+                onPressed: () => (),
+                text: const RegularAppText(
+                  text: 'COMPRAR',
+                  color: Colors.white,
+                  size: 20,
+                ),
               ),
-              CustomButtonArrowIcon(
-                color: bisneColorPrimary,
-                width: 200,
-                onPressed: onPressed,
-                text: 'COMPRAR',
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              width: 30,
+            )
+          ],
         ),
       ),
     );

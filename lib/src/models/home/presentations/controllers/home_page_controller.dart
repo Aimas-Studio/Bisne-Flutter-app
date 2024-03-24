@@ -1,4 +1,3 @@
-import 'package:bisne/src/core/infrastructure/env/env.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -18,17 +17,16 @@ class HomePageController extends GetxController {
 
     // print(Env.apiUrl);
     final QueryResult result = await client.query(options);
-    print('Hola');
 
     if (result.hasException) {
-      print(result.exception.toString());
       return [];
     }
+    print(result.data?['tiendas'][1]['nombre']);
+    final tiendas = (result.data?['tiendas'] as List).map((data) {
+      print(data);
 
-    final tiendas = (result.data?['tiendas'] as List)
-        .map((data) =>
-            data == null ? null : Shop.fromMap(data as Map<String, dynamic>))
-        .toList();
+      return data == null ? null : Shop.fromMap(data as Map<String, dynamic>);
+    }).toList();
     return tiendas;
   }
 }

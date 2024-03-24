@@ -41,6 +41,8 @@ class RegularAppText extends StatelessWidget {
   final Color color;
   final int? maxLines;
   final TextAlign? align;
+  final TextDecoration? textDecoration;
+  final Color? decorationColor;
 
   const RegularAppText(
       {super.key,
@@ -48,19 +50,21 @@ class RegularAppText extends StatelessWidget {
       this.size = 15,
       this.color = fontAppColor,
       this.maxLines,
-      this.align});
+      this.align,
+      this.decorationColor,
+      this.textDecoration});
 
   @override
   Widget build(context) {
-    print(align);
     return Text(
       text,
       style: TextStyle(
-        color: color,
-        fontFamily: 'Poppins',
-        fontSize: size,
-        fontWeight: FontWeight.w400,
-      ),
+          color: color,
+          fontFamily: 'Poppins',
+          fontSize: size,
+          fontWeight: FontWeight.w400,
+          decoration: textDecoration,
+          decorationColor: decorationColor),
       textAlign: align,
       softWrap: true,
       maxLines: maxLines,

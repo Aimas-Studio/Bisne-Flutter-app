@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../widgets_export.dart';
 
 class BisneCard extends StatelessWidget {
-  final String name;
+  final Widget name;
   final String image;
   final String rate;
-  final String category;
+  final Widget category;
   final double heightCard;
   final double widthCard;
   final double? price;
@@ -31,53 +31,52 @@ class BisneCard extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
+            color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromRGBO(190, 192, 199, 1),
+                blurRadius: 8,
               )
             ]),
         height: 230,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PhotoCard(
-                widthMedia: widthCard,
-                heightMedia: heightCard,
-                image: image,
-                rate: rate),
-            DecoratedBox(
-              decoration: const BoxDecoration(color: Colors.white),
-              child: Column(children: [
-                const SizedBox(height: 10),
-                SizedBox(
-                    width: widthCard,
-                    child: BoldAppText(
-                      text: name,
-                      size: 16,
-                      color: Colors.black,
-                      align: TextAlign.center,
-                    )),
-                const SizedBox(height: 5),
-                SizedBox(
-                    width: widthCard,
-                    child: RegularAppText(
-                      text: category,
-                      size: 12,
-                      maxLines: 1,
-                      align: TextAlign.center,
-                    )),
-                const SizedBox(height: 5),
-                price == null
-                    ? Container()
-                    : Row(
-                        children: [
-                          BoldAppText(
-                              text: price!.toStringAsPrecision(5), size: 18),
-                          const SizedBox(width: 10),
-                          const ThinAppText(text: 'mm', size: 18)
-                        ],
-                      )
-              ]),
+            SizedBox(
+              height: 150,
+              child: PhotoCard(
+                  widthMedia: widthCard,
+                  heightMedia: heightCard,
+                  image: image,
+                  rate: rate),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: DecoratedBox(
+                  decoration: const BoxDecoration(color: Colors.white),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 5),
+                        SizedBox(width: widthCard, child: name),
+                        SizedBox(width: widthCard, child: category),
+                        price == null
+                            ? Container()
+                            : Expanded(
+                                child: Row(
+                                  children: [
+                                    BoldAppText(
+                                        text: price!.toStringAsPrecision(5),
+                                        size: 18),
+                                    const SizedBox(width: 10),
+                                    const BoldAppText(text: 'mm', size: 18)
+                                  ],
+                                ),
+                              )
+                      ]),
+                ),
+              ),
             )
           ],
         ),

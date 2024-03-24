@@ -7,6 +7,11 @@ class BasePageController extends GetxController {
   static String idController = 'basePageController';
 
   final showBottomNavBar = true.obs;
+  set showBottomNavBar(value) {
+    showBottomNavBar.value = value;
+    update([idController]);
+  }
+
   final _obj = 2.obs;
 
   set obj(value) {

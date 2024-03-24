@@ -1,8 +1,9 @@
 import 'dart:math';
 
+import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
+import 'package:bisne/src/models/products/entities/product_entitiy.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../models/products/domain/product_entity.dart';
 import '../../../../models/products/presentation/screens/product_page.dart';
 import 'bisne_card_wiget.dart';
 import '../../../../models/shop/export.dart';
@@ -35,8 +36,7 @@ class TableCardWidget extends StatelessWidget {
     double widthCard = MediaQuery.sizeOf(context).width > 550 ? 180 : 145;
 
     if (data is List<Product>) {
-      heightCard = MediaQuery.of(context).size.width > 550 ? 190 : 155;
-      widthCard = MediaQuery.of(context).size.width > 550 ? 160 : 145;
+      heightCard = MediaQuery.of(context).size.width > 550 ? 150 : 110;
     }
 
     for (int i = 0; i < totalCardsInSquare; i++) {
@@ -48,8 +48,24 @@ class TableCardWidget extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: BisneCard(
-                name: cards[i]!.name,
-                category: cards[i].category,
+                name: BoldAppText(
+                  text: cards[i]!.name,
+                  size: 16,
+                  color: Colors.black,
+                  align: (data is List<Product>)
+                      ? TextAlign.start
+                      : TextAlign.center,
+                ),
+                category: RegularAppText(
+                  text: (data is List<Product>)
+                      ? cards[i].shop.name
+                      : cards[i].category,
+                  size: 12,
+                  maxLines: 1,
+                  align: (data is List<Product>)
+                      ? TextAlign.start
+                      : TextAlign.center,
+                ),
                 image: cards[i]!.imageUrl is List<String>
                     ? cards[i]!.imageUrl[0]
                     : cards[i]!.imageUrl,
@@ -57,7 +73,7 @@ class TableCardWidget extends StatelessWidget {
                 heightCard: heightCard,
                 widthCard: widthCard,
                 onpressed: () {
-                  WidgetsBinding.instance!.addPostFrameCallback((_) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
                     Navigator.push(
                       context,
                       PageRouteBuilder(

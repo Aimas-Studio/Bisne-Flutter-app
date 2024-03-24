@@ -1,79 +1,79 @@
+import 'package:bisne/src/core/presentation/widgets/buttons/categories_row.dart';
+import 'package:bisne/src/core/presentation/widgets/cards/table_card_widget.dart';
+import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../home/infrastructure/services/shops_provider.dart';
+import '../../controller/favorite_page_controller.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
+    final controller = FavoritePageController();
+    return Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text('Favoritos')),
-          toolbarHeight: 80,
-          bottom: const TabBar(
-            indicatorColor: bisneColorPrimary,
-            indicatorPadding: EdgeInsets.only(bottom: 7),
-            indicatorSize: TabBarIndicatorSize.label,
-            tabs: [
-              Tab(
-                  child: Text(
-                'Todas',
-                style: TextStyle(color: fontAppColor, fontSize: 12),
-              )),
-              Tab(
-                  child: Text('Productos',
-                      style: TextStyle(color: fontAppColor, fontSize: 12))),
-              Tab(
-                  child: Text('Servicio',
-                      style: TextStyle(color: fontAppColor, fontSize: 12))),
-              Tab(
-                  child: Text('Eventos',
-                      style: TextStyle(color: fontAppColor, fontSize: 12)))
+          title: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Center(
+                    child: BoldAppText(
+                  text: 'Favoritos',
+                  size: 25,
+                  color: Colors.black,
+                )),
+              ),
+              CategoriesRow(
+                  controller: controller,
+                  labels: const ['Tiendas', 'Productos'])
             ],
           ),
+          toolbarHeight: 100,
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: FutureBuilder(
-              future: ShopsProvider().cargarData(8),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return TabBarView(
-                    children: [
-                      ListView(
-                        children: [
-                          // createShopTable(context, snapshot.data!)
-                        ],
-                      ),
-                      ListView(
-                        children: [
-                          // createShopTable(context, snapshot.data!)
-                        ],
-                      ),
-                      ListView(
-                        children: [
-                          // createShopTable(context, snapshot.data!)
-                        ],
-                      ),
-                      ListView(
-                        children: [
-                          // createShopTable(context, snapshot.data!)
-                        ],
-                      ),
-                    ],
-                  );
-                } else {
-                  return TabBarView(
-                    children: [ListView(), ListView(), ListView(), ListView()],
-                  );
-                }
-              }),
-        ),
-      ),
-    );
+        body: Scaffold(
+          body: SingleChildScrollView(
+              child: Column(
+            children: [
+              FutureBuilder(
+                future: controller.fetchShops(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return TableCardWidget(
+                      maxColumns:
+                          MediaQuery.sizeOf(context).width > 550 ? 3 : 2,
+                      data: snapshot.data!,
+                    );
+                  } else {
+                    return
+                        // Container();
+                        Table(
+                      children: const [
+                        TableRow(children: [
+                          Image(
+                              image: AssetImage(
+                                  'assets/Images/placeholder_baner.png')),
+                          Image(
+                              image: AssetImage(
+                                  'assets/Images/placeholder_baner.png'))
+                        ]),
+                        TableRow(children: [
+                          Image(
+                              image: AssetImage(
+                                  'assets/Images/placeholder_baner.png')),
+                          Image(
+                              image: AssetImage(
+                                  'assets/Images/placeholder_baner.png'))
+                        ])
+                      ],
+                    );
+                  }
+                },
+              ),
+            ],
+          )),
+        ));
   }
 }

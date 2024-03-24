@@ -15,6 +15,9 @@ final getAllShops = gql('''
   linkExtra
   imageURL
   administradorId
+  direccion
+  provincia
+  municipio
     }
   }
 ''');

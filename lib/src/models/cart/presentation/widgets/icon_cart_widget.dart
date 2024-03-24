@@ -12,9 +12,12 @@ class IconCartWidget extends StatelessWidget {
   @override
   Widget build(context) {
     return GestureDetector(
-      onTap: () => Get.to(() => const CartPage()),
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => CartPage(),
+        ),
+      ),
       child: GetBuilder(
-        id: CartController.idController,
         init: CartController(),
         builder: (cartController) => Badge(
           offset: const Offset(-3, 0),

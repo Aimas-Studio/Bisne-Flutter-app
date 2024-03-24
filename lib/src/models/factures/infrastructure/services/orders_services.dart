@@ -15,7 +15,10 @@ Future<List<Facture>> getShopOrdersInfo() async {
       return [
         Facture(
           shop: Shop(
-            id: 1,
+            manageId: 1,
+            municipality: "La Habana",
+            region: "Playa",
+            id: '1',
             name: "TodoPizza",
             imageUrl:
                 "https://upload.wikimedia.org/wikipedia/commons/c/ce/Tuck_Shop_in_Oxford.jpg",
@@ -26,7 +29,10 @@ Future<List<Facture>> getShopOrdersInfo() async {
         ),
         Facture(
           shop: Shop(
-            id: 2,
+            manageId: 1,
+            municipality: "La Habana",
+            region: "Playa",
+            id: '2',
             name: "Legado",
             imageUrl:
                 "https://www.adinainteriors.com.au/latest_projects/wp-content/uploads/2021/06/shop-design-timber.jpg",

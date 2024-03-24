@@ -37,11 +37,16 @@ class _ProductCartCounterState extends State<ProductCartCounter> {
             amount--;
           });
         },
-        icon: const Icon(Icons.remove_circle, color: fontAppColor),
+        icon: const Icon(Icons.remove_circle,
+            color: Color.fromRGBO(190, 190, 190, 1)),
       ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: BoldAppText(text: amount.toString(), size: 15),
+      SizedBox(
+        width: 20,
+        child: BoldAppText(
+          text: amount.toString(),
+          size: 15,
+          align: TextAlign.center,
+        ),
       ),
       IconButton(
           onPressed: () {
@@ -50,7 +55,8 @@ class _ProductCartCounterState extends State<ProductCartCounter> {
               amount++;
             });
           },
-          icon: const Icon(Icons.add_circle, color: fontAppColor)),
+          icon: const Icon(Icons.add_circle,
+              color: Color.fromRGBO(190, 190, 190, 1))),
     ]);
   }
 }

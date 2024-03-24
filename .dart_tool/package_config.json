@@ -782,6 +782,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "sticky_headers",
+      "rootUri": "file:///C:/Users/cbamb/AppData/Local/Pub/Cache/hosted/pub.dev/sticky_headers-0.3.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "stream_channel",
       "rootUri": "file:///C:/Users/cbamb/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.2",
       "packageUri": "lib/",
@@ -950,7 +956,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-03-10T21:55:30.354483Z",
+  "generated": "2024-03-15T06:09:54.187946Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }

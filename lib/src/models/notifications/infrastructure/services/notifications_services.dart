@@ -8,17 +8,23 @@ Future<List<AppNotification>> getNotifications() async {
     return [
       AppNotification(
           Shop(
+              manageId: 1,
+              municipality: "La Habana",
+              region: "Playa",
               name: "Clary",
               description: "Vendemos Pizza Pikete",
-              id: 5,
+              id: '5',
               imageUrl:
                   "https://media.istockphoto.com/id/495605964/es/foto/gen%C3%A9rico-compacto-de-red.webp?s=612x612&w=is&k=20&c=JWOVVmSTVQbCsKh3IH_riogOmetjjlpl49ll1LJvkO4="),
           "notification 1",
           "Yesterday"),
       AppNotification(
           Shop(
+              manageId: 1,
+              municipality: "La Habana",
+              region: "Playa",
               name: "Coly",
-              id: 6,
+              id: '6',
               description: 'asdjasd',
               imageUrl:
                   "https://media.istockphoto.com/id/495605964/es/foto/gen%C3%A9rico-compacto-de-red.webp?s=612x612&w=is&k=20&c=JWOVVmSTVQbCsKh3IH_riogOmetjjlpl49ll1LJvkO4="),

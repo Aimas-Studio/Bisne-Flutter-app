@@ -27,15 +27,13 @@ class PhotoCard extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-            child: Hero(
-              tag: 'photo',
-              child: FadeInImage(
-                  placeholder:
-                      const AssetImage('assets/Images/placeholder_baner.png'),
-                  image: NetworkImage(image),
-                  fit: BoxFit.cover,
-                  width: widthMedia),
-            ),
+            child: FadeInImage(
+                placeholder:
+                    const AssetImage('assets/Images/placeholder_baner.png'),
+                image: NetworkImage(image),
+                fit: BoxFit.cover,
+                height: heightMedia,
+                width: widthMedia),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

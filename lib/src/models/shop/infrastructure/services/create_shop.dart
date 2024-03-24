@@ -19,11 +19,10 @@ Future<bool> createShop({required CreateShopDto shopDto}) async {
   // } else {
   //   print('Shop created');
   // }
-
   final MutationOptions options = MutationOptions(
     document: createShopMutation,
     variables: {
-      'adminId': shopDto.adminId,
+      'adminId': shopDto.adminId.toString(),
       'name': shopDto.name,
       'description': shopDto.description,
       'shopSchedule': shopDto.schedule,
@@ -33,17 +32,26 @@ Future<bool> createShop({required CreateShopDto shopDto}) async {
       'shopInstagram': shopDto.instagram,
       'shopFacebook': shopDto.facebook,
       'shopLink': shopDto.link,
+      'direccion': shopDto.location,
+      'provincia': shopDto.region,
+      'municipio': shopDto.municipality,
+      'usuarioTelegram': shopDto.telegram,
     },
   );
 
   try {
     final QueryResult response = await client.mutate(options);
     if (!response.hasException) {
+      print(response.data);
       return true;
     } else {
+      print(response.data);
+
       return false;
     }
   } catch (error) {
+    print(error);
+
     return false;
   }
 }

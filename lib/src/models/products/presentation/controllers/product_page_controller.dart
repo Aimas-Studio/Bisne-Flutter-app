@@ -1,7 +1,15 @@
+import 'package:bisne/src/models/cart/presentation/controllers/cart_page_controller.dart';
 import 'package:get/get.dart';
 
+import '../../entities/product_entitiy.dart';
+
 class ProductPageController extends GetxController {
-  ProductPageController();
+  final Product product;
+  final CartController cartController = Get.find<CartController>();
+  ProductPageController({required this.product});
+  get topPosition {
+    return 1;
+  }
 
   final _count = 1.obs;
   final List<String> images = [
@@ -20,4 +28,16 @@ class ProductPageController extends GetxController {
   set count(value) => _count.value = value;
 
   get count => _count.value;
+
+  void removeItem() {
+    count > 1 ? count-- : count = 1;
+  }
+
+  void addItem() {
+    count++;
+  }
+
+  void addToCart() {
+    cartController.addProduct(product, count);
+  }
 }

@@ -1,10 +1,12 @@
 import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:bisne/src/core/presentation/widgets/cards/table_card_widget.dart';
 import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
+import 'package:bisne/src/models/home/test/Shops.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/infrastructure/init/init_app.dart';
 import '../../../../core/presentation/widgets/promotions/banner_promotional_widget.dart';
 import '../../../../core/utils/search_row_widget.dart';
 import '../../infrastructure/services/category_provider.dart';
@@ -73,13 +75,14 @@ class HomePage extends StatelessWidget {
                           );
                         },
                       ),
-                      const SearchRow(
-                        icon: Icon(
-                          Icons.filter_alt_outlined,
-                          color: iconAppColor,
-                          size: 35,
-                        ),
-                      ),
+                      SearchRow(
+                          icon: const Icon(
+                            Icons.filter_alt_outlined,
+                            color: iconAppColor,
+                            size: 35,
+                          ),
+                          onPressed: () => {}),
+
                       const SizedBox(
                         height: 18.0,
                       ),
@@ -87,42 +90,51 @@ class HomePage extends StatelessWidget {
                       const SizedBox(
                         height: 15.0,
                       ),
-                      FutureBuilder(
-                        future: controller.fetchShops(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return TableCardWidget(
+                      //debug
+                      DEBUG
+                          ? TableCardWidget(
                               maxColumns: MediaQuery.sizeOf(context).width > 550
                                   ? 3
                                   : 2,
-                              data: snapshot.data!,
-                            );
-                          } else {
-                            return
-                                // Container();
-                                Table(
-                              children: const [
-                                TableRow(children: [
-                                  Image(
-                                      image: AssetImage(
-                                          'assets/Images/placeholder_baner.png')),
-                                  Image(
-                                      image: AssetImage(
-                                          'assets/Images/placeholder_baner.png'))
-                                ]),
-                                TableRow(children: [
-                                  Image(
-                                      image: AssetImage(
-                                          'assets/Images/placeholder_baner.png')),
-                                  Image(
-                                      image: AssetImage(
-                                          'assets/Images/placeholder_baner.png'))
-                                ])
-                              ],
-                            );
-                          }
-                        },
-                      ),
+                              data: shops,
+                            )
+                          : FutureBuilder(
+                              future: controller.fetchShops(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return TableCardWidget(
+                                    maxColumns:
+                                        MediaQuery.sizeOf(context).width > 550
+                                            ? 3
+                                            : 2,
+                                    data: snapshot.data!,
+                                  );
+                                } else {
+                                  return
+                                      // Container();
+                                      Table(
+                                    children: const [
+                                      TableRow(children: [
+                                        Image(
+                                            image: AssetImage(
+                                                'assets/Images/placeholder_baner.png')),
+                                        Image(
+                                            image: AssetImage(
+                                                'assets/Images/placeholder_baner.png'))
+                                      ]),
+                                      TableRow(children: [
+                                        Image(
+                                            image: AssetImage(
+                                                'assets/Images/placeholder_baner.png')),
+                                        Image(
+                                            image: AssetImage(
+                                                'assets/Images/placeholder_baner.png'))
+                                      ])
+                                    ],
+                                  );
+                                }
+                              },
+                            ),
                     ],
                   ),
                 ),

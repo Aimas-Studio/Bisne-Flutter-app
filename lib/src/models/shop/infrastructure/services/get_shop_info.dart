@@ -11,7 +11,10 @@ final _persistentData = PersistentData();
 
 Shop getShopInfo() {
   return Shop(
-    id: 1,
+    manageId: 1,
+    municipality: "La Habana",
+    region: "Playa",
+    id: '1',
     name: _persistentData.name,
     description: _persistentData.description,
     imageUrl: '',

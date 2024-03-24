@@ -1,6 +1,8 @@
 //Dart Imports
 
+import 'package:bisne/src/core/presentation/widgets/buttons/categories_row.dart';
 import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
+import 'package:bisne/src/core/utils/search_row_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +11,6 @@ import '../../../../core/presentation/widgets/buttons/category_button.dart';
 import '../../../../core/presentation/widgets/inputs/search_input_widget.dart';
 import '../../../home/infrastructure/services/shops_provider.dart';
 import '../controllers/search_page_controller.dart';
-import '../widgets/drawer_search_widget.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -17,47 +18,38 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SearchPageController _ = Get.find<SearchPageController>();
-    return Scaffold(
-      endDrawer: DrawerSearchWidget(),
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: <Widget>[
-          SliverAppBar(
-            stretch: true,
-            onStretchTrigger: () async {},
-            stretchTriggerOffset: 150.0,
-            actions: [Container()],
-            expandedHeight: 160.0,
-            flexibleSpace: FlexibleSpaceBar(
-              background: SizedBox(
-                height: 100,
-                child: appbarSearchPage(),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 150,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SearchRow(
+                icon: const Icon(Icons.filter_alt_outlined),
+                onPressed: () => {},
               ),
-              titlePadding: const EdgeInsets.only(bottom: 0),
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: buildButtons(context, _),
-                    ),
-                  ),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                  child: Expanded(
+                      child: CategoriesRow(
+                    controller: _,
+                    labels: const ["Tiendas", "Productos"],
+                  )),
+                ),
               ),
-            ),
-            floating: false,
-            pinned: true,
-            snap: false,
+            ],
           ),
-          SliverToBoxAdapter(
-              child: StreamBuilder(
-            stream: _.indexStream,
-            builder: (context, snapshot) {
-              return FutureBuilder(
+        ),
+        body: StreamBuilder(
+          stream: _.indexStream,
+          builder: (context, snapshot) {
+            return Center(
+              child: FutureBuilder(
                 key: UniqueKey(),
                 future: ShopsProvider().cargarData(_.selectedIndex.value),
                 builder: (context, snapshot) => snapshot.hasData
@@ -105,37 +97,12 @@ class SearchPage extends StatelessWidget {
                           ],
                         ),
                       ),
-              );
-            },
-          )),
-        ],
-      ),
-      endDrawerEnableOpenDragGesture: false,
-    );
-  }
-
-  List<Widget> buildButtons(BuildContext context, SearchPageController _) {
-    List<String> labels = ["Tiendas", "Productos", "Servicios"];
-    List<Widget> buttons = [];
-
-    for (int i = 0; i < labels.length; i++) {
-      buttons.add(
-        SizedBox(
-          height: 30,
-          child: Obx(
-            () => CategoryButton(
-                isPressed: _.selectedIndex.value == i,
-                onPressed: () {
-                  _.selectedIndex.value = i;
-                },
-                label: labels[i],
-                maincolor: iconAppColor),
-          ),
+              ),
+            );
+          },
         ),
-      );
-    }
-
-    return buttons;
+      ),
+    );
   }
 
   AppBar appbarSearchPage() {

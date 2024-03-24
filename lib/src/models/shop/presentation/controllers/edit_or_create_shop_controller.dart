@@ -61,6 +61,8 @@ class EditOrCreateShopController extends GetxController {
   }
 
   void createShopSubmit() async {
+    print('hola');
+
     form.unfocus();
     final urlImage = await uploadImage(fileImage!);
 
@@ -78,6 +80,7 @@ class EditOrCreateShopController extends GetxController {
       schedule: form.control('schedule').value,
       whatsAppNumber: form.control('whatsAppNumber').value,
       location: form.control('location').value,
+      telegram: '@HH075',
     );
     if (await createShop(shopDto: shopDto)) {
       Get.showSnackbar(const GetSnackBar(

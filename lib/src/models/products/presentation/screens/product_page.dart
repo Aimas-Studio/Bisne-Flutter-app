@@ -1,18 +1,15 @@
+import 'package:bisne/src/core/presentation/widgets/buttons/main_button_widget.dart';
+import 'package:bisne/src/core/presentation/widgets/buttons/secundary_button_widget.dart';
+import 'package:bisne/src/core/presentation/widgets/cards/bisne_card_wiget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/entities/comments_controller/coment_controller.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
-import '../../../../core/utils/comment_widgets.dart';
 import '../../../cart/export.dart';
-import '../../../shop/export.dart';
-import '../../../shop/presentation/controllers/shop_page_controller.dart';
 import '../../../shop/presentation/widgets/shop_page_widgets.dart';
-import '../../domain/product_entity.dart';
+import '../../entities/product_entitiy.dart';
 import '../controllers/product_page_controller.dart';
-import '../widgets/product_widgets.dart';
 
 class ProductPage extends StatelessWidget {
   final Product product;
@@ -21,204 +18,229 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => CommentController());
-    Get.lazyPut(() => ProductPageController());
-    final controller = Get.find<ProductPageController>();
-    double mediaWidth = MediaQuery.sizeOf(context).width > 550 ? 100.0 : 80.0;
-    return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: <Widget>[
-          SliverAppBar(
-            stretch: true,
-            onStretchTrigger: () async {},
-            stretchTriggerOffset: 300.0,
-            expandedHeight: 300.0,
-            leading: const SizedBox(),
-            title: const ReturnButtonAppbar(),
-            titleSpacing: -30,
-            elevation: 0,
-            toolbarHeight: 70,
-            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-            actions: const [IconCartWidget(), SizedBox(width: 15)],
-            flexibleSpace: FlexibleSpaceBar(
-              background: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50)),
-                child: Swiper(
-                  itemBuilder: (BuildContext context, int index) {
-                    return const Image(
-                      image: AssetImage('assets/Images/hero.png'),
-                      fit: BoxFit.cover,
-                    );
-                  },
-                  itemCount: 3,
-                  pagination: const SwiperPagination(
-                      builder: DotSwiperPaginationBuilder(
-                          size: 15.0,
-                          activeSize: 15.0,
-                          color: Color.fromRGBO(223, 224, 223, 1),
-                          activeColor: Colors.white),
-                      alignment: Alignment.bottomCenter),
-                ),
-              ),
-            ),
-            pinned: true,
-            floating: false,
-            snap: false,
-          ),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.05),
-                child: Column(
-                  children: [
-                    InfoWidget(
-                        title: controller.name,
-                        subtitle: ThinAppText(text: controller.name),
-                        trailing: RegularAppText(
-                          text: '${controller.price} mm',
-                          size: 30,
+    return GetBuilder<ProductPageController>(
+      init: ProductPageController(product: product),
+      builder: (productPageController) {
+        return Scaffold(
+          appBar: AppBar(
+            leading: const ReturnButtonAppbar(),
+            title: productPageController.topPosition > 0.1
+                ? const SizedBox()
+                : Row(
+                    children: [
+                      CircularImage(
+                          size: 25,
+                          shadow: false,
+                          child: Image(
+                              image: NetworkImage(
+                                  productPageController.product.imageUrl))),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SizedBox(
+                        height: 40,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: RegularAppText(
+                                text: productPageController.product.name,
+                                size: 20,
+                                color: fontAppColor,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: RegularAppText(
+                                text:
+                                    productPageController.product.shop.category,
+                                size: 18,
+                                color: fontAppColor,
+                              ),
+                            )
+                          ],
                         ),
-                        rate: controller.rate.toString(),
-                        description: controller.description)
-                    // const SizedBox(
-                    //   height: 20,
-                    // ),
-                  ],
+                      ),
+                    ],
+                  ),
+            actions: [
+              productPageController.topPosition > 0.1
+                  ? const FavoriteButton(size: 1.2)
+                  : const IconCartWidget(),
+              const SizedBox(
+                width: 25,
+              )
+            ],
+            forceMaterialTransparency: true,
+            elevation: 0,
+            backgroundColor: productPageController.topPosition < 0.7
+                ? const Color.fromARGB(255, 255, 255, 255)
+                : Colors.transparent,
+          ),
+          extendBodyBehindAppBar: true,
+          body: PageView(
+            pageSnapping: true,
+            controller: PageController(),
+            scrollDirection: Axis.vertical,
+            children: <Widget>[
+              Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    width: MediaQuery.of(context).size.width,
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned.fill(
+                          child: Image(
+                            fit: BoxFit.cover,
+                            alignment: Alignment.center,
+                            image: NetworkImage(
+                                productPageController.product.imageUrl),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: -2,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(40),
+                                topRight: Radius.circular(40)),
+                            child: DecoratedBox(
+                              decoration:
+                                  const BoxDecoration(color: fontAppColor2),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                height: 25,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      decoration: const BoxDecoration(color: fontAppColor2),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InfoWidget(
+                            title: productPageController.product.name,
+                            subtitle: RegularAppText(
+                                text:
+                                    "${productPageController.product.shop.name}, ${productPageController.product.shop.category}"),
+                            trailing: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                    height: 25,
+                                    width: 110,
+                                    child: Center(
+                                        child: BoldAppText(
+                                      text:
+                                          '${productPageController.product.price} mm',
+                                      size: 22,
+                                      color: bisneColorPrimary,
+                                    ))),
+                              ],
+                            ),
+                            rate: productPageController.product.rate,
+                            description:
+                                productPageController.product.description,
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 70,
+                                  child: MainButton(
+                                    text: const BoldAppText(
+                                      text: 'Añadir al carrito',
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      print("hola");
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            content: BuyWindow(
+                                                controller:
+                                                    productPageController),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 12,
+                                  child: Center(
+                                    child: Container(
+                                      height: 43,
+                                      width: 43,
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10))),
+                                      child: IconButton(
+                                          onPressed: () => (),
+                                          icon: const Icon(
+                                            Icons.message,
+                                            color: iconAppColor,
+                                          )),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 10,
+                                  child: Center(
+                                    child: Container(
+                                      height: 43,
+                                      width: 43,
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10))),
+                                      child: IconButton(
+                                          onPressed: () => (),
+                                          icon: const Icon(
+                                            Icons.share,
+                                            color: iconAppColor,
+                                          )),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.white, fontAppColor2],
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Column(
+                    children: [],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    );
-  }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   Get.lazyPut(() => CommentController());
-  //   Get.lazyPut(() => ProductPageController());
-  //   return Scaffold(
-  //     appBar: secondaryAppBar(context, true,
-  //         iconData: Icons.shopping_cart_outlined,
-  //         shopPageController: Get.find<ShopPageController>()),
-  //     body: ListView(
-  //       physics: const BouncingScrollPhysics(),
-  //       children: [
-  //         productContainer(context, Get.find<ProductPageController>()),
-  //         const SizedBox(
-  //           height: 20,
-  //         ),
-  //         Padding(
-  //           padding: const EdgeInsets.only(top: 50.0),
-  //           child: Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             children: [
-  //               FutureBuilder(
-  //                 future: ProductsProvider().cargarData(8),
-  //                 builder: (context, snapshot) {
-  //                   if (snapshot.hasData) {
-  //                     return createProductTable(context, snapshot.data!);
-  //                   } else {
-  //                     return Container();
-  //                   }
-  //                 },
-  //               ),
-  // const BannerSwiper(rounded: true)
-  //             ],
-  //           ),
-  //         )
-  //       ],
-  //     ),
-  //     backgroundColor: const Color.fromRGBO(245, 246, 248, 1),
-  //   );
-  // }
-
-  Widget productContainer(BuildContext context, ProductPageController _) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: context.width * 0.05),
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.horizontal(
-              left: Radius.circular(50), right: Radius.circular(50))),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 50,
-          ),
-          productSwiper(
-              context, _.images.map((image) => AssetImage(image)).toList()),
-          productInfo(context, _)
-        ],
-      ),
-    );
-  }
-
-  Widget productInfo(BuildContext context, ProductPageController _) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 20,
-        ),
-        RegularAppText(text: _.name, size: 32),
-        nameAndRate(context, _),
-        const SizedBox(
-          height: 20,
-        ),
-        RegularAppText(text: _.description, size: 21, maxLines: 5),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          children: [
-            BoldAppText(text: _.price.toStringAsPrecision(5), size: 35),
-            const SizedBox(
-              width: 10,
-            ),
-            const RegularAppText(text: 'mm', size: 30)
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        countController(context, _),
-        const SizedBox(
-          height: 20,
-        ),
-        saveAndBuyButtons(context, _),
-        const SizedBox(
-          height: 20,
-        ),
-        comments(context, _),
-        const SizedBox(
-          height: 40,
-        ),
-      ],
-    );
-  }
-
-  Row nameAndRate(BuildContext context, ProductPageController _) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-            width: context.width * 0.7,
-            child: BoldAppText(text: _.name, size: 40, maxLines: 2)),
-        Container(
-          alignment: Alignment.topLeft,
-          decoration: const BoxDecoration(
-              color: Color.fromRGBO(253, 217, 75, 0.11),
-              borderRadius: BorderRadius.all(Radius.circular(5))),
-          height: 50,
-          width: 50,
-          child: Center(child: RateWidget(rate: _.rate.toString())),
-        )
-      ],
+        );
+      },
     );
   }
 
@@ -286,21 +308,21 @@ class ProductPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20))),
             backgroundColor: MaterialStateProperty.all(bisneColorPrimary)),
         onPressed: () {
-          Product newProduct = Product(
-            _.name,
-            _.price,
-            _.images,
-            _.description,
-            Shop(name: _.name, imageUrl: _.shopImage, description: '', id: 4),
-            "category",
-          );
-          final shop = Get.find<ShopPageController>();
-          if (isInCart(shop.cart, newProduct)) {
-            addToCart(shop.cart, newProduct, _.count);
-          } else {
-            // shop.cart[newProduct] = 1.obs;
-            // shop.cart[newProduct]!.value = _.count as int;
-          }
+          // Product newProduct = Product(
+          //   _.name,
+          //   _.price,
+          //   _.images,
+          //   _.description,
+          //   Shop(name: _.name, imageUrl: _.shopImage, description: '', id: 4),
+          //   "category",
+          // );
+          // final shop = Get.find<productPageController>();
+          // if (isInCart(shop.cart, newProduct)) {
+          //   addToCart(shop.cart, newProduct, _.count);
+          // } else {
+          //   // shop.cart[newProduct] = 1.obs;
+          //   // shop.cart[newProduct]!.value = _.count as int;
+          // }
         },
         child: Center(
           child: Row(
@@ -326,27 +348,137 @@ class ProductPage extends StatelessWidget {
           ),
         ));
   }
+}
 
-  bool isInCart(Map<dynamic, dynamic> cart, Product newProduct) {
-    for (Product product in cart.keys) {
-      if (product.name == newProduct.name &&
-          product.price == newProduct.price &&
-          product.description == newProduct.description &&
-          product.shop.name == newProduct.shop.name) {
-        return true;
-      }
-    }
-    return false;
-  }
+class BuyWindow extends StatelessWidget {
+  final ProductPageController controller;
+  const BuyWindow({
+    super.key,
+    required this.controller,
+  });
 
-  void addToCart(Map<dynamic, dynamic> cart, Product newProduct, int count) {
-    for (Product product in cart.keys) {
-      if (product.name == newProduct.name &&
-          product.price == newProduct.price &&
-          product.description == newProduct.description &&
-          product.shop.name == newProduct.shop.name) {
-        cart[product]!.value += count;
-      }
-    }
+  @override
+  Widget build(BuildContext context) {
+    controller.count = 0;
+    return Container(
+      width: 300,
+      padding: const EdgeInsets.only(left: 30, right: 30, top: 40),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 150,
+            child: BisneCard(
+              name: BoldAppText(
+                  text: controller.product.name,
+                  size: 16,
+                  color: Colors.black,
+                  align: TextAlign.start),
+              category: RegularAppText(
+                  text: controller.product.shop.category,
+                  size: 12,
+                  maxLines: 1,
+                  align: TextAlign.start),
+              image: controller.product.imageUrl,
+              rate: controller.product.rate,
+              heightCard: 150,
+              widthCard: 150,
+              onpressed: () {},
+              price: controller.product.price,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const BoldAppText(
+            text: "Añadir al carrito",
+            color: Colors.black,
+          ),
+          const RegularAppText(
+            text: 'Seleccione la cantidad de productos que desea añadir',
+            size: 20,
+            maxLines: 5,
+            align: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 30,
+                width: 30,
+                decoration: const BoxDecoration(
+                    color: Color.fromRGBO(199, 198, 198, 1),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                child: IconButton(
+                    onPressed: () => (controller.removeItem()),
+                    icon: const Icon(
+                      Icons.remove,
+                      color: iconAppColor,
+                      size: 15,
+                    )),
+              ),
+              Obx(() => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: SizedBox(
+                        width: 30,
+                        child: BoldAppText(
+                          text: controller.count.toString(),
+                          align: TextAlign.center,
+                        )),
+                  )),
+              Container(
+                height: 30,
+                width: 30,
+                decoration: const BoxDecoration(
+                    color: Color.fromRGBO(199, 198, 198, 1),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                child: IconButton(
+                    onPressed: () => (controller.addItem()),
+                    icon: const Icon(
+                      Icons.add,
+                      color: iconAppColor,
+                      size: 15,
+                    )),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          SizedBox(
+            width: 270,
+            child: SecundaryButton(
+              text: const RegularAppText(
+                text: 'Eliminar productos',
+                size: 17,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          SizedBox(
+            width: 270,
+            child: MainButton(
+              text: const RegularAppText(
+                text: 'Añadir al carrito',
+                color: Colors.white,
+                size: 18,
+              ),
+              onPressed: () {
+                controller.addToCart();
+                Navigator.of(context).pop();
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/infrastructure/persistent data/shared_persistent_data.dart';
-import '../../../products/export.dart';
+import '../../../products/entities/product_entitiy.dart';
 
 final _persistentData = PersistentData();
 

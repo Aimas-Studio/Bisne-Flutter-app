@@ -48,6 +48,7 @@ dependencies:
   reactive_forms: ^16.1.1
   shared_preferences: ^2.2.2
   url_launcher: ^6.0.12
+  sticky_headers: "^0.3.0"
 
 
 dev_dependencies:

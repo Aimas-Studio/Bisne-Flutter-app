@@ -13,17 +13,7 @@ class CustomAppBar extends AppBar {
           backgroundColor: backgroundAppColor,
           toolbarHeight: 45,
           elevation: 0,
-          actions: [
-            const SizedBox(width: 5),
-            returnButton ? const ReturnButtonAppbar() : const SizedBox(),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: widget ?? const SizedBox(),
-              ),
-            ),
-            const SizedBox(width: 10),
-          ],
+          leading: const ReturnButtonAppbar(),
         );
 }
 

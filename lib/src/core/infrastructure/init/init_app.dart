@@ -7,3 +7,7 @@ Future<void> initApp() async {
   final appData = PersistentData();
   await appData.loadData();
 }
+
+const DEBUG = false;
+
+const USERID = 'VXN1YXJpb19SZWdpc3RyYWRvCmk0';

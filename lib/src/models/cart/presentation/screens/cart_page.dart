@@ -1,55 +1,132 @@
-import 'package:bisne/src/core/presentation/themes/decorations.dart';
+import 'package:bisne/src/models/base/presentation/controllers/base_page_controller.dart';
 import 'package:bisne/src/models/cart/presentation/widgets/buy_info_widget.dart';
 import 'package:bisne/src/models/cart/presentation/widgets/product_item_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/presentation/icons/custom_icons.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
-import '../../../products/export.dart';
+import '../../../products/entities/product_entitiy.dart';
 import '../controllers/cart_page_controller.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<BasePageController>().showBottomNavBar = false;
+    });
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<BasePageController>().showBottomNavBar = true;
+    });
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-      id: CartController.idController,
       init: CartController(),
       builder: (controller) => Scaffold(
         appBar: CustomAppBar(),
-        backgroundColor: backgroundAppColor,
-        body: Column(children: [
-          //PRODUCTS
-          //
-          ListView(children: getProductsCartWidget(controller.itemsToBuy)),
-          const BoldAppText(text: 'Datos Requeridos'),
-          const SizedBox(height: 20),
-          DecoratedWhiteBox(
-            child: Column(
-              children: [
-                WhiteInputTextWidget(
-                  controller: controller.textPhoneNumberController,
-                  labelText: 'TÉLEFONO',
-                  prefixIcon: Icons.phone,
-                ),
-                WhiteInputTextWidget(
-                  labelText: 'NOMBRE',
-                  controller: controller.textUserNameController,
-                  prefixIcon: Icons.person,
-                ),
-                WhiteInputTextWidget(
-                  controller: controller.textAddressController,
-                  prefixIcon: CustomIcons.truck,
-                  labelText: '¿DESEA MENSAJERÍA?',
-                  hintText: 'Ej: sí, para 74/21 y 23, Playa',
-                ),
-              ],
-            ),
-          ),
-        ]),
+        backgroundColor: fontAppColor2,
+        body: Padding(
+          padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: getProductsCartWidget(controller.itemsToBuy)
+                ..addAll([
+                  const RegularAppText(
+                    text: 'Nombre',
+                    size: 20,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                    ),
+                    height: 55,
+                    child: const TextField(
+                      textAlign: TextAlign.start,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                          border: InputBorder.none,
+                          hintText: 'Tu nombre',
+                          hintStyle: TextStyle(fontSize: 20),
+                          alignLabelWithHint: true),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const RegularAppText(
+                    text: 'Teléfono',
+                    size: 20,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                    ),
+                    height: 55,
+                    child: const TextField(
+                      textAlign: TextAlign.start,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                          border: InputBorder.none,
+                          hintText: 'Tu teléfono',
+                          hintStyle: TextStyle(fontSize: 20),
+                          alignLabelWithHint: true),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const RegularAppText(
+                    text: '¿Desea mensajería?',
+                    size: 20,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                    ),
+                    height: 130,
+                    child: const TextField(
+                      textAlign: TextAlign.start,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                          border: InputBorder.none,
+                          hintText: 'Ej: si, para calle 50 entre 35 y 37',
+                          hintStyle: TextStyle(fontSize: 20),
+                          alignLabelWithHint: true),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                ])),
+        ),
         bottomSheet: BuyInfoCartWidget(price: controller.getBuyPrice()),
       ),
     );
@@ -58,7 +135,9 @@ class CartPage extends StatelessWidget {
   List<Widget> getProductsCartWidget(Map<Product, int> products) {
     List<Widget> result = [];
     products.forEach((product, amount) {
-      result.add(ProductItemCart(product: product));
+      result
+        ..add(ProductItemCart(product: product))
+        ..add(const Divider());
     });
     return result;
   }

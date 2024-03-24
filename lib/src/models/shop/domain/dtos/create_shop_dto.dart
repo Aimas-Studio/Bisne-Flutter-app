@@ -12,6 +12,7 @@ class CreateShopDto {
   String? link;
   String region;
   String municipality;
+  String? telegram;
 
   CreateShopDto({
     required this.adminId,
@@ -27,6 +28,7 @@ class CreateShopDto {
     this.facebook,
     this.instagram,
     this.location,
+    this.telegram,
   });
 
   @override
@@ -39,6 +41,10 @@ class CreateShopDto {
     phone: $phoneNumber ,
     instagram: $instagram ,
     link: $link
-    url: $urlImage ''';
+    url: $urlImage, 
+    location: $location,
+    region: $region,
+    municipality: $municipality,
+    telegram: $telegram''';
   }
 }
