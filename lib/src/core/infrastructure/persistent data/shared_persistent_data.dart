@@ -49,12 +49,12 @@ class PersistentData {
   }
 
   //idUser
-  int get idUser {
-    return _appData.getInt('idUser') ?? 1;
+  String get idUser {
+    return _appData.getString('idUser') ?? '';
   }
 
-  set idUser(int value) {
-    _appData.setInt("idUser", value);
+  set idUser(String value) {
+    _appData.setString("idUser", value);
   }
 
   //USER HAS A PROFILE PHOTO

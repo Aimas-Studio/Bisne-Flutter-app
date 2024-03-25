@@ -7,7 +7,7 @@ Future<List<AppComment>> getShopComments() async {
       AppComment(
           user: User(
               username: "Clary",
-              id: 1,
+              id: '1',
               email: 'asdkajsd',
               imageUrl:
                   "https://media.istockphoto.com/id/495605964/es/foto/gen%C3%A9rico-compacto-de-red.webp?s=612x612&w=is&k=20&c=JWOVVmSTVQbCsKh3IH_riogOmetjjlpl49ll1LJvkO4="),
@@ -15,7 +15,7 @@ Future<List<AppComment>> getShopComments() async {
           date: "Yesterday"),
       AppComment(
           user: User(
-              id: 2,
+              id: '2',
               email: 'ashdjhsjjdh',
               username: "Coly",
               imageUrl:
