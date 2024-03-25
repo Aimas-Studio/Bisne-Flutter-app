@@ -1,10 +1,8 @@
 import 'package:bisne/src/core/presentation/themes/place_holders.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/infrastructure/persistent data/shared_persistent_data.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
-import '../controllers/new_product_page_controller.dart';
 
 final _persistentData = PersistentData();
 
@@ -30,15 +28,20 @@ class PreviewProductWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: ColoredBox(
         color: Colors.white,
-        child: GetBuilder(
-          id: NewProductPageController.idPreviewController,
-          builder: (controller) => Column(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 20),
               Align(
                 alignment: Alignment.center,
                 child: RectangleCircularImage(
-                    child: Image(image: productImage ?? placeHolderImageApp)),
+                    size: 220,
+                    child: Image(
+                      image: productImage ?? placeHolderImageApp,
+                      fit: BoxFit.cover,
+                    )),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20, bottom: 10),

@@ -8,12 +8,12 @@ const regions = {
   'Villa Clara': munVillaClara,
   'Sancti Spíritus': munSanctiSpiritus,
   'Ciego de Ávila': munCiegoDeAvila,
-  'Camagüey': [],
-  'Las Tunas': [],
-  'Holguín': [],
-  'Granma': [],
-  'Santiago de Cuba': [],
-  'Guantánamo': [],
+  'Camagüey': munCamaguey,
+  'Las Tunas': munLasTunas,
+  'Holguín': munHolguin,
+  'Granma': munGranma,
+  'Santiago de Cuba': munSantiagoDeCuba,
+  'Guantánamo': munGuantanamo,
 };
 
 const munHavana = [
@@ -136,4 +136,88 @@ const munCiegoDeAvila = [
   'Morón',
   'Primero de Enero',
   'Venezuela'
+];
+
+const munCamaguey = [
+  'Camagüey',
+  'Carlos Manuel de Céspedes',
+  'Esmeralda',
+  'Florida',
+  'Guaimaro',
+  'Jimaguayú',
+  'Minas',
+  'Najasa',
+  'Nuevitas',
+  'Santa Cruz del Sur',
+  'Sibanicú',
+  'Sierra de Cubitas',
+  'Vertientes'
+];
+
+const munLasTunas = [
+  'Amancio',
+  'Colombia',
+  'Jesús Menéndez',
+  'Jobabo',
+  'Las Tunas',
+  'Majibacoa',
+  'Manatí',
+  'Puerto Padre'
+];
+
+const munHolguin = [
+  'Antilla',
+  'Báguanos',
+  'Banes',
+  'Cacocum',
+  'Calixto García',
+  'Cueto',
+  'Frank País',
+  'Gibara',
+  'Holguín',
+  'Mayarí',
+  'Moa',
+  'Rafael Freyre',
+  'Sagua de Tánamo',
+  'Urbano Noris'
+];
+
+const munGranma = [
+  'Bartolomé Masó',
+  'Bayamo',
+  'Campechuela',
+  'Cauto Cristo',
+  'Guisa',
+  'Jiguaní',
+  'Manzanillo',
+  'Media Luna',
+  'Niquero',
+  'Pilón',
+  'Río Cauto',
+  'Yara'
+];
+
+const munSantiagoDeCuba = [
+  'Contramaestre',
+  'Guamá',
+  'Mella',
+  'Palma Soriano',
+  'San Luis',
+  'Santiago de Cuba',
+  'Segundo Frente',
+  'Songo - La Maya',
+  'Tercer Frente'
+];
+
+const munGuantanamo = [
+  'Baracoa',
+  'Caimanera',
+  'El Salvador',
+  'Guantánamo',
+  'Imías',
+  'Maisí',
+  'Manuel Tames',
+  'Niceto Pérez',
+  'San Antonio del Sur',
+  'Yateras'
 ];

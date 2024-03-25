@@ -23,6 +23,10 @@ class NewProductPageController extends GetxController {
   // final List<ImageProvider?> productImages =
   //     List.generate(5, (index) => null, growable: false);
 
+  void updateController() {
+    update([idController]);
+  }
+
   //IS CODE
   File? fileImage;
   ImageProvider? productImage;
