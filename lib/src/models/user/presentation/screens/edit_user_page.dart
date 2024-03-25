@@ -34,7 +34,7 @@ class EditUserPage extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.only(bottom: 10, top: 15),
                       child: OutlineAppButton(
-                        onPressed: controller.pickImage(),
+                        onPressed: controller.pickImage,
                         child: const LightAppText(text: "ELEGIR FOTO"),
                       )),
                   BoldAppText(text: controller.user.username, size: 30),
@@ -63,7 +63,7 @@ class EditUserPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       OutlineAppButton(
-                        onPressed: () {},
+                        onPressed: () => controller.editUserSubmit,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         child: const LightAppText(text: "GUARDAR CAMBIOS"),
                       ),

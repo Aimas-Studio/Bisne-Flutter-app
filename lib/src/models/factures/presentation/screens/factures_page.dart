@@ -48,7 +48,7 @@ Widget getOrdersWidget(context, List<Facture> factures) {
         height: 50,
         child: const Divider(),
       ))
-      ..add(FactureWidget(facture: element, isCheckBox: true));
+      ..add(FactureWidget(facture: element));
   }
   return Column(
     children: orders,
@@ -56,17 +56,15 @@ Widget getOrdersWidget(context, List<Facture> factures) {
 }
 
 Widget loadingPageWidget() {
-  return const Expanded(
-    child: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image(
-            image: AssetImage("assets/Images/placeholder.png"),
-          ),
-        ],
-      ),
+  return const Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Image(
+          image: AssetImage("assets/Images/placeholder.png"),
+        ),
+      ],
     ),
   );
 }

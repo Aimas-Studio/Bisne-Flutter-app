@@ -3,7 +3,7 @@ class Shop {
   String name;
   String description;
   String shopLocation;
-  List<String> openingHours;
+  String openingHours;
   String phoneNumber;
   String whatsAppNumber;
   String instagramAccount;
@@ -26,7 +26,7 @@ class Shop {
     required this.region,
     required this.municipality,
     this.shopLocation = '',
-    this.openingHours = const [],
+    this.openingHours = '',
     this.phoneNumber = '',
     this.whatsAppNumber = '',
     this.instagramAccount = '',
@@ -43,7 +43,7 @@ class Shop {
       name: map['nombre'],
       region: map['provincia'],
       municipality: map['municipio'],
-      openingHours: [map['horario']],
+      openingHours: map['horario'],
       description: map['descripcion'],
       manageId: map['administradorId'],
       whatsAppNumber: map['numeroWhatsapp'] ?? '',

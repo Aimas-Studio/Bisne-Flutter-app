@@ -301,7 +301,7 @@ class FilterPage extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: SecundaryButton(
+                        child: SecondaryButton(
                           onPressed: () => {},
                           text: const RegularAppText(
                             text: 'Eliminar todos',

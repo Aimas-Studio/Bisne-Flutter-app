@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/entities/content_panel.dart';
-import '../../../../core/infrastructure/persistent data/shared_persistent_data.dart';
 import '../../../../core/presentation/icons/custom_icons.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
@@ -11,8 +10,6 @@ import '../../../shop/presentation/screens/edit_or_create_shop_info_page.dart';
 import '../../export.dart';
 import '../widgets/white_option_button_list.dart';
 import 'edit_user_page.dart';
-
-final _persistentData = PersistentData();
 
 class UserInfoPage extends StatelessWidget {
   final User user;
@@ -31,6 +28,7 @@ class UserInfoPage extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(width: 20),
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: CircularImage(size: 55, child: getUserImage()),

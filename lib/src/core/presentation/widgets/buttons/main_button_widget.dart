@@ -1,7 +1,5 @@
 import 'package:bisne/src/core/presentation/themes/colors.dart';
-import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MainButton extends StatelessWidget {
   final Widget text;

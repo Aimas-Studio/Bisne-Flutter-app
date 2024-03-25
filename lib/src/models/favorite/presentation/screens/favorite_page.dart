@@ -3,8 +3,6 @@ import 'package:bisne/src/core/presentation/widgets/cards/table_card_widget.dart
 import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/themes/colors.dart';
-import '../../../home/infrastructure/services/shops_provider.dart';
 import '../../controller/favorite_page_controller.dart';
 
 class FavoritePage extends StatelessWidget {
