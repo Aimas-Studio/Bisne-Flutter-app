@@ -450,7 +450,7 @@ class BuyWindow extends StatelessWidget {
           ),
           SizedBox(
             width: 270,
-            child: SecundaryButton(
+            child: SecondaryButton(
               text: const RegularAppText(
                 text: 'Eliminar productos',
                 size: 17,

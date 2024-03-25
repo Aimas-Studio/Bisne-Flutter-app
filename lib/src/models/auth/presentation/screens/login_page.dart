@@ -10,14 +10,7 @@ import 'forgot_password_page.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
-
-  final _form = FormGroup({
-    'email': FormControl<String>(
-        validators: [Validators.required, Validators.email]),
-    'password': FormControl<String>(
-        validators: [Validators.required, Validators.minLength(4)]),
-  });
+  const LoginPage({super.key});
 
   @override
   Widget build(context) {
@@ -25,13 +18,13 @@ class LoginPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: backgroundAppColor,
         body: SingleChildScrollView(
-          child: ReactiveForm(
-            formGroup: _form,
-            child: GetBuilder(
-                id: 'loginPage',
-                init: LoginController(),
-                builder: (controller) {
-                  return SizedBox(
+          child: GetBuilder(
+              id: 'loginPage',
+              init: LoginController(),
+              builder: (controller) {
+                return ReactiveForm(
+                  formGroup: controller.form,
+                  child: SizedBox(
                     width: double.infinity,
                     child: Column(
                       children: [
@@ -71,19 +64,14 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 40),
-                        ReactiveFormConsumer(
-                            builder: (context, formGroup, child) {
+                        ReactiveFormConsumer(builder: (context, form, child) {
                           return CustomButtonArrowIcon(
-                            //TODO WTF with this
                             width: MediaQuery.of(context).size.width * 0.5,
-                            onPressed: () {
-                              controller.submitLogin();
-                              _form.unfocus();
-                            },
-                            enabled: formGroup.valid,
-                            color: formGroup.valid
+                            enabled: form.valid,
+                            color: form.valid
                                 ? buttonColor
                                 : buttonColor.withOpacity(0.5),
+                            onPressed: controller.submitLogin,
                             text: 'INGRESAR',
                           );
                         }),
@@ -114,9 +102,9 @@ class LoginPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  );
-                }),
-          ),
+                  ),
+                );
+              }),
         ),
       ),
     );

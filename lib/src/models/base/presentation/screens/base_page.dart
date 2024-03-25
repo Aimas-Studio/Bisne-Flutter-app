@@ -8,7 +8,6 @@ import '../../../home/presentations/screens/home_page.dart';
 import '../../../notifications/presentation/screens/notifications_page.dart';
 import '../../../search/presentation/screens/search_page.dart';
 import '../../../user/export.dart';
-import '../../../user/presentation/screens/user_info_page.dart';
 import '../controllers/base_page_controller.dart';
 import '../widgets/bottom_nav_bar.dart';
 

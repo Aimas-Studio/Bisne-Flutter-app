@@ -1,9 +1,7 @@
 import 'package:bisne/src/core/presentation/themes/colors.dart';
-import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class SecundaryButton extends StatelessWidget {
+class SecondaryButton extends StatelessWidget {
   final Widget text;
   final VoidCallback onPressed;
   final double? horizontalPadding;
@@ -11,7 +9,7 @@ class SecundaryButton extends StatelessWidget {
   final double? width;
   final double? height;
 
-  const SecundaryButton(
+  const SecondaryButton(
       {super.key,
       required this.text,
       required this.onPressed,

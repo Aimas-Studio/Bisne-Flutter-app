@@ -18,6 +18,10 @@ import '../../infrastructure/services/edit_shop.dart';
 class EditOrCreateShopController extends GetxController {
   final Shop? shop;
   late bool hasImage;
+  bool get isRegionSelected {
+    return form.control('region').value != null;
+  }
+
   bool hasImageChange = false;
   ImageProvider? shopImage;
   File? fileImage;
@@ -27,6 +31,8 @@ class EditOrCreateShopController extends GetxController {
   final form = FormGroup({
     'description': FormControl<String>(validators: [Validators.required]),
     'schedule': FormControl<String>(),
+    'region': FormControl<String>(validators: [Validators.required]),
+    'municipality': FormControl<String>(validators: [Validators.required]),
     'location': FormControl<String>(),
     'phoneNumber': FormControl<String>(),
     'whatsAppNumber': FormControl<String>(),
@@ -42,7 +48,22 @@ class EditOrCreateShopController extends GetxController {
       form.addAll({
         'name': FormControl<String>(validators: [Validators.required])
       });
+    } else {
+      form.control('description').value = shop!.description;
+      form.control('schedule').value = shop!.openingHours;
+      form.control('region').value = shop!.region;
+      form.control('municipality').value = shop!.municipality;
+      form.control('location').value = shop!.shopLocation;
+      form.control('phoneNumber').value = shop!.phoneNumber;
+      form.control('whatsAppNumber').value = shop!.whatsAppNumber;
+      form.control('instagram').value = shop!.instagramAccount;
+      form.control('facebook').value = shop!.facebookAccount;
+      form.control('link').value = shop!.optionalLink;
     }
+  }
+
+  void updateController() {
+    update([idController]);
   }
 
   void pickImage() async {
@@ -67,8 +88,8 @@ class EditOrCreateShopController extends GetxController {
 
     final CreateShopDto shopDto = CreateShopDto(
       adminId: USERID,
-      region: 'La Habana',
-      municipality: 'Boyeros',
+      region: form.control('region').value,
+      municipality: form.control('municipality').value,
       name: form.control('name').value,
       urlImage: urlImage,
       description: form.control('description').value,
@@ -97,8 +118,8 @@ class EditOrCreateShopController extends GetxController {
 
     final EditShopDto shop = EditShopDto(
       urlImage: urlImage,
-      region: 'La Habana',
-      municipality: 'Boyeros',
+      region: form.control('region').value,
+      municipality: form.control('municipality').value,
       description: form.control('description').value,
       facebook: form.control('facebook').value,
       instagram: form.control('instagram').value,

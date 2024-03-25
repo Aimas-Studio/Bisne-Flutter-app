@@ -21,10 +21,7 @@ class HomePageController extends GetxController {
     if (result.hasException) {
       return [];
     }
-    print(result.data?['tiendas'][1]['nombre']);
     final tiendas = (result.data?['tiendas'] as List).map((data) {
-      print(data);
-
       return data == null ? null : Shop.fromMap(data as Map<String, dynamic>);
     }).toList();
     return tiendas;

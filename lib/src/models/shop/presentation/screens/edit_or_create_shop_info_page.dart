@@ -1,3 +1,5 @@
+import 'package:bisne/src/core/domain/regions/regions.dart';
+import 'package:bisne/src/core/presentation/widgets/inputs/custom_reactive_drop_down_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -98,39 +100,63 @@ class EditOrCreateShopInfoPage extends StatelessWidget {
                           indent: MediaQuery.of(context).size.width * 0.1,
                           endIndent: MediaQuery.of(context).size.width * 0.1,
                         ),
+                        DecoratedWhiteBox(
+                          child: CustomReactiveDropDownField(
+                            labelText: 'Provincia',
+                            enabled: true,
+                            formName: 'region',
+                            items: getRegion(),
+                            onChange: (_) {
+                              controller.updateController();
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        DecoratedWhiteBox(
+                          child: CustomReactiveDropDownField(
+                              labelText: 'Municipio',
+                              enabled: controller.isRegionSelected,
+                              formName: 'municipality',
+                              items: controller.isRegionSelected
+                                  ? getMunicipality(
+                                      controller.form.control('region').value)
+                                  : []),
+                        ),
+                        const SizedBox(height: 30),
                         const DecoratedWhiteBox(
                           child: CustomReactiveTextField(
                               formName: 'location',
                               labelText: "UBICACIÓN",
                               prefixIcon: Icons.location_on_outlined),
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
+                        const SizedBox(height: 30),
                         const DecoratedWhiteBox(
-                          child: Column(
-                            children: [
-                              CustomReactiveTextField(
-                                formName: 'whatsAppNumber',
-                                labelText: "WHATSAPP",
-                                prefixIcon: CustomIcons.whatsapp,
-                              ),
-                              CustomReactiveTextField(
-                                formName: 'instagram',
-                                labelText: "INSTAGRAM",
-                                prefixIcon: CustomIcons.instagram,
-                              ),
-                              CustomReactiveTextField(
-                                formName: 'facebook',
-                                labelText: "FACEBOOK",
-                                prefixIcon: CustomIcons.facebook,
-                              ),
-                              CustomReactiveTextField(
-                                formName: 'link',
-                                labelText: "ENLACE",
-                                prefixIcon: Icons.link,
-                              ),
-                            ],
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 4),
+                            child: Column(
+                              children: [
+                                CustomReactiveTextField(
+                                  formName: 'whatsAppNumber',
+                                  labelText: "WHATSAPP",
+                                  prefixIcon: CustomIcons.whatsapp,
+                                ),
+                                CustomReactiveTextField(
+                                  formName: 'instagram',
+                                  labelText: "INSTAGRAM",
+                                  prefixIcon: CustomIcons.instagram,
+                                ),
+                                CustomReactiveTextField(
+                                  formName: 'facebook',
+                                  labelText: "FACEBOOK",
+                                  prefixIcon: CustomIcons.facebook,
+                                ),
+                                CustomReactiveTextField(
+                                  formName: 'link',
+                                  labelText: "ENLACE",
+                                  prefixIcon: Icons.link,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         const Padding(
@@ -186,4 +212,30 @@ class EditOrCreateShopInfoPage extends StatelessWidget {
       ),
     );
   }
+}
+
+List<DropdownMenuItem> getRegion() {
+  List<DropdownMenuItem> items = [];
+  for (var region in regions.keys) {
+    items.add(DropdownMenuItem(
+      value: region,
+      child: InputLightText(
+        text: region,
+        size: 14,
+      ),
+    ));
+  }
+  return items;
+}
+
+List<DropdownMenuItem> getMunicipality(String region) {
+  return regions[region]!.map((municipality) {
+    return DropdownMenuItem(
+      value: municipality,
+      child: InputLightText(
+        text: municipality,
+        size: 14,
+      ),
+    );
+  }).toList();
 }

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/presentation/themes/themes_export.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
-import '../../../../core/utils/search_row_widget.dart';
 import '../../../user/export.dart';
-import '../../infrastructure/services/category_provider.dart';
 
 AppBar appbarHomePage() {
   return AppBar(

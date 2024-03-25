@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CheckWidget extends StatefulWidget {
   CheckWidget({super.key, this.notifyParent, this.isChecked = true});
   bool isChecked;
-  VoidCallback? notifyParent;
+  final VoidCallback? notifyParent;
 
   @override
   State<CheckWidget> createState() => _CheckWidgetState();

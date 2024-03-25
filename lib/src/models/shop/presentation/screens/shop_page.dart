@@ -8,6 +8,7 @@ import 'package:bisne/src/models/home/test/Shops.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/infrastructure/init/init_app.dart';
 import '../../domain/entities/shop_entity.dart';
 import '../controllers/shop_page_controller.dart';
 import '../widgets/shop_page_widgets.dart';

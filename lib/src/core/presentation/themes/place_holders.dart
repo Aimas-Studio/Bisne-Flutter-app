@@ -8,4 +8,4 @@ const addImagePlaceHolder = Center(
 );
 
 const Widget userPlaceHolder =
-    Center(child: Icon(Icons.person_pin, color: fontAppColor));
+    Icon(Icons.person, color: fontAppColor, size: 100);

@@ -21,27 +21,26 @@ class TotalOrderWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.15,
       child: DecoratedBox(
         decoration: const BoxDecoration(color: Colors.white),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const LightAppText(text: 'Total'),
-                  BoldAppText(text: totalPrice, size: 28),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RegularAppText(text: namePurchase, size: 13),
-                  RegularAppText(text: date, size: 12),
-                ],
-              )
-            ],
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const LightAppText(text: 'Total'),
+                BoldAppText(text: '$totalPrice mn', size: 28),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RegularAppText(text: namePurchase, size: 18),
+                RegularAppText(text: date, size: 12),
+              ],
+            )
+          ],
         ),
       ),
     );

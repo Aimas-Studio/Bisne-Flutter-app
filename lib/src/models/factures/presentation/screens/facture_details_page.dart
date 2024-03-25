@@ -24,13 +24,9 @@ class FactureDetailPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
               const BoldAppText(text: "Pedidos Realizados", size: 27),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               FutureBuilder(
                   future: getPurchases(facture),
                   builder: (context, AsyncSnapshot snapshot) {
@@ -45,7 +41,7 @@ class FactureDetailPage extends StatelessWidget {
         bottomSheet: TotalOrderWidget(
           totalPrice: facture.totalPrice.toString(),
           date: facture.date,
-          namePurchase: '',
+          namePurchase: facture.shop.name,
         ),
       ),
     );
