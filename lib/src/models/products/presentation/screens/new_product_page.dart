@@ -109,8 +109,8 @@ class NewProductPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      //ImagesPicker
-                      //
+                      // //ImagesPicker
+                      // //
                       const Padding(
                         padding: EdgeInsets.only(top: 50, bottom: 15),
                         child: BoldAppText(text: 'Previsualización', size: 27),

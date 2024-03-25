@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/buttons/category_button.dart';
 import '../../../../core/presentation/widgets/inputs/search_input_widget.dart';
+import '../../../../core/presentation/widgets/widgets_export.dart';
 import '../../../home/infrastructure/services/shops_provider.dart';
 import '../controllers/search_page_controller.dart';
 
@@ -51,29 +52,34 @@ class SearchPage extends StatelessWidget {
             return Center(
               child: FutureBuilder(
                 key: UniqueKey(),
-                future: ShopsProvider().cargarData(_.selectedIndex.value),
+                future: _.fetchShops(),
                 builder: (context, snapshot) => snapshot.hasData
-                    ? const Padding(
-                        padding: EdgeInsets.only(top: 50),
-                        child: Column(
-                          children: [
-                            Image(
-                              image: AssetImage(
-                                  'assets/Images/placeholder_circle_logo.png'),
-                              height: 150,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            RegularAppText(
-                              text:
-                                  'Lo sentimos,\nno existen resultados\n para su búsqueda.',
-                              size: 20,
-                              align: TextAlign.center,
-                            )
-                          ],
-                        ),
+                    ? TableCardWidget(
+                        maxColumns:
+                            MediaQuery.sizeOf(context).width > 550 ? 3 : 2,
+                        data: snapshot.data!,
                       )
+                    // const Padding(
+                    //     padding: EdgeInsets.only(top: 50),
+                    //     child: Column(
+                    //       children: [
+                    //         Image(
+                    //           image: AssetImage(
+                    //               'assets/Images/placeholder_circle_logo.png'),
+                    //           height: 150,
+                    //         ),
+                    //         SizedBox(
+                    //           height: 20,
+                    //         ),
+                    //         RegularAppText(
+                    //           text:
+                    //               'Lo sentimos,\nno existen resultados\n para su búsqueda.',
+                    //           size: 20,
+                    //           align: TextAlign.center,
+                    //         )
+                    //       ],
+                    //     ),
+                    //   )
                     // createShopTable(context, snapshot.data!)
                     : Center(
                         child: Table(

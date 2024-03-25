@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../../../core/presentation/widgets/snack_bars/get_snack_bar.dart';
 import '../../domain/dtos/register_user_dto.dart';
 import '../../infrastructure/services/register_user.dart';
 
@@ -16,7 +15,7 @@ class RegisterController extends GetxController {
   });
 
   registerUserSubmit() async {
-    form.unfocus();
+    // form.unfocus();
 
     final RegisterUserDto userDto = RegisterUserDto(
       email: form.control('email').value,
@@ -25,9 +24,14 @@ class RegisterController extends GetxController {
     );
 
     if (await registerUser(userDto)) {
-      Get.showSnackbar(snackAppBar(message: 'Se ha registrado el Usuario'));
+      Get.showSnackbar(GetSnackBar(
+          message: 'Se ha registrado el Usuario',
+          duration: Duration(seconds: 2)));
     } else {
-      Get.showSnackbar(snackAppBar(message: 'Error'));
+      Get.showSnackbar(GetSnackBar(
+        message: 'Error',
+        duration: Duration(seconds: 2),
+      ));
     }
   }
 }

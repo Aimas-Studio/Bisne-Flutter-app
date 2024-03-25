@@ -1,49 +1,36 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+
+import '../../../../core/infrastructure/graphql/graphql_config.dart';
+import '../../../home/infrastructure/graphql/query.dart';
+import '../../../shop/domain/entities/shop_entity.dart';
 
 class SearchPageController extends GetxController {
   SearchPageController();
   final _streamController = StreamController<int>();
   var selectedIndex = 0.obs;
 
-  var category = ''.obs;
-  var province = ''.obs;
-  var municipality = ''.obs;
-  var currencyType = ''.obs;
+  Future<List<Shop?>> fetchShops() async {
+    final QueryOptions options = QueryOptions(
+      document: getAllShops,
+    );
 
-  List<String> categories = [
-    'Todas',
-    'Compra y Venta',
-    'Belleza',
-    'Ropa y Accesorios',
-    'Electrónicos',
-    'Transporte',
-    'Vivienda',
-    'Diseño y publicidad',
-    'Eventos'
-  ];
-  List<String> provinces = [
-    'Todas',
-    'La Habana',
-    'Pinar del Río',
-    'Matanzas',
-    'Cienfuegos',
-    'Holguín',
-  ];
-  List<String> municipalities = [
-    'Todos',
-    'Playa',
-    'Marianao',
-    'La Lisa',
-    'Vedado',
-    'Regla',
-  ];
-  List<String> currencyTypes = [
-    'USD',
-    'CUP',
-    'MLC',
-  ];
+    // print(Env.apiUrl);
+    final QueryResult result = await client.query(options);
+
+    if (result.hasException) {
+      return [];
+    }
+    print(result.data?['tiendas'][1]['nombre']);
+    final tiendas = (result.data?['tiendas'] as List).map((data) {
+      print(data);
+
+      return data == null ? null : Shop.fromMap(data as Map<String, dynamic>);
+    }).toList();
+    return tiendas;
+  }
 
   @override
   void onInit() {
@@ -59,35 +46,5 @@ class SearchPageController extends GetxController {
   void onClose() {
     super.onClose();
     _streamController.close();
-  }
-
-  List<String> getListProperty(property) {
-    switch (property) {
-      case 'provinces':
-        return provinces;
-      case 'municipalities':
-        return municipalities;
-      case 'currencyTypes':
-        return currencyTypes;
-      case 'categories':
-        return categories;
-      default:
-        return [];
-    }
-  }
-
-  RxString getProperty(property) {
-    switch (property) {
-      case 'provinces':
-        return province;
-      case 'municipalities':
-        return municipality;
-      case 'currencyTypes':
-        return currencyType;
-      case 'categories':
-        return category;
-      default:
-        return ''.obs;
-    }
   }
 }

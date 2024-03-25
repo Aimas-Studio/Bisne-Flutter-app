@@ -39,6 +39,7 @@ class BisneCard extends StatelessWidget {
               )
             ]),
         height: 230,
+        width: 165,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,25 +57,26 @@ class BisneCard extends StatelessWidget {
                 child: DecoratedBox(
                   decoration: const BoxDecoration(color: Colors.white),
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 5),
-                        SizedBox(width: widthCard, child: name),
-                        SizedBox(width: widthCard, child: category),
-                        price == null
-                            ? Container()
-                            : Expanded(
-                                child: Row(
-                                  children: [
-                                    BoldAppText(
-                                        text: price!.toStringAsPrecision(5),
-                                        size: 18),
-                                    const SizedBox(width: 10),
-                                    const BoldAppText(text: 'mm', size: 18)
-                                  ],
-                                ),
-                              )
-                      ]),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 5),
+                      SizedBox(width: widthCard, child: name),
+                      SizedBox(width: widthCard, child: category),
+                      price == null
+                          ? Container()
+                          : Expanded(
+                              child: Row(
+                                children: [
+                                  BoldAppText(
+                                      text: price!.toStringAsPrecision(5),
+                                      size: 18),
+                                  const SizedBox(width: 10),
+                                  const BoldAppText(text: 'mm', size: 18)
+                                ],
+                              ),
+                            ),
+                    ],
+                  ),
                 ),
               ),
             )

@@ -22,7 +22,7 @@ Future<bool> createShop({required CreateShopDto shopDto}) async {
   final MutationOptions options = MutationOptions(
     document: createShopMutation,
     variables: {
-      'adminId': shopDto.adminId.toString(),
+      'adminId': shopDto.adminId,
       'name': shopDto.name,
       'description': shopDto.description,
       'shopSchedule': shopDto.schedule,
@@ -42,16 +42,11 @@ Future<bool> createShop({required CreateShopDto shopDto}) async {
   try {
     final QueryResult response = await client.mutate(options);
     if (!response.hasException) {
-      print(response.data);
       return true;
     } else {
-      print(response.data);
-
       return false;
     }
   } catch (error) {
-    print(error);
-
     return false;
   }
 }

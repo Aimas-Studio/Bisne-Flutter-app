@@ -30,8 +30,9 @@ class PreviewProductWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: ColoredBox(
         color: Colors.white,
-        child: GetBuilder(
+        child: GetBuilder<NewProductPageController>(
           id: NewProductPageController.idPreviewController,
+          init: NewProductPageController(),
           builder: (controller) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

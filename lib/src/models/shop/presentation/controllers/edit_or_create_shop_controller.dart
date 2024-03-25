@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bisne/src/core/infrastructure/cloudinary/upload_image.dart';
+import 'package:bisne/src/core/infrastructure/init/init_app.dart';
 import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -61,13 +62,11 @@ class EditOrCreateShopController extends GetxController {
   }
 
   void createShopSubmit() async {
-    print('hola');
-
     form.unfocus();
     final urlImage = await uploadImage(fileImage!);
 
     final CreateShopDto shopDto = CreateShopDto(
-      adminId: getUserInfo().id,
+      adminId: USERID,
       region: 'La Habana',
       municipality: 'Boyeros',
       name: form.control('name').value,

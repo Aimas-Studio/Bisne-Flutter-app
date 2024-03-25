@@ -41,93 +41,101 @@ class _CartPageState extends State<CartPage> {
       builder: (controller) => Scaffold(
         appBar: CustomAppBar(),
         backgroundColor: fontAppColor2,
-        body: Padding(
-          padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: getProductsCartWidget(controller.itemsToBuy)
-                ..addAll([
-                  const RegularAppText(
-                    text: 'Nombre',
-                    size: 20,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: getProductsCartWidget(controller.itemsToBuy)
+                  ..addAll([
+                    const RegularAppText(
+                      text: 'Nombre',
+                      size: 20,
                     ),
-                    height: 55,
-                    child: const TextField(
-                      textAlign: TextAlign.start,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                          border: InputBorder.none,
-                          hintText: 'Tu nombre',
-                          hintStyle: TextStyle(fontSize: 20),
-                          alignLabelWithHint: true),
-                      keyboardType: TextInputType.number,
+                    const SizedBox(
+                      height: 5,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const RegularAppText(
-                    text: 'Teléfono',
-                    size: 20,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                      ),
+                      height: 55,
+                      child: const TextField(
+                        textAlign: TextAlign.start,
+                        decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
+                            border: InputBorder.none,
+                            hintText: 'Tu nombre',
+                            hintStyle: TextStyle(fontSize: 20),
+                            alignLabelWithHint: true),
+                        keyboardType: TextInputType.number,
+                      ),
                     ),
-                    height: 55,
-                    child: const TextField(
-                      textAlign: TextAlign.start,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                          border: InputBorder.none,
-                          hintText: 'Tu teléfono',
-                          hintStyle: TextStyle(fontSize: 20),
-                          alignLabelWithHint: true),
-                      keyboardType: TextInputType.number,
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const RegularAppText(
-                    text: '¿Desea mensajería?',
-                    size: 20,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
+                    const RegularAppText(
+                      text: 'Teléfono',
+                      size: 20,
                     ),
-                    height: 130,
-                    child: const TextField(
-                      textAlign: TextAlign.start,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                          border: InputBorder.none,
-                          hintText: 'Ej: si, para calle 50 entre 35 y 37',
-                          hintStyle: TextStyle(fontSize: 20),
-                          alignLabelWithHint: true),
-                      keyboardType: TextInputType.number,
+                    const SizedBox(
+                      height: 5,
                     ),
-                  ),
-                ])),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                      ),
+                      height: 55,
+                      child: const TextField(
+                        textAlign: TextAlign.start,
+                        decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
+                            border: InputBorder.none,
+                            hintText: 'Tu teléfono',
+                            hintStyle: TextStyle(fontSize: 20),
+                            alignLabelWithHint: true),
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const RegularAppText(
+                      text: '¿Desea mensajería?',
+                      size: 20,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                      ),
+                      height: 130,
+                      child: const TextField(
+                        textAlign: TextAlign.start,
+                        decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
+                            border: InputBorder.none,
+                            hintText: 'Ej: si, para calle 50 entre 35 y 37',
+                            hintStyle: TextStyle(fontSize: 20),
+                            alignLabelWithHint: true),
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 110,
+                    )
+                  ])),
+          ),
         ),
-        bottomSheet: BuyInfoCartWidget(price: controller.getBuyPrice()),
+        bottomSheet: BuyInfoCartWidget(controller: controller),
       ),
     );
   }

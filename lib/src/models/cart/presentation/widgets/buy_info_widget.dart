@@ -1,18 +1,17 @@
-import 'dart:ffi';
-
-import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:bisne/src/core/presentation/widgets/buttons/main_button_widget.dart';
+import 'package:bisne/src/models/cart/presentation/controllers/cart_page_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/presentation/widgets/widgets_export.dart';
 
 class BuyInfoCartWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   final double height;
-  final double price;
+  final CartController controller;
 
   const BuyInfoCartWidget(
-      {super.key, this.height = 100, this.price = 0.0, this.onPressed});
+      {super.key, this.height = 100, required this.controller, this.onPressed});
 
   @override
   Widget build(context) {
@@ -28,7 +27,8 @@ class BuyInfoCartWidget extends StatelessWidget {
               width: 30,
             ),
             const RegularAppText(text: 'Total: ', size: 22),
-            BoldAppText(text: '$price mm', size: 27),
+            Obx(() => BoldAppText(
+                text: '${controller.buyPrice.toString()} mm', size: 27)),
             const SizedBox(
               width: 30,
             ),

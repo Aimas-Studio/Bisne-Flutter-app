@@ -1,5 +1,5 @@
 class CreateShopDto {
-  int adminId;
+  String adminId;
   String name;
   String description;
   String urlImage;

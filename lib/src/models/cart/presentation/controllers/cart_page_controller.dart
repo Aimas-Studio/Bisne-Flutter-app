@@ -32,6 +32,7 @@ class CartController extends GetxController {
       itemsToBuy[product] = quantity;
       update([idController]);
     }
+    setBuyPrice();
   }
 
   void removeProduct(Product product) {
@@ -41,10 +42,13 @@ class CartController extends GetxController {
       itemsToBuy.remove(product);
       update([idController]);
     }
+    setBuyPrice();
   }
 
-  double getBuyPrice() {
-    return itemsToBuy.isNotEmpty
+  RxDouble buyPrice = 0.0.obs;
+
+  void setBuyPrice() {
+    buyPrice.value = itemsToBuy.isNotEmpty
         ? itemsToBuy.keys
             .map((product) => product.price * itemsToBuy[product]!)
             .reduce((value, element) => value + element)
