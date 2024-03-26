@@ -61,7 +61,7 @@ class DrawerHomeWidget extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ShopInfoPage(shop: getShopInfo()), // Page 1
+          builder: (context) => const ShopInfoPage(), // Page 1
         ));
         break;
       case 1:

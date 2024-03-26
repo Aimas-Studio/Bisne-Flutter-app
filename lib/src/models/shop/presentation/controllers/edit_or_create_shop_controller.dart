@@ -3,11 +3,14 @@ import 'dart:io';
 import 'package:bisne/src/core/infrastructure/cloudinary/upload_image.dart';
 import 'package:bisne/src/core/infrastructure/init/init_app.dart';
 import 'package:bisne/src/core/presentation/themes/colors.dart';
+import 'package:bisne/src/models/home/presentations/controllers/home_page_controller.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../../base/presentation/controllers/base_page_controller.dart';
 import '../../../user/export.dart';
 import '../../domain/dtos/create_shop_dto.dart';
 import '../../domain/dtos/edit_shop_dto.dart';
@@ -87,7 +90,7 @@ class EditOrCreateShopController extends GetxController {
     final urlImage = await uploadImage(fileImage!);
 
     final CreateShopDto shopDto = CreateShopDto(
-      adminId: USERID,
+      adminId: data.idUser,
       region: form.control('region').value,
       municipality: form.control('municipality').value,
       name: form.control('name').value,
@@ -103,11 +106,17 @@ class EditOrCreateShopController extends GetxController {
       telegram: '@HH075',
     );
     if (await createShop(shopDto: shopDto)) {
-      Get.showSnackbar(const GetSnackBar(
-        title: 'Se ha creado satisfactoriamente la tienda',
-        backgroundColor: bisneColorPrimary,
-      ));
-      await Future.delayed(const Duration(seconds: 1));
+      Get.showSnackbar(
+        const GetSnackBar(
+          message: 'Se ha creado satisfactoriamente la tienda',
+          backgroundColor: bisneColorPrimary,
+          duration: Duration(seconds: 2),
+        ),
+      );
+      final baseController = Get.find<BasePageController>();
+      final homeController = Get.find<HomePageController>();
+      homeController.setLogin();
+      baseController.obj = 2;
       Get.back();
     } else {}
   }

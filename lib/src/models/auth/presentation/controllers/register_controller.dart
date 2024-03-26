@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../../base/presentation/controllers/base_page_controller.dart';
+import '../../../home/presentations/controllers/home_page_controller.dart';
 import '../../domain/dtos/register_user_dto.dart';
 import '../../infrastructure/services/register_user.dart';
 
@@ -27,6 +29,10 @@ class RegisterController extends GetxController {
       Get.showSnackbar(GetSnackBar(
           message: 'Se ha registrado el Usuario',
           duration: Duration(seconds: 2)));
+      final baseController = Get.find<BasePageController>();
+      final homeController = Get.find<HomePageController>();
+      homeController.setLogin();
+      baseController.obj = 2;
     } else {
       Get.showSnackbar(GetSnackBar(
         message: 'Error',

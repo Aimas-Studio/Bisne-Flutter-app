@@ -1,4 +1,6 @@
+import 'package:bisne/src/core/infrastructure/persistent%20data/shared_persistent_data.dart';
 import 'package:bisne/src/models/products/presentation/screens/new_product_page.dart';
+import 'package:bisne/src/models/user/export.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,12 +14,12 @@ import '../../infrastructure/services/get_shop_info.dart';
 import 'edit_or_create_shop_info_page.dart';
 
 class ShopInfoPage extends StatelessWidget {
-  final Shop shop;
-
-  const ShopInfoPage({super.key, required this.shop});
+  const ShopInfoPage({super.key});
 
   @override
   Widget build(context) {
+    final data = PersistentData();
+    print('implementar data.category para la pagina de administrar tienda');
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
@@ -39,9 +41,10 @@ class ShopInfoPage extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 0),
-                          child: BoldAppText(text: shop.name, size: 30),
+                          child:
+                              BoldAppText(text: getShopInfo().name, size: 30),
                         ),
-                        RegularAppText(text: shop.category, size: 16),
+                        RegularAppText(text: getShopInfo().category, size: 16),
                         const SizedBox(height: 11),
                         OutlineAppButton(
                           onPressed: () {

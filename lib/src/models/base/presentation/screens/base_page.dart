@@ -29,8 +29,9 @@ class BasePage extends StatelessWidget {
             index: basePageController.obj,
             children: navigators,
           ),
-          bottomNavigationBar:
-              basePageController.showBottomNavBar.value ? BottomNavBar() : null,
+          bottomNavigationBar: basePageController.showBottomNavBar.value
+              ? BottomNavBar(basePageController: basePageController)
+              : null,
         );
       },
     );
@@ -44,20 +45,24 @@ class BasePage extends StatelessWidget {
         return MaterialPageRoute(builder: (_) {
           switch (indexPage) {
             case 0:
-              return appData.loggedIn ? const NotificationPage() : LoginPage();
+              // return const NotificationPage();
+              return appData.loggedIn
+                  ? const NotificationPage()
+                  : const LoginPage();
             case 1:
+              // return const NotificationPage();
               return const SearchPage();
             case 2:
               // return const NotificationPage();
               return const HomePage();
             case 3:
               // return const NotificationPage();
-
               return const FavoritePage();
             case 4:
               // return const NotificationPage();
-
-              return UserInfoPage(user: getUserInfo());
+              return appData.loggedIn
+                  ? UserInfoPage(user: getUserInfo())
+                  : const LoginPage();
             default:
               return const HomePage();
           }

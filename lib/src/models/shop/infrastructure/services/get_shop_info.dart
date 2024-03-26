@@ -11,14 +11,14 @@ final _persistentData = PersistentData();
 
 Shop getShopInfo() {
   return Shop(
-    manageId: 1,
-    municipality: "La Habana",
-    region: "Playa",
-    id: '1',
-    name: _persistentData.name,
-    description: _persistentData.description,
-    imageUrl: '',
-  );
+      manageId: _persistentData.shopAdminId,
+      municipality: _persistentData.shopRegion,
+      region: _persistentData.shopMunicipality,
+      id: _persistentData.shopId,
+      name: _persistentData.shopName,
+      description: _persistentData.description,
+      imageUrl: _persistentData.shopImageUrl,
+      category: _persistentData.shopCategory);
 }
 
 Widget getShopImage() {

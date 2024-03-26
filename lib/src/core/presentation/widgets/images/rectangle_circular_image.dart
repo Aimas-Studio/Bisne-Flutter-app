@@ -18,7 +18,7 @@ class RectangleCircularImage extends StatelessWidget {
       borderRadius: BorderRadius.all(
         Radius.circular(borderRadius),
       ),
-      child: child,
+      child: SizedBox.square(dimension: size, child: child),
     );
   }
 }

@@ -82,6 +82,7 @@ class _CustomReactiveTextFieldState extends State<CustomReactiveTextField> {
         border: InputBorder.none,
         constraints: BoxConstraints(minHeight: widget.isComment ? 200 : 0),
       ),
+      keyboardType: TextInputType.number,
       obscureText: obscureText,
     );
   }

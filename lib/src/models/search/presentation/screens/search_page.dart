@@ -46,66 +46,60 @@ class SearchPage extends StatelessWidget {
             ],
           ),
         ),
-        body: StreamBuilder(
-          stream: _.indexStream,
-          builder: (context, snapshot) {
-            return Center(
-              child: FutureBuilder(
-                key: UniqueKey(),
-                future: _.fetchShops(),
-                builder: (context, snapshot) => snapshot.hasData
-                    ? TableCardWidget(
-                        maxColumns:
-                            MediaQuery.sizeOf(context).width > 550 ? 3 : 2,
-                        data: snapshot.data!,
-                      )
-                    // const Padding(
-                    //     padding: EdgeInsets.only(top: 50),
-                    //     child: Column(
-                    //       children: [
-                    //         Image(
-                    //           image: AssetImage(
-                    //               'assets/Images/placeholder_circle_logo.png'),
-                    //           height: 150,
-                    //         ),
-                    //         SizedBox(
-                    //           height: 20,
-                    //         ),
-                    //         RegularAppText(
-                    //           text:
-                    //               'Lo sentimos,\nno existen resultados\n para su búsqueda.',
-                    //           size: 20,
-                    //           align: TextAlign.center,
-                    //         )
-                    //       ],
-                    //     ),
-                    //   )
-                    // createShopTable(context, snapshot.data!)
-                    : Center(
-                        child: Table(
-                          children: const [
-                            TableRow(children: [
-                              Image(
-                                  image: AssetImage(
-                                      'assets/Images/placeholder_baner.png')),
-                              Image(
-                                  image: AssetImage(
-                                      'assets/Images/placeholder_baner.png'))
-                            ]),
-                            TableRow(children: [
-                              Image(
-                                  image: AssetImage(
-                                      'assets/Images/placeholder_baner.png')),
-                              Image(
-                                  image: AssetImage(
-                                      'assets/Images/placeholder_baner.png'))
-                            ])
-                          ],
-                        ),
-                      ),
-              ),
-            );
-          },
+        body: Center(
+          child: FutureBuilder(
+            key: UniqueKey(),
+            future: _.fetchShops(),
+            builder: (context, snapshot) => snapshot.hasData
+                ? TableCardWidget(
+                    maxColumns: MediaQuery.sizeOf(context).width > 550 ? 3 : 2,
+                    data: snapshot.data!,
+                  )
+                // const Padding(
+                //     padding: EdgeInsets.only(top: 50),
+                //     child: Column(
+                //       children: [
+                //         Image(
+                //           image: AssetImage(
+                //               'assets/Images/placeholder_circle_logo.png'),
+                //           height: 150,
+                //         ),
+                //         SizedBox(
+                //           height: 20,
+                //         ),
+                //         RegularAppText(
+                //           text:
+                //               'Lo sentimos,\nno existen resultados\n para su búsqueda.',
+                //           size: 20,
+                //           align: TextAlign.center,
+                //         )
+                //       ],
+                //     ),
+                //   )
+                // createShopTable(context, snapshot.data!)
+                : Center(
+                    child: Table(
+                      children: const [
+                        TableRow(children: [
+                          Image(
+                              image: AssetImage(
+                                  'assets/Images/placeholder_baner.png')),
+                          Image(
+                              image: AssetImage(
+                                  'assets/Images/placeholder_baner.png'))
+                        ]),
+                        TableRow(children: [
+                          Image(
+                              image: AssetImage(
+                                  'assets/Images/placeholder_baner.png')),
+                          Image(
+                              image: AssetImage(
+                                  'assets/Images/placeholder_baner.png'))
+                        ])
+                      ],
+                    ),
+                  ),
+          ),
         ),
       ),
     );

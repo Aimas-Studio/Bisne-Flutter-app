@@ -6,9 +6,9 @@ import '../../../notifications/export.dart';
 import '../controllers/base_page_controller.dart';
 
 class BottomNavBar extends StatelessWidget {
-  BottomNavBar({super.key});
+  const BottomNavBar({super.key, required this.basePageController});
 
-  final BasePageController _basePageController = Get.find<BasePageController>();
+  final BasePageController basePageController;
 
   @override
   Widget build(BuildContext context) {
@@ -34,34 +34,34 @@ class BottomNavBar extends StatelessWidget {
                   children: [
                     NotificationButton(
                       icon: Icons.notifications_none,
-                      selected: _basePageController.obj == 0,
+                      selected: basePageController.obj == 0,
                       onPressed: () {
                         onTabTapped(0);
                       },
                     ),
                     IconBottomBar(
                       icon: Icons.search_outlined,
-                      selected: _basePageController.obj == 1,
+                      selected: basePageController.obj == 1,
                       onPressed: () {
                         onTabTapped(1);
                       },
                     ),
                     IconBottomBar(
                       icon: Icons.home_outlined,
-                      selected: _basePageController.obj == 2,
+                      selected: basePageController.obj == 2,
                       onPressed: () {
                         onTabTapped(2);
                       },
                     ),
                     IconBottomBar(
                         icon: Icons.favorite_border,
-                        selected: _basePageController.obj == 3,
+                        selected: basePageController.obj == 3,
                         onPressed: () {
                           onTabTapped(3);
                         }),
                     IconBottomBar(
                       icon: Icons.person_outline_outlined,
-                      selected: _basePageController.obj == 4,
+                      selected: basePageController.obj == 4,
                       onPressed: () {
                         onTabTapped(4);
                       },
@@ -73,14 +73,14 @@ class BottomNavBar extends StatelessWidget {
   }
 
   void onTabTapped(int index) {
-    if (index == _basePageController.obj) {
+    if (index == basePageController.obj) {
       // Si la sección seleccionada es la misma que la sección actual,
       // vuelve a la página de inicio de la sección.
-      _basePageController.navigatorKeys[index]?.currentState
+      basePageController.navigatorKeys[index]?.currentState
           ?.popUntil((route) => route.isFirst);
     } else {
       // Si la sección seleccionada es diferente, cambia a la nueva sección.
-      _basePageController.obj = index;
+      basePageController.obj = index;
     }
   }
 }

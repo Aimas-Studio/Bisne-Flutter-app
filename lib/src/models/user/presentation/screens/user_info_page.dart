@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:bisne/src/models/factures/presentation/screens/factures_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,7 @@ import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
 import '../../../shop/presentation/screens/edit_or_create_shop_info_page.dart';
 import '../../export.dart';
+import '../controllers/user_info_controller.dart';
 import '../widgets/white_option_button_list.dart';
 import 'edit_user_page.dart';
 
@@ -18,48 +21,69 @@ class UserInfoPage extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: backgroundAppColor,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return GetBuilder<UserInfoController>(
+      init: UserInfoController(),
+      id: UserInfoController.id,
+      builder: (controller) {
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: backgroundAppColor,
+            body: SingleChildScrollView(
+              child: Column(
                 children: [
-                  const SizedBox(width: 20),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: CircularImage(size: 55, child: getUserImage()),
-                  ),
-                  Column(
+                  const SizedBox(height: 20),
+                  Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(width: 20),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 0),
-                        child: BoldAppText(text: user.username, size: 30),
+                        padding: const EdgeInsets.all(10),
+                        child: CircularImage(size: 55, child: getUserImage()),
                       ),
-                      RegularAppText(text: user.email, size: 16),
-                      const SizedBox(height: 11),
-                      OutlineAppButton(
-                        onPressed: () {
-                          Get.to(() => const EditUserPage());
-                        },
-                        child: const LightAppText(text: 'EDITAR PERFIL'),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, bottom: 0),
+                            child: BoldAppText(
+                                text: getUserInfo().username, size: 30),
+                          ),
+                          RegularAppText(text: getUserInfo().email, size: 16),
+                          const SizedBox(height: 11),
+                          OutlineAppButton(
+                            onPressed: () {
+                              Get.to(() => const EditUserPage());
+                            },
+                            child: const LightAppText(text: 'EDITAR PERFIL'),
+                          ),
+                        ],
                       ),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            onPressed: controller.logout,
+                            icon: const Icon(
+                              Icons.logout,
+                              color: Colors.black,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 20),
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 18),
+                  WhiteOptionButtonList(content: _contentPanel1),
+                  const SizedBox(height: 20),
+                  WhiteOptionButtonList(content: _contentPanel2),
                 ],
               ),
-              const SizedBox(height: 18),
-              WhiteOptionButtonList(content: _contentPanel1),
-              const SizedBox(height: 20),
-              WhiteOptionButtonList(content: _contentPanel2),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

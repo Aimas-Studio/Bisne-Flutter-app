@@ -32,45 +32,57 @@ class NewProductPage extends StatelessWidget {
                   formGroup: controller.form,
                   child: Column(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 30),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: DecoratedWhiteBox(
                           child: CustomReactiveTextField(
+                            onChange: (_) {
+                              controller.updateController();
+                            },
                             formName: 'productName',
                             labelText: 'DEFINIR NOMBRE',
                             prefixIcon: Icons.edit,
                           ),
                         ),
                       ),
-                      const Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 30, horizontal: 30),
                         child: DecoratedWhiteBox(
                           child: CustomReactiveTextField(
                             formName: 'categoryProduct',
                             labelText: 'DEFINIR CATEGORÍA',
                             prefixIcon: Icons.edit,
+                            onChange: (_) {
+                              controller.updateController();
+                            },
                           ),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 30),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: DecoratedWhiteBox(
                           child: CustomReactiveTextField(
                             formName: 'descriptionProduct',
                             labelText: 'DEFINIR DESCRIPCIÓN',
                             prefixIcon: Icons.edit,
+                            onChange: (_) {
+                              controller.updateController();
+                            },
                           ),
                         ),
                       ),
-                      const Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 50, horizontal: 30),
                         child: DecoratedWhiteBox(
                           child: CustomReactiveTextField(
                             formName: 'priceProduct',
                             labelText: 'DEFINIR PRECIO',
                             prefixIcon: Icons.edit,
+                            onChange: (_) {
+                              controller.updateController();
+                            },
                           ),
                         ),
                       ),
@@ -101,10 +113,12 @@ class NewProductPage extends StatelessWidget {
                                   )
                                 ],
                               ),
+                              const SizedBox(height: 10),
                               ImagePicker(
                                 onTap: controller.pickImage,
                                 image: controller.productImage,
                               ),
+                              const SizedBox(height: 20),
                             ],
                           ),
                         ),
@@ -115,22 +129,42 @@ class NewProductPage extends StatelessWidget {
                         padding: EdgeInsets.only(top: 50, bottom: 15),
                         child: BoldAppText(text: 'Previsualización', size: 27),
                       ),
-                      const PreviewProductWidget(),
+                      PreviewProductWidget(
+                        productName:
+                            controller.form.control('productName').value ?? '',
+                        productCategory:
+                            controller.form.control('categoryProduct').value ??
+                                '',
+                        productDescription: controller.form
+                                .control('descriptionProduct')
+                                .value ??
+                            '',
+                        price: controller.form.control('priceProduct').value ??
+                            0.0,
+                        productImage: controller.productImage,
+                      ),
                       const SizedBox(height: 50),
                       const LightAppText(
+                        align: TextAlign.center,
                         text:
                             "NOTA: Debe ingresar su contraseña para guardar las modificaciones",
                         size: 14,
+                        maxLines: 3,
                       ),
                       const Padding(
-                        padding: EdgeInsets.only(top: 20, bottom: 50),
-                        child: CustomReactiveTextField(
-                          formName: 'password',
-                          prefixIcon: CustomIcons.password,
-                          passwordFieldShowOrHide: true,
+                        padding: EdgeInsets.only(
+                            top: 20, bottom: 50, right: 30, left: 30),
+                        child: DecoratedWhiteBox(
+                          child: CustomReactiveTextField(
+                            labelText: 'CONTRASEÑA',
+                            formName: 'password',
+                            prefixIcon: CustomIcons.password,
+                            passwordFieldShowOrHide: true,
+                          ),
                         ),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ReactiveFormConsumer(
                             builder: (context, formGroup, child) {
@@ -150,6 +184,7 @@ class NewProductPage extends StatelessWidget {
                           )
                         ],
                       ),
+                      const SizedBox(height: 100),
                     ],
                   ),
                 ),

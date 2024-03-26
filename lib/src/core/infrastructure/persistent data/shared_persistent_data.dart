@@ -49,12 +49,12 @@ class PersistentData {
   }
 
   //idUser
-  int get idUser {
-    return _appData.getInt('idUser') ?? 1;
+  String get idUser {
+    return _appData.getString('idUser') ?? '';
   }
 
-  set idUser(int value) {
-    _appData.setInt("idUser", value);
+  set idUser(String value) {
+    _appData.setString("idUser", value);
   }
 
   //USER HAS A PROFILE PHOTO
@@ -136,12 +136,30 @@ class PersistentData {
   }
 
   //SHOP NAME
-  String get name {
+  String get shopName {
     return _appData.getString('name') ?? "";
   }
 
-  set name(String name) {
+  set shopName(String name) {
     _appData.setString('name', name);
+  }
+
+  //SHOP ADMIN ID
+  int get shopAdminId {
+    return _appData.getInt('adminID') ?? -1;
+  }
+
+  set shopAdminId(int id) {
+    _appData.setInt('adminId', id);
+  }
+
+  //SHOP ID
+  String get shopId {
+    return _appData.getString('id') ?? '';
+  }
+
+  set shopId(String id) {
+    _appData.setString("id", id);
   }
 
   //SHOP DESCRIPTION
@@ -174,6 +192,32 @@ class PersistentData {
     _appData.setString("address", address);
   }
 
+  //SHOP REGION
+  String get shopRegion {
+    return _appData.getString("region") ?? "";
+  }
+
+  set shopRegion(String region) {
+    _appData.setString("region", region);
+  }
+
+  //SHOP MUNICIPALITY
+  String get shopMunicipality {
+    return _appData.getString("municipality") ?? "";
+  }
+
+  set shopMunicipality(String municipality) {
+    _appData.setString("municipality", municipality);
+  }
+
+  //SHOP CATEGORÌA
+  String get shopCategory {
+    return _appData.getString("category") ?? "";
+  }
+
+  set shopCategory(String category) {
+    _appData.setString("category", category);
+  }
   //SHOP PHONE
 
   String get shopPhoneNumber {

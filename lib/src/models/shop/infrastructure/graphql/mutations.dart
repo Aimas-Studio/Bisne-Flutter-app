@@ -28,20 +28,19 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 final createShopMutation = gql(r'''
 mutation addTienda(
-  $adminId : ID, 
-  $name : String, 
-  $description : String, 
+  $adminId : ID!, 
+  $name : String!, 
+  $description : String!, 
   $shopSchedule : String, 
-  $urlImage : String,
+  $imageURL : String,
   $shopPhoneNumber : String,
   $shopWhatsApp : String,
-  $shopLocation : String,
   $shopInstagram : String,
   $shopFacebook : String,
   $shopLink : String, 
   $direccion : String,
-  $provincia : String,
-  $municipio : String,
+  $provincia : String!,
+  $municipio : String!,
   $usuarioTelegram : String,
 ){
   addTienda(input:{
@@ -49,7 +48,7 @@ mutation addTienda(
     nombre : $name,
     descripcion : $description,
     horario : $shopSchedule,
-    urlImagen : $urlImage,
+    urlImagen : $imageURL,
     numeroTelefono : $shopPhoneNumber,
     numeroWhatsapp : $shopWhatsApp,
     linkFacebook : $shopFacebook,
@@ -62,11 +61,12 @@ mutation addTienda(
     }
   ){
     tienda {
+      id
       administradorId
       nombre
       descripcion
       horario
-      urlImagen
+      imageURL
       numeroTelefono
       numeroWhatsapp
       linkFacebook
@@ -78,7 +78,6 @@ mutation addTienda(
       usuarioTelegram
     }
     errors {
-      field    
       message
     }    
   }
@@ -116,7 +115,7 @@ mutation updateTienda(
       nombre
       descripcion
       horario
-      urlImagen
+      imageURL
       numeroTelefono
       numeroWhatsapp
       linkFacebook

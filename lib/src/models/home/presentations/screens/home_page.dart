@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
       id: HomePageController.idController,
       builder: (controller) {
         return Scaffold(
-          appBar: appbarHomePage(),
+          appBar: HomePageAppBar(),
           backgroundColor: fontAppColor2,
           endDrawer: const DrawerHomeWidget(),
           body: SingleChildScrollView(
