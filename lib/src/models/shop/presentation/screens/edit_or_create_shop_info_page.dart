@@ -1,5 +1,6 @@
-import 'package:bisne/src/core/domain/regions/regions.dart';
+import 'package:bisne/src/core/domain/entities/regions/regions.dart';
 import 'package:bisne/src/core/presentation/widgets/inputs/custom_reactive_drop_down_field.dart';
+import 'package:bisne/src/core/utils/drop_down_menu_item_from_values.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -105,7 +106,7 @@ class EditOrCreateShopInfoPage extends StatelessWidget {
                             labelText: 'Provincia',
                             enabled: true,
                             formName: 'region',
-                            items: getRegion(),
+                            items: getItems(regions.keys.toList()),
                             onChange: (_) {
                               controller.updateController();
                             },
@@ -118,8 +119,8 @@ class EditOrCreateShopInfoPage extends StatelessWidget {
                               enabled: controller.isRegionSelected,
                               formName: 'municipality',
                               items: controller.isRegionSelected
-                                  ? getMunicipality(
-                                      controller.form.control('region').value)
+                                  ? getItems(regions[
+                                      controller.form.control('region').value]!)
                                   : []),
                         ),
                         const SizedBox(height: 30),
@@ -212,30 +213,4 @@ class EditOrCreateShopInfoPage extends StatelessWidget {
       ),
     );
   }
-}
-
-List<DropdownMenuItem> getRegion() {
-  List<DropdownMenuItem> items = [];
-  for (var region in regions.keys) {
-    items.add(DropdownMenuItem(
-      value: region,
-      child: InputLightText(
-        text: region,
-        size: 14,
-      ),
-    ));
-  }
-  return items;
-}
-
-List<DropdownMenuItem> getMunicipality(String region) {
-  return regions[region]!.map((municipality) {
-    return DropdownMenuItem(
-      value: municipality,
-      child: InputLightText(
-        text: municipality,
-        size: 14,
-      ),
-    );
-  }).toList();
 }

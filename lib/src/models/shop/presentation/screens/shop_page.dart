@@ -4,7 +4,7 @@ import 'package:bisne/src/core/presentation/widgets/buttons/categories_row.dart'
 import 'package:bisne/src/core/presentation/widgets/widgets_export.dart';
 import 'package:bisne/src/core/utils/search_row_widget.dart';
 import 'package:bisne/src/models/cart/export.dart';
-import 'package:bisne/src/models/home/test/Shops.dart';
+import 'package:bisne/src/models/home/test/shops.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

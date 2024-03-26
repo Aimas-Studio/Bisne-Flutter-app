@@ -7,15 +7,13 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class NewProductPageController extends GetxController {
   static const idController = "newProductPage";
-  static const idPreviewController = 'previewProductController';
 
   final form = FormGroup({
     'productName': FormControl<String>(validators: [Validators.required]),
     'categoryProduct': FormControl<String>(validators: [Validators.required]),
     'descriptionProduct':
         FormControl<String>(validators: [Validators.required]),
-    'priceProduct': FormControl<double>(
-        validators: [Validators.required, Validators.number]),
+    'priceProduct': FormControl<String>(validators: [Validators.required]),
     'password': FormControl<String>(validators: [Validators.required]),
   });
 
@@ -42,7 +40,7 @@ class NewProductPageController extends GetxController {
     if (file != null) {
       fileImage = File(file.path);
       productImage = FileImage(fileImage!);
-      update([idController, idPreviewController]);
+      update([idController]);
     }
   }
 }

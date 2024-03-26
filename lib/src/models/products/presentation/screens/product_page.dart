@@ -8,7 +8,7 @@ import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
 import '../../../cart/export.dart';
 import '../../../shop/presentation/widgets/shop_page_widgets.dart';
-import '../../entities/product_entitiy.dart';
+import '../../domain/entities/product_entity.dart';
 import '../controllers/product_page_controller.dart';
 
 class ProductPage extends StatelessWidget {
