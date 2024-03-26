@@ -10,7 +10,7 @@ class PreviewProductWidget extends StatelessWidget {
   final String productName;
   final String productCategory;
   final String productDescription;
-  final double? price;
+  final String? price;
   final ImageProvider? productImage;
 
   const PreviewProductWidget({
@@ -18,7 +18,7 @@ class PreviewProductWidget extends StatelessWidget {
     this.productCategory = '',
     this.productDescription = '',
     this.productImage,
-    this.price = 0.0,
+    this.price = '0',
     super.key,
   });
 

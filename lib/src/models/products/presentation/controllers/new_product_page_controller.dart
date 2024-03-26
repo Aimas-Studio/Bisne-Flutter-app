@@ -23,14 +23,9 @@ class NewProductPageController extends GetxController {
     'categoryProduct': FormControl<String>(validators: [Validators.required]),
     'descriptionProduct':
         FormControl<String>(validators: [Validators.required]),
-    'priceProduct': FormControl<double>(
-        validators: [Validators.required, Validators.number]),
+    'priceProduct': FormControl<String>(validators: [Validators.required]),
     'password': FormControl<String>(validators: [Validators.required]),
   });
-
-  // final List<File?> files = List.generate(5, (index) => null, growable: false);
-  // final List<ImageProvider?> productImages =
-  //     List.generate(5, (index) => null, growable: false);
 
   void updateController() {
     update([idController]);
@@ -49,11 +44,11 @@ class NewProductPageController extends GetxController {
 
     final CreateOfertDto oferDto = CreateOfertDto(
       shopId: data.shopId,
-      name: form.control('name').value,
+      name: form.control('productName').value,
       imageURL: urlImage,
-      description: form.control('description').value,
-      categoryId: form.control('category').value,
-      price: form.control('price').value,
+      description: form.control('descriptionProduct').value,
+      categoryId: form.control('categoryProduct').value,
+      price: form.control('priceProduct').value,
       labelId: form.control('label').value,
     );
     if (await createOfert(OfertDto: oferDto)) {

@@ -140,7 +140,7 @@ class NewProductPage extends StatelessWidget {
                                 .value ??
                             '',
                         price: controller.form.control('priceProduct').value ??
-                            0.0,
+                            '0',
                         productImage: controller.productImage,
                       ),
                       const SizedBox(height: 50),
