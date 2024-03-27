@@ -1,3 +1,4 @@
+import 'package:bisne/src/models/factures/export.dart';
 import 'package:bisne/src/models/inventory/presentation/screens/inventory_page.dart';
 import 'package:bisne/src/models/products/presentation/screens/new_product_page.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,9 @@ final List<ContentPanel> _contentPanel1 = [
   ContentPanel(Icons.list, "Administrar Inventario", () {
     Get.to(() => const InventoryPage());
   }),
-  ContentPanel(CustomIcons.finished, "Pedidos Realizados", () {}),
+  ContentPanel(CustomIcons.finished, "Pedidos Realizados", () {
+    Get.to(() => const FacturesPage(shop: true));
+  }),
   ContentPanel(Icons.add, "Publicar Producto",
       () => Get.to(() => const NewProductPage()))
 ];

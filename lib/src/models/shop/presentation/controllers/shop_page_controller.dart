@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:bisne/src/models/shop/export.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,6 @@ class ShopPageController extends GetxController {
   final String localitation = 'Playa, La Habana';
   final bool favorito = false;
 
-  @override
   RxInt indexButton = 0.obs;
 
   final _streamController = StreamController<int>();
@@ -50,7 +50,7 @@ class ShopPageController extends GetxController {
   }
 
   ImageProvider takeImage() {
-    return NetworkImage(shop.imageUrl);
+    return customNetworkImage(shop.imageUrl);
   }
 
   bool isExpanded = false;

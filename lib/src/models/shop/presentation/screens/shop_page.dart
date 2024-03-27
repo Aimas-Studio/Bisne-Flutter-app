@@ -1,6 +1,7 @@
 import 'package:bisne/src/core/presentation/icons/custom_icons.dart';
 import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:bisne/src/core/presentation/widgets/buttons/categories_row.dart';
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:bisne/src/core/presentation/widgets/widgets_export.dart';
 import 'package:bisne/src/core/utils/search_row_widget.dart';
 import 'package:bisne/src/models/cart/export.dart';
@@ -52,7 +53,8 @@ class _ShopPageState extends State<ShopPage> {
                       CircularImage(
                           size: 25,
                           shadow: false,
-                          child: Image(image: NetworkImage(shop.imageUrl))),
+                          child:
+                              Image(image: customNetworkImage(shop.imageUrl))),
                       const SizedBox(
                         width: 10,
                       ),
@@ -113,7 +115,7 @@ class _ShopPageState extends State<ShopPage> {
                           child: Image(
                             fit: BoxFit.cover,
                             alignment: Alignment.center,
-                            image: NetworkImage(shop.imageUrl),
+                            image: customNetworkImage(shop.imageUrl),
                           ),
                         ),
                         Positioned(

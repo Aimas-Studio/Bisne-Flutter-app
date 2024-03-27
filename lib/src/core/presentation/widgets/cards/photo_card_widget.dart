@@ -1,3 +1,4 @@
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../texts/texts_widgets.dart';
@@ -30,7 +31,7 @@ class PhotoCard extends StatelessWidget {
             child: FadeInImage(
                 placeholder:
                     const AssetImage('assets/Images/placeholder_baner.png'),
-                image: NetworkImage(image),
+                image: customNetworkImage(image),
                 fit: BoxFit.cover,
                 height: heightMedia,
                 width: widthMedia),

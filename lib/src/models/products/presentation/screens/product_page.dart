@@ -1,6 +1,7 @@
 import 'package:bisne/src/core/presentation/widgets/buttons/main_button_widget.dart';
 import 'package:bisne/src/core/presentation/widgets/buttons/secundary_button_widget.dart';
 import 'package:bisne/src/core/presentation/widgets/cards/bisne_card_wiget.dart';
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,7 +33,7 @@ class ProductPage extends StatelessWidget {
                           size: 25,
                           shadow: false,
                           child: Image(
-                              image: NetworkImage(
+                              image: customNetworkImage(
                                   productPageController.product.imageUrl))),
                       const SizedBox(
                         width: 10,
@@ -95,7 +96,7 @@ class ProductPage extends StatelessWidget {
                           child: Image(
                             fit: BoxFit.cover,
                             alignment: Alignment.center,
-                            image: NetworkImage(
+                            image: customNetworkImage(
                                 productPageController.product.imageUrl),
                           ),
                         ),

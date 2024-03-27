@@ -1,3 +1,4 @@
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:bisne/src/models/notifications/presentation/widgets/notification_widget.dart';
 import 'package:bisne/src/models/shop/export.dart';
 import 'package:bisne/src/models/shop/presentation/widgets/shop_page_widgets.dart';
@@ -41,7 +42,7 @@ class ShopAppBar extends AppBar {
             CircularImage(
                 size: 25,
                 shadow: false,
-                child: Image(image: NetworkImage(shop.imageUrl))),
+                child: Image(image: customNetworkImage(shop.imageUrl))),
             const SizedBox(
               width: 10,
             ),

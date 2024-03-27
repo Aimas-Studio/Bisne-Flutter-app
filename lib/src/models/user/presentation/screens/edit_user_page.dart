@@ -1,3 +1,4 @@
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -27,7 +28,7 @@ class EditUserPage extends StatelessWidget {
                     shadow: controller.hasImage,
                     child: controller.hasImage
                         ? CustomFadeInImage(
-                            image: NetworkImage(controller.user.imageUrl),
+                            image: customNetworkImage(controller.user.imageUrl),
                           )
                         : userPlaceHolder,
                   ),

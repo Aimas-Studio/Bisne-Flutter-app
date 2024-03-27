@@ -1,3 +1,5 @@
+import 'package:bisne/src/models/user/export.dart';
+
 import '../../../products/export.dart';
 import '../../../shop/export.dart';
 import '../../domain/facture_entity.dart';
@@ -14,6 +16,7 @@ Future<List<Facture>> getShopOrdersInfo() async {
     () {
       return [
         Facture(
+          user: getUserInfo(),
           shop: Shop(
             manageId: 1,
             municipality: "La Habana",
@@ -28,6 +31,7 @@ Future<List<Facture>> getShopOrdersInfo() async {
           totalPrice: 1120,
         ),
         Facture(
+          user: getUserInfo(),
           shop: Shop(
             manageId: 1,
             municipality: "La Habana",
