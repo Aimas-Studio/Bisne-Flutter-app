@@ -1,17 +1,20 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 final editUserMutation = gql(r'''
-  mutation editUser($userName: String!, $urlImage: String) {
-    editUser(input : {userName: $userName, urlImage: $urlImage}) {
-      user {
-        id
-        username
-        imageUrl
-      }
-            
-      errors{
-        message
-      }
+  mutation editUser(
+    $userId: ID!,
+    $userName: String,
+    $urlImage: String,
+  ){
+    updateUsuario(input: {
+    id: $userId,
+    nombre: $userName,
+    imageUrl: $urlImage,
+  }){
+    usuario{
+      nombre
+      imageURL
     }
   }
+}
 ''');

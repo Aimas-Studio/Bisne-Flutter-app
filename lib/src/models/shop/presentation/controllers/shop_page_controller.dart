@@ -1,10 +1,15 @@
 import 'dart:async';
 
+import 'package:bisne/src/core/domain/entities/categories/categories.dart';
+import 'package:bisne/src/models/products/infrastructure/graphql/mutations.dart';
 import 'package:bisne/src/models/shop/export.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
+import '../../../../core/infrastructure/graphql/graphql_config.dart';
 import '../../../cart/presentation/controllers/cart_page_controller.dart';
+import '../../../products/domain/entities/product_entity.dart';
 
 final cartController = CartController();
 
@@ -54,4 +59,39 @@ class ShopPageController extends GetxController {
   }
 
   bool isExpanded = false;
+
+  Future<List<Product?>> fetchProducts() async {
+    final QueryOptions options = QueryOptions(
+      document: getAllProducts,
+      variables: {'shopId': shop.id},
+    );
+
+    // print(Env.apiUrl);
+    final QueryResult result = await client.query(options);
+
+    if (result.hasException) {
+      return [];
+    }
+    final oferts =
+        Future.wait((result.data!['tiendaOfertas'] as List).map((data) async {
+      try {
+        final QueryOptions labelOptions = QueryOptions(
+          document: getLabelName,
+          variables: {'labelId': data['etiquetaId']},
+        );
+        final QueryResult result = await client.query(options);
+        if (result.hasException) {
+          return null;
+        }
+        return Product.fromMap(
+            data as Map<String, dynamic>,
+            shop,
+            categories[data['categoriaId']]!,
+            result.data!['etiqueta']['nombre']!);
+      } catch (e) {
+        return null;
+      }
+    }).toList());
+    return oferts;
+  }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/themes/themes_export.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
-import '../../../products/entities/product_entitiy.dart';
+import '../../../products/export.dart';
 
 final CartController cartController = CartController();
 

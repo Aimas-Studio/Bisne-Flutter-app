@@ -24,6 +24,7 @@ Future<bool> registerUser(RegisterUserDto registerUserDto) async {
       _data.userEmail = response.data!['addUsuario']['usuario']['correo'];
       _data.userName = response.data!['addUsuario']['usuario']['nombre'];
       _data.loggedIn = true;
+      _data.shopExists = false;
       return true;
     } else {
       return false;

@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:bisne/src/models/home/presentations/controllers/home_page_controller.dart';
+import 'package:bisne/src/models/user/export.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,19 +11,19 @@ import '../../../../core/presentation/widgets/snack_bars/get_snack_bar.dart';
 import '../../domain/dtos/edit_user_dto.dart';
 import '../../domain/entities/user.dart';
 import '../../infrastructure/services/edit_user.dart';
+import 'user_info_controller.dart';
 
 class EditUserController extends GetxController {
   static const idController = 'editUserController';
-  final User user;
   late TextEditingController nameController;
   bool hasImage = false;
   bool hasImageChange = false;
   File? imageFile;
   ImageProvider? image;
 
-  EditUserController({required this.user}) {
-    nameController = TextEditingController(text: user.username);
-    hasImage = user.imageUrl.isNotEmpty;
+  EditUserController() {
+    nameController = TextEditingController(text: data.userName);
+    hasImage = data.userImageUrl.isNotEmpty;
   }
 
   pickImage() async {
@@ -38,13 +40,14 @@ class EditUserController extends GetxController {
   editUserSubmit() async {
     final EditUserDto editUserDto = EditUserDto(
       userName: nameController.text,
-      urlImage: hasImageChange ? await uploadImage(imageFile!) : null,
+      urlImage:
+          hasImageChange ? await uploadImage(imageFile!) : data.userImageUrl,
+      userId: data.idUser,
     );
-
     if (await editUser(editUserDto)) {
-      Get.showSnackbar(snackAppBar(
-          message: 'Usuario editado correctamente', color: Colors.green));
-      await Future.delayed(const Duration(seconds: 2));
+      update();
+      Get.find<UserInfoController>().update([UserInfoController.id]);
+      Get.find<HomePageController>().update([HomePageController.idController]);
       Get.back();
     } else {}
   }

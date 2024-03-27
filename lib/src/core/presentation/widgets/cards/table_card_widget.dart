@@ -1,12 +1,12 @@
 import 'dart:math';
 
 import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
-import 'package:bisne/src/models/products/entities/product_entitiy.dart';
+import 'package:bisne/src/models/products/export.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../models/products/presentation/screens/product_page.dart';
-import 'bisne_card_wiget.dart';
 import '../../../../models/shop/export.dart';
+import 'bisne_card_wiget.dart';
 
 class TableCardWidget extends StatelessWidget {
   final int maxColumns;

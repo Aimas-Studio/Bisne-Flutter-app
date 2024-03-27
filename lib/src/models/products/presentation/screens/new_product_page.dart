@@ -1,4 +1,7 @@
+import 'package:bisne/src/core/domain/entities/categories/categories.dart';
 import 'package:bisne/src/core/presentation/themes/decorations.dart';
+import 'package:bisne/src/core/presentation/widgets/inputs/custom_reactive_drop_down_field.dart';
+import 'package:bisne/src/core/utils/drop_down_menu_item_from_values.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -32,13 +35,10 @@ class NewProductPage extends StatelessWidget {
                   formGroup: controller.form,
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 30),
                         child: DecoratedWhiteBox(
                           child: CustomReactiveTextField(
-                            onChange: (_) {
-                              controller.updateController();
-                            },
                             formName: 'productName',
                             labelText: 'DEFINIR NOMBRE',
                             prefixIcon: Icons.edit,
@@ -49,40 +49,40 @@ class NewProductPage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             vertical: 30, horizontal: 30),
                         child: DecoratedWhiteBox(
-                          child: CustomReactiveTextField(
+                          child: CustomReactiveDropDownField(
+                            items: getItems(categories.keys.toList()),
                             formName: 'categoryProduct',
                             labelText: 'DEFINIR CATEGORÍA',
-                            prefixIcon: Icons.edit,
-                            onChange: (_) {
-                              controller.updateController();
-                            },
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: DecoratedWhiteBox(
+                            child: CustomReactiveTextField(
+                                prefixIcon: Icons.edit,
+                                labelText: 'DEFINIR ETIQUETA',
+                                formName: 'label')),
+                      ),
+                      const SizedBox(height: 30),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 30),
                         child: DecoratedWhiteBox(
                           child: CustomReactiveTextField(
                             formName: 'descriptionProduct',
                             labelText: 'DEFINIR DESCRIPCIÓN',
                             prefixIcon: Icons.edit,
-                            onChange: (_) {
-                              controller.updateController();
-                            },
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 50, horizontal: 30),
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 50, horizontal: 30),
                         child: DecoratedWhiteBox(
                           child: CustomReactiveTextField(
                             formName: 'priceProduct',
                             labelText: 'DEFINIR PRECIO',
                             prefixIcon: Icons.edit,
-                            onChange: (_) {
-                              controller.updateController();
-                            },
                           ),
                         ),
                       ),
@@ -129,20 +129,26 @@ class NewProductPage extends StatelessWidget {
                         padding: EdgeInsets.only(top: 50, bottom: 15),
                         child: BoldAppText(text: 'Previsualización', size: 27),
                       ),
-                      PreviewProductWidget(
-                        productName:
-                            controller.form.control('productName').value ?? '',
-                        productCategory:
-                            controller.form.control('categoryProduct').value ??
-                                '',
-                        productDescription: controller.form
-                                .control('descriptionProduct')
-                                .value ??
-                            '',
-                        price: controller.form.control('priceProduct').value ??
-                            '0',
-                        productImage: controller.productImage,
-                      ),
+                      ReactiveFormConsumer(builder: (BuildContext context,
+                          FormGroup formGroup, Widget? child) {
+                        return PreviewProductWidget(
+                          productName:
+                              controller.form.control('productName').value ??
+                                  '',
+                          productCategory: controller.form
+                                  .control('categoryProduct')
+                                  .value ??
+                              '',
+                          productDescription: controller.form
+                                  .control('descriptionProduct')
+                                  .value ??
+                              '',
+                          price:
+                              controller.form.control('priceProduct').value ??
+                                  '',
+                          productImage: controller.productImage,
+                        );
+                      }),
                       const SizedBox(height: 50),
                       const LightAppText(
                         align: TextAlign.center,

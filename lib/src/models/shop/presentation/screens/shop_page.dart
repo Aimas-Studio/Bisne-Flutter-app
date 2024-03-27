@@ -4,7 +4,7 @@ import 'package:bisne/src/core/presentation/widgets/buttons/categories_row.dart'
 import 'package:bisne/src/core/presentation/widgets/widgets_export.dart';
 import 'package:bisne/src/core/utils/search_row_widget.dart';
 import 'package:bisne/src/models/cart/export.dart';
-import 'package:bisne/src/models/home/test/Shops.dart';
+import 'package:bisne/src/models/home/test/shops.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -229,13 +229,55 @@ class _ShopPageState extends State<ShopPage> {
                                 controller: scrollcontroller,
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 10),
-                                  child: TableCardWidget(
-                                    maxColumns:
-                                        MediaQuery.sizeOf(context).width > 550
-                                            ? 3
-                                            : 2,
-                                    data: products,
-                                  ),
+                                  child: DEBUG
+                                      ? TableCardWidget(
+                                          maxColumns:
+                                              MediaQuery.sizeOf(context).width >
+                                                      550
+                                                  ? 3
+                                                  : 2,
+                                          data: products,
+                                        )
+                                      : FutureBuilder(
+                                          future: shopPageController
+                                              .fetchProducts(),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              return TableCardWidget(
+                                                maxColumns:
+                                                    MediaQuery.sizeOf(context)
+                                                                .width >
+                                                            550
+                                                        ? 3
+                                                        : 2,
+                                                data: snapshot.data!,
+                                              );
+                                            } else {
+                                              return
+                                                  // Container();
+                                                  Table(
+                                                children: const [
+                                                  TableRow(children: [
+                                                    Image(
+                                                        image: AssetImage(
+                                                            'assets/Images/placeholder_baner.png')),
+                                                    Image(
+                                                        image: AssetImage(
+                                                            'assets/Images/placeholder_baner.png'))
+                                                  ]),
+                                                  TableRow(children: [
+                                                    Image(
+                                                        image: AssetImage(
+                                                            'assets/Images/placeholder_baner.png')),
+                                                    Image(
+                                                        image: AssetImage(
+                                                            'assets/Images/placeholder_baner.png'))
+                                                  ])
+                                                ],
+                                              );
+                                            }
+                                          },
+                                        ),
                                 )
                                 // StreamBuilder(
                                 //   stream: shopPageController.indexStream,

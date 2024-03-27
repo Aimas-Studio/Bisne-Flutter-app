@@ -1,6 +1,8 @@
+import 'package:bisne/src/models/home/presentations/controllers/home_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../shop/export.dart';
 import '../../../shop/infrastructure/services/get_shop_info.dart';
 import '../../../shop/presentation/screens/shop_info_page.dart';
 
@@ -20,11 +22,19 @@ class DrawerHomeWidget extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 12),
-                  MenuItem(
-                    text: 'Administrar Tienda',
-                    icon: Icons.maps_home_work_outlined,
-                    onClicked: () => selectedItem(context, 0),
-                  ),
+                  data.loggedIn
+                      ? data.shopExists
+                          ? MenuItem(
+                              text: 'Administrar Tienda',
+                              icon: Icons.maps_home_work_outlined,
+                              onClicked: () => selectedItem(context, 0),
+                            )
+                          : MenuItem(
+                              text: 'Publicar Negocio',
+                              icon: Icons.add,
+                              onClicked: () => selectedItem(context, 2),
+                            )
+                      : Container(),
                   const SizedBox(height: 5),
                   MenuItem(
                     text: 'Promocionarse',
@@ -60,14 +70,15 @@ class DrawerHomeWidget extends StatelessWidget {
     Navigator.of(context).pop();
     switch (index) {
       case 0:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const ShopInfoPage(), // Page 1
-        ));
+        Get.to(() => const ShopInfoPage());
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => const Scaffold(), // Page 2
         ));
+        break;
+      case 2:
+        Get.to(() => const EditOrCreateShopInfoPage(createShop: true));
         break;
     }
   }

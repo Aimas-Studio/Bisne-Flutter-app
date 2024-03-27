@@ -36,11 +36,10 @@ class SearchPage extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                  child: Expanded(
-                      child: CategoriesRow(
+                  child: CategoriesRow(
                     controller: _,
                     labels: const ["Tiendas", "Productos"],
-                  )),
+                  ),
                 ),
               ),
             ],

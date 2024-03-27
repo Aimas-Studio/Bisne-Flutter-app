@@ -36,8 +36,7 @@ class Shop {
     this.category = 'Alimentos',
   });
 
-  factory Shop.fromMap(Map<String, dynamic> map) {
-    print('Hola');
+  factory Shop.fromMap(Map<String, dynamic> map, String category) {
     return Shop(
       id: map['id'],
       name: map['nombre'],
@@ -54,6 +53,7 @@ class Shop {
       optionalLink: map['linkExtra'] ?? '',
       imageUrl: map['imageURL'] ?? '',
       shopLocation: map['direccion'] ?? '',
+      category: category == '' ? 'Nueva Tienda' : category,
     );
   }
 }

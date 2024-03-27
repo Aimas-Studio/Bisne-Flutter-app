@@ -16,7 +16,6 @@ import '../../infrastructure/services/create_ofert.dart';
 
 class NewProductPageController extends GetxController {
   static const idController = "newProductPage";
-  static const idPreviewController = 'previewProductController';
 
   final form = FormGroup({
     'productName': FormControl<String>(validators: [Validators.required]),
@@ -25,6 +24,7 @@ class NewProductPageController extends GetxController {
         FormControl<String>(validators: [Validators.required]),
     'priceProduct': FormControl<String>(validators: [Validators.required]),
     'password': FormControl<String>(validators: [Validators.required]),
+    'label': FormControl<String>(validators: [Validators.required]),
   });
 
   void updateController() {
@@ -54,7 +54,7 @@ class NewProductPageController extends GetxController {
     if (await createOfert(OfertDto: oferDto)) {
       Get.showSnackbar(
         const GetSnackBar(
-          message: 'Se ha creado satisfactoriamente la tienda',
+          message: 'Se ha creado satisfactoriamente el producto',
           backgroundColor: bisneColorPrimary,
           duration: Duration(seconds: 2),
         ),
@@ -72,7 +72,7 @@ class NewProductPageController extends GetxController {
     if (file != null) {
       fileImage = File(file.path);
       productImage = FileImage(fileImage!);
-      update([idController, idPreviewController]);
+      update([idController]);
     }
   }
 }

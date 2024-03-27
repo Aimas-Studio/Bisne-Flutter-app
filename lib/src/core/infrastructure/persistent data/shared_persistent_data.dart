@@ -247,4 +247,13 @@ class PersistentData {
   set shopImageUrl(String url) {
     _appData.setString("imageUrl", url);
   }
+
+  //CATEGORIES
+  // Map<String, String> get generalCategories {
+  //   return _appData.get('generalCategories');
+  // }
+
+  // set generalCategories(bool value) {
+  //   _appData.setBool("generalCategories", value);
+  // }
 }

@@ -1,7 +1,7 @@
 import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:bisne/src/core/presentation/widgets/cards/table_card_widget.dart';
 import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
-import 'package:bisne/src/models/home/test/Shops.dart';
+import 'package:bisne/src/models/home/test/shops.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

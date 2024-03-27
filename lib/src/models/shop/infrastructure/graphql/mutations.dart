@@ -130,3 +130,14 @@ mutation updateTienda(
   }
 }
 ''');
+
+final getCategory = gql(r'''
+query getCategory(
+    $id : ID!
+  )
+  {
+  tiendaCategoria(id: $id){
+    nombre
+  }
+}
+''');

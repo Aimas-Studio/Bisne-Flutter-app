@@ -1,3 +1,4 @@
+import 'package:bisne/src/models/home/presentations/controllers/home_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -61,7 +62,10 @@ class BasePage extends StatelessWidget {
             case 4:
               // return const NotificationPage();
               return appData.loggedIn
-                  ? UserInfoPage(user: getUserInfo())
+                  ? UserInfoPage(
+                      user: getUserInfo(),
+                      isAdmin: data.shopExists,
+                    )
                   : const LoginPage();
             default:
               return const HomePage();

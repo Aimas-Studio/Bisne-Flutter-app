@@ -1,5 +1,6 @@
-import 'package:bisne/src/models/products/entities/product_entitiy.dart';
 import 'package:bisne/src/models/shop/domain/entities/shop_entity.dart';
+
+import '../../products/export.dart';
 
 final Shop shop = Shop(
   manageId: 1,
@@ -74,6 +75,8 @@ final Product product = Product(
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",
     price: 1222.0,
+    category: 'chocolate',
+    label: 'et',
     rate: "4.5",
     shop: shop);
 
@@ -83,6 +86,8 @@ final Product product2 = Product(
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",
     price: 1222.0,
+    category: 'chocolate',
+    label: 'et',
     rate: "3.5",
     shop: shop);
 
@@ -92,6 +97,8 @@ final Product product3 = Product(
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",
     price: 1222.0,
+    category: 'chocolate',
+    label: 'et',
     rate: "5",
     shop: shop);
 
@@ -101,6 +108,8 @@ final Product product4 = Product(
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",
     price: 1222.0,
+    category: 'chocolate',
+    label: 'et',
     rate: "1.5",
     shop: shop);
 
@@ -110,6 +119,8 @@ final Product product5 = Product(
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",
     price: 1222.0,
+    category: 'chocolate',
+    label: 'et',
     rate: "4.5",
     shop: shop);
 

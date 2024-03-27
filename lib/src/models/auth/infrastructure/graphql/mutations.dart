@@ -23,3 +23,35 @@ mutation registrarUsuario(
   }
 }
 ''');
+
+final getShopByAdmin = gql(r'''
+query getShopbyAdmin(
+  $adminId: ID!
+){
+    administradorTienda(id: $adminId){
+      id
+      administradorId
+      nombre
+      descripcion
+      horario
+      imageURL
+      numeroTelefono
+      numeroWhatsapp
+      linkFacebook
+      linkInstagram
+      linkExtra
+      direccion
+      provincia
+      municipio
+      usuarioTelegram
+    }
+}
+''');
+
+final getAllAdmins = gql(r'''
+query getAllAdmins{
+    administradores {
+      id
+    }
+}
+''');

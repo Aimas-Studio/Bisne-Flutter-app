@@ -1,3 +1,4 @@
+import 'package:bisne/src/models/home/presentations/controllers/home_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -18,7 +19,7 @@ class EditUserPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: GetBuilder(
             id: EditUserController.idController,
-            init: EditUserController(user: getUserInfo()),
+            init: EditUserController(),
             builder: (controller) => SizedBox(
               width: double.infinity,
               child: Column(
@@ -27,7 +28,7 @@ class EditUserPage extends StatelessWidget {
                     shadow: controller.hasImage,
                     child: controller.hasImage
                         ? CustomFadeInImage(
-                            image: NetworkImage(controller.user.imageUrl),
+                            image: NetworkImage(data.userImageUrl),
                           )
                         : userPlaceHolder,
                   ),
@@ -37,11 +38,10 @@ class EditUserPage extends StatelessWidget {
                         onPressed: controller.pickImage,
                         child: const LightAppText(text: "ELEGIR FOTO"),
                       )),
-                  BoldAppText(text: controller.user.username, size: 30),
+                  BoldAppText(text: data.userName, size: 30),
                   Padding(
                     padding: const EdgeInsets.only(top: 3),
-                    child:
-                        RegularAppText(text: controller.user.email, size: 16),
+                    child: RegularAppText(text: data.userEmail, size: 16),
                   ),
                   const SizedBox(
                     height: 18,
@@ -63,7 +63,7 @@ class EditUserPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       OutlineAppButton(
-                        onPressed: () => controller.editUserSubmit,
+                        onPressed: () => controller.editUserSubmit(),
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         child: const LightAppText(text: "GUARDAR CAMBIOS"),
                       ),

@@ -10,7 +10,7 @@ class PreviewProductWidget extends StatelessWidget {
   final String productName;
   final String productCategory;
   final String productDescription;
-  final String? price;
+  final String price;
   final ImageProvider? productImage;
 
   const PreviewProductWidget({
@@ -18,7 +18,7 @@ class PreviewProductWidget extends StatelessWidget {
     this.productCategory = '',
     this.productDescription = '',
     this.productImage,
-    this.price = '0',
+    this.price = '',
     super.key,
   });
 
@@ -50,7 +50,7 @@ class PreviewProductWidget extends StatelessWidget {
               BoldAppText(text: productName, size: 30),
               Padding(
                 padding: const EdgeInsets.only(top: 20, bottom: 10),
-                child: LightAppText(text: productDescription),
+                child: LightAppText(text: productDescription, maxLines: 10),
               ),
               Row(
                 children: [

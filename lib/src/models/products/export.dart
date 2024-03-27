@@ -1,1 +1,1 @@
-export 'domain/product_entity.dart';
+export 'domain/entities/product_entity.dart';

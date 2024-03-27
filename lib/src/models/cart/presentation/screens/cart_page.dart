@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
-import '../../../products/entities/product_entitiy.dart';
+import '../../../products/export.dart';
 import '../controllers/cart_page_controller.dart';
 
 class CartPage extends StatefulWidget {

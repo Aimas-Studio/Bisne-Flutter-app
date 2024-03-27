@@ -1,274 +1,179 @@
-// import 'package:bisne/src/models/Products/Widgets/product_widgets.dart';
-// import 'package:flutter/material.dart';
-//
-// import '../../core/entities/product.dart';
-// import '../../core/utils/custom_icons.dart';
-// import '../../core/utils/decorations.dart';
-// import '../../core/widgets/buttons/custom_outline_button.dart';
-// import '../../core/widgets/images/image_picker_widget.dart';
-// import '../../core/widgets/custom_reactive_text_field.dart';
-// import '../../core/widgets/custom_app_bar.dart';
-// import '../../core/widgets/texts/texts_widgets.dart';
-//
-// class EditProductPage extends StatefulWidget {
-//   final ProductDump productDump;
-//
-//   late TextEditingController nameController;
-//   late TextEditingController categoryController;
-//   late TextEditingController descriptionController;
-//   late TextEditingController priceController;
-//   List<ImageProvider> images = [];
-//
-//   EditProductPage({required this.productDump, super.key}) {
-//     nameController = TextEditingController(text: productDump.name);
-//     categoryController = TextEditingController();
-//     descriptionController =
-//         TextEditingController(text: productDump.description);
-//     priceController = TextEditingController(text: productDump.price.toString());
-//     categoryController = TextEditingController(text: productDump.category);
-//     getImages();
-//   }
-//
-//   void getImages() {
-//     images.clear();
-//     for (String url in productDump.imagesUrl) {
-//       images.add(NetworkImage(url));
-//     }
-//   }
-//
-//   @override
-//   State<EditProductPage> createState() => _EditProductPageState();
-// }
-//
-// class _EditProductPageState extends State<EditProductPage> {
-//   List<ImagePickerWidget> imagesPickers = [];
-//   List<FileImage> previewImages = [];
-//
-//   _EditProductPageState() {
-//     imagesPickers.clear();
-//     for (int i = 0; i < 5; i++) {
-//       if (i < widget.images.length) {
-//         imagesPickers.add(
-//           ImagePickerWidget(
-//             defaultImage: widget.images[i],
-//             onTap: refresh,
-//           ),
-//         );
-//       } else {
-//         imagesPickers.add(
-//           ImagePickerWidget(
-//             onTap: refresh,
-//           ),
-//         );
-//       }
-//     }
-//   }
-//
-//   @override
-//   Widget build(context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         body: SingleChildScrollView(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               secondaryAppBar(context, true),
-//               Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   const Padding(
-//                     padding: EdgeInsets.symmetric(vertical: 20),
-//                     child: BoldAppText(text: "Editar Producto", size: 26),
-//                   ),
-//                   Container(
-//                     padding: const EdgeInsets.symmetric(horizontal: 30),
-//                     decoration: whiteBoxDecoration,
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         productSwiper(context, widget.images),
-//                         const SizedBox(height: 20),
-//                         RegularAppText(
-//                           text: widget.productDump.shopDump.name,
-//                           size: 16,
-//                         ),
-//                         BoldAppText(
-//                             text: widget.nameController.value.text, size: 24),
-//                         const SizedBox(height: 15),
-//                         LightAppText(
-//                           text: widget.descriptionController.value.text,
-//                           size: 15,
-//                         ),
-//                         Row(
-//                           children: [
-//                             BoldAppText(
-//                                 text: widget.priceController.value.text,
-//                                 size: 20),
-//                             const RegularAppText(text: "mn", size: 18),
-//                           ],
-//                         ),
-//                         const SizedBox(height: 50),
-//                       ],
-//                     ),
-//                   ),
-//                   const SizedBox(height: 50),
-//                   Column(
-//                     children: [
-//                       whiteLabelInputTextWidget(
-//                         context,
-//                         "CAMBIAR NOMBRE",
-//                         iconData: Icons.edit,
-//                         controller: widget.nameController,
-//                         onChanged: updateTexts,
-//                       ),
-//                       Container(
-//                         margin: const EdgeInsets.symmetric(vertical: 40),
-//                         child: whiteLabelInputTextWidget(
-//                           context,
-//                           "CAMBIAR CATEGORÍA",
-//                           iconData: Icons.edit,
-//                           controller: widget.categoryController,
-//                           onChanged: updateTexts,
-//                         ),
-//                       ),
-//                       whiteLabelInputTextWidget(
-//                         context,
-//                         "CAMBIAR DESCRIPCIÓN",
-//                         iconData: Icons.edit,
-//                         controller: widget.descriptionController,
-//                         onChanged: updateTexts,
-//                       ),
-//                       Container(
-//                         margin: const EdgeInsets.symmetric(vertical: 40),
-//                         child: whiteLabelInputTextWidget(
-//                           context,
-//                           "CAMBIAR PRECIO",
-//                           iconData: Icons.edit,
-//                           controller: widget.priceController,
-//                           onChanged: updateTexts,
-//                         ),
-//                       ),
-//                       Container(
-//                         margin: const EdgeInsets.only(top: 40, bottom: 60),
-//                         width: MediaQuery.of(context).size.width * 0.83,
-//                         decoration: whiteBoxDecoration,
-//                         child: Column(
-//                           children: [
-//                             const SizedBox(height: 10),
-//                             Row(
-//                               children: [
-//                                 Container(
-//                                   margin: const EdgeInsets.only(
-//                                       left: 25, right: 10),
-//                                   child: const Icon(
-//                                       Icons.add_photo_alternate_outlined),
-//                                 ),
-//                                 const Column(
-//                                   crossAxisAlignment: CrossAxisAlignment.start,
-//                                   children: [
-//                                     InputLightText(text: "IMÁGENES"),
-//                                     RegularAppText(
-//                                         text: "Selecciona hasta 5 imágenes",
-//                                         size: 13),
-//                                   ],
-//                                 ),
-//                               ],
-//                             ),
-//                             Container(
-//                               margin: const EdgeInsets.only(top: 20, bottom: 5),
-//                               child: Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceEvenly,
-//                                 crossAxisAlignment: CrossAxisAlignment.start,
-//                                 children: [
-//                                   Column(
-//                                     children: [
-//                                       imagesPickers[0],
-//                                       const SizedBox(height: 10),
-//                                       imagesPickers[1],
-//                                     ],
-//                                   ),
-//                                   Column(
-//                                     children: [
-//                                       imagesPickers[2],
-//                                       const SizedBox(height: 10),
-//                                       imagesPickers[3],
-//                                     ],
-//                                   ),
-//                                   Column(
-//                                     mainAxisAlignment: MainAxisAlignment.start,
-//                                     children: [
-//                                       imagesPickers[4],
-//                                     ],
-//                                   )
-//                                 ],
-//                               ),
-//                             ),
-//                             const SizedBox(height: 10),
-//                           ],
-//                         ),
-//                       ),
-//                       const Padding(
-//                         padding:
-//                             EdgeInsets.symmetric(horizontal: 40, vertical: 25),
-//                         child: LightAppText(
-//                           text:
-//                               "Nota : Debe ingresar su contraseña para guardar las modificaciones",
-//                           size: 14,
-//                         ),
-//                       ),
-//                       whiteLabelInputTextWidget(
-//                         context,
-//                         "Contraseña",
-//                         iconData: CustomIcons.password,
-//                       ),
-//                       const SizedBox(height: 30),
-//                       Padding(
-//                         padding: const EdgeInsets.symmetric(horizontal: 20),
-//                         child: Row(
-//                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                           children: [
-//                             OutlineAppButton(
-//                               onPressed: () {},
-//                               child:
-//                                   const LightAppText(text: "EDITAR PRODUCTO"),
-//                             ),
-//                             OutlineAppButton(
-//                               child: const LightAppText(text: "CANCELAR"),
-//                               onPressed: () {},
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                       const SizedBox(height: 45),
-//                     ],
-//                   ),
-//                 ],
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-//
-//   List<FileImage> getImagesPath() {
-//     List<FileImage> imagesPath = [];
-//     for (ImagePickerWidget fileImages in imagesPickers) {
-//       if (fileImages.image != null) {
-//         imagesPath.add(FileImage(fileImages.image!));
-//       }
-//     }
-//     return imagesPath;
-//   }
-//
-//   void updateTexts(String s) {
-//     setState(() {});
-//   }
-//
-//   void refresh() {
-//     setState(() {
-//       previewImages = getImagesPath();
-//     });
-//   }
-// }
+import 'package:bisne/src/core/domain/entities/categories/categories.dart';
+import 'package:bisne/src/core/presentation/icons/custom_icons.dart';
+import 'package:bisne/src/core/presentation/themes/themes_export.dart';
+import 'package:bisne/src/core/presentation/widgets/inputs/custom_reactive_drop_down_field.dart';
+import 'package:bisne/src/core/utils/drop_down_menu_item_from_values.dart';
+import 'package:bisne/src/models/products/presentation/controllers/edit_product_page_controller.dart';
+import 'package:bisne/src/models/products/presentation/widgets/preview_product_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:reactive_forms/reactive_forms.dart';
+
+import '../../../../core/presentation/widgets/widgets_export.dart';
+import '../../export.dart';
+
+class EditProductPage extends StatelessWidget {
+  final Product product;
+
+  const EditProductPage({super.key, required this.product});
+  @override
+  Widget build(context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: CustomAppBar(),
+        backgroundColor: backgroundAppColor,
+        body: SingleChildScrollView(
+          child: GetBuilder(
+            id: EditProductPageController.idController,
+            init: EditProductPageController(product: product),
+            builder: (controller) => ReactiveForm(
+              formGroup: controller.form,
+              child: Column(
+                children: [
+                  const BoldAppText(text: 'Editar Producto', size: 30),
+                  ReactiveFormConsumer(
+                      builder: (context, FormGroup formGroup, Widget? child) {
+                    return PreviewProductWidget(
+                      productName: controller.productName,
+                      productDescription: controller.productDescription,
+                      productCategory: controller.productCategory,
+                      price: controller.productPrice,
+                      productImage: controller.hasImageChange
+                          ? controller.productImage
+                          : NetworkImage(product.imageUrl),
+                    );
+                  }),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 30),
+                          child: DecoratedWhiteBox(
+                              child: CustomReactiveTextField(
+                                  prefixIcon: Icons.edit,
+                                  labelText: 'CAMBIAR NOMBRE',
+                                  formName: 'productName')),
+                        ),
+                        DecoratedWhiteBox(
+                          child: CustomReactiveDropDownField(
+                              labelText: 'CAMBIAR CATEGORÍA',
+                              items: getItems(categories.keys.toList()),
+                              formName: 'productCategory'),
+                        ),
+                        const SizedBox(height: 30),
+                        const DecoratedWhiteBox(
+                            child: CustomReactiveTextField(
+                                prefixIcon: Icons.edit,
+                                labelText: 'CAMBIAR ETIQUETA',
+                                formName: 'label')),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 30),
+                          child: DecoratedWhiteBox(
+                            child: CustomReactiveTextField(
+                                prefixIcon: Icons.edit,
+                                labelText: 'CAMBIAR DESCRIPCIÓN',
+                                formName: 'productDescription'),
+                          ),
+                        ),
+                        const DecoratedWhiteBox(
+                            child: CustomReactiveTextField(
+                                prefixIcon: Icons.edit,
+                                labelText: 'CAMBIAR PRECIO',
+                                formName: 'productPrice')),
+                        Column(
+                          children: [
+                            const SizedBox(height: 60),
+                            DecoratedWhiteBox(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    bottom: 40, top: 10, right: 10, left: 10),
+                                child: Column(
+                                  children: [
+                                    const Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                            Icons.add_photo_alternate_outlined),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            LightAppText(
+                                              text: 'IMÁGENES',
+                                              size: 13,
+                                            ),
+                                            RegularAppText(
+                                                text: 'Selecciona una imagen'),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    ImagePicker(
+                                      onTap: controller.pickImage,
+                                      image: controller.productImage,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 100),
+                            const LightAppText(
+                              align: TextAlign.center,
+                              text:
+                                  "NOTA: Debe ingresar su contraseña para guardar las modificaciones",
+                              size: 14,
+                              maxLines: 3,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(
+                                  top: 20, bottom: 50, right: 30, left: 30),
+                              child: DecoratedWhiteBox(
+                                child: CustomReactiveTextField(
+                                  labelText: 'CONTRASEÑA',
+                                  formName: 'password',
+                                  prefixIcon: CustomIcons.password,
+                                  passwordFieldShowOrHide: true,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ReactiveFormConsumer(
+                                  builder: (context, formGroup, child) {
+                                    return OutlineAppButton(
+                                      enabled: controller.form.valid,
+                                      onPressed: controller.editProductSubmit,
+                                      child: const LightAppText(
+                                          text: 'GUARDAR CAMBIOS'),
+                                    );
+                                  },
+                                ),
+                                OutlineAppButton(
+                                  onPressed: () {
+                                    controller.form.value.clear();
+                                    Get.back();
+                                  },
+                                  child: const LightAppText(text: 'Cancelar'),
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 100),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

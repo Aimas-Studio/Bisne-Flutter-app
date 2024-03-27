@@ -1,6 +1,6 @@
-import 'dart:ffi';
-
 import 'package:bisne/src/models/factures/presentation/screens/factures_page.dart';
+import 'package:bisne/src/models/home/presentations/controllers/home_page_controller.dart';
+import 'package:bisne/src/models/shop/presentation/screens/shop_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,8 +16,8 @@ import 'edit_user_page.dart';
 
 class UserInfoPage extends StatelessWidget {
   final User user;
-
-  const UserInfoPage({super.key, required this.user});
+  final bool isAdmin;
+  const UserInfoPage({super.key, required this.user, required this.isAdmin});
 
   @override
   Widget build(context) {
@@ -91,8 +91,11 @@ class UserInfoPage extends StatelessWidget {
 final List<ContentPanel> _contentPanel1 = [
   ContentPanel(CustomIcons.finished, "Pedidos Realizados",
       () => Get.to(() => const FacturesPage())),
-  ContentPanel(Icons.add, "Publicar Negocio",
-      () => Get.to(() => const EditOrCreateShopInfoPage(createShop: true)))
+  data.shopExists
+      ? ContentPanel(Icons.maps_home_work_outlined, "Administrar Tienda",
+          () => Get.to(() => const ShopInfoPage()))
+      : ContentPanel(Icons.add, "Publicar Negocio",
+          () => Get.to(() => const EditOrCreateShopInfoPage(createShop: true)))
 ];
 
 final List<ContentPanel> _contentPanel2 = [

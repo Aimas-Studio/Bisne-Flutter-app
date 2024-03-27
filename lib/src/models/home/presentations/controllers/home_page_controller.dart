@@ -1,4 +1,5 @@
 import 'package:bisne/src/core/infrastructure/persistent%20data/shared_persistent_data.dart';
+import 'package:bisne/src/models/shop/infrastructure/graphql/mutations.dart';
 import 'package:bisne/src/models/user/export.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -36,9 +37,32 @@ class HomePageController extends GetxController {
     if (result.hasException) {
       return [];
     }
-    final tiendas = (result.data?['tiendas'] as List).map((data) {
-      return data == null ? null : Shop.fromMap(data as Map<String, dynamic>);
-    }).toList();
+
+    final tiendas =
+        Future.wait((result.data?['tiendas'] as List).map((data) async {
+      final QueryOptions categoryOptions = QueryOptions(
+        document: getCategory,
+        variables: {'id': data['id']},
+      );
+      try {
+        final QueryResult result = await client.query(categoryOptions);
+        if (result.hasException) {
+          print(
+              'No se encontró la categoría para la tienda: ${data['nombre']}');
+          return data == null
+              ? null
+              : Shop.fromMap(data as Map<String, dynamic>, '');
+        }
+        return data == null
+            ? null
+            : Shop.fromMap(data as Map<String, dynamic>,
+                result.data!['tiendaCategoria']['nombre']);
+      } catch (e) {
+        return data == null
+            ? null
+            : Shop.fromMap(data as Map<String, dynamic>, '');
+      }
+    }).toList());
     return tiendas;
   }
 }

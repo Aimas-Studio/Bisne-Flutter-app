@@ -28,3 +28,42 @@ mutation addOferta(
 
 
 ''');
+
+final createLabelMutation = gql(r'''
+mutation addLabel(
+  $name : String!, 
+){
+  addEtiqueta(input: {
+    nombre: $name,
+  }){
+    etiqueta{
+      id
+    }
+  }
+}
+''');
+
+final getAllProducts = gql(r'''
+  query (
+    $shopId : ID!
+  ){
+    tiendaOfertas(id: $shopId) {
+    id
+    imageURL
+    etiquetaId
+    categoriaId
+    precio
+    nombre
+  }
+}
+''');
+
+final getLabelName = gql(r'''
+  query (
+    $labelId : ID!
+  ){
+    etiqueta(id: $labelId) {
+      nombre
+    }
+  }
+''');

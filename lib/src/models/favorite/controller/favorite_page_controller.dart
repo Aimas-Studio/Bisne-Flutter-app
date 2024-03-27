@@ -20,8 +20,9 @@ class FavoritePageController extends GetxController {
     }
 
     final tiendas = (result.data?['tiendas'] as List)
-        .map((data) =>
-            data == null ? null : Shop.fromMap(data as Map<String, dynamic>))
+        .map((data) => data == null
+            ? null
+            : Shop.fromMap(data as Map<String, dynamic>, ''))
         .toList();
     return tiendas;
   }

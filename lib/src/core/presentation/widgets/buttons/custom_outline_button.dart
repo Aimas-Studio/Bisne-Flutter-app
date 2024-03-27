@@ -22,7 +22,7 @@ class OutlineAppButton extends StatelessWidget {
     this.color = backgroundAppColor,
     this.child,
     this.width,
-    this.height = 40,
+    this.height = 30,
     this.borderColor = fontAppColor,
     this.padding,
   });

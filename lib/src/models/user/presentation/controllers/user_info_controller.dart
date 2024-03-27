@@ -16,5 +16,6 @@ class UserInfoController extends GetxController {
     final homeController = Get.find<HomePageController>();
     homeController.setLogout();
     baseController.obj = 2;
+    _data.shopExists = false;
   }
 }

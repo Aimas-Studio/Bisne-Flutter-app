@@ -24,7 +24,9 @@ class SearchPageController extends GetxController {
       return [];
     }
     final tiendas = (result.data?['tiendas'] as List).map((data) {
-      return data == null ? null : Shop.fromMap(data as Map<String, dynamic>);
+      return data == null
+          ? null
+          : Shop.fromMap(data as Map<String, dynamic>, '');
     }).toList();
     return tiendas;
   }

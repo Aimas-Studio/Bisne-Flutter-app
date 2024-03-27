@@ -1,6 +1,10 @@
-class EditUserDto {
-  final String userName;
-  final String? urlImage;
+import 'package:flutter/material.dart';
 
-  EditUserDto({required this.userName, this.urlImage});
+class EditUserDto {
+  final String userId;
+  final String userName;
+  final String urlImage;
+
+  EditUserDto(
+      {required this.userName, required this.urlImage, required this.userId});
 }

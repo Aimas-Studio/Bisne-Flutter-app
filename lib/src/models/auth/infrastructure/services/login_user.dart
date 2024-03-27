@@ -1,5 +1,6 @@
 import 'package:bisne/src/core/infrastructure/persistent%20data/shared_persistent_data.dart';
 import 'package:bisne/src/models/auth/domain/dtos/login_dto.dart';
+import 'package:bisne/src/models/auth/infrastructure/graphql/mutations.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -54,15 +55,7 @@ query getAllUsers{
 }
 
 Future<bool> isAdminUser() async {
-  var base = r'''
-query getAllAdmins{
-    administradores {
-      id
-    }
-}
-''';
-
-  final QueryOptions options = QueryOptions(document: gql(base));
+  final QueryOptions options = QueryOptions(document: getAllAdmins);
   try {
     final QueryResult response = await client.query(options);
     if (!response.hasException) {
@@ -81,29 +74,10 @@ query getAllAdmins{
 }
 
 Future<bool> getShop() async {
-  var base = '''
-query getTiendabyAdmin{
-    administradorTienda(id: "${_data.idUser}"){
-      id
-      administradorId
-      nombre
-      descripcion
-      horario
-      imageURL
-      numeroTelefono
-      numeroWhatsapp
-      linkFacebook
-      linkInstagram
-      linkExtra
-      direccion
-      provincia
-      municipio
-      usuarioTelegram
-    }
-}
-''';
-
-  final QueryOptions options = QueryOptions(document: gql(base));
+  final QueryOptions options =
+      QueryOptions(document: getShopByAdmin, variables: {
+    'adminId': _data.idUser,
+  });
   try {
     final QueryResult response = await client.query(options);
     if (!response.hasException) {
@@ -121,6 +95,7 @@ query getTiendabyAdmin{
           response.data!['administradorTienda'][0]['descripcion'];
       _data.shopOpeningTime =
           response.data!['administradorTienda'][0]['horario'];
+      _data.shopExists = true;
       return true;
     } else {
       return false;

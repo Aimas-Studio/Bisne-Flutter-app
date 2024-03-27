@@ -1,7 +1,7 @@
 import 'package:bisne/src/models/cart/presentation/controllers/cart_page_controller.dart';
 import 'package:get/get.dart';
 
-import '../../entities/product_entitiy.dart';
+import '../../domain/entities/product_entity.dart';
 
 class ProductPageController extends GetxController {
   final Product product;

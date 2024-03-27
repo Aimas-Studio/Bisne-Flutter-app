@@ -1,15 +1,14 @@
-import 'package:bisne/src/core/infrastructure/persistent%20data/shared_persistent_data.dart';
+import 'package:bisne/src/models/inventory/presentation/screens/inventory_page.dart';
 import 'package:bisne/src/models/products/presentation/screens/new_product_page.dart';
-import 'package:bisne/src/models/user/export.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/entities/content_panel.dart';
+import '../../../../core/infrastructure/persistent data/shared_persistent_data.dart';
 import '../../../../core/presentation/icons/custom_icons.dart';
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../../core/presentation/widgets/widgets_export.dart';
 import '../../../user/presentation/widgets/white_option_button_list.dart';
-import '../../domain/entities/shop_entity.dart';
 import '../../infrastructure/services/get_shop_info.dart';
 import 'edit_or_create_shop_info_page.dart';
 
@@ -69,7 +68,9 @@ class ShopInfoPage extends StatelessWidget {
 }
 
 final List<ContentPanel> _contentPanel1 = [
-  ContentPanel(Icons.list, "Administrar Inventario", () {}),
+  ContentPanel(Icons.list, "Administrar Inventario", () {
+    Get.to(() => const InventoryPage());
+  }),
   ContentPanel(CustomIcons.finished, "Pedidos Realizados", () {}),
   ContentPanel(Icons.add, "Publicar Producto",
       () => Get.to(() => const NewProductPage()))
