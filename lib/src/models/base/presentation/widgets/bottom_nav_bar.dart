@@ -1,9 +1,16 @@
+import 'package:bisne/src/models/favorite/controller/favorite_page_controller.dart';
+import 'package:bisne/src/models/home/presentations/controllers/home_page_controller.dart';
+import 'package:bisne/src/models/notifications/presentation/controller/notification_controller.dart';
+import 'package:bisne/src/models/notifications/presentation/screens/notifications_page.dart';
+import 'package:bisne/src/models/search/presentation/controllers/search_page_controller.dart';
+import 'package:bisne/src/models/user/presentation/controllers/user_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/presentation/themes/colors.dart';
 import '../../../notifications/export.dart';
 import '../controllers/base_page_controller.dart';
+import '../screens/base_page.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key, required this.basePageController});
@@ -12,6 +19,13 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final PageIds = [
+      NotificationController.id,
+      SearchPageController.id,
+      HomePageController.idController,
+      FavoritePageController.id,
+      UserInfoController.id
+    ];
     return Container(
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -37,6 +51,7 @@ class BottomNavBar extends StatelessWidget {
                       selected: basePageController.obj == 0,
                       onPressed: () {
                         onTabTapped(0);
+                        Get.find<NotificationController>().update([PageIds[0]]);
                       },
                     ),
                     IconBottomBar(
@@ -44,6 +59,7 @@ class BottomNavBar extends StatelessWidget {
                       selected: basePageController.obj == 1,
                       onPressed: () {
                         onTabTapped(1);
+                        Get.find<SearchPageController>().update([PageIds[0]]);
                       },
                     ),
                     IconBottomBar(
@@ -51,6 +67,7 @@ class BottomNavBar extends StatelessWidget {
                       selected: basePageController.obj == 2,
                       onPressed: () {
                         onTabTapped(2);
+                        Get.find<HomePageController>().update([PageIds[0]]);
                       },
                     ),
                     IconBottomBar(
@@ -58,12 +75,16 @@ class BottomNavBar extends StatelessWidget {
                         selected: basePageController.obj == 3,
                         onPressed: () {
                           onTabTapped(3);
+                          Get.find<FavoritePageController>()
+                              .update([PageIds[0]]);
                         }),
                     IconBottomBar(
                       icon: Icons.person_outline_outlined,
                       selected: basePageController.obj == 4,
                       onPressed: () {
                         onTabTapped(4);
+                        if (appData.loggedIn)
+                          Get.find<UserInfoController>().update([PageIds[0]]);
                       },
                     )
                   ],

@@ -11,6 +11,8 @@ class BisneCard extends StatelessWidget {
   final double widthCard;
   final double? price;
   final VoidCallback onpressed;
+  final bool isFavorite;
+  final String id;
 
   const BisneCard({
     Key? key,
@@ -22,6 +24,8 @@ class BisneCard extends StatelessWidget {
     required this.rate,
     required this.onpressed,
     this.price,
+    required this.isFavorite,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -46,10 +50,14 @@ class BisneCard extends StatelessWidget {
             SizedBox(
               height: 150,
               child: PhotoCard(
-                  widthMedia: widthCard,
-                  heightMedia: heightCard,
-                  image: image,
-                  rate: rate),
+                widthMedia: widthCard,
+                heightMedia: heightCard,
+                image: image,
+                rate: rate,
+                isFavorite: isFavorite,
+                isShop: price == null,
+                id: id,
+              ),
             ),
             Expanded(
               child: Padding(

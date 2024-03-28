@@ -22,8 +22,8 @@ class DrawerHomeWidget extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 12),
-                  data.loggedIn
-                      ? data.shopExists
+                  PerData.loggedIn
+                      ? PerData.shopExists
                           ? MenuItem(
                               text: 'Administrar Tienda',
                               icon: Icons.maps_home_work_outlined,

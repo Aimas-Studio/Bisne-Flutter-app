@@ -1,3 +1,4 @@
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../texts/texts_widgets.dart';
@@ -10,12 +11,18 @@ class PhotoCard extends StatelessWidget {
     required this.heightMedia,
     required this.image,
     required this.rate,
+    required this.isFavorite,
+    required this.isShop,
+    required this.id,
   });
 
   final double widthMedia;
   final double heightMedia;
   final String image;
   final String rate;
+  final bool isFavorite;
+  final bool isShop;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,7 @@ class PhotoCard extends StatelessWidget {
             child: FadeInImage(
                 placeholder:
                     const AssetImage('assets/Images/placeholder_baner.png'),
-                image: NetworkImage(image),
+                image: customNetworkImage(image),
                 fit: BoxFit.cover,
                 height: heightMedia,
                 width: widthMedia),
@@ -54,8 +61,11 @@ class PhotoCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const FavoriteButton(
+                FavoriteButton(
                   size: 1,
+                  isFavorite: isFavorite,
+                  isShop: isShop,
+                  id: id,
                 ),
               ],
             ),

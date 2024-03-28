@@ -48,16 +48,18 @@ Future<bool> createShop({required CreateShopDto shopDto}) async {
   try {
     final QueryResult response = await client.mutate(options);
     if (!response.hasException) {
-      _data.shopName = response.data!['tienda']['nombre'];
-      _data.shopAdminId = response.data!['tienda']['administradorId'];
+      _data.shopName = response.data!['addTienda']['tienda']['nombre'];
+      _data.shopAdminId =
+          response.data!['addTienda']['tienda']['administradorId'];
       _data.shopCategory = '';
-      _data.shopId = response.data!['tienda']['id'];
-      _data.shopRegion = response.data!['tienda']['provincia'];
-      _data.shopMunicipality = response.data!['tienda']['municipio'];
+      _data.shopId = response.data!['addTienda']['tienda']['id'];
+      _data.shopRegion = response.data!['addTienda']['tienda']['provincia'];
+      _data.shopMunicipality =
+          response.data!['addTienda']['tienda']['municipio'];
       _data.shopExists = true;
-      _data.shopImageUrl = response.data!['tienda']['imageURL'];
-      _data.description = response.data!['tienda']['descripcion'];
-      _data.shopOpeningTime = response.data!['tienda']['horario'];
+      _data.shopImageUrl = response.data!['addTienda']['tienda']['imageURL'];
+      _data.description = response.data!['addTienda']['tienda']['descripcion'];
+      _data.shopOpeningTime = response.data!['addTienda']['tienda']['horario'];
       return true;
     } else {
       return false;

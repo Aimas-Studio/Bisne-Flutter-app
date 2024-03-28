@@ -75,7 +75,20 @@ class UserInfoPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 18),
-                  WhiteOptionButtonList(content: _contentPanel1),
+                  WhiteOptionButtonList(content: [
+                    ContentPanel(CustomIcons.finished, "Pedidos Realizados",
+                        () => Get.to(() => const FacturesPage())),
+                    PerData.shopExists
+                        ? ContentPanel(
+                            Icons.maps_home_work_outlined,
+                            "Administrar Tienda",
+                            () => Get.to(() => const ShopInfoPage()))
+                        : ContentPanel(
+                            Icons.add,
+                            "Publicar Negocio",
+                            () => Get.to(() => const EditOrCreateShopInfoPage(
+                                createShop: true)))
+                  ]),
                   const SizedBox(height: 20),
                   WhiteOptionButtonList(content: _contentPanel2),
                 ],
@@ -87,16 +100,6 @@ class UserInfoPage extends StatelessWidget {
     );
   }
 }
-
-final List<ContentPanel> _contentPanel1 = [
-  ContentPanel(CustomIcons.finished, "Pedidos Realizados",
-      () => Get.to(() => const FacturesPage())),
-  data.shopExists
-      ? ContentPanel(Icons.maps_home_work_outlined, "Administrar Tienda",
-          () => Get.to(() => const ShopInfoPage()))
-      : ContentPanel(Icons.add, "Publicar Negocio",
-          () => Get.to(() => const EditOrCreateShopInfoPage(createShop: true)))
-];
 
 final List<ContentPanel> _contentPanel2 = [
   //TODO contactar equipo mensaje a presi

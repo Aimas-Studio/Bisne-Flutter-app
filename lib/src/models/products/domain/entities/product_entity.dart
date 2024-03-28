@@ -9,6 +9,8 @@ class Product {
   double price;
   String rate;
   Shop shop;
+  bool isFavorite;
+  String id;
 
   Product({
     required this.name,
@@ -19,19 +21,23 @@ class Product {
     required this.price,
     required this.shop,
     required this.rate,
+    required this.isFavorite,
+    required this.id,
   });
 
-  factory Product.fromMap(
-      Map<String, dynamic> product, Shop shop, String category, String label) {
+  factory Product.fromMap(Map<String, dynamic> product, Shop shop,
+      String category, String label, bool isFavorite) {
     return Product(
+      id: product['id'],
       name: product['nombre'],
-      description: product['descripcion'],
+      description: product['descripcion'] ?? '',
       imageUrl: product['imageURL'] ?? '',
       category: category,
       label: label,
-      price: product['precio'],
+      price: product['precio'].toDouble(),
       shop: shop,
       rate: product['rate'] ?? '4.5',
+      isFavorite: isFavorite,
     );
   }
 }

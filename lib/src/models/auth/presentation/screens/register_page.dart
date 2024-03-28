@@ -26,10 +26,10 @@ class RegisterPage extends StatelessWidget {
                     width: double.infinity,
                     child: Column(
                       children: [
-                        const SizedBox(height: 90),
+                        const SizedBox(height: 30),
                         const Icon(Icons.account_circle,
                             color: fontAppColor, size: 110),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 5),
                         const BoldAppText(text: "Registrarse", size: 30),
                         const SizedBox(height: 15),
                         Container(
@@ -62,10 +62,11 @@ class RegisterPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 30),
                         ReactiveFormConsumer(builder: (context, form, child) {
                           return CustomButtonArrowIcon(
-                            width: MediaQuery.of(context).size.width * 0.5,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
                             enabled: form.valid,
                             color: form.valid
                                 ? buttonColor
@@ -74,20 +75,26 @@ class RegisterPage extends StatelessWidget {
                             text: 'INGRESAR',
                           );
                         }),
-                        const SizedBox(height: 35),
+                        const SizedBox(height: 20),
                         const LightAppText(text: "¿Ya tienes una cuenta?"),
                         const SizedBox(height: 5),
-                        LightAppText(
-                          text:
-                              "Si es asi puedes iniciar sesión \n en nuestra app",
-                          color: fontAppColor.withOpacity(0.5),
-                          align: TextAlign.center,
-                        ),
+                        // LightAppText(
+                        //   text:
+                        //       "Si es asi puedes iniciar sesión \n en nuestra app",
+                        //   color: fontAppColor.withOpacity(0.5),
+                        //   align: TextAlign.center,
+                        // ),
                         const SizedBox(height: 10),
                         CustomLinkWidget(
                           text: 'Iniciar Sesión',
                           onPressed: () {
-                            Get.to(() => LoginPage());
+                            Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation,
+                                          secondaryAnimation) =>
+                                      const LoginPage(),
+                                ));
                           },
                         )
                       ],

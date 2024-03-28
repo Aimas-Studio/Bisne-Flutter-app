@@ -20,7 +20,8 @@ query getAllUsers{
 }
 ''';
 
-  final QueryOptions options = QueryOptions(document: gql(base));
+  final QueryOptions options =
+      QueryOptions(document: gql(base), fetchPolicy: FetchPolicy.networkOnly);
 
   try {
     final QueryResult response = await client.query(options);
@@ -55,7 +56,8 @@ query getAllUsers{
 }
 
 Future<bool> isAdminUser() async {
-  final QueryOptions options = QueryOptions(document: getAllAdmins);
+  final QueryOptions options = QueryOptions(
+      document: getAllAdmins, fetchPolicy: FetchPolicy.networkOnly);
   try {
     final QueryResult response = await client.query(options);
     if (!response.hasException) {

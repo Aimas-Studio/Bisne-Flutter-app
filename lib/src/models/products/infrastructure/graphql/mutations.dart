@@ -67,3 +67,35 @@ final getLabelName = gql(r'''
     }
   }
 ''');
+
+final addProductToFavorite = gql(r'''
+mutation addProductToFavorite(
+    $userId : ID!
+    $itemId : ID!
+){
+  addUsuarioOfertaFav(input: {
+    usuarioId: $userId,
+    ofertaId: $itemId,
+    
+  }){
+    usuarioOfertaFav{
+      usuarioId
+    }
+  }
+}
+''');
+
+final getFavoriteProducts = gql(r''' 
+query getFavoriteProducts(
+  $id: ID!,
+){
+  usuarioOfertasFav(id: $id){
+    id
+    tiendaId
+    imageURL
+    descripcion
+    etiquetaId
+    categoriaId
+    precio
+    nombre
+  }}''');

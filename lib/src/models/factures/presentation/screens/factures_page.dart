@@ -8,7 +8,8 @@ import '../../infrastructure/services/orders_services.dart';
 import '../widgets/facture_widget.dart';
 
 class FacturesPage extends StatelessWidget {
-  const FacturesPage({super.key});
+  final bool shop;
+  const FacturesPage({super.key, this.shop = false});
 
   @override
   Widget build(context) {
@@ -27,7 +28,7 @@ class FacturesPage extends StatelessWidget {
                 // initialData: loadingPageWidget(),
                 builder: (context, AsyncSnapshot<List<Facture>> snapshot) {
                   return snapshot.hasData
-                      ? getOrdersWidget(context, snapshot.data!)
+                      ? getOrdersWidget(context, snapshot.data!, shop)
                       : loadingPageWidget();
                 },
               ),
@@ -39,7 +40,7 @@ class FacturesPage extends StatelessWidget {
   }
 }
 
-Widget getOrdersWidget(context, List<Facture> factures) {
+Widget getOrdersWidget(context, List<Facture> factures, bool shop) {
   List<Widget> orders = [];
   for (var element in factures) {
     orders
@@ -48,7 +49,7 @@ Widget getOrdersWidget(context, List<Facture> factures) {
         height: 50,
         child: const Divider(),
       ))
-      ..add(FactureWidget(facture: element));
+      ..add(FactureWidget(facture: element, shop: shop));
   }
   return Column(
     children: orders,

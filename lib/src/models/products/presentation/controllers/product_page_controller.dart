@@ -1,10 +1,12 @@
 import 'package:bisne/src/models/cart/presentation/controllers/cart_page_controller.dart';
+import 'package:bisne/src/models/shop/presentation/controllers/shop_page_controller.dart';
 import 'package:get/get.dart';
 
 import '../../domain/entities/product_entity.dart';
 
 class ProductPageController extends GetxController {
   final Product product;
+  static const id = 'productPageController';
   final CartController cartController = Get.find<CartController>();
   ProductPageController({required this.product});
   get topPosition {
@@ -38,6 +40,16 @@ class ProductPageController extends GetxController {
   }
 
   void addToCart() {
-    cartController.addProduct(product, count);
+    var productToBuy = product;
+    for (var item in cartController.itemsToBuy.keys) {
+      if (item.name == product.name &&
+          item.price == product.price &&
+          item.description == product.description &&
+          item.imageUrl == product.imageUrl) {
+        productToBuy = item;
+      }
+    }
+    cartController.addProduct(productToBuy, count);
+    Get.find<CartController>().update([CartController.idController]);
   }
 }

@@ -70,7 +70,9 @@ final Shop shop5 = Shop(
 final List<Shop> shops = [shop, shop2, shop3, shop4, shop5];
 
 final Product product = Product(
+    id: "",
     name: 'Bombones de Fresa',
+    isFavorite: false,
     description: "Simplemente una descripcion extensa para que se vea bonito",
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",
@@ -81,7 +83,9 @@ final Product product = Product(
     shop: shop);
 
 final Product product2 = Product(
+    id: "",
     name: 'Bombones de Fresa',
+    isFavorite: false,
     description: "Simplemente una descripcion extensa para que se vea bonito",
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",
@@ -92,7 +96,9 @@ final Product product2 = Product(
     shop: shop);
 
 final Product product3 = Product(
+    id: "",
     name: 'Bombones de Fresa',
+    isFavorite: false,
     description: "Simplemente una descripcion extensa para que se vea bonito",
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",
@@ -103,7 +109,9 @@ final Product product3 = Product(
     shop: shop);
 
 final Product product4 = Product(
+    id: "",
     name: 'Bombones de Fresa',
+    isFavorite: false,
     description: "Simplemente una descripcion extensa para que se vea bonito",
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",
@@ -114,7 +122,9 @@ final Product product4 = Product(
     shop: shop);
 
 final Product product5 = Product(
+    id: "",
     name: 'Bombones de Fresa',
+    isFavorite: false,
     description: "Simplemente una descripcion extensa para que se vea bonito",
     imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU18wOCm2A3H7tPKlDElcUDxJwOmp61ppz_g&usqp=CAU",

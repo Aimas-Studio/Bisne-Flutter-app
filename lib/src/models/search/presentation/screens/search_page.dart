@@ -39,6 +39,7 @@ class SearchPage extends StatelessWidget {
                   child: CategoriesRow(
                     controller: _,
                     labels: const ["Tiendas", "Productos"],
+                    idController: SearchPageController.id,
                   ),
                 ),
               ),

@@ -13,9 +13,10 @@ class Shop {
   String imageUrl;
   String category;
   int manageId;
-  List<String> subcategories = ['Subcategoria provisional'];
+  List<String> subcategories = [];
   String region;
   String municipality;
+  bool isFavorite;
 
   Shop({
     required this.id,
@@ -34,26 +35,28 @@ class Shop {
     this.optionalLink = '',
     this.telegramAccount = '',
     this.category = 'Alimentos',
+    this.isFavorite = false,
   });
 
-  factory Shop.fromMap(Map<String, dynamic> map, String category) {
+  factory Shop.fromMap(
+      Map<String, dynamic> map, String category, bool favorite) {
     return Shop(
-      id: map['id'],
-      name: map['nombre'],
-      region: map['provincia'],
-      municipality: map['municipio'],
-      openingHours: map['horario'],
-      description: map['descripcion'],
-      manageId: map['administradorId'],
-      whatsAppNumber: map['numeroWhatsapp'] ?? '',
-      phoneNumber: map['numeroTelefono'] ?? '',
-      telegramAccount: map['usuarioTelegram'] ?? '',
-      facebookAccount: map['linkFacebook'] ?? '',
-      instagramAccount: map['linkInstagram'] ?? '',
-      optionalLink: map['linkExtra'] ?? '',
-      imageUrl: map['imageURL'] ?? '',
-      shopLocation: map['direccion'] ?? '',
-      category: category == '' ? 'Nueva Tienda' : category,
-    );
+        id: map['id'],
+        name: map['nombre'],
+        region: map['provincia'] ?? '',
+        municipality: map['municipio'] ?? '',
+        openingHours: map['horario'],
+        description: map['descripcion'],
+        manageId: map['administradorId'],
+        whatsAppNumber: map['numeroWhatsapp'] ?? '',
+        phoneNumber: map['numeroTelefono'] ?? '',
+        telegramAccount: map['usuarioTelegram'] ?? '',
+        facebookAccount: map['linkFacebook'] ?? '',
+        instagramAccount: map['linkInstagram'] ?? '',
+        optionalLink: map['linkExtra'] ?? '',
+        imageUrl: map['imageURL'] ?? '',
+        shopLocation: map['direccion'] ?? '',
+        category: category == '' ? 'Nueva Tienda' : category,
+        isFavorite: favorite);
   }
 }

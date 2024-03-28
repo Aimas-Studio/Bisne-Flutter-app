@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/infrastructure/persistent data/shared_persistent_data.dart';
@@ -22,7 +23,8 @@ Widget getUserImage() {
     return CustomFadeInImage(
         image: FileImage(File(_persistentData.userImagePath)));
   } else if (_persistentData.userImageUrl.isNotEmpty) {
-    return CustomFadeInImage(image: NetworkImage(_persistentData.userImageUrl));
+    return CustomFadeInImage(
+        image: customNetworkImage(_persistentData.userImageUrl));
   } else {
     return userPlaceHolder;
   }

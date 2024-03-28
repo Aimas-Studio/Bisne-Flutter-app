@@ -18,8 +18,8 @@ Future<bool> editUser(EditUserDto editUserDto) async {
   try {
     final QueryResult response = await client.mutate(options);
     if (!response.hasException) {
-      data.userName = editUserDto.userName;
-      data.userImageUrl = editUserDto.urlImage;
+      PerData.userName = editUserDto.userName;
+      PerData.userImageUrl = editUserDto.urlImage;
       return true;
     } else {
       if (response.exception!.linkException.toString() == '') {

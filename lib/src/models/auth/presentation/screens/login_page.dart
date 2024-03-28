@@ -17,21 +17,22 @@ class LoginPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundAppColor,
-        body: SingleChildScrollView(
-          child: GetBuilder(
-              id: 'loginPage',
-              init: LoginController(),
-              builder: (controller) {
-                return ReactiveForm(
-                  formGroup: controller.form,
-                  child: SizedBox(
-                    width: double.infinity,
+        body: GetBuilder(
+            id: 'loginPage',
+            init: LoginController(),
+            builder: (controller) {
+              return ReactiveForm(
+                formGroup: controller.form,
+                child: SingleChildScrollView(
+                  child: Center(
                     child: Column(
                       children: [
-                        const SizedBox(height: 90),
+                        const SizedBox(
+                          height: 30,
+                        ),
                         const Icon(Icons.account_circle,
                             color: fontAppColor, size: 110),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 5),
                         const BoldAppText(text: "Iniciar Sesión", size: 30),
                         const SizedBox(height: 15),
                         Container(
@@ -63,10 +64,11 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 30),
                         ReactiveFormConsumer(builder: (context, form, child) {
                           return CustomButtonArrowIcon(
-                            width: MediaQuery.of(context).size.width * 0.5,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
                             enabled: form.valid,
                             color: form.valid
                                 ? buttonColor
@@ -75,12 +77,11 @@ class LoginPage extends StatelessWidget {
                             text: 'INGRESAR',
                           );
                         }),
-                        const SizedBox(height: 35),
+                        const SizedBox(height: 30),
                         const LightAppText(text: "¿Aún no tienes una cuenta?"),
                         const SizedBox(height: 5),
                         LightAppText(
-                          text:
-                              "Créala hoy mismo de manera rápida \n y disfruta de las ventajas",
+                          text: "Créala hoy mismo de manera rápida",
                           color: fontAppColor.withOpacity(0.5),
                           align: TextAlign.center,
                         ),
@@ -89,23 +90,30 @@ class LoginPage extends StatelessWidget {
                           child: CustomLinkWidget(
                             text: 'Registrarse en el Bisne',
                             onPressed: () {
-                              Get.to(() => const RegisterPage());
+                              Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (context, animation,
+                                            secondaryAnimation) =>
+                                        const RegisterPage(),
+                                  ));
+                              // Get.to(() => const RegisterPage());
                             },
                           ),
                         ),
-                        CustomLinkWidget(
-                          text: '¿Olvidaste tu contraseña?',
-                          color: Colors.red,
-                          onPressed: () {
-                            Get.to(() => ForgotPasswordPage());
-                          },
-                        ),
+                        // CustomLinkWidget(
+                        //   text: '¿Olvidaste tu contraseña?',
+                        //   color: Colors.red,
+                        //   onPressed: () {
+                        //     Get.to(() => ForgotPasswordPage());
+                        //   },
+                        // ),
                       ],
                     ),
                   ),
-                );
-              }),
-        ),
+                ),
+              );
+            }),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:bisne/src/core/presentation/widgets/buttons/main_button_widget.dart';
 import 'package:bisne/src/core/presentation/widgets/buttons/secundary_button_widget.dart';
 import 'package:bisne/src/core/presentation/widgets/cards/bisne_card_wiget.dart';
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,6 +21,7 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ProductPageController>(
       init: ProductPageController(product: product),
+      id: ProductPageController.id,
       builder: (productPageController) {
         return Scaffold(
           appBar: AppBar(
@@ -32,7 +34,7 @@ class ProductPage extends StatelessWidget {
                           size: 25,
                           shadow: false,
                           child: Image(
-                              image: NetworkImage(
+                              image: customNetworkImage(
                                   productPageController.product.imageUrl))),
                       const SizedBox(
                         width: 10,
@@ -66,7 +68,12 @@ class ProductPage extends StatelessWidget {
                   ),
             actions: [
               productPageController.topPosition > 0.1
-                  ? const FavoriteButton(size: 1.2)
+                  ? FavoriteButton(
+                      size: 1.2,
+                      isFavorite: productPageController.product.isFavorite,
+                      isShop: false,
+                      id: productPageController.product.id,
+                    )
                   : const IconCartWidget(),
               const SizedBox(
                 width: 25,
@@ -95,7 +102,7 @@ class ProductPage extends StatelessWidget {
                           child: Image(
                             fit: BoxFit.cover,
                             alignment: Alignment.center,
-                            image: NetworkImage(
+                            image: customNetworkImage(
                                 productPageController.product.imageUrl),
                           ),
                         ),
@@ -161,7 +168,6 @@ class ProductPage extends StatelessWidget {
                                       color: Colors.white,
                                     ),
                                     onPressed: () {
-                                      print("hola");
                                       showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
@@ -366,6 +372,9 @@ class BuyWindow extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(
+            height: 25,
+          ),
           SizedBox(
             width: 150,
             child: BisneCard(
@@ -385,6 +394,8 @@ class BuyWindow extends StatelessWidget {
               widthCard: 150,
               onpressed: () {},
               price: controller.product.price,
+              isFavorite: true,
+              id: controller.product.id,
             ),
           ),
           const SizedBox(
@@ -447,21 +458,6 @@ class BuyWindow extends StatelessWidget {
           ),
           const SizedBox(
             height: 25,
-          ),
-          SizedBox(
-            width: 270,
-            child: SecondaryButton(
-              text: const RegularAppText(
-                text: 'Eliminar productos',
-                size: 17,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ),
-          const SizedBox(
-            height: 5,
           ),
           SizedBox(
             width: 270,

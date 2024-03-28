@@ -1,3 +1,5 @@
+import 'package:bisne/src/core/presentation/themes/place_holders.dart';
+import 'package:bisne/src/core/presentation/widgets/images/circular_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/widgets/texts/texts_widgets.dart';
@@ -15,7 +17,13 @@ class ProductFactureDetailsWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        // CircularImage(image: NetworkImage(product.imagesUrl[0]), size: 45),
+        CircularImage(
+          child: Image.network(
+            product.imageUrl,
+            errorBuilder: (context, error, stackTrace) =>
+                const Image(image: placeHolderImageApp),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 15),
           child: Column(

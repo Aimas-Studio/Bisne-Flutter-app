@@ -58,13 +58,16 @@ class BasePage extends StatelessWidget {
               return const HomePage();
             case 3:
               // return const NotificationPage();
-              return const FavoritePage();
+              return appData.loggedIn
+                  ? const FavoritePage()
+                  : const LoginPage();
+
             case 4:
               // return const NotificationPage();
               return appData.loggedIn
                   ? UserInfoPage(
                       user: getUserInfo(),
-                      isAdmin: data.shopExists,
+                      isAdmin: PerData.shopExists,
                     )
                   : const LoginPage();
             default:

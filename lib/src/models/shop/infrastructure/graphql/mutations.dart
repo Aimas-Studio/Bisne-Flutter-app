@@ -141,3 +141,31 @@ query getCategory(
   }
 }
 ''');
+
+final getFavorite = gql(r'''
+query getFavorite(
+    $id : ID!
+  )
+  {
+  usuarioTiendasFav(id: $id){
+    id
+  }
+}
+''');
+
+final addShopToFavorite = gql(r'''
+mutation addShopToFavorite(
+    $userId : ID!
+    $itemId : ID!
+){
+  addUsuarioTiendaFav(input: {
+    usuarioId: $userId,
+    tiendaId: $itemId,
+    
+  }){
+    usuarioTiendaFav{
+      usuarioId
+    }
+  }
+}
+''');

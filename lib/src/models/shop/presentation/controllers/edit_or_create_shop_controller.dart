@@ -90,7 +90,7 @@ class EditOrCreateShopController extends GetxController {
     final urlImage = await uploadImage(fileImage!);
 
     final CreateShopDto shopDto = CreateShopDto(
-      adminId: data.idUser,
+      adminId: PerData.idUser,
       region: form.control('region').value,
       municipality: form.control('municipality').value,
       name: form.control('name').value,

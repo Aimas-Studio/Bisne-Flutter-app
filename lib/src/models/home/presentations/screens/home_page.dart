@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import '../../../../core/infrastructure/init/init_app.dart';
 import '../../../../core/presentation/widgets/promotions/banner_promotional_widget.dart';
 import '../../../../core/utils/search_row_widget.dart';
+import '../../../shop/domain/entities/shop_entity.dart';
 import '../../infrastructure/services/category_provider.dart';
 import '../controllers/home_page_controller.dart';
 import '../widgets/drawer_home_widget.dart';
@@ -26,6 +27,7 @@ class HomePage extends StatelessWidget {
       init: HomePageController(),
       id: HomePageController.idController,
       builder: (controller) {
+        controller.loadShops();
         return Scaffold(
           appBar: HomePageAppBar(),
           backgroundColor: fontAppColor2,
@@ -98,8 +100,8 @@ class HomePage extends StatelessWidget {
                                   : 2,
                               data: shops,
                             )
-                          : FutureBuilder(
-                              future: controller.fetchShops(),
+                          : StreamBuilder<List<Shop?>>(
+                              stream: controller.shopsStream,
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
                                   return TableCardWidget(

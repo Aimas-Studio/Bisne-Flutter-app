@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bisne/src/core/presentation/themes/place_holders.dart';
 import 'package:bisne/src/core/presentation/widgets/images/custom_fade_in_image.dart';
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/infrastructure/persistent data/shared_persistent_data.dart';
@@ -26,7 +27,8 @@ Widget getShopImage() {
     return CustomFadeInImage(
         image: FileImage(File(_persistentData.shopImagePath)));
   } else if (_persistentData.shopImageUrl.isNotEmpty) {
-    return CustomFadeInImage(image: NetworkImage(_persistentData.shopImageUrl));
+    return CustomFadeInImage(
+        image: customNetworkImage(_persistentData.shopImageUrl));
   } else {
     return userPlaceHolder;
   }

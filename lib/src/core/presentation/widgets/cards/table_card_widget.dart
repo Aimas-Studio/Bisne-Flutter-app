@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:bisne/src/core/presentation/widgets/texts/texts_widgets.dart';
-import 'package:bisne/src/models/products/export.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../models/products/domain/entities/product_entity.dart';
 import '../../../../models/products/presentation/screens/product_page.dart';
 import '../../../../models/shop/export.dart';
 import 'bisne_card_wiget.dart';
@@ -26,6 +26,11 @@ class TableCardWidget extends StatelessWidget {
 
   List<TableRow> _createTableRow(
       {required List<dynamic> cards, required BuildContext context}) {
+    if (cards.isEmpty) {
+      return [
+        const TableRow(children: [SizedBox()])
+      ];
+    }
     List<TableRow> listOfColums = [];
     List<Container> colmuns = [];
 
@@ -35,7 +40,7 @@ class TableCardWidget extends StatelessWidget {
     double heightCard = MediaQuery.sizeOf(context).width > 550 ? 170 : 130;
     double widthCard = MediaQuery.sizeOf(context).width > 550 ? 180 : 145;
 
-    if (data is List<Product>) {
+    if (cards[0] is Product) {
       heightCard = MediaQuery.of(context).size.width > 550 ? 150 : 110;
     }
 
@@ -52,17 +57,17 @@ class TableCardWidget extends StatelessWidget {
                   text: cards[i]!.name,
                   size: 16,
                   color: Colors.black,
-                  align: (data is List<Product>)
+                  align: (cards[0] is Product)
                       ? TextAlign.start
                       : TextAlign.center,
                 ),
                 category: RegularAppText(
-                  text: (data is List<Product>)
+                  text: (cards[0] is Product)
                       ? cards[i].shop.name
                       : cards[i].category,
                   size: 12,
                   maxLines: 1,
-                  align: (data is List<Product>)
+                  align: (cards[0] is Product)
                       ? TextAlign.start
                       : TextAlign.center,
                 ),
@@ -73,19 +78,23 @@ class TableCardWidget extends StatelessWidget {
                 heightCard: heightCard,
                 widthCard: widthCard,
                 onpressed: () {
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation1, animation2) =>
-                            (data is List<Product>)
-                                ? ProductPage(product: data[i])
-                                : ShopPage(shop: data[i]),
-                      ),
-                    );
-                  });
+                  WidgetsBinding.instance.addPostFrameCallback(
+                    (_) {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation1, animation2) =>
+                              (cards[0] is Product)
+                                  ? ProductPage(product: cards[i])
+                                  : ShopPage(shop: cards[i]),
+                        ),
+                      );
+                    },
+                  );
                 },
-                price: (data is List<Product>) ? cards[i].price : null,
+                id: cards[i]!.id,
+                isFavorite: cards[i]!.isFavorite,
+                price: (cards[0] is Product) ? cards[i].price : null,
               ),
             ),
           ),

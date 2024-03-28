@@ -14,11 +14,12 @@ class IconCartWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => CartPage(),
+          builder: (context) => const CartPage(),
         ),
       ),
       child: GetBuilder(
         init: CartController(),
+        id: CartController.idController,
         builder: (cartController) => Badge(
           offset: const Offset(-3, 0),
           isLabelVisible: cartController.itemsToBuy.isNotEmpty,

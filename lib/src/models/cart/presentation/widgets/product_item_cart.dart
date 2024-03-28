@@ -1,3 +1,4 @@
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:bisne/src/models/cart/presentation/controllers/cart_page_controller.dart';
 import 'package:bisne/src/models/cart/presentation/widgets/product_cart_counter.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,10 @@ final CartController cartController = CartController();
 
 class ProductItemCart extends StatelessWidget {
   final Product product;
+  final Function deleteFunction;
 
-  const ProductItemCart({super.key, required this.product});
+  const ProductItemCart(
+      {super.key, required this.product, required this.deleteFunction});
 
   @override
   Widget build(context) {
@@ -24,7 +27,7 @@ class ProductItemCart extends StatelessWidget {
             height: 120,
             width: 120,
             child: CustomFadeInImage(
-              image: NetworkImage(product.imageUrl),
+              image: customNetworkImage(product.imageUrl),
             ),
           ),
         ),
@@ -69,7 +72,11 @@ class ProductItemCart extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerRight,
             child: IconButton(
-                onPressed: () => (),
+                onPressed: () async {
+                  if (await deleteFunction(context)) {
+                    cartController.deleteProduct(product);
+                  }
+                },
                 icon: const Icon(
                   Icons.delete,
                   color: iconAppColor,

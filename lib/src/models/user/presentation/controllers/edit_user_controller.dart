@@ -22,8 +22,8 @@ class EditUserController extends GetxController {
   ImageProvider? image;
 
   EditUserController() {
-    nameController = TextEditingController(text: data.userName);
-    hasImage = data.userImageUrl.isNotEmpty;
+    nameController = TextEditingController(text: PerData.userName);
+    hasImage = PerData.userImageUrl.isNotEmpty;
   }
 
   pickImage() async {
@@ -41,8 +41,8 @@ class EditUserController extends GetxController {
     final EditUserDto editUserDto = EditUserDto(
       userName: nameController.text,
       urlImage:
-          hasImageChange ? await uploadImage(imageFile!) : data.userImageUrl,
-      userId: data.idUser,
+          hasImageChange ? await uploadImage(imageFile!) : PerData.userImageUrl,
+      userId: PerData.idUser,
     );
     if (await editUser(editUserDto)) {
       update();

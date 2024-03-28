@@ -20,6 +20,7 @@ Future<List<Product>> getShopProducts() {
   return Future.delayed(const Duration(seconds: 2), () {
     return [
       Product(
+          id: 'adsas',
           name: 'Bombones de Fresa',
           description:
               "Simplemente una descripcion extensa para que se vea bonito",
@@ -29,8 +30,10 @@ Future<List<Product>> getShopProducts() {
           category: 'chocolate',
           label: 'et',
           rate: "4.5",
+          isFavorite: false,
           shop: shop),
       Product(
+          id: 'adsas',
           name: 'Bombones de Fresa',
           description:
               "Simplemente una descripcion extensa para que se vea bonito",
@@ -40,8 +43,10 @@ Future<List<Product>> getShopProducts() {
           category: 'chocolate',
           label: 'et',
           rate: "3.5",
+          isFavorite: false,
           shop: shop),
       Product(
+          id: 'adsas',
           name: 'Bombones de Fresa',
           description:
               "Simplemente una descripcion extensa para que se vea bonito",
@@ -51,8 +56,10 @@ Future<List<Product>> getShopProducts() {
           category: 'chocolate',
           label: 'et',
           rate: "5",
+          isFavorite: false,
           shop: shop),
       Product(
+          id: 'adsas',
           name: 'Bombones de Fresa',
           description:
               "Simplemente una descripcion extensa para que se vea bonito",
@@ -62,8 +69,10 @@ Future<List<Product>> getShopProducts() {
           category: 'chocolate',
           label: 'et',
           rate: "1.5",
+          isFavorite: false,
           shop: shop),
       Product(
+          id: 'adsas',
           name: 'Bombones de Fresa',
           description:
               "Simplemente una descripcion extensa para que se vea bonito",
@@ -73,7 +82,8 @@ Future<List<Product>> getShopProducts() {
           category: 'chocolate',
           label: 'et',
           rate: "4.5",
-          shop: shop)
+          shop: shop,
+          isFavorite: false)
     ];
   });
 }

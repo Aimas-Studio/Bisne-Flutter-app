@@ -6,7 +6,6 @@ export 'buttons/return_button_widget.dart';
 export 'cards/abstract_card.dart';
 export 'cards/favorite_button_widget.dart';
 export 'cards/photo_card_widget.dart';
-export 'cards/shop_card_widget.dart';
 export 'cards/table_card_widget.dart';
 export 'custom_app_bar.dart';
 export 'images/circular_image.dart';

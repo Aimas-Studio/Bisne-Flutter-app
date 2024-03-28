@@ -1,7 +1,9 @@
 import 'package:bisne/src/core/presentation/widgets/buttons/main_button_widget.dart';
 import 'package:bisne/src/models/cart/presentation/controllers/cart_page_controller.dart';
+import 'package:bisne/src/models/cart/presentation/widgets/product_item_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../../../core/presentation/widgets/widgets_export.dart';
 
@@ -9,9 +11,14 @@ class BuyInfoCartWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   final double height;
   final CartController controller;
+  final bool isValid;
 
   const BuyInfoCartWidget(
-      {super.key, this.height = 100, required this.controller, this.onPressed});
+      {super.key,
+      this.height = 100,
+      required this.controller,
+      this.onPressed,
+      required this.isValid});
 
   @override
   Widget build(context) {
@@ -34,7 +41,8 @@ class BuyInfoCartWidget extends StatelessWidget {
             ),
             Expanded(
               child: MainButton(
-                onPressed: () => (),
+                onPressed:
+                    isValid ? () => cartController.Buy(context) : () => (),
                 text: const RegularAppText(
                   text: 'COMPRAR',
                   color: Colors.white,

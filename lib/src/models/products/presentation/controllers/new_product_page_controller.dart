@@ -43,7 +43,7 @@ class NewProductPageController extends GetxController {
     final urlImage = await uploadImage(fileImage!);
 
     final CreateOfertDto oferDto = CreateOfertDto(
-      shopId: data.shopId,
+      shopId: PerData.shopId,
       name: form.control('productName').value,
       imageURL: urlImage,
       description: form.control('descriptionProduct').value,

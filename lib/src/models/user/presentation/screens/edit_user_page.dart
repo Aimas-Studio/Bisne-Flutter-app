@@ -1,3 +1,4 @@
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:bisne/src/models/home/presentations/controllers/home_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -28,7 +29,7 @@ class EditUserPage extends StatelessWidget {
                     shadow: controller.hasImage,
                     child: controller.hasImage
                         ? CustomFadeInImage(
-                            image: NetworkImage(data.userImageUrl),
+                            image: customNetworkImage(PerData.userImageUrl),
                           )
                         : userPlaceHolder,
                   ),
@@ -38,10 +39,10 @@ class EditUserPage extends StatelessWidget {
                         onPressed: controller.pickImage,
                         child: const LightAppText(text: "ELEGIR FOTO"),
                       )),
-                  BoldAppText(text: data.userName, size: 30),
+                  BoldAppText(text: PerData.userName, size: 30),
                   Padding(
                     padding: const EdgeInsets.only(top: 3),
-                    child: RegularAppText(text: data.userEmail, size: 16),
+                    child: RegularAppText(text: PerData.userEmail, size: 16),
                   ),
                   const SizedBox(
                     height: 18,

@@ -1,6 +1,7 @@
 import 'package:bisne/src/core/presentation/icons/custom_icons.dart';
 import 'package:bisne/src/core/presentation/themes/colors.dart';
 import 'package:bisne/src/core/presentation/widgets/buttons/categories_row.dart';
+import 'package:bisne/src/core/presentation/widgets/images/custom_network_image.dart';
 import 'package:bisne/src/core/presentation/widgets/widgets_export.dart';
 import 'package:bisne/src/core/utils/search_row_widget.dart';
 import 'package:bisne/src/models/cart/export.dart';
@@ -42,6 +43,7 @@ class _ShopPageState extends State<ShopPage> {
     final scrollcontroller = MyScrollController(pageController: _controller);
     return GetBuilder<ShopPageController>(
       init: ShopPageController(shop: shop),
+      id: ShopPageController.idController,
       builder: (shopPageController) {
         return Scaffold(
           appBar: AppBar(
@@ -53,7 +55,8 @@ class _ShopPageState extends State<ShopPage> {
                       CircularImage(
                           size: 25,
                           shadow: false,
-                          child: Image(image: NetworkImage(shop.imageUrl))),
+                          child:
+                              Image(image: customNetworkImage(shop.imageUrl))),
                       const SizedBox(
                         width: 10,
                       ),
@@ -85,7 +88,12 @@ class _ShopPageState extends State<ShopPage> {
                   ),
             actions: [
               topPosition > 0.1
-                  ? const FavoriteButton(size: 1.2)
+                  ? FavoriteButton(
+                      size: 1.2,
+                      isFavorite: shop.isFavorite,
+                      isShop: true,
+                      id: shop.id,
+                    )
                   : const IconCartWidget(),
               const SizedBox(
                 width: 25,
@@ -114,7 +122,7 @@ class _ShopPageState extends State<ShopPage> {
                           child: Image(
                             fit: BoxFit.cover,
                             alignment: Alignment.center,
-                            image: NetworkImage(shop.imageUrl),
+                            image: customNetworkImage(shop.imageUrl),
                           ),
                         ),
                         Positioned(
@@ -146,7 +154,7 @@ class _ShopPageState extends State<ShopPage> {
                             title: shop.name,
                             subtitle: RegularAppText(
                                 text:
-                                    "${shop.category} / ${shopPageController.localitation}"),
+                                    "${shop.category} / ${shop.shopLocation}"),
                             trailing: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -210,6 +218,7 @@ class _ShopPageState extends State<ShopPage> {
                         child: CategoriesRow(
                           labels: shopPageController.shop.subcategories,
                           controller: shopPageController,
+                          idController: ShopPageController.idController,
                         ),
                       ),
                       Expanded(
@@ -226,77 +235,60 @@ class _ShopPageState extends State<ShopPage> {
                               return false;
                             },
                             child: SingleChildScrollView(
-                                controller: scrollcontroller,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: DEBUG
-                                      ? TableCardWidget(
-                                          maxColumns:
-                                              MediaQuery.sizeOf(context).width >
-                                                      550
-                                                  ? 3
-                                                  : 2,
-                                          data: products,
-                                        )
-                                      : FutureBuilder(
-                                          future: shopPageController
-                                              .fetchProducts(),
-                                          builder: (context, snapshot) {
-                                            if (snapshot.hasData) {
-                                              return TableCardWidget(
-                                                maxColumns:
-                                                    MediaQuery.sizeOf(context)
-                                                                .width >
-                                                            550
-                                                        ? 3
-                                                        : 2,
-                                                data: snapshot.data!,
-                                              );
-                                            } else {
-                                              return
-                                                  // Container();
-                                                  Table(
-                                                children: const [
-                                                  TableRow(children: [
-                                                    Image(
-                                                        image: AssetImage(
-                                                            'assets/Images/placeholder_baner.png')),
-                                                    Image(
-                                                        image: AssetImage(
-                                                            'assets/Images/placeholder_baner.png'))
-                                                  ]),
-                                                  TableRow(children: [
-                                                    Image(
-                                                        image: AssetImage(
-                                                            'assets/Images/placeholder_baner.png')),
-                                                    Image(
-                                                        image: AssetImage(
-                                                            'assets/Images/placeholder_baner.png'))
-                                                  ])
-                                                ],
-                                              );
-                                            }
-                                          },
-                                        ),
-                                )
-                                // StreamBuilder(
-                                //   stream: shopPageController.indexStream,
-                                //   builder: (context, snapshot) {
-                                //     return FutureBuilder(
-                                //       key: UniqueKey(),
-                                //       future: ProductsProvider().cargarData(8),
-                                //       builder: (context, snapshot) => snapshot
-                                //               .hasData
-                                //           ? Container()
-                                //           // createProductTable(
-                                //           // context, snapshot.data!)
-                                //           : const Center(
-                                //               child: CircularProgressIndicator()),
-                                //     );
-                                //   },
-                                // ),
-
-                                ),
+                              controller: scrollcontroller,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: DEBUG
+                                    ? TableCardWidget(
+                                        maxColumns:
+                                            MediaQuery.sizeOf(context).width >
+                                                    550
+                                                ? 3
+                                                : 2,
+                                        data: products,
+                                      )
+                                    : FutureBuilder(
+                                        future:
+                                            shopPageController.fetchProducts(),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.hasData) {
+                                            return TableCardWidget(
+                                              maxColumns:
+                                                  MediaQuery.sizeOf(context)
+                                                              .width >
+                                                          550
+                                                      ? 3
+                                                      : 2,
+                                              data: snapshot.data!,
+                                            );
+                                          } else {
+                                            return
+                                                // Container();
+                                                Table(
+                                              children: const [
+                                                TableRow(children: [
+                                                  Image(
+                                                      image: AssetImage(
+                                                          'assets/Images/placeholder_baner.png')),
+                                                  Image(
+                                                      image: AssetImage(
+                                                          'assets/Images/placeholder_baner.png'))
+                                                ]),
+                                                TableRow(children: [
+                                                  Image(
+                                                      image: AssetImage(
+                                                          'assets/Images/placeholder_baner.png')),
+                                                  Image(
+                                                      image: AssetImage(
+                                                          'assets/Images/placeholder_baner.png'))
+                                                ])
+                                              ],
+                                            );
+                                          }
+                                        },
+                                      ),
+                              ),
+                            ),
                           ),
                         ),
                       ),

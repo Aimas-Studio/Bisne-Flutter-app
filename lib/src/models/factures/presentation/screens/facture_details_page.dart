@@ -10,8 +10,9 @@ import '../widgets/total_order_widget.dart';
 
 class FactureDetailPage extends StatelessWidget {
   final Facture facture;
+  final bool shop;
 
-  const FactureDetailPage(this.facture, {super.key});
+  const FactureDetailPage(this.facture, {super.key, this.shop = false});
 
   @override
   Widget build(context) {
@@ -41,7 +42,7 @@ class FactureDetailPage extends StatelessWidget {
         bottomSheet: TotalOrderWidget(
           totalPrice: facture.totalPrice.toString(),
           date: facture.date,
-          namePurchase: facture.shop.name,
+          namePurchase: shop ? facture.user.username : facture.shop.name,
         ),
       ),
     );
